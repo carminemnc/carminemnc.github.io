@@ -4335,7 +4335,7 @@ input, select, textarea {
   height: 60px;
   border-radius: 100%;
   display: block;
-  background: linear-gradient(45deg, #237d60, #2965e6);
+  background: linear-gradient(45deg, #237d60, #07183d);
   transition: all 265ms ease-out;
 }
 .social-icons a:hover:before {
@@ -4346,8 +4346,8 @@ input, select, textarea {
   transform: scale(2.2);
   -ms-transform: scale(2.2);
   -webkit-transform: scale(2.2);
-  color: linear-gradient(45deg,#237d60, #2965e6);
-  background: -webkit-linear-gradient(45deg, #237d60, #2965e6);
+  color: linear-gradient(45deg, #237d60, #07183d);
+  background: -webkit-linear-gradient(45deg, #237d60, #07183d);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: all 265ms ease-in;
@@ -4375,6 +4375,8 @@ input, select, textarea {
   display: flex;
   justify-content: center;
 }
+.fakefooter h3 {font-family:"Montserrat"}
+
 .fakecenter {
   width: 400px; 
   justify-content: center;
