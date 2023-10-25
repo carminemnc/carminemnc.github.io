@@ -4,7 +4,6 @@ project:
 
 website:
   navbar:
-    logo: imgs/carminemnc.png
     left:
       - href: index.qmd
         text: Home
@@ -14,12 +13,6 @@ website:
         text: Projects
       - href: resume.qmd
         text: Resume
-      # - icon: github
-      #   href: https://github.com/
-      # - icon: linkedin
-      #   href: https://twitter.com
-      # - icon: envelope
-      #   href: https://twitter.com
 format:
   html:
     theme:
