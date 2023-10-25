@@ -3,18 +3,28 @@ project:
   output-dir: docs
 
 website:
-  title: "carminemnc.github.io"
   navbar:
+    logo: imgs/carminemnc.png
+    left:
+      - href: index.qmd
+        text: Home
     right:
-      - about.qmd
-      - icon: github
-        href: https://github.com/
-      - icon: twitter
-        href: https://twitter.com
+      - posts.qmd
+      - href: projects.qmd
+        text: Projects
+      - href: resume.qmd
+        text: Resume
+      # - icon: github
+      #   href: https://github.com/
+      # - icon: linkedin
+      #   href: https://twitter.com
+      # - icon: envelope
+      #   href: https://twitter.com
 format:
   html:
-    theme: cosmo
-    css: styles.css
+    theme:
+      - theme.scss
+    mainfont: Montserrat    
 
 
 
