@@ -1,14 +1,28 @@
 ---
-title: "carminemnc.github.io"
-listing:
-  contents: posts
-  sort: "date desc"
-  type: default
-  categories: true
-  sort-ui: false
-  filter-ui: false
-page-layout: full
-title-block-banner: true
+title: ""
+image: "imgs/carminemnc.png"
+
+about:
+  template: jolla
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/carmine-minichini
+    - icon: github
+      text: Github
+      href: https://github.com/carminemnc
+
 ---
+
+::: {.justify}
+
+Welcome here,
+
+I'm a Statistician with a degree in actuarial science. My final dissertation was on *"Statistical methods for pair-trading strategies: a state-space models approach"*.
+<br>
+I'm passionate about unconvering hidden patterns and extracting actionable insights from complex data.
+Ad Hoc RPA Analyst, passionate about processes optimization.
+
+:::
 
 

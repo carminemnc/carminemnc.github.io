@@ -1,0 +1,19 @@
+---
+title: "Tripscraper"
+description: 
+  TripScraper is an open-source Natural Language Processing (NLP) tool that can be used to scrape TripAdvisor reviews and analyze them by ratings, words, and other criteria.
+date: 2023-07-10
+categories: [App]
+image: https://github.com/carminemnc/tripscraper/blob/main/tripscraper.gif?raw=true
+draft: false
+---
+
+[{{< fa brands github >}} source code](https://github.com/carminemnc/tripscraper){.btn}
+
+<br>
+
+# Motivation 
+
+The application uses a variety of NLP techniques, including sentiment analysis, word frequency analysis, word trends over time and aspect based sentiment analysis.
+
+The Playground section of TripScraper is a sandbox where users can experiment with the NLP models that are used by the tool. This section allows users to try out different features of the models, to see how they work, and to learn more about how NLP can be used to analyze TripAdvisor reviews.
