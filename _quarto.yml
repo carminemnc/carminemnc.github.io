@@ -11,7 +11,7 @@ website:
       - posts.qmd
       - href: projects.qmd
         text: Projects
-      - href: resume.qmd
+      - href: resume/carmine_minichini_resume_eng_version.pdf
         text: Resume
 format:
   html:

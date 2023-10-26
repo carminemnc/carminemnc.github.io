@@ -1,38 +1,10 @@
 [
   {
-    "objectID": "projects/tripscraper/index.html",
-    "href": "projects/tripscraper/index.html",
-    "title": "Tripscraper",
-    "section": "",
-    "text": "source code\n\n\nMotivation\nThe application uses a variety of NLP techniques, including sentiment analysis, word frequency analysis, word trends over time and aspect based sentiment analysis.\nThe Playground section of TripScraper is a sandbox where users can experiment with the NLP models that are used by the tool. This section allows users to try out different features of the models, to see how they work, and to learn more about how NLP can be used to analyze TripAdvisor reviews."
-  },
-  {
-    "objectID": "posts.html",
-    "href": "posts.html",
-    "title": "Posts",
-    "section": "",
-    "text": "Post With Code\n\n\n\n\n\n\n\n\n\n\n\n\nOct 25, 2023\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\n\n\n\nOct 22, 2023\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "posts/post-with-code/index.html",
-    "href": "posts/post-with-code/index.html",
-    "title": "Post With Code",
-    "section": "",
-    "text": "This is a post with executable code."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
+    "objectID": "projects.html",
+    "href": "projects.html",
     "title": "",
     "section": "",
-    "text": "Welcome here,\nI’m a Statistician with a degree in actuarial science. My final dissertation was on “Statistical methods for pair-trading strategies: a state-space models approach”.  I’m passionate about unconvering hidden patterns and extracting actionable insights from complex data. Ad Hoc RPA Analyst, passionate about processes optimization."
-  },
-  {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
-    "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+    "text": "Tripscraper\n\n\nTripScraper is an open-source Natural Language Processing (NLP) tool that can be used to scrape TripAdvisor reviews and analyze them by ratings, words, and other criteria.\n\n\n\n\n\n\nJul 10, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBook your space\n\n\nAn open source application for managing office desk booking\n\n\n\n\n\n\nNov 23, 2022\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "projects/book-your-space/index.html",
@@ -42,10 +14,38 @@
     "text": "live demo source code\n\n\nMotivation\nWe made this application in order to manage people at office with the new rules for after Covid. This application has been made in 1 day and has to full fill quickly the need to manage easily time presence and booking for our Office.\nThis application is not designed to manage the full Office it is designed to have 1 version per team, floor, service etc… For example we use one instance for our Paris Office and one for our Lyon Office.\nWith Office Desk Booking you can manageteam presence by assigning days to some teams and if there is remaining free place, each user can book a place."
   },
   {
-    "objectID": "projects.html",
-    "href": "projects.html",
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
     "title": "",
     "section": "",
-    "text": "Tripscraper\n\n\nTripScraper is an open-source Natural Language Processing (NLP) tool that can be used to scrape TripAdvisor reviews and analyze them by ratings, words, and other criteria.\n\n\n\n\n\n\nJul 10, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBook your space\n\n\nAn open source application for managing office desk booking\n\n\n\n\n\n\nNov 23, 2022\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Welcome here,\nI’m a Statistician with a degree in actuarial science. My final dissertation was on “Statistical methods for pair-trading strategies: a state-space models approach”.  I’m passionate about unconvering hidden patterns and extracting actionable insights from complex data. Ad Hoc RPA Analyst, passionate about processes optimization."
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code."
+  },
+  {
+    "objectID": "posts.html",
+    "href": "posts.html",
+    "title": "Posts",
+    "section": "",
+    "text": "Post With Code\n\n\n\n\n\n\n\n\n\n\n\n\nOct 25, 2023\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\n\n\n\n\n\nOct 22, 2023\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "projects/tripscraper/index.html",
+    "href": "projects/tripscraper/index.html",
+    "title": "Tripscraper",
+    "section": "",
+    "text": "source code\n\n\nMotivation\nThe application uses a variety of NLP techniques, including sentiment analysis, word frequency analysis, word trends over time and aspect based sentiment analysis.\nThe Playground section of TripScraper is a sandbox where users can experiment with the NLP models that are used by the tool. This section allows users to try out different features of the models, to see how they work, and to learn more about how NLP can be used to analyze TripAdvisor reviews."
   }
 ]

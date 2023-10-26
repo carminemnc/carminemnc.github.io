@@ -1,16 +1,16 @@
 [
   {
-    "listing": "/posts.html",
-    "items": [
-      "/posts/post-with-code/index.html",
-      "/posts/welcome/index.html"
-    ]
-  },
-  {
     "listing": "/projects.html",
     "items": [
       "/projects/tripscraper/index.html",
       "/projects/book-your-space/index.html"
+    ]
+  },
+  {
+    "listing": "/posts.html",
+    "items": [
+      "/posts/post-with-code/index.html",
+      "/posts/welcome/index.html"
     ]
   }
 ]
