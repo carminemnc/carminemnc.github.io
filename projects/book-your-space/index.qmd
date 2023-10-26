@@ -8,7 +8,7 @@ image: https://github.com/carminemnc/imgs/blob/main/book-your-space.gif?raw=true
 draft: false
 ---
 
-[live demo](https://script.google.com/macros/s/AKfycbw7IDvU8-UN427sO_u5RLYf8kSGlOolFlrlPA_dk1Ha4H2MgACJn8H8j79t_YfKS1sJ/exec){.btn} [source code](https://github.com/carminemnc/book-your-space){.btn}
+[{{< fa brands google >}} demo](https://script.google.com/macros/s/AKfycbw7IDvU8-UN427sO_u5RLYf8kSGlOolFlrlPA_dk1Ha4H2MgACJn8H8j79t_YfKS1sJ/exec){.btn} [{{< fa brands github >}} source code](https://github.com/carminemnc/book-your-space){.btn}
 
 <br>
 

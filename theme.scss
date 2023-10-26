@@ -3,6 +3,7 @@
 // Import fonts (define mainfont in _quarto.yml)
 /*@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Nunito:wght@300&family=Roboto+Mono:wght@300&display=swap');*/
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&family=Nunito:wght@300;800&family=Roboto+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300&display=swap');
 
 // Colors
 $cyan : #0085A1;
@@ -37,23 +38,20 @@ $code-block-bg: $cream;
 
 /* ELEMENT SELECTORS */
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
-  font-size:15px;
-  color: $black;
-}
-
-a {
-  font-size:15px;
-}
-
-h3 {
+body {
+  line-height: 1.5; // min 1.5 suggested for assistive tech
   font-size: 15px;
 }
 
-body {
-  line-height: 1.5; // min 1.5 suggested for assistive tech
-  font-size: 17px;
+h1, h2, h3, h4 {
+  font-size: 22px;
+  font-weight: 600;
+  color:$black;
+}
+
+h5, h6 {
+  font-size: 15px;
+  font-weight: 600;
 }
 
 /* ID selectors */
@@ -201,7 +199,7 @@ body {
     text-align: justify !important
   }
 
-  table, th, td {
-    border: 1px solid black;
-    border-radius: 1px;
-  }
+table, th, td {
+  border: 1px solid black;
+  border-radius: 1px;
+}

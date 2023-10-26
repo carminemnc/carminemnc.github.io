@@ -3,7 +3,6 @@ project:
   output-dir: docs
 
 website:
-  title: "Personal website"
   site-url: https://carminemnc.github.io/
   navbar:
     left:
@@ -19,7 +18,7 @@ format:
   html:
     theme:
       - theme.scss
-    mainfont: Montserrat    
+    mainfont: Sora    
 
 
 
