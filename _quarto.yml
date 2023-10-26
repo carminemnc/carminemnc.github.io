@@ -14,11 +14,15 @@ website:
         text: Projects
       - href: resume/carmine_minichini_resume_eng_version.pdf
         text: Resume
+  page-footer: 
+    background: light
+    left: Built with [Quarto](https://quarto.org/)
+    right: Look at [{{< fa brands github >}}](https://github.com/carminemnc) [{{< fa brands linkedin >}}](https://www.linkedin.com/in/carmine-minichini)
 format:
   html:
     theme:
       - theme.scss
-    mainfont: Sora    
+    mainfont: Montserrat
 
 
 

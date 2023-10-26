@@ -1,0 +1,11 @@
+{
+  "hash": "94f249e60d9a07f1035416bbd4ef3765",
+  "result": {
+    "markdown": "---\ntitle: \"On Bayesian optimization\"\nauthor: \"Carmine Minichini\"\nsubtitle: \"An overview of bayesian optimization tech\"\ndate: \"2023-10-25\"\ncategories: [python]\nimage: \"bayes-opt.png\"\n---\n\n<!-- [{{< fa brands google >}} demo](https://script.google.com/macros/s/AKfycbw7IDvU8-UN427sO_u5RLYf8kSGlOolFlrlPA_dk1Ha4H2MgACJn8H8j79t_YfKS1sJ/exec){.btn} [{{< fa brands github >}} source code](https://github.com/carminemnc/book-your-space){.btn} -->\n\n\n# Background\n\nFor now this is only the main header\n\n::: {.cell execution_count=1}\n``` {.python .cell-code}\nprint(2+2)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n4\n```\n:::\n:::\n\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

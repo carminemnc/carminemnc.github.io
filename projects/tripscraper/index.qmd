@@ -1,9 +1,9 @@
 ---
 title: "Tripscraper"
 description: 
-  TripScraper is an open-source Natural Language Processing (NLP) tool that can be used to scrape TripAdvisor reviews and analyze them by ratings, words, and other criteria.
+  An open source application for NLP playground
 date: 2023-07-10
-categories: [App]
+categories: [app,nlp,streamlit]
 image: https://github.com/carminemnc/tripscraper/blob/main/tripscraper.gif?raw=true
 draft: false
 ---
@@ -17,3 +17,85 @@ draft: false
 The application uses a variety of NLP techniques, including sentiment analysis, word frequency analysis, word trends over time and aspect based sentiment analysis.
 
 The Playground section of TripScraper is a sandbox where users can experiment with the NLP models that are used by the tool. This section allows users to try out different features of the models, to see how they work, and to learn more about how NLP can be used to analyze TripAdvisor reviews.
+
+# Bigrams network graph
+
+```{python}
+import pandas as pd
+import networkx as nx
+import matplotlib.pyplot as plt
+from ipywidgets import interact
+import ipywidgets as widgets
+
+def words_network_graph(dataset,
+                        tuple,
+                        raw,
+                        frequency):
+    
+    data = pd.read_csv(dataset)
+    
+    def tupler(w):
+        f = w.split(' ')[0]
+        s = w.split(' ')[1]
+        v = (f,s)
+        return v
+    
+    data[tuple] = data[raw].apply(lambda x: tupler(x))
+    
+    data = data[data['frequency']>=frequency]
+
+    # create dictionary with counts
+    d = data.set_index(tuple).T.to_dict('records')
+
+    # network graph
+    G = nx.Graph()
+
+    # edge connections
+    for k, v in d[0].items():
+        G.add_edge(k[0], k[1], weight=(v*30))
+
+    fig, ax = plt.subplots(figsize=(10, 8))
+    fig.set_figheight(5)
+    fig.set_figwidth(10)
+
+    pos = nx.spring_layout(G, k=2)
+
+    # weights
+    weights = nx.get_edge_attributes(G, 'weight').values()
+    weights = list(weights)
+    weights = [w*0.0060 for w in weights]
+
+    # plot networks
+    nx.draw_networkx(G, pos,
+                     font_size=12,
+                     width=list(weights),
+                     edge_color='white',
+                     node_color='#008b8b',
+                     with_labels=False,
+                     ax=ax,
+                     node_size=50)
+
+    # offset labels
+    for key, value in pos.items():
+        x, y = value[0]+.00135, value[1]+.045
+        ax.text(x, y,
+                s=key,
+                bbox=dict(facecolor='white', alpha=0.60),
+                horizontalalignment='center', fontsize=9)
+    fig.set_facecolor('#181616')
+    
+    plt.axis('off')
+```
+
+
+Plotting a graph of this
+
+```{python}
+words_network_graph('reviews_bigrams.csv',
+                    'bigram',
+                    'bigrams',
+                    10)
+```
+
+
+#

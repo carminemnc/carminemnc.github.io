@@ -2,30 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://carminemnc.github.io/projects.html</loc>
-    <lastmod>2023-10-26T07:53:42.651Z</lastmod>
+    <lastmod>2023-10-26T17:59:56.288Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/projects/book-your-space/index.html</loc>
-    <lastmod>2023-10-26T07:53:41.573Z</lastmod>
+    <lastmod>2023-10-26T17:59:46.438Z</lastmod>
   </url>
   <url>
-    <loc>https://carminemnc.github.io/posts/welcome/index.html</loc>
-    <lastmod>2023-10-26T07:53:40.339Z</lastmod>
+    <loc>https://carminemnc.github.io/posts/on-bayesian-optimization/index.html</loc>
+    <lastmod>2023-10-26T17:59:45.243Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/index.html</loc>
-    <lastmod>2023-10-26T07:53:39.223Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carminemnc.github.io/posts/post-with-code/index.html</loc>
-    <lastmod>2023-10-26T07:53:39.774Z</lastmod>
+    <lastmod>2023-10-26T17:59:33.134Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/posts.html</loc>
-    <lastmod>2023-10-26T07:53:40.968Z</lastmod>
+    <lastmod>2023-10-26T17:59:45.893Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/projects/tripscraper/index.html</loc>
-    <lastmod>2023-10-26T07:53:42.021Z</lastmod>
+    <lastmod>2023-10-26T17:59:55.632Z</lastmod>
   </url>
 </urlset>

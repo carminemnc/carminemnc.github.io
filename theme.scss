@@ -3,7 +3,6 @@
 // Import fonts (define mainfont in _quarto.yml)
 /*@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Nunito:wght@300&family=Roboto+Mono:wght@300&display=swap');*/
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&family=Nunito:wght@300;800&family=Roboto+Mono:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300&display=swap');
 
 // Colors
 $cyan : #0085A1;
@@ -17,6 +16,7 @@ $light-gray: #949799;
 $purple: #9158A2;
 $black: #000000;
 $burnt-orange: #ad7237;
+$shark: #242728;
 
 // Base document colors
 $navbar-bg: $cyan;
@@ -24,7 +24,8 @@ $navbar-fg: $black;
 $navbar-hl: $white; 
 $body-bg: $cream;
 $body-color: $black;
-$footer-bg: $cyan; 
+$footer-bg: $cyan;
+$footer-fg: $black; 
 $link-color: $cyan;
 
 // Inline code
@@ -32,7 +33,7 @@ $code-bg: $cream;
 $code-color: $burnt-orange; //$purple; 
 
 // Code blocks
-$code-block-bg: $cream;
+$code-block-bg: $light-gray;
 
 /*-- scss:rules --*/
 

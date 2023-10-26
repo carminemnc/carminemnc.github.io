@@ -9,7 +9,7 @@ listing:
   grid-item-align: left
   max-description-length: 175
   date-format: medium
-  #categories: numbered
+  #categories: true
   sort-ui: false
   filter-ui: false
 page-layout: full
