@@ -29,7 +29,6 @@ $code-color: $cyan;
 
 /*-- scss:rules --*/
 
-
 /* ID selectors */
 
 #map-size {
@@ -46,7 +45,6 @@ $code-color: $cyan;
 
 
 /* ELEMENT SELECTORS */
-
 
 body {
   line-height: 1.5; // min 1.5 suggested for assistive tech
@@ -80,10 +78,11 @@ h5, h6 {
 
 // btn styling
 .btn {
-  color: $dark-gray;
-  background-color: $cream; //$light-sage-green;
+  color: $cream;
+  background-color: $shark;
   border-color: $dark-gray;
   border-radius: 20px;
+  font-size: 12px;
 }
 
 // button hover styling
@@ -103,8 +102,27 @@ h5, h6 {
   font-size: 15px;
 }
 
+// navbar logo
 .navbar-brand img { 
-  max-height: 40pxpx;
+  max-height: 40px;
   width: auto;
 }
+
+// navbar rounding borders
+.navbar {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px; 
+}
+
+// nav footer rounding borders
+.nav-footer{
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px; 
+}
+
+
+
+
+
+
 
