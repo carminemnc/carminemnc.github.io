@@ -1,5 +1,5 @@
 ---
-title: "Some of my notable projects/applications/studies"
+title: ""
 listing:
   contents: projects
   feed: true
