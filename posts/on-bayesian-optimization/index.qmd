@@ -1,19 +1,11 @@
 ---
 title: "On Bayesian optimization"
 author: "Carmine Minichini"
-subtitle: "An overview of bayesian optimization tech"
+description: "On ML hyperparameters fine-tuning trough Bayesian optimization: a study"
 date: "2023-10-25"
 categories: [python]
-image: "bayes-opt.png"
+image: graphics3d.gif
 ---
-<!-- [{{< fa brands google >}} demo](https://script.google.com/macros/s/AKfycbw7IDvU8-UN427sO_u5RLYf8kSGlOolFlrlPA_dk1Ha4H2MgACJn8H8j79t_YfKS1sJ/exec){.btn} [{{< fa brands github >}} source code](https://github.com/carminemnc/book-your-space){.btn} -->
 
+![](wip.gif){fig-align="center" width=60% font-size=1px}
 
-# Background
-
-For now this is only the main header
-
-
-```{python}
-print(2+2)
-```

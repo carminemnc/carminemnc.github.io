@@ -4,7 +4,7 @@ description:
   An open source application for NLP playground
 date: 2023-07-10
 categories: [app,nlp,streamlit]
-image: https://github.com/carminemnc/tripscraper/blob/main/tripscraper.gif?raw=true
+image: tripscraper.gif
 draft: false
 ---
 
@@ -25,7 +25,7 @@ import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
 from ipywidgets import interact
-import ipywidgets as widgets
+import ipywidgets as widgets 
 
 def words_network_graph(dataset,
                         tuple,
@@ -35,10 +35,7 @@ def words_network_graph(dataset,
     data = pd.read_csv(dataset)
     
     def tupler(w):
-        f = w.split(' ')[0]
-        s = w.split(' ')[1]
-        v = (f,s)
-        return v
+        return (w.split(' ')[0],w.split(' ')[1]) # <1>
     
     data[tuple] = data[raw].apply(lambda x: tupler(x))
     
@@ -87,15 +84,16 @@ def words_network_graph(dataset,
     plt.axis('off')
 ```
 
+1. Defining a `tupler` function for handling csv read file
 
 Plotting a graph of this
 
 ```{python}
+#| label: fig-plot
+#| fig-cap: "Plot"
 words_network_graph('reviews_bigrams.csv',
                     'bigram',
                     'bigrams',
                     10)
 ```
 
-
-#

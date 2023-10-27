@@ -4,10 +4,9 @@ project:
 
 website:
   site-url: https://carminemnc.github.io/
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
+  search: true
+  navbar: 
+    logo: imgs/carminemnc_w_500x500.png
     right:
       - posts.qmd
       - href: projects.qmd
@@ -16,13 +15,26 @@ website:
         text: Resume
   page-footer: 
     background: light
-    left: Built with [Quarto](https://quarto.org/)
-    right: Look at [{{< fa brands github >}}](https://github.com/carminemnc) [{{< fa brands linkedin >}}](https://www.linkedin.com/in/carmine-minichini)
+    left: "{{< fa copyright >}} 2023, Carmine Minichini"
+    right:
+      - icon: github
+        href: https://github.com/carminemnc
+      - icon: linkedin
+        href: https://linkedin.com/in/carmine-minichini
 format:
   html:
+    toc: true
+    code-fold: true
+    code-overflow: wrap
+    code-block-border-left: true
+    code-annotations: hover
+    code-summary: "Show me the code"
     theme:
-      - theme.scss
+      light: light-theme.scss
+      dark: dark-theme.scss
     mainfont: Montserrat
+    highlight-style: ayu-dark
+    
 
 
 

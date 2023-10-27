@@ -1,6 +1,6 @@
 ---
 title: ""
-image: "imgs/carminemnc.png"
+image: imgs/carminemnc_stow_500x500.png
 
 about:
   template: jolla
@@ -15,6 +15,7 @@ about:
 ---
 
 ::: {.justify}
+
 Welcome here,
 
 I'm a Statistician with a degree in actuarial science. My final dissertation was on *"Statistical methods for pair-trading strategies: a state-space models approach"*.
@@ -26,5 +27,6 @@ Ad Hoc RPA Analyst, passionate about processes optimization.
 <br>
 <br>
 Check out some of my [projects](projects.qmd).
+
 ::: 
 
