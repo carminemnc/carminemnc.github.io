@@ -23,9 +23,26 @@ $footer-bg: $cyan;
 $footer-fg: $black; 
 $link-color: $cyan;
 $code-block-border-left:$cyan;
-
+// verbatim code
+$code-bg: $cream;
+$code-color: $cyan;
 
 /*-- scss:rules --*/
+
+
+/* ID selectors */
+
+#map-size {
+  width: 100%;
+  height: 350px;
+}
+
+.figure-caption {
+  color: $cream;
+  font-style: italic;
+  text-align: center;
+  font-size: 12px;
+}
 
 
 /* ELEMENT SELECTORS */
@@ -90,3 +107,4 @@ h5, h6 {
   max-height: 40pxpx;
   width: auto;
 }
+

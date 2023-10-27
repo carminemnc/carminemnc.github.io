@@ -7,5 +7,6 @@ categories: [python]
 image: graphics3d.gif
 ---
 
-![](wip.gif){fig-align="center" width=60% font-size=1px}
+# Background
 
+![](wip.gif){fig-align="center" width=60% font-size=1px}
