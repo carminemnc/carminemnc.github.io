@@ -6,7 +6,7 @@ website:
   site-url: https://carminemnc.github.io/
   search: true
   navbar: 
-    logo: imgs/carminemnc_w_500x500.png
+    logo: imgs/carminemnc_big_w_500x500.png
     right:
       - posts.qmd
       - href: projects.qmd
