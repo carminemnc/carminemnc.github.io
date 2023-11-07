@@ -67,7 +67,7 @@ def words_network_graph(dataset,
                      font_size=12,
                      width=list(weights),
                      edge_color='white',
-                     node_color='#008b8b',
+                     node_color='#0085A1',
                      with_labels=False,
                      ax=ax,
                      node_size=50)
@@ -79,7 +79,7 @@ def words_network_graph(dataset,
                 s=key,
                 bbox=dict(facecolor='white', alpha=0.60),
                 horizontalalignment='center', fontsize=9)
-    fig.set_facecolor('#181616')
+    fig.set_facecolor('#242728')
     
     plt.axis('off')
 ```
