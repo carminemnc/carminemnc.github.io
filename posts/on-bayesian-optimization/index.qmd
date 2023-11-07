@@ -9,4 +9,4 @@ image: graphics3d.gif
 
 # Background
 
-![](wip.gif){fig-align="center" width=60% font-size=1px}
+![](/imgs/wip.gif){fig-align="center" width=60% font-size=1px}

@@ -4,31 +4,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&family=Nunito:wght@300;800&family=Roboto+Mono:wght@400;700&display=swap');
 
 
-// Colors
-$cyan : #0085A1;
-$cream: #EAEAEA;
-$white : #ffffff;
-$dark-gray: #5A5856;
-$gray: #64605f;
-$light-gray: #949799;
+// personal palette
+$blue-munsell: #0085A1;
+$cerulean: #006B86;
+$midnight-green: #00526c;
+$indigo-dye: #003a53;
+$prussian-blue: #00243c;
+$moonstone: #00a2ab;
+$davy-gray: #5A5856;
+$battleship-gray: #949799;
+$eerie-black: #242728;
 $black: #000000;
-$shark: #242728;
+$platinum: #EAEAEA;
+$white : #ffffff;
 
-// Base document colors
-$navbar-bg: $cyan;
+// base colors
+$navbar-bg: $blue-munsell;
 $navbar-fg: $black; 
 $navbar-hl: $white; 
-$body-bg: $cream;
+$body-bg: $platinum;
 $body-color: $black;
-$footer-bg: $cyan;
-$footer-fg: $black; 
-$link-color: $cyan;
-$code-block-border-left:$cyan;
+$link-color: $moonstone;
+$code-block-border-left:$moonstone;
+
 // verbatim code
-$code-bg: $shark;
-$code-color: $cyan;
+$code-bg: $eerie-black;
+$code-color: $blue-munsell;
+
+
 
 /*-- scss:rules --*/
+
+
 
 /* ID selectors */
 
@@ -71,15 +78,15 @@ h5, h6 {
 
 // listing card styling
 .card {
-  background-color: $cream;
+  background-color: $platinum;
   // border-color: $dark-gray;
 }
 
 // btn styling
 .btn {
-  color: $shark;
-  background-color: $cream;
-  border-color: $dark-gray;
+  color: $eerie-black;
+  background-color: $platinum;
+  border-color: $davy-gray;
   border-radius: 20px;
   font-size: 12px;
 }
@@ -87,8 +94,8 @@ h5, h6 {
 // button hover styling
 .btn:hover {
   color: $black;
-  background-color: $cyan;
-  border-color: $dark-gray;
+  background-color: $blue-munsell;
+  border-color: $davy-gray;
 }
 
 // button text size (landing page)
