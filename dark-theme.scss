@@ -4,22 +4,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&family=Nunito:wght@300;800&family=Roboto+Mono:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css);
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
 
 // personal palette
-$blue-munsell: #0085A1;
-$cerulean: #006B86;
-$midnight-green: #00526c;
-$indigo-dye: #003a53;
-$prussian-blue: #00243c;
-$dark-cyan: #008B8B;
-$moonstone: #00a2ab;
-$davy-gray: #5A5856;
-$battleship-gray: #949799;
-$eerie-black: #242728;
-$black: #000000;
-$platinum: #EAEAEA;
-$white : #ffffff;
+$blue-munsell: #0085a1ff;
+$cerulean: #006b86ff;
+$midnight-green: #00526cff;
+$dark-cyan: #008b8bff;
+$davys-gray: #5a5856ff;
+$battleship-gray: #949799ff;
+$eerie-black: #242728ff;
+$black: #000000ff;
+$platinum: #eaeaeaff;
+$white: #ffffffff;
 
 // base colors
 $navbar-bg: $blue-munsell;
@@ -27,14 +24,12 @@ $navbar-fg: $black;
 $navbar-hl: $white; 
 $body-bg: $eerie-black;
 $body-color: $platinum;
-$link-color: $moonstone;
-$code-block-border-left:$moonstone;
+$link-color: $dark-cyan;
+$code-block-border-left:$dark-cyan;
 
 // verbatim code
 $code-bg: $platinum;
 $code-color: $blue-munsell;
-
-
 
 /*-- scss:rules --*/
 
@@ -70,7 +65,7 @@ h1, h2, h3, h4 {
 
 h5, h6 {
   font-size: 17px;
-  font-weight: 600;
+  font-weight: bold;
 }
 
 // justifying text
@@ -83,7 +78,7 @@ h5, h6 {
 // listing card styling
 .card {
   background-color: $eerie-black;
-  border-color: $davy-gray;
+  border-color: $davys-gray;
 
 }
 
@@ -91,7 +86,7 @@ h5, h6 {
 .btn {
   color: $platinum;
   background-color: $eerie-black;
-  border-color: $davy-gray;
+  border-color: $davys-gray;
   border-radius: 20px;
   font-size: 15px;
 }
@@ -100,18 +95,9 @@ h5, h6 {
 .btn:hover {
   color: $black;
   background-color: $blue-munsell;
-  border-color: $davy-gray;
+  border-color: $davys-gray;
 }
 
-// button text size (landing page)
-.about-link-text { 
-  font-size: 15px;
-}
-
-// button icon size (landing page)
-.bi { 
-  font-size: 15px;
-}
 
 // navbar logo
 .navbar-brand img { 
@@ -132,9 +118,9 @@ h5, h6 {
 }
 
 // nav link pages
-.nav-link {
-  font-weight: 600;
-}
+// .nav-link {
+//   font-weight: bold;
+// }
 
 
 // social media icons animation

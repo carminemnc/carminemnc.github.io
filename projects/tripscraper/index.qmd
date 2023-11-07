@@ -12,11 +12,15 @@ draft: false
 
 <br>
 
-# Motivation 
+# The application
 
 The application uses a variety of NLP techniques, including sentiment analysis, word frequency analysis, word trends over time and aspect based sentiment analysis.
 
-The Playground section of TripScraper is a sandbox where users can experiment with the NLP models that are used by the tool. This section allows users to try out different features of the models, to see how they work, and to learn more about how NLP can be used to analyze TripAdvisor reviews.
+The Playground section is a sandbox where users can experiment with the NLP models that are used by the tool. This section allows users to try out different features of the models, to see how they work, and to learn more about how NLP can be used to analyze TripAdvisor reviews.
+
+# Background
+
+Text mining is the process of extracting information and insights from text. It can be used to identify patterns, trends, and sentiment in large amounts of text data.
 
 # Bigrams network graph
 
@@ -24,21 +28,18 @@ The Playground section of TripScraper is a sandbox where users can experiment wi
 import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
-from ipywidgets import interact
-import ipywidgets as widgets 
+
 
 def words_network_graph(dataset,
                         tuple,
                         raw,
                         frequency):
     
-    data = pd.read_csv(dataset)
-    
+    # read data
+    data = pd.read_csv(dataset)   
     def tupler(w):
         return (w.split(' ')[0],w.split(' ')[1]) # <1>
-    
-    data[tuple] = data[raw].apply(lambda x: tupler(x))
-    
+    data[tuple] = data[raw].apply(lambda x: tupler(x)) 
     data = data[data['frequency']>=frequency]
 
     # create dictionary with counts
@@ -47,53 +48,54 @@ def words_network_graph(dataset,
     # network graph
     G = nx.Graph()
 
-    # edge connections
+    # edges connections
     for k, v in d[0].items():
         G.add_edge(k[0], k[1], weight=(v*30))
 
-    fig, ax = plt.subplots(figsize=(10, 8))
-    fig.set_figheight(5)
-    fig.set_figwidth(10)
+    # nodes position
+    pos = nx.spring_layout(G,k=2)
 
-    pos = nx.spring_layout(G, k=2)
-
-    # weights
+    # edges weight
     weights = nx.get_edge_attributes(G, 'weight').values()
     weights = list(weights)
-    weights = [w*0.0060 for w in weights]
-
-    # plot networks
+    weights = list([w*0.0060 for w in weights])
+    
+    # plot
+    
+    blue_munsell = '#0085A1'
+    eerie_black = '#242728'
+    
+    fig, ax = plt.subplots(figsize=(8,5))
+    fig.set_facecolor(eerie_black)
+    ax.set_axis_off()
+    
     nx.draw_networkx(G, pos,
-                     font_size=12,
-                     width=list(weights),
+                     width=weights,
                      edge_color='white',
-                     node_color='#0085A1',
+                     node_color=blue_munsell,
                      with_labels=False,
                      ax=ax,
                      node_size=50)
-
-    # offset labels
-    for key, value in pos.items():
-        x, y = value[0]+.00135, value[1]+.045
-        ax.text(x, y,
-                s=key,
-                bbox=dict(facecolor='white', alpha=0.60),
-                horizontalalignment='center', fontsize=9)
-    fig.set_facecolor('#242728')
     
-    plt.axis('off')
+    # labels nudge
+    def nudge(pos, x_shift, y_shift):
+        return {n:(x + x_shift, y + y_shift) for n,(x,y) in pos.items()} # <2>
+    pos_nodes = nudge(pos, 0.01, 0.1)
+    nx.draw_networkx_labels(G, 
+                            pos=pos_nodes, 
+                            ax=ax,
+                            font_color='white',
+                            font_size=7)
 ```
 
-1. Defining a `tupler` function for handling csv read file
-
-Plotting a graph of this
+1. Defining a `tupler` function for handling csv file.
+2. Defining a `nudge` function for handling labels position.
 
 ```{python}
 #| label: fig-plot
-#| fig-cap: "Plot"
+#| fig-cap: "bigrams network graph"
 words_network_graph('reviews_bigrams.csv',
                     'bigram',
                     'bigrams',
                     10)
 ```
-
