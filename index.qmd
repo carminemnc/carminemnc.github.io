@@ -4,13 +4,13 @@ image: imgs/carminemnc_stow_500x500.png
 
 about:
   template: jolla
-  links:
-    - icon: linkedin
-      text: LinkedIn
-      href: https://www.linkedin.com/in/carmine-minichini
-    - icon: github
-      text: Github
-      href: https://github.com/carminemnc
+  # links:
+  #   - icon: linkedin
+  #     text: LinkedIn
+  #     href: https://www.linkedin.com/in/carmine-minichini
+  #   - icon: github
+  #     text: Github
+  #     href: https://github.com/carminemnc
 
 ---
 
@@ -30,3 +30,13 @@ Check out some of my [projects](projects.qmd).
 
 ::: 
 
+<div class="social-container">
+  <ul class="social-icons">
+    <li>
+       <a href="https://github.com/carminemnc"><i class="fa fa-github"></i></a>
+    </li>
+    <li>
+       <a href="https://www.linkedin.com/in/carmine-minichini"><i class="fa fa-linkedin"></i></a>
+    </li>
+  </ul>
+</div>

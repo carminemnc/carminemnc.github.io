@@ -2,6 +2,8 @@
 
 // Import fonts (define mainfont in _quarto.yml)
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&family=Nunito:wght@300;800&family=Roboto+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css);
 
 
 // personal palette
@@ -25,7 +27,7 @@ $navbar-fg: $black;
 $navbar-hl: $white; 
 $body-bg: $platinum;
 $body-color: $black;
-$link-color: $moonstone;
+$link-color: $midnight-green;
 $code-block-border-left:$moonstone;
 
 // verbatim code
@@ -56,7 +58,7 @@ $code-color: $blue-munsell;
 
 body {
   line-height: 1.5; // min 1.5 suggested for assistive tech
-  font-size: 15px;
+  font-size: 17px;
 }
 
 h1, h2, h3, h4 {
@@ -66,7 +68,7 @@ h1, h2, h3, h4 {
 }
 
 h5, h6 {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 600;
 }
 
@@ -89,7 +91,7 @@ h5, h6 {
   background-color: $platinum;
   border-color: $davy-gray;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 // button hover styling
@@ -126,4 +128,82 @@ h5, h6 {
 .nav-footer{
   border-top-left-radius: 15px;
   border-top-right-radius: 15px; 
+}
+
+// nav link pages
+.nav-link {
+  font-weight: bold;
+}
+
+
+
+// social media icons animation
+
+$timing        : 265ms;
+$iconColor     : $blue-munsell;
+$accent        : $eerie-black;
+
+@mixin transformScale($size: 1) {
+    transform: scale($size);
+    -ms-transform: scale($size);
+    -webkit-transform: scale($size);
+}
+
+
+.social-container {
+  width: 400px;
+  margin: 8vh auto;
+  text-align: center;
+}
+
+.social-icons {
+    padding: 0;
+    list-style: none;
+    margin: 1em;
+  
+    li {
+        display: inline-block;
+        margin: 0.15em;
+        position: relative;
+        font-size: 1.6em;
+
+    }
+
+    i {
+        color: #fff;
+        position: absolute;
+        top: 17px;
+        left: 18px;
+        transition: all $timing ease-out;
+    }
+
+    a {
+        display: inline-block;
+      
+        &:before {
+            @include transformScale();
+            content: " ";
+            width: 60px;
+            height: 60px;
+            border-radius: 100%;
+            display: block;
+            background: linear-gradient(45deg, $iconColor, $accent);
+            transition: all $timing ease-out;
+        }
+        
+        &:hover:before {
+            transform: scale(0);
+            transition: all $timing ease-in;
+        }
+        
+        &:hover i {
+            @include transformScale(2.2);
+            color: $iconColor;
+            background: -webkit-linear-gradient(45deg, $iconColor, $accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all $timing ease-in;
+        }
+    }
+  
 }
