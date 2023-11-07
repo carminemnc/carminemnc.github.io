@@ -14,7 +14,6 @@ about:
 
 ---
 
-::: {.justify}
 
 Welcome here,
 
@@ -28,7 +27,6 @@ Ad Hoc RPA Analyst, passionate about processes optimization.
 <br>
 Check out some of my [projects](projects.qmd).
 
-::: 
 
 <div class="social-container">
   <ul class="social-icons">
