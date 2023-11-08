@@ -24,12 +24,15 @@ $navbar-fg: $black;
 $navbar-hl: $white; 
 $body-bg: $platinum;
 $body-color: $black;
-$link-color: $midnight-green;
+$link-color: $dark-cyan;
 $code-block-border-left:$dark-cyan;
+$mermaid-edge-color: $blue-munsell;
+$mermaid-font-family: 'Montserrat';
+$mermaid-node-bg-color: $battleship-gray;
 
 // verbatim code
 $code-bg: $eerie-black;
-$code-color: $blue-munsell;
+$code-color: $platinum;
 
 /*-- scss:rules --*/
 
@@ -119,7 +122,33 @@ h5, h6 {
 //   font-weight: bold;
 // }
 
+.blockquote {
+  background-color: $eerie-black;
+  font-style: italic;
+  font-weight: 300;
+  border-color:$blue-munsell;
+  color:$platinum;
+  border-radius: 15px;
+  font-size: 15px;
+}
 
+//callout-tip styling
+
+.callout-tip {
+  background-color: $eerie-black;
+  font-style: italic;
+  font-size: 15px;
+  color:$platinum;
+}
+
+div.callout-tip.callout {
+  border-left-color: $dark-cyan;
+}
+
+div.callout-tip.callout-style-default>.callout-header {
+  color:$platinum;
+  background-color: $midnight-green;
+}
 
 // social media icons animation
 

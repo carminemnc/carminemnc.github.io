@@ -5,7 +5,6 @@ description:
 date: 2023-07-10
 categories: [app,nlp,streamlit]
 image: tripscraper.gif
-draft: false
 ---
 
 [{{< fa brands github >}} source code](https://github.com/carminemnc/tripscraper){.btn}
@@ -18,17 +17,58 @@ The application uses a variety of NLP techniques, including sentiment analysis, 
 
 The Playground section is a sandbox where users can experiment with the NLP models that are used by the tool. This section allows users to try out different features of the models, to see how they work, and to learn more about how NLP can be used to analyze TripAdvisor reviews.
 
+We use `selenium` package to scrape reviews from a TripAdvisor hotel page, `nltk` to tokenize and pre-processing text data and hugging face's `transformers` package for pre-trained models.
+
 # Background
+<!-- 
+```{mermaid}
+%%| label: fig-pipeline
+%%| fig-cap: "Data pipeline"
+flowchart LR
+    A(Data extraction) --> B{Pre-processing}
+    B --> C(Bigrams analysis)
+    B --> D(Word trends analysis)
+
+```
+ -->
+
 
 Text mining is the process of extracting information and insights from text. It can be used to identify patterns, trends, and sentiment in large amounts of text data.
 
-# Bigrams network graph
+For the purpose of this article we're gonna explore how text mining can be an evalutation tool for Hotel owners in order to understand customer's feelings and toughts.
+
+For the sake of clarity we're gonna focus on two of many techniques used in the application:
+
+- Bigrams analysis
+- Word trends analysis
+
+
+# Bigrams analysis
+
+> A bigram or digram is a sequence of two adjacent elements from a string of tokens, which are typically letters, syllables, or words. A bigram is an n-gram for $n=2$.
+>
+> <cite>[Wikipedia page](https://en.wikipedia.org/wiki/Bigram)</cite>
+
+When we talk about bigrams we may be interested in visualizing all of the relationships among words simultaneously, rather than just the top few at a time. 
+
+As one common visualization, we can arrange the words into a network, or *“graph”*. Here we’ll be referring to a *“graph”* not in the sense of a visualization, but as a combination of connected nodes.
+A graph is composed of three main components:
+
+- **from**: the node an edge is coming from
+- **to**: the node an edge is going towards
+- **weight**: A numeric value associated with each edge
+
+::: {.callout-tip collapse="true" title="A further interpretation" icon="false"}
+Note that this is a visualization of a **Markov chain**, a common model in text processing. In a Markov chain, each choice of word depends only on the previous word. So in this case the chain starting from **"hotel"** would suggest **"friendly, staff"** as next words, by following each word to the most common words that follow it.   ^[https://www.tidytextmining.com/ngrams]
+:::
+
+
 
 ```{python}
 import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
-
+from plotnine import *
 
 def words_network_graph(dataset,
                         tuple,
@@ -65,7 +105,7 @@ def words_network_graph(dataset,
     blue_munsell = '#0085A1'
     eerie_black = '#242728'
     
-    fig, ax = plt.subplots(figsize=(8,5))
+    fig, ax = plt.subplots(figsize=(7,5))
     fig.set_facecolor(eerie_black)
     ax.set_axis_off()
     
@@ -92,10 +132,70 @@ def words_network_graph(dataset,
 2. Defining a `nudge` function for handling labels position.
 
 ```{python}
-#| label: fig-plot
-#| fig-cap: "bigrams network graph"
+#| label: fig-bigrams-network-graph
+#| fig-cap: "Bigrams network graph"
 words_network_graph('reviews_bigrams.csv',
                     'bigram',
                     'bigrams',
                     10)
+```
+
+# Word trends over time
+
+
+```{python}
+def words_overtime_chart(words_list):
+    
+    # read data
+    data = pd.read_csv('data.csv')
+    # tokens list by review date
+    wot = data.groupby('review_date', as_index=False)['tokens'].sum()
+    # frequency of words on tokens length
+    for word in words_list:
+        wot[word] = wot['tokens'].apply(lambda x: x.count(word)/len(x))
+        
+    # appending review_date for melt    
+    words_list.append('review_date')
+    wot = wot[words_list].melt(id_vars=['review_date'], var_name='words', value_name='value')
+    
+    wot['value'] = wot['value']*100
+    
+    # plot # <1>
+    
+    blue_munsell = '#0085A1'
+    eerie_black = '#242728'
+    
+    pl = (
+        ggplot(wot) 
+        + aes(x='review_date',y='value',group=1)
+        + geom_point(color='white')
+        + geom_line(colour=blue_munsell,size=1)
+        + geom_smooth(method='lm',colour='white')
+        + facet_wrap('~words',ncol=1)
+        + scale_x_date(date_labels = "%b %Y")
+        + theme_classic()
+        + theme(figure_size=(7,5),
+                axis_text_x=element_text(angle=90,color='white'),
+                axis_text_y=element_text(color='white'),
+                axis_title_x=element_text(color='white'),
+                axis_title_y=element_text(color='white'),
+                strip_background=element_rect(fill=blue_munsell),
+                panel_background=element_rect(fill=eerie_black),
+                plot_background=element_rect(fill=eerie_black)
+                )
+        + xlab('Review date')
+        + ylab('Frequency (%)')
+        
+        )
+    
+    print(pl)
+```
+
+
+1. We're gonna use `plotnine` package
+
+```{python}
+#| label: fig-words-ot-foodandservice
+#| fig-cap: "Food and service over time trend"
+words_overtime_chart(['food','service'])
 ```

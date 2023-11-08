@@ -26,10 +26,12 @@ $body-bg: $eerie-black;
 $body-color: $platinum;
 $link-color: $dark-cyan;
 $code-block-border-left:$dark-cyan;
-
+$mermaid-edge-color: $blue-munsell;
+$mermaid-font-family: 'Montserrat';
+$mermaid-node-bg-color: $davys-gray;
 // verbatim code
 $code-bg: $platinum;
-$code-color: $blue-munsell;
+$code-color: $eerie-black;
 
 /*-- scss:rules --*/
 
@@ -122,6 +124,35 @@ h5, h6 {
 //   font-weight: bold;
 // }
 
+// blockquote styling
+.blockquote {
+  background-color: $platinum;
+  font-style: italic;
+  font-weight: 300;
+  border-color:$blue-munsell;
+  color:$eerie-black;
+  border-radius: 15px;
+  font-size: 15px;
+  opacity: 70%;
+}
+
+//callout-tip styling
+
+.callout-tip {
+  background-color: $platinum;
+  font-style: italic;
+  font-size: 15px;
+  color:$eerie-black;
+}
+
+div.callout-tip.callout {
+  border-left-color: $dark-cyan;
+}
+
+div.callout-tip.callout-style-default>.callout-header {
+  color:$platinum;
+  background-color: $midnight-green;
+}
 
 // social media icons animation
 
