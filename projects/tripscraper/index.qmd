@@ -35,7 +35,7 @@ For the sake of clarity we're gonna focus on two of many techniques used in the 
 
 > A bigram or digram is a sequence of two adjacent elements from a string of tokens, which are typically letters, syllables, or words. A bigram is an n-gram for $n=2$.
 >
-> <cite>[Wikipedia page](https://en.wikipedia.org/wiki/Bigram)</cite>
+> <cite>[Wikipedia](https://en.wikipedia.org/wiki/Bigram)</cite>
 
 When we talk about bigrams we may be interested in visualizing all of the relationships among words simultaneously, rather than just the top few at a time. 
 
@@ -47,7 +47,7 @@ A graph is composed of three main components:
 - **weight**: A numeric value associated with each edge
 
 ::: {.callout-note collapse="true" title="A further interpretation"}
-Note that this is a visualization of a **Markov chain**, a common model in text processing. In a Markov chain, each choice of word depends only on the previous word. So in this case the chain starting from **"hotel"** would suggest **"staff"** then **"friendly/helpful"** as next words, by following each word to the most common words that follow it.   ^[https://www.tidytextmining.com/ngrams]
+Note that this is a visualization of a **Markov chain**, a common model in text processing. In a Markov chain, each choice of word depends only on the previous word. So in this case the chain starting from **"hotel"** would suggest **"staff"** then **"friendly/helpful"** as next words, by following each word to the most common words that follow it.   ^[[Julia Silge, David Robinson; Text Mining with R; O'Reilly](https://www.tidytextmining.com/ngrams)]
 :::
 
 
