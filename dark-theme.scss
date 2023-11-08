@@ -37,6 +37,7 @@ $code-color: $eerie-black;
 
 
 
+
 /* ID selectors */
 
 #map-size {
@@ -136,22 +137,11 @@ h5, h6 {
   opacity: 70%;
 }
 
-//callout-tip styling
+//callout-note styling
 
-.callout-tip {
-  background-color: $platinum;
+.callout-note {
   font-style: italic;
   font-size: 15px;
-  color:$eerie-black;
-}
-
-div.callout-tip.callout {
-  border-left-color: $dark-cyan;
-}
-
-div.callout-tip.callout-style-default>.callout-header {
-  color:$platinum;
-  background-color: $midnight-green;
 }
 
 // social media icons animation

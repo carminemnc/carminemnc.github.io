@@ -130,24 +130,14 @@ h5, h6 {
   color:$platinum;
   border-radius: 15px;
   font-size: 15px;
+  opacity: 70%;
 }
 
-//callout-tip styling
+//callout-note styling
 
-.callout-tip {
-  background-color: $eerie-black;
+.callout-note {
   font-style: italic;
   font-size: 15px;
-  color:$platinum;
-}
-
-div.callout-tip.callout {
-  border-left-color: $dark-cyan;
-}
-
-div.callout-tip.callout-style-default>.callout-header {
-  color:$platinum;
-  background-color: $midnight-green;
 }
 
 // social media icons animation

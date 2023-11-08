@@ -108,9 +108,6 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 </script>
-<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -167,6 +164,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
   <li><a href="#bigrams-analysis" id="toc-bigrams-analysis" class="nav-link" data-scroll-target="#bigrams-analysis">Bigrams analysis</a></li>
   <li><a href="#word-trends-over-time" id="toc-word-trends-over-time" class="nav-link" data-scroll-target="#word-trends-over-time">Word trends over time</a></li>
+  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
   </ul>
 </nav>
     </div>
@@ -216,33 +214,6 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 </section>
 <section id="background" class="level1">
 <h1>Background</h1>
-<!-- 
-
-
-:::{.cell}
-
-:::{.cell-output-display}
-
-:::{#fig-pipeline}
-
-:::{}
-
-<pre class="mermaid mermaid-js" data-label="fig-pipeline">flowchart LR
-    A(Data extraction) --&gt; B{Pre-processing}
-    B --&gt; C(Bigrams analysis)
-    B --&gt; D(Word trends analysis)
-
-</pre>
-:::
-
-
-Data pipeline
-:::
-:::
-:::
-
-
- -->
 <p>Text mining is the process of extracting information and insights from text. It can be used to identify patterns, trends, and sentiment in large amounts of text data.</p>
 <p>For the purpose of this article we’re gonna explore how text mining can be an evalutation tool for Hotel owners in order to understand customer’s feelings and toughts.</p>
 <p>For the sake of clarity we’re gonna focus on two of many techniques used in the application:</p>
@@ -264,10 +235,10 @@ Data pipeline
 <li><strong>to</strong>: the node an edge is going towards</li>
 <li><strong>weight</strong>: A numeric value associated with each edge</li>
 </ul>
-<div class="callout callout-style-default callout-tip no-icon callout-titled" title="A further interpretation">
+<div class="callout callout-style-default callout-note callout-titled" title="A further interpretation">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 A further interpretation
@@ -276,7 +247,7 @@ A further interpretation
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Note that this is a visualization of a <strong>Markov chain</strong>, a common model in text processing. In a Markov chain, each choice of word depends only on the previous word. So in this case the chain starting from <strong>“hotel”</strong> would suggest <strong>“friendly, staff”</strong> as next words, by following each word to the most common words that follow it. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Note that this is a visualization of a <strong>Markov chain</strong>, a common model in text processing. In a Markov chain, each choice of word depends only on the previous word. So in this case the chain starting from <strong>“hotel”</strong> would suggest <strong>“staff”</strong> then <strong>“friendly/helpful”</strong> as next words, by following each word to the most common words that follow it. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 </div>
 </div>
 </div>
@@ -349,11 +320,11 @@ A further interpretation
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-annotation="1" data-code-lines="14">Defining a <code>tupler</code> function for handling csv file.</span>
+<span data-code-lines="14" data-code-annotation="1" data-code-cell="annotated-cell-1">Defining a <code>tupler</code> function for handling csv file.</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-annotation="2" data-code-lines="55">Defining a <code>nudge</code> function for handling labels position.</span>
+<span data-code-lines="55" data-code-annotation="2" data-code-cell="annotated-cell-1">Defining a <code>nudge</code> function for handling labels position.</span>
 </dd>
 </dl>
 </div>
@@ -378,6 +349,34 @@ A further interpretation
 </section>
 <section id="word-trends-over-time" class="level1">
 <h1>Word trends over time</h1>
+<p>When talking about hotel reviews, we need to consider the time view of the customer experience.</p>
+<p>From the owner perspective we may want to answer to questions like:</p>
+<ol type="1">
+<li>How much a product/service is mentioned in customers reviews?</li>
+<li>How the product/service mention is changing over time?</li>
+</ol>
+<p>This could give us a sense of the hotel changing ecosystem.</p>
+<p>Let’s define</p>
+<p><span class="math inline">\(x= number \ of \ occurences \ of \ a \ word \ in \ a \ tokens \ list\)</span></p>
+<p><span class="math inline">\(n= total \ number \ of \ tokens \ in \ a \ list\)</span></p>
+<p>We can calculate</p>
+<p><span class="math display">\[
+frequency = \frac{x}{n}
+\]</span></p>
+<p>Let’s compare a couple of common words such as <em>service</em> and <em>food</em>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Please, note that">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Please, note that
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The frequency of a word on tokens list length is calculated over a list of tokens without stopwords.</p>
+</div>
+</div>
 <div class="cell" data-execution_count="4">
 <details>
 <summary>Code</summary>
@@ -431,7 +430,7 @@ A further interpretation
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-3" data-code-annotation="1" data-code-lines="17">We’re gonna use <code>plotnine</code> package</span>
+<span data-code-lines="17" data-code-annotation="1" data-code-cell="annotated-cell-3">We’re gonna use <code>plotnine</code> package</span>
 </dd>
 </dl>
 </div>
@@ -453,6 +452,15 @@ A further interpretation
 <pre><code></code></pre>
 </div>
 </div>
+<ul>
+<li>The conversation about <em>food</em> peaked in 2018 for then following a downward trend.</li>
+<li>The conversation about <em>service</em> instead seems to have a more seasonal trend within an overall downward trend.</li>
+</ul>
+</section>
+<section id="conclusions" class="level1">
+<h1>Conclusions</h1>
+<p>As just an NLP exercise this article aim to show potentiality of text mining for business purposes, as well as it could be a powerful tool to gather insights on a product or a service.</p>
+<p>You can find the source code on top of this article.</p>
 
 
 </section>

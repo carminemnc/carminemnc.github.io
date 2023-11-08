@@ -39,6 +39,7 @@ format:
     mainfont: Montserrat
     highlight-style: ayu-dark
     title-block-banner: false
+    html-math-method: mathjax
     
 
 

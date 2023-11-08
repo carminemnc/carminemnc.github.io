@@ -20,18 +20,6 @@ The Playground section is a sandbox where users can experiment with the NLP mode
 We use `selenium` package to scrape reviews from a TripAdvisor hotel page, `nltk` to tokenize and pre-processing text data and hugging face's `transformers` package for pre-trained models.
 
 # Background
-<!-- 
-```{mermaid}
-%%| label: fig-pipeline
-%%| fig-cap: "Data pipeline"
-flowchart LR
-    A(Data extraction) --> B{Pre-processing}
-    B --> C(Bigrams analysis)
-    B --> D(Word trends analysis)
-
-```
- -->
-
 
 Text mining is the process of extracting information and insights from text. It can be used to identify patterns, trends, and sentiment in large amounts of text data.
 
@@ -58,8 +46,8 @@ A graph is composed of three main components:
 - **to**: the node an edge is going towards
 - **weight**: A numeric value associated with each edge
 
-::: {.callout-tip collapse="true" title="A further interpretation" icon="false"}
-Note that this is a visualization of a **Markov chain**, a common model in text processing. In a Markov chain, each choice of word depends only on the previous word. So in this case the chain starting from **"hotel"** would suggest **"friendly, staff"** as next words, by following each word to the most common words that follow it.   ^[https://www.tidytextmining.com/ngrams]
+::: {.callout-note collapse="true" title="A further interpretation"}
+Note that this is a visualization of a **Markov chain**, a common model in text processing. In a Markov chain, each choice of word depends only on the previous word. So in this case the chain starting from **"hotel"** would suggest **"staff"** then **"friendly/helpful"** as next words, by following each word to the most common words that follow it.   ^[https://www.tidytextmining.com/ngrams]
 :::
 
 
@@ -142,6 +130,35 @@ words_network_graph('reviews_bigrams.csv',
 
 # Word trends over time
 
+When talking about hotel reviews, we need to consider the time view of the customer experience.
+
+From the owner perspective we may want to answer to questions like:
+
+1. How much a product/service is mentioned in customers reviews?
+2. How the product/service mention is changing over time?
+
+This could give us a sense of the hotel changing ecosystem.
+
+Let's define
+
+$x= number \ of \ occurences \ of \ a \ word \ in \ a \ tokens \ list$
+
+
+$n= total \ number \ of \ tokens \ in \ a \ list$
+
+
+We can calculate
+
+$$
+frequency = \frac{x}{n}
+$$
+
+Let’s compare a couple of common words such as *service* and *food*.
+
+::: {.callout-note title="Please, note that"}
+The frequency of a word on tokens list length is calculated over a list of tokens without stopwords.
+:::
+
 
 ```{python}
 def words_overtime_chart(words_list):
@@ -199,3 +216,12 @@ def words_overtime_chart(words_list):
 #| fig-cap: "Food and service over time trend"
 words_overtime_chart(['food','service'])
 ```
+
+- The conversation about *food* peaked in 2018 for then following a downward trend.
+- The conversation about *service* instead seems to have a more seasonal trend within an overall downward trend.
+
+# Conclusions
+
+As just an NLP exercise this article aim to show potentiality of text mining for business purposes, as well as it could be a powerful tool to gather insights on a product or a service.
+
+You can find the source code on top of this article.
