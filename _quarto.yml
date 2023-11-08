@@ -40,6 +40,7 @@ format:
     highlight-style: ayu-dark
     title-block-banner: false
     html-math-method: mathjax
+    toc-title: Table of contents
     
 
 

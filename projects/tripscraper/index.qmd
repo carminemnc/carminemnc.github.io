@@ -155,7 +155,7 @@ $$
 
 Let’s compare a couple of common words such as *service* and *food*.
 
-::: {.callout-note title="Please, note that"}
+::: {.callout-note title="Please, note"}
 The frequency of a word on tokens list length is calculated over a list of tokens without stopwords.
 :::
 
@@ -225,3 +225,4 @@ words_overtime_chart(['food','service'])
 As just an NLP exercise this article aim to show potentiality of text mining for business purposes, as well as it could be a powerful tool to gather insights on a product or a service.
 
 You can find the source code on top of this article.
+
