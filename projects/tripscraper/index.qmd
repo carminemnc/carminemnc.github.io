@@ -190,26 +190,32 @@ def words_overtime_chart(words_list):
         + geom_smooth(method='lm',colour='white')
         + facet_wrap('~words',ncol=1)
         + scale_x_date(date_labels = "%b %Y")
-        + theme_classic()
-        + theme(figure_size=(7,5),
-                axis_text_x=element_text(angle=90,color='white'),
-                axis_text_y=element_text(color='white'),
-                axis_title_x=element_text(color='white'),
-                axis_title_y=element_text(color='white'),
-                strip_background=element_rect(fill=blue_munsell),
-                panel_background=element_rect(fill=eerie_black),
-                plot_background=element_rect(fill=eerie_black)
+        # dark-theme for plotnine plots 
+        + theme(figure_size=(8.0,5.5),
+                panel_grid_major=element_blank(),
+                panel_grid_minor=element_blank(),
+                axis_line=element_line(color='#5a5856'),
+                axis_ticks=element_line(color='#eaeaea'),
+                axis_text_x=element_text(angle=75,size=8),
+                axis_text_y=element_text(color='#eaeaea',size=8),
+                axis_title_x=element_text(color='#eaeaea',size=9),
+                axis_title_y=element_text(color='#eaeaea',size=9),
+                strip_text=element_text(size=9),
+                strip_background=element_rect(fill='#0085A1'),
+                panel_background=element_rect(fill='#242728'),
+                plot_background=element_rect(fill='#242728'),
+                text=element_text(color='#eaeaea',size=12)
                 )
         + xlab('Review date')
         + ylab('Frequency (%)')
-        
+
         )
     
     print(pl)
 ```
 
 
-1. We're gonna use `plotnine` package
+1. We're gonna use `plotnine` package, since make more easy and fancy styling facet plots
 
 ```{python}
 #| label: fig-words-ot-foodandservice

@@ -409,28 +409,34 @@ Please, note
 <span id="annotated-cell-3-27"><a href="#annotated-cell-3-27" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> geom_smooth(method<span class="op">=</span><span class="st">'lm'</span>,colour<span class="op">=</span><span class="st">'white'</span>)</span>
 <span id="annotated-cell-3-28"><a href="#annotated-cell-3-28" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> facet_wrap(<span class="st">'~words'</span>,ncol<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="annotated-cell-3-29"><a href="#annotated-cell-3-29" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> scale_x_date(date_labels <span class="op">=</span> <span class="st">"%b %Y"</span>)</span>
-<span id="annotated-cell-3-30"><a href="#annotated-cell-3-30" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> theme_classic()</span>
-<span id="annotated-cell-3-31"><a href="#annotated-cell-3-31" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> theme(figure_size<span class="op">=</span>(<span class="dv">7</span>,<span class="dv">5</span>),</span>
-<span id="annotated-cell-3-32"><a href="#annotated-cell-3-32" aria-hidden="true" tabindex="-1"></a>                axis_text_x<span class="op">=</span>element_text(angle<span class="op">=</span><span class="dv">90</span>,color<span class="op">=</span><span class="st">'white'</span>),</span>
-<span id="annotated-cell-3-33"><a href="#annotated-cell-3-33" aria-hidden="true" tabindex="-1"></a>                axis_text_y<span class="op">=</span>element_text(color<span class="op">=</span><span class="st">'white'</span>),</span>
-<span id="annotated-cell-3-34"><a href="#annotated-cell-3-34" aria-hidden="true" tabindex="-1"></a>                axis_title_x<span class="op">=</span>element_text(color<span class="op">=</span><span class="st">'white'</span>),</span>
-<span id="annotated-cell-3-35"><a href="#annotated-cell-3-35" aria-hidden="true" tabindex="-1"></a>                axis_title_y<span class="op">=</span>element_text(color<span class="op">=</span><span class="st">'white'</span>),</span>
-<span id="annotated-cell-3-36"><a href="#annotated-cell-3-36" aria-hidden="true" tabindex="-1"></a>                strip_background<span class="op">=</span>element_rect(fill<span class="op">=</span>blue_munsell),</span>
-<span id="annotated-cell-3-37"><a href="#annotated-cell-3-37" aria-hidden="true" tabindex="-1"></a>                panel_background<span class="op">=</span>element_rect(fill<span class="op">=</span>eerie_black),</span>
-<span id="annotated-cell-3-38"><a href="#annotated-cell-3-38" aria-hidden="true" tabindex="-1"></a>                plot_background<span class="op">=</span>element_rect(fill<span class="op">=</span>eerie_black)</span>
-<span id="annotated-cell-3-39"><a href="#annotated-cell-3-39" aria-hidden="true" tabindex="-1"></a>                )</span>
-<span id="annotated-cell-3-40"><a href="#annotated-cell-3-40" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> xlab(<span class="st">'Review date'</span>)</span>
-<span id="annotated-cell-3-41"><a href="#annotated-cell-3-41" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> ylab(<span class="st">'Frequency (%)'</span>)</span>
-<span id="annotated-cell-3-42"><a href="#annotated-cell-3-42" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="annotated-cell-3-43"><a href="#annotated-cell-3-43" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="annotated-cell-3-44"><a href="#annotated-cell-3-44" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="annotated-cell-3-45"><a href="#annotated-cell-3-45" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(pl)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="annotated-cell-3-30"><a href="#annotated-cell-3-30" aria-hidden="true" tabindex="-1"></a>        <span class="co"># dark-theme for plotnine plots </span></span>
+<span id="annotated-cell-3-31"><a href="#annotated-cell-3-31" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> theme(figure_size<span class="op">=</span>(<span class="fl">8.0</span>,<span class="fl">5.5</span>),</span>
+<span id="annotated-cell-3-32"><a href="#annotated-cell-3-32" aria-hidden="true" tabindex="-1"></a>                panel_grid_major<span class="op">=</span>element_blank(),</span>
+<span id="annotated-cell-3-33"><a href="#annotated-cell-3-33" aria-hidden="true" tabindex="-1"></a>                panel_grid_minor<span class="op">=</span>element_blank(),</span>
+<span id="annotated-cell-3-34"><a href="#annotated-cell-3-34" aria-hidden="true" tabindex="-1"></a>                axis_line<span class="op">=</span>element_line(color<span class="op">=</span><span class="st">'#5a5856'</span>),</span>
+<span id="annotated-cell-3-35"><a href="#annotated-cell-3-35" aria-hidden="true" tabindex="-1"></a>                axis_ticks<span class="op">=</span>element_line(color<span class="op">=</span><span class="st">'#eaeaea'</span>),</span>
+<span id="annotated-cell-3-36"><a href="#annotated-cell-3-36" aria-hidden="true" tabindex="-1"></a>                axis_text_x<span class="op">=</span>element_text(angle<span class="op">=</span><span class="dv">75</span>,size<span class="op">=</span><span class="dv">8</span>),</span>
+<span id="annotated-cell-3-37"><a href="#annotated-cell-3-37" aria-hidden="true" tabindex="-1"></a>                axis_text_y<span class="op">=</span>element_text(color<span class="op">=</span><span class="st">'#eaeaea'</span>,size<span class="op">=</span><span class="dv">8</span>),</span>
+<span id="annotated-cell-3-38"><a href="#annotated-cell-3-38" aria-hidden="true" tabindex="-1"></a>                axis_title_x<span class="op">=</span>element_text(color<span class="op">=</span><span class="st">'#eaeaea'</span>,size<span class="op">=</span><span class="dv">9</span>),</span>
+<span id="annotated-cell-3-39"><a href="#annotated-cell-3-39" aria-hidden="true" tabindex="-1"></a>                axis_title_y<span class="op">=</span>element_text(color<span class="op">=</span><span class="st">'#eaeaea'</span>,size<span class="op">=</span><span class="dv">9</span>),</span>
+<span id="annotated-cell-3-40"><a href="#annotated-cell-3-40" aria-hidden="true" tabindex="-1"></a>                strip_text<span class="op">=</span>element_text(size<span class="op">=</span><span class="dv">9</span>),</span>
+<span id="annotated-cell-3-41"><a href="#annotated-cell-3-41" aria-hidden="true" tabindex="-1"></a>                strip_background<span class="op">=</span>element_rect(fill<span class="op">=</span><span class="st">'#0085A1'</span>),</span>
+<span id="annotated-cell-3-42"><a href="#annotated-cell-3-42" aria-hidden="true" tabindex="-1"></a>                panel_background<span class="op">=</span>element_rect(fill<span class="op">=</span><span class="st">'#242728'</span>),</span>
+<span id="annotated-cell-3-43"><a href="#annotated-cell-3-43" aria-hidden="true" tabindex="-1"></a>                plot_background<span class="op">=</span>element_rect(fill<span class="op">=</span><span class="st">'#242728'</span>),</span>
+<span id="annotated-cell-3-44"><a href="#annotated-cell-3-44" aria-hidden="true" tabindex="-1"></a>                text<span class="op">=</span>element_text(color<span class="op">=</span><span class="st">'#eaeaea'</span>,size<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="annotated-cell-3-45"><a href="#annotated-cell-3-45" aria-hidden="true" tabindex="-1"></a>                )</span>
+<span id="annotated-cell-3-46"><a href="#annotated-cell-3-46" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> xlab(<span class="st">'Review date'</span>)</span>
+<span id="annotated-cell-3-47"><a href="#annotated-cell-3-47" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> ylab(<span class="st">'Frequency (%)'</span>)</span>
+<span id="annotated-cell-3-48"><a href="#annotated-cell-3-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-3-49"><a href="#annotated-cell-3-49" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="annotated-cell-3-50"><a href="#annotated-cell-3-50" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="annotated-cell-3-51"><a href="#annotated-cell-3-51" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(pl)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="17" data-code-annotation="1" data-code-cell="annotated-cell-3">We’re gonna use <code>plotnine</code> package</span>
+<span data-code-lines="17" data-code-annotation="1" data-code-cell="annotated-cell-3">We’re gonna use <code>plotnine</code> package, since make more easy and fancy styling facet plots</span>
 </dd>
 </dl>
 </div>
