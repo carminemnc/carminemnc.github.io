@@ -15,6 +15,8 @@ website:
         text: Posts
       - href: projects.qmd
         text: Projects
+      - href: notebooks.qmd
+        text: Notebooks
       - href: resume/carmine_minichini_resume_eng_version.pdf
         text: Resume
   # page-footer: 
@@ -36,7 +38,7 @@ format:
     theme:
       light: light-theme.scss
       dark: dark-theme.scss
-    mainfont: Montserrat
+    mainfont: Amazon Ember
     highlight-style: ayu-dark
     title-block-banner: false
     html-math-method: mathjax

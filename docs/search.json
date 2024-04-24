@@ -32,7 +32,7 @@
     "href": "posts.html",
     "title": "",
     "section": "",
-    "text": "On Bayesian optimization\n\n\n\n\n\n\n\npython\n\n\n\n\nOn ML hyperparameters fine-tuning trough Bayesian optimization: a study\n\n\n\n\n\n\nOct 25, 2023\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
+    "text": "On Bayesian optimization\n\n\n\n\n\n\n\npython\n\n\n\n\nOn ML hyperparameters fine-tuning trough Bayesian optimization: a study\n\n\n\n\n\n\nJan 15, 2024\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "projects/tripscraper/index.html",
@@ -47,5 +47,26 @@
     "title": "Tripscraper",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nJulia Silge, David Robinson; Text Mining with R; O’Reilly↩︎"
+  },
+  {
+    "objectID": "notebooks.html",
+    "href": "notebooks.html",
+    "title": "",
+    "section": "",
+    "text": "A predictable unbalanced problem\n\n\n\n\n\n\n\npython\n\n\n\n\nDealing with an unbalanced target on an binary classification task\n\n\n\n\n\n\nFeb 3, 2024\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "notebooks/hr-resources/index.html",
+    "href": "notebooks/hr-resources/index.html",
+    "title": "A predictable unbalanced problem",
+    "section": "",
+    "text": "Background"
+  },
+  {
+    "objectID": "notebooks/hr-resources/index.html#metrics",
+    "href": "notebooks/hr-resources/index.html#metrics",
+    "title": "A predictable unbalanced problem",
+    "section": "Metrics",
+    "text": "Metrics\n\nAccuracy"
   }
 ]

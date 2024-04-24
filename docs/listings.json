@@ -11,5 +11,11 @@
     "items": [
       "/posts/on-bayesian-optimization/index.html"
     ]
+  },
+  {
+    "listing": "/notebooks.html",
+    "items": [
+      "/notebooks/hr-resources/index.html"
+    ]
   }
 ]

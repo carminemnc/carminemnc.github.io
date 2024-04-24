@@ -2,26 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://carminemnc.github.io/projects.html</loc>
-    <lastmod>2023-11-15T15:05:22.716Z</lastmod>
+    <lastmod>2024-04-24T09:06:46.757Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/projects/book-your-space/index.html</loc>
-    <lastmod>2023-11-15T15:05:15.958Z</lastmod>
+    <lastmod>2024-01-23T10:00:38.640Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/posts/on-bayesian-optimization/index.html</loc>
-    <lastmod>2023-11-15T15:05:14.764Z</lastmod>
+    <lastmod>2024-04-24T09:05:46.885Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/index.html</loc>
-    <lastmod>2023-11-15T15:05:14.084Z</lastmod>
+    <lastmod>2024-04-24T09:04:25.097Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/posts.html</loc>
-    <lastmod>2023-11-15T15:05:15.347Z</lastmod>
+    <lastmod>2024-04-24T09:08:32.258Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/projects/tripscraper/index.html</loc>
-    <lastmod>2023-11-15T15:05:22.037Z</lastmod>
+    <lastmod>2024-04-22T08:44:08.882Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carminemnc.github.io/notebooks.html</loc>
+    <lastmod>2024-04-24T09:08:37.869Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carminemnc.github.io/notebooks/hr-resources/index.html</loc>
+    <lastmod>2024-04-24T09:07:58.600Z</lastmod>
   </url>
 </urlset>

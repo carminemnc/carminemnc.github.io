@@ -1,0 +1,10 @@
+---
+title: ""
+listing:
+  contents: notebooks
+  sort: "date desc"
+  type: default
+  fields: [image, date, title,categories,reading-time,description]
+  max-items: 4
+page-layout: full
+---

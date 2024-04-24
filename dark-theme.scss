@@ -1,15 +1,18 @@
 /*-- scss:defaults --*/
 
 // Import fonts (define mainfont in _quarto.yml)
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&family=Nunito:wght@300;800&family=Roboto+Mono:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&family=Nunito:wght@300;800&family=Roboto+Mono:wght@400;700&display=swap');
+@import url(https://db.onlinewebfonts.com/c/157c6cc36dd65b1b2adc9e7f3329c761?family=Amazon+Ember+Regular);
+@import url(https://db.onlinewebfonts.com/c/3108eb4da4655a215801f0f4ed03ab1b?family=Amazon+Ember);
+@import url(https://db.onlinewebfonts.com/c/ae1211657d7c48bc3bcdfe36634e1532?family=Amazon+Ember+Medium);
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css);
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+
 
 // personal palette
 $blue-munsell: #0085a1;
 $cerulean: #006b86;
 $midnight-green: #00526c;
+$moonstone: #04e0e0;
 $dark-cyan: #008b8b;
 $davys-gray: #5a5856;
 $battleship-gray: #949799;
@@ -24,10 +27,10 @@ $navbar-fg: $black;
 $navbar-hl: $white; 
 $body-bg: $eerie-black;
 $body-color: $platinum;
-$link-color: $dark-cyan;
+$link-color: $dark-cyan; //
 $code-block-border-left:$dark-cyan;
 $mermaid-edge-color: $blue-munsell;
-$mermaid-font-family: 'Montserrat';
+$mermaid-font-family: 'Amazon Ember';
 $mermaid-node-bg-color: $davys-gray;
 // verbatim code
 $code-bg: $platinum;
@@ -57,18 +60,42 @@ $code-color: $eerie-black;
 
 body {
   line-height: 1.5; // min 1.5 suggested for assistive tech
-  font-size: 17px;
+  font-size: 16px;
 }
 
-h1, h2, h3, h4 {
-  font-size: 22px;
+/* # */
+h1 {
+  font-size: 27px;
   font-weight: bold;
   color:$platinum;
 }
 
-h5, h6 {
-  font-size: 17px;
+/* ## */
+h2 {
+  font-size: 26px;
   font-weight: bold;
+  color:$platinum;
+}
+
+/* ### */
+h3 {
+  font-size: 25px;
+  font-weight: bold;
+  color:$platinum;
+}
+
+/* #### */
+h4 {
+  font-size: 18px;
+  font-weight: bold;
+  color:$platinum;
+}
+
+/* Projects articles header */
+h5, h6 {
+  font-size: 18px;
+  font-weight: bold;
+  color:$platinum;
 }
 
 // justifying text
