@@ -32,7 +32,7 @@
     "href": "posts.html",
     "title": "",
     "section": "",
-    "text": "On Bayesian optimization\n\n\n\n\n\n\n\npython\n\n\n\n\nOn ML hyperparameters fine-tuning trough Bayesian optimization: a study\n\n\n\n\n\n\nJan 15, 2024\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
+    "text": "On Casual Inference\n\n\n\n\n\n\n\npython\n\n\n\n\nUnscrambling the chicken and egg\n\n\n\n\n\n\nFeb 3, 2024\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "projects/tripscraper/index.html",
@@ -68,5 +68,12 @@
     "title": "A predictable unbalanced problem",
     "section": "Metrics",
     "text": "Metrics\n\nAccuracy"
+  },
+  {
+    "objectID": "posts/on-casual-inference/index.html",
+    "href": "posts/on-casual-inference/index.html",
+    "title": "On Casual Inference",
+    "section": "",
+    "text": "Background"
   }
 ]
