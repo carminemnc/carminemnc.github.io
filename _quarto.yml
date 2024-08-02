@@ -38,7 +38,7 @@ format:
     theme:
       light: light-theme.scss
       dark: dark-theme.scss
-    mainfont: Amazon Ember
+    mainfont: Montserrat
     highlight-style: ayu-dark
     title-block-banner: false
     html-math-method: mathjax
