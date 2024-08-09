@@ -15,6 +15,7 @@
   {
     "listing": "/notebooks.html",
     "items": [
+      "/notebooks/apriori-defects/index.html",
       "/notebooks/hr-resources/index.html"
     ]
   }
