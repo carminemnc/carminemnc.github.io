@@ -17,9 +17,7 @@ about:
 ::: {.justify}
 Welcome here,
 
-I'm a Statistician with a degree in actuarial science.
-<br>
-I'm passionate about unconvering hidden patterns and extracting actionable insights from complex data.
+I'm a Statistician with a spec degree in actuarial science.
 <br>
 <br>
 Some of my [projects](projects.qmd) are here.
