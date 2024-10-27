@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://carminemnc.github.io/projects.html</loc>
-    <lastmod>2024-08-09T09:38:50.788Z</lastmod>
+    <lastmod>2024-10-27T09:32:13.657Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/projects/book-your-space/index.html</loc>
-    <lastmod>2024-08-09T09:38:56.789Z</lastmod>
+    <lastmod>2024-10-27T09:26:23.830Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/posts/on-bayesian-optimization/index.html</loc>
@@ -14,30 +14,34 @@
   </url>
   <url>
     <loc>https://carminemnc.github.io/index.html</loc>
-    <lastmod>2024-08-09T09:00:24.786Z</lastmod>
+    <lastmod>2024-10-27T09:38:23.933Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/posts.html</loc>
-    <lastmod>2024-08-02T09:12:54.748Z</lastmod>
+    <lastmod>2024-10-27T09:39:09.277Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/projects/tripscraper/index.html</loc>
-    <lastmod>2024-08-09T09:15:55.377Z</lastmod>
+    <lastmod>2024-10-27T09:26:16.691Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/notebooks.html</loc>
-    <lastmod>2024-08-09T09:39:00.802Z</lastmod>
+    <lastmod>2024-10-27T09:39:03.498Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/notebooks/hr-resources/index.html</loc>
-    <lastmod>2024-06-08T17:31:55.262Z</lastmod>
+    <lastmod>2024-10-24T17:58:02.656Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/posts/on-casual-inference/index.html</loc>
-    <lastmod>2024-08-02T09:12:50.298Z</lastmod>
+    <lastmod>2024-10-27T09:32:06.495Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/notebooks/apriori-defects/index.html</loc>
-    <lastmod>2024-08-09T09:39:07.605Z</lastmod>
+    <lastmod>2024-10-27T09:25:08.608Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carminemnc.github.io/notebooks/clustering/index.html</loc>
+    <lastmod>2024-10-27T09:28:11.884Z</lastmod>
   </url>
 </urlset>

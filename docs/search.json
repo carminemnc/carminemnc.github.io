@@ -25,7 +25,7 @@
     "href": "index.html",
     "title": "",
     "section": "",
-    "text": "Welcome here,\nI’m a Statistician with a degree in actuarial science. My final dissertation was on “Statistical methods for pair-trading strategies: a state-space models approach”.  I’m passionate about unconvering hidden patterns and extracting actionable insights from complex data.   Ad Hoc RPA Analyst, passionate about processes optimization.   Check out some of my projects."
+    "text": "Welcome here,\nI’m a Statistician with a degree in actuarial science.  I’m passionate about unconvering hidden patterns and extracting actionable insights from complex data.   Some of my projects are here.  Some of my notebooks.  Quick articles on interesting fields."
   },
   {
     "objectID": "posts.html",
@@ -53,12 +53,12 @@
     "href": "notebooks.html",
     "title": "",
     "section": "",
-    "text": "Apriori analysis for quality assurance\n\n\n\n\n\n\n\nR\n\n\nApriori analysis\n\n\n\n\nPriori Patterns for Posterior Perfection\n\n\n\n\n\n\nAug 9, 2024\n\n\n8 min\n\n\n\n\n\n\n  \n\n\n\n\nA predictable unbalanced problem\n\n\n\n\n\n\n\npython\n\n\n\n\nDealing with an unbalanced target on an binary classification task\n\n\n\n\n\n\nFeb 3, 2024\n\n\n1 min\n\n\n\n\n\n\nNo matching items"
+    "text": "Apriori analysis for quality assurance\n\n\n\n\n\n\n\nR\n\n\nApriori analysis\n\n\n\n\nPriori Patterns for Posterior Perfection\n\n\n\n\n\n\nAug 9, 2024\n\n\n8 min\n\n\n\n\n\n\n  \n\n\n\n\nDividi et impera\n\n\n\n\n\n\n\npython\n\n\nclustering\n\n\n\n\nUnleashing the Power of Centroid Domination in the Realm of Clustering\n\n\n\n\n\n\nOct 24, 2023\n\n\n6 min\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "notebooks/hr-resources/index.html",
     "href": "notebooks/hr-resources/index.html",
-    "title": "A predictable unbalanced problem",
+    "title": "Clustering",
     "section": "",
     "text": "Background"
   },
@@ -103,5 +103,47 @@
     "title": "Apriori analysis for quality assurance",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nApriori wikipedia page↩︎"
+  },
+  {
+    "objectID": "notebooks/clustering/index.html",
+    "href": "notebooks/clustering/index.html",
+    "title": "Dividi et impera",
+    "section": "",
+    "text": "Dataset"
+  },
+  {
+    "objectID": "notebooks/clustering/index.html#distorsion",
+    "href": "notebooks/clustering/index.html#distorsion",
+    "title": "Dividi et impera",
+    "section": "Distorsion",
+    "text": "Distorsion\nThe distortion score is a metric used to evaluate the quality of a clustering model, specifically the K-Means algorithm. It measures the average squared distance between each data point and its assigned cluster centroid.\nThe formula is:\n\\[\\text{Distortion} = \\frac{1}{n} \\sum_{i=1}^{n} \\|x_i - c_j\\|^2\\]\nWhere:\n\n\\(n\\) is the total number of data points\n\\(x_i\\) is the \\(i\\)-th data point\n\\(c_j\\) is the centroid of the cluster that \\(x_i\\) belongs to\nThe sum is taken over all \\(n\\) data points\nThe \\(\\|x_i - c_j\\|^2\\) term represents the squared Euclidean distance between the data point \\(x_i\\) and its assigned cluster centroid \\(c_j\\)\nThe final result is the average of these squared distances across all data points\n\nThe goal of the K-Means algorithm is to find cluster assignments that minimize this distortion score, i.e., to group data points such that the average squared distance to their assigned centroids is as small as possible. A lower distortion score indicates better clustering quality."
+  },
+  {
+    "objectID": "notebooks/clustering/index.html#silhouette-score",
+    "href": "notebooks/clustering/index.html#silhouette-score",
+    "title": "Dividi et impera",
+    "section": "Silhouette score",
+    "text": "Silhouette score\n\\[s(i) = \\frac{b(i) - a(i)}{max(a(i), b(i))}\\]\nwhere:\n\n\\(s(i)\\) is the Silhouette Coefficient for the \\(i\\)-th sample.\n\\(a(i)\\) is the mean distance between the \\(i\\)-th sample and all other samples in the same cluster.\n\\(b(i)\\) is the mean distance between the \\(i\\)-th sample and all other samples in the next nearest cluster.\n\nThe Silhouette Coefficient ranges from -1 to 1, where a high value indicates that the sample is well-matched to its own cluster and poorly-matched to neighboring clusters. A value of 0 generally indicates overlapping clusters, while a negative value indicates that the sample may have been assigned to the wrong cluster.\n\n\nCode\n# fitting kmeans\nkm = KMeans(n_clusters=3, init='k-means++', n_init=12, max_iter=2000,algorithm=\"elkan\")\n\n# Calculate silhouette score\nsilhouette_avg = round(silhouette_score(data_processed, km.fit_predict(data_processed)), 4)\n\n# silhouette coefficient plot\nsilhouette = SilhouetteVisualizer(km, colors='yellowbrick')\nsilhouette.fit(data_processed)\n\nplt.show()\n\n\n\n\n\n\nInterpreting it\nWhen the Silhouette Coefficient \\(s(i)\\) is negative, it means that the average distance \\(a(i)\\) of the \\(i\\)-th sample to other samples in its own cluster is greater than the average distance \\(b(i)\\) to the nearest neighboring cluster. This suggests that the \\(i\\)-th sample would be better assigned to the nearest neighboring cluster rather than its current cluster.\nIn the Silhouette Plot, clusters with bars that extend into the negative range indicate that some samples within those clusters have been poorly assigned. The wider the negative portion of the bar, the more samples in that cluster have been misclassified.\nThe presence of negative Silhouette Coefficient values is a sign that the clustering algorithm has not been able to find well-separated, dense clusters. It suggests that the number of clusters \\(K\\) may not be appropriate for the data, or that the clustering algorithm is not a good fit for the dataset. In such cases, the Silhouette Plot can be used to guide the selection of a more appropriate value of \\(K\\) or the choice of a different clustering algorithm.\n\n\nCode\n# intercluster distance plot\nicd = InterclusterDistance(km, legend_loc='lower left')\nicd.fit(data_processed)\n\nicd.show()\n\n\n\n\n\n&lt;Axes: title={'center': 'KMeans Intercluster Distance Map (via MDS)'}, xlabel='PC2', ylabel='PC1'&gt;"
+  },
+  {
+    "objectID": "notebooks/clustering/index.html#intercluster-distance-map-the-pca",
+    "href": "notebooks/clustering/index.html#intercluster-distance-map-the-pca",
+    "title": "Dividi et impera",
+    "section": "",
+    "text": "Let’s assume we have a dataset \\(X \\in \\mathbb{R}^{n \\times d}\\) with \\(n\\) samples and \\(d\\) features, and a clustering model that has identified \\(k\\) clusters with centers \\(\\mathbf{c}_i \\in \\mathbb{R}^d, i=1,\\dots,k\\).\nThe goal of the intercluster distance map is to embed these \\(k\\) cluster centers into a 2-dimensional space \\(\\mathbf{z}_i \\in \\mathbb{R}^2, i=1,\\dots,k\\), while preserving the distances between the clusters in the original high-dimensional space.\nMathematically, this can be expressed as finding an embedding function \\(f: \\mathbb{R}^d \\rightarrow \\mathbb{R}^2\\) such that the distances between the embedded cluster centers are as close as possible to the distances between the original cluster centers:\n\\[\\min_{f} \\sum_{i&lt;j} \\left| \\|\\mathbf{c}_i - \\mathbf{c}_j\\| - \\|\\mathbf{z}_i - \\mathbf{z}_j\\| \\right|\\]\nWhere \\(\\|\\cdot\\|\\) denotes the Euclidean norm.\nThe size of each cluster’s representation on the 2D plot is determined by a scoring metric, typically the “membership” score, which is the number of instances belonging to each cluster:\n\\[s_i = |\\{x \\in X | \\text{label}(x) = i\\}|\\]\nWhere \\(\\text{label}(x)\\) is the cluster assignment of the \\(x\\)-th sample.\nThe final intercluster distance map visualizes the 2D embedded cluster centers \\(\\{\\mathbf{z}_i\\}_{i=1}^k\\), with the size of each cluster proportional to its membership score \\(s_i\\).\nThis allows the user to gain insights into the relative positions and sizes of the identified clusters, and the relationships between them in the original high-dimensional feature space."
+  },
+  {
+    "objectID": "notebooks/clustering/index.html#intercluster-distance-map-mds-embedding-technique",
+    "href": "notebooks/clustering/index.html#intercluster-distance-map-mds-embedding-technique",
+    "title": "Dividi et impera",
+    "section": "",
+    "text": "Let’s assume we have a dataset \\(X \\in \\mathbb{R}^{n \\times d}\\) with \\(n\\) samples and \\(d\\) features, and a clustering model that has identified \\(k\\) clusters with centers \\(\\mathbf{c}_i \\in \\mathbb{R}^d, i=1,\\dots,k\\).\nThe goal of the intercluster distance map is to embed these \\(k\\) cluster centers into a 2-dimensional space \\(\\mathbf{z}_i \\in \\mathbb{R}^2, i=1,\\dots,k\\), while preserving the distances between the clusters in the original high-dimensional space.\nMathematically, this can be expressed as finding an embedding function \\(f: \\mathbb{R}^d \\rightarrow \\mathbb{R}^2\\) such that the distances between the embedded cluster centers are as close as possible to the distances between the original cluster centers:\n\\[\\min_{f} \\sum_{i&lt;j} \\left| \\|\\mathbf{c}_i - \\mathbf{c}_j\\| - \\|\\mathbf{z}_i - \\mathbf{z}_j\\| \\right|\\]\nWhere \\(\\|\\cdot\\|\\) denotes the Euclidean norm.\nThe size of each cluster’s representation on the 2D plot is determined by a scoring metric, typically the “membership” score, which is the number of instances belonging to each cluster:\n\\[s_i = |\\{x \\in X | \\text{label}(x) = i\\}|\\]\nWhere \\(\\text{label}(x)\\) is the cluster assignment of the \\(x\\)-th sample.\nThe final intercluster distance map visualizes the 2D embedded cluster centers \\(\\{\\mathbf{z}_i\\}_{i=1}^k\\), with the size of each cluster proportional to its membership score \\(s_i\\).\nThis allows the user to gain insights into the relative positions and sizes of the identified clusters, and the relationships between them in the original high-dimensional feature space."
+  },
+  {
+    "objectID": "notebooks/clustering/index.html#intercluster-distance-map-via-mds",
+    "href": "notebooks/clustering/index.html#intercluster-distance-map-via-mds",
+    "title": "Dividi et impera",
+    "section": "Intercluster distance map (via MDS)",
+    "text": "Intercluster distance map (via MDS)\nLet’s assume we have a dataset \\(X \\in \\mathbb{R}^{n \\times d}\\) with \\(n\\) samples and \\(d\\) features, and a clustering model that has identified \\(k\\) clusters with centers \\(\\mathbf{c}_i \\in \\mathbb{R}^d, i=1,\\dots,k\\).\nThe goal of the intercluster distance map is to embed these \\(k\\) cluster centers into a 2-dimensional space \\(\\mathbf{z}_i \\in \\mathbb{R}^2, i=1,\\dots,k\\), while preserving the distances between the clusters in the original high-dimensional space.\nMathematically, this can be expressed as finding an embedding function \\(f: \\mathbb{R}^d \\rightarrow \\mathbb{R}^2\\) such that the distances between the embedded cluster centers are as close as possible to the distances between the original cluster centers:\n\\[\\min_{f} \\sum_{i&lt;j} \\left| \\|\\mathbf{c}_i - \\mathbf{c}_j\\| - \\|\\mathbf{z}_i - \\mathbf{z}_j\\| \\right|\\]\nWhere \\(\\|\\cdot\\|\\) denotes the Euclidean norm.\nThe size of each cluster’s representation on the 2D plot is determined by a scoring metric, typically the “membership” score, which is the number of instances belonging to each cluster:\n\\[s_i = |\\{x \\in X | \\text{label}(x) = i\\}|\\]\nWhere \\(\\text{label}(x)\\) is the cluster assignment of the \\(x\\)-th sample.\nThe final intercluster distance map visualizes the 2D embedded cluster centers \\(\\{\\mathbf{z}_i\\}_{i=1}^k\\), with the size of each cluster proportional to its membership score \\(s_i\\).\nThis allows the user to gain insights into the relative positions and sizes of the identified clusters, and the relationships between them in the original high-dimensional feature space."
   }
 ]

@@ -17,16 +17,16 @@ about:
 ::: {.justify}
 Welcome here,
 
-I'm a Statistician with a degree in actuarial science. My final dissertation was on *"Statistical methods for pair-trading strategies: a state-space models approach"*.
+I'm a Statistician with a degree in actuarial science.
 <br>
 I'm passionate about unconvering hidden patterns and extracting actionable insights from complex data.
 <br>
 <br>
-Ad Hoc RPA Analyst, passionate about processes optimization.
+Some of my [projects](projects.qmd) are here.
 <br>
+Some of my [notebooks](notebooks.qmd).
 <br>
-Check out some of my [projects](projects.qmd).
-
+Quick articles on interesting [fields](posts.qmd).
 :::
 
 
