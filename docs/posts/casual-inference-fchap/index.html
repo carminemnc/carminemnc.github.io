@@ -219,7 +219,13 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <section id="background" class="level2">
 <h2 class="anchored" data-anchor-id="background">Background</h2>
 <p><img src="https://www.vanderschaar-lab.com/wp-content/uploads/2020/12/CausInf.jpg" class="img-fluid"></p>
-<p>La causal inference è fondamentale per comprendere e quantificare gli effetti di interventi, trattamenti o politiche su una popolazione di interesse. A differenza dell’analisi della semplice associazione tra variabili, la <strong>causal inference</strong> mira a stabilire relazioni causali, ovvero a identificare l’effetto di una variabile (il trattamento) sulla variabile di interesse (l’outcome), tenendo conto dei <strong>fattori confondenti</strong>.</p>
+<p><strong>L’inferenza causale</strong> è fondamentale perché ci permette di comprendere le relazioni tra cause ed effetti nei fenomeni che osserviamo. A differenza dell’analisi della semplice associazione tra variabili, <em>l’ inferenza causale</em> mira a stabilire relazioni causali, ovvero a identificare l’effetto di una variabile (il trattamento) sulla variabile di interesse (l’outcome), tenendo conto di tutte le possibili <em>covariate</em>.</p>
+<p>Esempi concreti di applicazione dell’inferenza causale possiamo trovarli in:</p>
+<ul>
+<li><p><strong>Economia</strong>: Gli economisti utilizzano l’inferenza causale per studiare l’impatto di politiche economiche, come cambiamenti nelle tasse o negli investimenti pubblici, sulla disoccupazione, i redditi e la crescita. Questo permette di valutare l’efficacia delle misure economiche.</p></li>
+<li><p><strong>Criminologia</strong>: I ricercatori applicano l’inferenza causale per comprendere i fattori che influenzano la criminalità, come la relazione tra povertà, istruzione e tasso di criminalità. Ciò informa le politiche di prevenzione e contrasto della criminalità.</p></li>
+<li><p><strong>Medicina</strong>: La ricerca clinica utilizza l’inferenza causale per stabilire eventuali relazioni tra l’assunzione di farmaci e l’insorgenza di effetti collaterali, al fine di migliorarne la sicurezza.</p></li>
+</ul>
 </section>
 <section id="notazione" class="level2">
 <h2 class="anchored" data-anchor-id="notazione">1. Notazione</h2>
@@ -250,7 +256,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <h4 class="anchored" data-anchor-id="in-un-contesto-sperimentale">In un contesto sperimentale…</h4>
 <p>In un contesto sperimentale, l’assegnazione al trattamento è indipendente dai potenziali outcomes:</p>
 <p><span class="math display">\[ Y_i(1), Y_i(0) \perp W_i \]</span></p>
-<p>In altre parole, non ci sono variabili confondenti che influenzano sia l’assegnazione al trattamento che l’outcome.</p>
+<p>In altre parole, non ci sono <strong>covariate</strong> che influenzano sia l’assegnazione al trattamento che l’outcome.</p>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-2_1e643af1eff4d668de46deb0abada5ae">
 <details>
 <summary>Code</summary>
@@ -378,8 +384,8 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <li>Questa ipotesi garantisce che sia possibile confrontare unità trattate e di controllo con caratteristiche simili.</li>
 </ul></li>
 </ol>
-<p>Insieme, queste due ipotesi permettono di identificare l’effetto causale del trattamento nell’ambito di un contesto osservazionale. L’ipotesi di confondimento assicura che non ci siano variabili non osservate che influenzano sia l’assegnazione al trattamento che l’outcome. L’ipotesi di sovrapposizione garantisce che ci siano unità di confronto appropriate per ogni individuo trattato.</p>
-<p>Queste ipotesi sono cruciali per l’applicabilità di metodi come l’IPW e l’AIPW, discussi nelle sezioni successive.</p>
+<p>Insieme, queste due ipotesi permettono di identificare l’effetto causale del trattamento nell’ambito di un contesto osservazionale. L’ipotesi di confondimento assicura che non ci siano variabili non osservate che influenzano sia l’assegnazione al trattamento che l’outcome. L’ipotesi di sovrapposizione invece garantisce che ci siano unità di confronto appropriate per ogni individuo trattato.</p>
+<p>Queste ipotesi sono cruciali per l’applicabilità di metodi come l’IPW e l’AIPW, che vedremo nelle sezioni successive.</p>
 </section>
 </section>
 </section>

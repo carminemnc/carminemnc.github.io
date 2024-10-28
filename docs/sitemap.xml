@@ -14,11 +14,11 @@
   </url>
   <url>
     <loc>https://carminemnc.github.io/index.html</loc>
-    <lastmod>2024-10-28T08:30:00.781Z</lastmod>
+    <lastmod>2024-10-28T18:01:28.119Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/posts.html</loc>
-    <lastmod>2024-10-27T10:08:21.076Z</lastmod>
+    <lastmod>2024-10-28T18:49:18.458Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/projects/tripscraper/index.html</loc>
@@ -34,7 +34,7 @@
   </url>
   <url>
     <loc>https://carminemnc.github.io/posts/on-casual-inference/index.html</loc>
-    <lastmod>2024-10-27T09:57:19.155Z</lastmod>
+    <lastmod>2024-10-28T18:21:09.249Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/notebooks/apriori-defects/index.html</loc>
@@ -43,5 +43,9 @@
   <url>
     <loc>https://carminemnc.github.io/notebooks/clustering/index.html</loc>
     <lastmod>2024-10-27T09:56:30.434Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carminemnc.github.io/posts/casual-inference-fchap/index.html</loc>
+    <lastmod>2024-10-28T18:49:30.248Z</lastmod>
   </url>
 </urlset>
