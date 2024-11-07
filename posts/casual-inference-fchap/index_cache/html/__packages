@@ -1,3 +1,15 @@
 ggplot2
 latex2exp
 rstudioapi
+zoo
+lmtest
+sandwich
+grf
+Matrix
+glmnet
+reshape2
+pps
+sampling
+survival
+survey
+samplingbook

@@ -10,23 +10,59 @@ image: loop.gif
 ```{r, include = FALSE}
 library(ggplot2)
 library(latex2exp)
-library(rstudioapi)
+library(lmtest)
+library(sandwich)
+library(grf)
+library(glmnet)
+library(splines)
+library(reshape2)
+library(samplingbook)
+
 options(warn=-1)
 ```
 
-## Background
+## [Perchè]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);"} l'inferenza causale?
 
-![](https://www.vanderschaar-lab.com/wp-content/uploads/2020/12/CausInf.jpg)
+![](https://www.vanderschaar-lab.com/wp-content/uploads/2020/12/CausInf.jpg){width="1024"}
 
-**L'inferenza causale** è fondamentale perché ci permette di comprendere le relazioni tra cause ed effetti nei fenomeni che osserviamo. A differenza dell'analisi della semplice associazione tra variabili, *l' inferenza causale* mira a stabilire relazioni causali, ovvero a identificare l'effetto di una variabile (il trattamento) sulla variabile di interesse (l'outcome), tenendo conto di tutte le possibili *covariate*.
+**L'inferenza causale** è fondamentale perché ci permette di comprendere le relazioni tra cause ed effetti nei fenomeni che osserviamo. A differenza dell'analisi della semplice associazione tra variabili, *l'inferenza causale* mira a stabilire relazioni causali, ovvero a identificare l'effetto di una variabile (il [trattamento]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);"}) sulla variabile di interesse ([l'outcome]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);"}), tenendo conto di tutte le possibili *covariate*.
 
 Esempi concreti di applicazione dell'inferenza causale possiamo trovarli in:
 
-- **Economia**: Gli economisti utilizzano l'inferenza causale per studiare l'impatto di politiche economiche, come cambiamenti nelle tasse o negli investimenti pubblici, sulla disoccupazione, i redditi e la crescita. Questo permette di valutare l'efficacia delle misure economiche.
+-   **Economia**: Gli economisti utilizzano l'inferenza causale per studiare l'impatto di politiche economiche, come cambiamenti nelle tasse o negli investimenti pubblici, sulla disoccupazione, i redditi e la crescita. Questo permette di valutare l'efficacia delle misure economiche.
 
-- **Criminologia**: I ricercatori applicano l'inferenza causale per comprendere i fattori che influenzano la criminalità, come la relazione tra povertà, istruzione e tasso di criminalità. Ciò informa le politiche di prevenzione e contrasto della criminalità.
+-   **Criminologia**: I ricercatori applicano l'inferenza causale per comprendere i fattori che influenzano la criminalità, come la relazione tra povertà, istruzione e tasso di criminalità. Ciò informa le politiche di prevenzione e contrasto della criminalità.
 
-- **Medicina**: La ricerca clinica utilizza l'inferenza causale per stabilire eventuali relazioni tra l'assunzione di farmaci e l'insorgenza di effetti collaterali, al fine di migliorarne la sicurezza.
+-   **Medicina**: La ricerca clinica utilizza l'inferenza causale per stabilire eventuali relazioni tra l'assunzione di farmaci e l'insorgenza di effetti collaterali, al fine di migliorarne la sicurezza.
+
+## I dati che utilizzeremo
+
+```{r}
+# dataset
+data <- read.csv("welfare-small.csv")
+
+# Treatment: does the the gov't spend too much on "welfare" (1) or "assistance to the poor" (0)
+treatment <- "w"
+
+# Outcome: 1 for 'yes', 0 for 'no'
+outcome <- "y"
+
+# Additional covariates
+covariates <- c("age", "polviews", "income", "educ", "marital", "sex")
+```
+
+In questo capitolo utilizzeremo una versiona abbreviata di un dataset pubblico fornito da [(Smith,2016)](https://gss.norc.org/content/dam/gss/get-documentation/pdf/reports/project-reports/GSSProject%20report32.pdf)
+
+Il contesto riguarda un sondaggio in cui agli individui veniva chiesto il loro parere sulla spesa del governo americano per il welfare.
+
+Il trattamento, $W$, consiste nella formulazione del quesito in due formulazioni diverse:
+
+1.  Ad una metà dei partecipanti il quesito veniva posto sul tema *"welfare*"
+2.  All'altra metà dei partecipanti al sondaggio il quesito veniva posto sottoforma di *"assistenza ai poveri"*
+
+L'outcome è una variabile binaria $Y_i$ che indica se la risposta è stata positiva o meno. Oltre al trattamento e all'outcome il dataset contiene informazioni demografiche come l'età, l'orientamento politico[^1], il reddito, l'educazione, lo stato civile e il sesso.
+
+[^1]: La variabile "Orientamento politico" cattura le opinioni politiche dei partecipanti su una scala ordinale con valori che vanno tipicamente da 1 (estremamente conservatore) a 7 (estremamente liberale). Valori più bassi indicano una visione politica più di destra/conservatrice, mentre valori più alti indicano una visione più di sinistra/liberale.
 
 ## 1. Notazione
 
@@ -45,13 +81,13 @@ Introduciamo i concetti di *potenziali outcomes*:
 
 Quindi l'outcome osservato $Y_i$ corrisponde a uno dei due potenziali outcomes:
 
-$$ Y_i \equiv Y_i(W_i) = \begin{cases} Y_i(1) & \text{se } W_i = 1 \\ Y_i(0) & \text{se } W_i = 0 \end{cases} $$
+$$ Y_i \equiv Y_i(W_i) = \begin{cases} Y_i(1) & \text{se } W_i = 1 \\ Y_i(0) & \text{se } W_i = 0 \end{cases} $$ {#eq-outcomes}
 
 ### Il nostro obiettivo
 
-L'obiettivo è stimare l'effetto medio del trattamento (ATE):
+L'obiettivo è stimare l'effetto medio del trattamento (in inglese ATE, [Average treatment effect]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);"} ):
 
-$$ \tau = \mathbb{E}[Y_i(1) - Y_i(0)] $$
+$$ \tau = \mathbb{E}[Y_i(1) - Y_i(0)]$$ {#eq-ate}
 
 -   L'ATE fornisce una misura complessiva dell'impatto di un trattamento sulla popolazione target.
 
@@ -63,14 +99,13 @@ La stima dell'ATE è cruciale per valutare l'impatto di interventi, supportare l
 
 In un contesto sperimentale, l'assegnazione al trattamento è indipendente dai potenziali outcomes:
 
-$$ Y_i(1), Y_i(0) \perp W_i $$
+$$ Y_i(1), Y_i(0) \perp W_i $$ {#eq-perp-exp}
 
 In altre parole, non ci sono **covariate** che influenzano sia l'assegnazione al trattamento che l'outcome.
 
-```{r}
-# Read in data
-data <- read.csv("welfare-small.csv")
+Ciò che ci aspetteremmo in un contesto sperimentale ad esempio è che la distribuzione delle covariate per i due outcomes, $Y_i(0)$ e $Y_i(1)$ siamo simili, come nel seguente esempio:
 
+```{r}
 ggplot(data,
        aes(x= age +rnorm(n=sum(W=w),sd=.1),
            y=polviews+rnorm(n=sum(W=w),sd=.1))) + 
@@ -79,9 +114,8 @@ ggplot(data,
     vars(ifelse(w,'Controllo','Trattamento'))
   ) +
   labs(title="Distribuzione dell'outcome in un contesto sperimentale",
-       subtitle = TeX('$Y_i(1), Y_i(0) \\perp W_i$'),
-       x="Age",
-       y="Polviews") +
+       x="Età",
+       y="Orientamento politico") +
   theme(
     # Set black background
     plot.background = element_rect(fill = "#242728"),
@@ -110,27 +144,38 @@ ggplot(data,
 
 #### In un contesto reale...
 
+In un contesto reale (o osservazionale) però molto spesso l'esposizione al trattamento è direttamente dipendente dalle covariate.
+
+Nell'esempio presentato qui è chiaramente visibile che:
+
+-   La popolazione trattata(o di trattamento) ,$Y_i(1)$ , risulta avere un età più alta e una visione politica più di [*destra/conservatrice*]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);"}
+
+-   Mentre la popolazione non trattata (o di controllo), $Y_i(1)$ , risulta essere più giovane e con una visione politica più di [*sinistra/liberale*]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);"}
+
 ```{r}
+# in un contesto reale...
+data_real <- data
+
 # defining the group that will be dropped with some high probability
-grp <- ((data$w == 1) &  # if treated AND...
+grp <- ((data_real$w == 1) &  # if treated AND...
         (
-            (data$age > 45) |     # belongs an older group OR
-            (data$polviews < 5)   # more conservative
+            (data_real$age > 45) |     # belongs an older group OR
+            (data_real$polviews < 5)   # more conservative
         )) | # OR
-        ((data$w == 0) &  # if untreated AND...
+        ((data_real$w == 0) &  # if untreated AND...
         (
-            (data$age < 45) |     # belongs a younger group OR
-            (data$polviews > 4)   # more liberal
+            (data_real$age < 45) |     # belongs a younger group OR
+            (data_real$polviews > 4)   # more liberal
         )) 
 
 # Individuals in the group above have a smaller chance of being kept in the sample
 prob.keep <- ifelse(grp, .15, .85)
-keep.idx <- as.logical(rbinom(n=nrow(data), prob=prob.keep, size = 1))
+keep.idx <- as.logical(rbinom(n=nrow(data_real), prob=prob.keep, size = 1))
 
 # Dropping
-data <- data[keep.idx,]
+data_real <- data_real[keep.idx,]
 
-ggplot(data,
+ggplot(data_real,
        aes(x= age +rnorm(n=sum(W=w),sd=.1),
            y=polviews+rnorm(n=sum(W=w),sd=.1))) + 
   geom_point(size=2,color='#0085A1',alpha=0.3) + 
@@ -138,8 +183,8 @@ ggplot(data,
     vars(ifelse(w,'Controllo','Trattamento'))
   ) +
   labs(title="Distribuzione dell'outcome in un contesto reale",
-       x="Age",
-       y="Polviews") +
+       x="Età",
+       y="Orientamento politico") +
   theme(
     # Set black background
     plot.background = element_rect(fill = "#242728"),
@@ -166,22 +211,33 @@ ggplot(data,
   )
 ```
 
-In un contesto reale o osservazionale dobbiamo fare delle assunzioni molto forti per poter stimare l'effetto medio del trattamento.
+Questo ci permette di introdurre quelle che sono le ipotesi fondamentali da adottare nel momento in cui non siamo in un contesto sperimentale ma piuttosto in un contesto osservazionale, in cui per poter identificare l'effetto causale del trattamento abbiamo bisogno che le seguenti ipotesi siano valide:
 
-1.  **Ipotesi di confondimento (unconfoundedness):**
-    -   Questa ipotesi afferma che, una volta condizionato sulle covariate osservate $X_i$, l'assegnazione al trattamento $W_i$ è indipendente dai potenziali outcomes $Y_i(1)$ e $Y_i(0)$.
-    -   In altre parole, tutte le possibili fonti di selezione nel trattamento possono essere spiegate dalle covariate osservate.
-    -   Matematicamente: $Y_i(1), Y_i(0) \perp W_i | X_i$
-    -   Questa ipotesi permette di identificare l'effetto causale del trattamento, altrimenti non osservabile.
-2.  **Ipotesi di sovrapposizione (overlap):**
-    -   Questa ipotesi afferma che per ogni possibile combinazione di valori delle covariate $X_i$, esiste una probabilità positiva di essere assegnati sia al trattamento che al controllo.
-    -   In altre parole, non ci devono essere regioni del supporto delle covariate in cui tutti gli individui sono sempre trattati o sempre di controllo.
-    -   Matematicamente: $\eta < e(x) < 1 - \eta$ per qualche $\eta > 0$ e per tutti i $x$, dove $e(x) = \mathbb{P}[W_i = 1 | X_i = x]$ è la propensione al trattamento.
-    -   Questa ipotesi garantisce che sia possibile confrontare unità trattate e di controllo con caratteristiche simili.
+::: grid
+::: g-col-6
+**Ipotesi di confondimento (unconfoundedness):**
 
-Insieme, queste due ipotesi permettono di identificare l'effetto causale del trattamento nell'ambito di un contesto osservazionale. L'ipotesi di confondimento assicura che non ci siano variabili non osservate che influenzano sia l'assegnazione al trattamento che l'outcome. L'ipotesi di sovrapposizione invece garantisce che ci siano unità di confronto appropriate per ogni individuo trattato.
+\- Questa ipotesi afferma che, una volta condizionato sulle covariate osservate $X_i$, l'assegnazione al trattamento $W_i$ è indipendente dai potenziali outcomes $Y_i(1)$ e $Y_i(0)$.
 
-Queste ipotesi sono cruciali per l'applicabilità di metodi come l'IPW e l'AIPW, che vedremo nelle sezioni successive.
+\- In altre parole, tutte le possibili fonti di selezione nel trattamento possono essere spiegate dalle covariate osservate.
+
+\- Matematicamente: $Y_i(1), Y_i(0) \perp W_i | X_i$ - Questa ipotesi permette di identificare l'effetto causale del trattamento, altrimenti non osservabile.
+:::
+
+::: g-col-6
+**Ipotesi di sovrapposizione (overlap):**
+
+\- Questa ipotesi afferma che per ogni possibile combinazione di valori delle covariate $X_i$, esiste una probabilità positiva di essere assegnati sia al trattamento che al controllo.
+
+\- In altre parole, non ci devono essere regioni del supporto delle covariate in cui tutti gli individui sono sempre trattati o sempre di controllo.
+
+\- Matematicamente: $\eta < e(x) < 1 - \eta$ per qualche $\eta > 0$ e per tutti i $x$, dove $e(x) = \mathbb{P}[W_i = 1 | X_i = x]$ è la propensione al trattamento. - Questa ipotesi garantisce che sia possibile confrontare unità trattate e di controllo con caratteristiche simili.
+:::
+:::
+
+L'ipotesi di confondimento assicura che non ci siano variabili non osservate che influenzano sia l'assegnazione al trattamento che l'outcome. L'ipotesi di sovrapposizione garantisce che ci siano unità di confronto appropriate per ogni individuo trattato.
+
+Queste ipotesi sono cruciali per l'applicabilità di metodi come l'IPW e l'AIPW, discussi nelle sezioni successive.
 
 ## 2. Difference in means
 
@@ -189,7 +245,7 @@ Lo stimatore della differenza delle medie (difference-in-means) è un semplice s
 
 $$
 \hat{\tau}_\text{DIFF} = \frac{1}{n_1} \sum_{i: W_i = 1} Y_i - \frac{1}{n_0} \sum_{i: W_i = 0} Y_i
-$$
+$$ {#eq-diff-in-means}
 
 dove $n_w = |\{i: W_i = w\}|$ è il numero di individui nel gruppo $w$.
 
@@ -199,17 +255,60 @@ In questo caso, l'ipotesi di indipendenza tra assegnazione al trattamento e pote
 
 Ciò significa che non ci sono fattori confondenti che influenzano sia l'assegnazione al trattamento che l'outcome.
 
-Sotto questa ipotesi, la differenza tra la media dei outcomes nel gruppo di trattamento e la media dei outcomes nel gruppo di controllo fornisce una stima non distorta dell'effetto medio del trattamento (ATE).
+Sotto questa ipotesi, la differenza tra la media degli outcomes nel gruppo di trattamento e la media degli outcomes nel gruppo di controllo fornisce una stima [non distorta]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);"} dell'effetto medio del trattamento (ATE).
 
 In contesti osservazionali, invece, sono necessari metodi più avanzati come l'IPW e l'AIPW.
 
-## 3. Direct estimator
+### Stima di $\tau$ in un contesto [sperimentale]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);"}
+
+La media nel gruppo di trattamento:\
+$$
+\frac{1}{n_1} \sum_{i: W_i = 1} Y_i
+$$
+
+```{r}
+Y <- data[,outcome]
+W <- data[,treatment]
+print(mean(Y[W==1]))
+```
+
+e calcolando la media nel gruppo di [controllo]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);"}
+
+$$
+\frac{1}{n_0} \sum_{i: W_i = 0} Y_i
+$$
+
+```{r}
+print(mean(Y[W==0]))
+```
+
+```{r}
+fmla <- formula(paste0(outcome, '~', treatment))
+ols <- lm(fmla, data=data)
+coeftest(ols, vcov=vcovHC(ols, type='HC2'))[2,]
+```
+
+Otteniamo chiaramente che
+
+$$
+\hat{\tau}_\text{DIFF} = \frac{1}{n_1} \sum_{i: W_i = 1} Y_i - \frac{1}{n_0} \sum_{i: W_i = 0} Y_i = \: \sim -0.34
+$$
+
+Questo significa che, in media, le persone nel gruppo di trattamento hanno risposto in modo più negativo rispetto al gruppo di controllo[^2].
+
+[^2]: Possiamo stimare l'ATE attraverso una regressione lineare del tipo:
+
+    $$
+    Y_i = Y_i(0) + W_i(Y_i(1) - Y_i(0))
+    $$
+
+## 3. [Direct]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);"} estimator
 
 Lo stimatore diretto (direct estimation) è un metodo per stimare l'effetto medio del trattamento (ATE) che può essere utilizzato in contesti osservazionali, ovvero quando l'assegnazione al trattamento non è casuale ma dipende dalle covariate osservate $X_i$.
 
 Questo stimatore sfrutta la seguente scomposizione:
 
-$\mathbb{E}[Y_i(1) - Y_i(0)] = \mathbb{E}[\mathbb{E}[Y_i|X_i, W_i=1]] - \mathbb{E}[\mathbb{E}[Y_i|X_i, W_i=0]]$
+$$ \mathbb{E}[Y_i(1) - Y_i(0)] = \mathbb{E}[\mathbb{E}[Y_i|X_i, W_i=1]] - \mathbb{E}[\mathbb{E}[Y_i|X_i, W_i=0]] $$
 
 La procedura per applicare lo stimatore diretto è la seguente:
 
@@ -217,17 +316,45 @@ La procedura per applicare lo stimatore diretto è la seguente:
 2.  Predire $\hat{\mu}(X_i, 1)$ e $\hat{\mu}(X_i, 0)$ per ogni osservazione.
 3.  Calcolare la media delle differenze predette:
 
-$\hat{\tau}_\text{DM} = \frac{1}{n} \sum_{i=1}^n \left[\hat{\mu}(X_i, 1) - \hat{\mu}(X_i, 0)\right]$
+$$ \hat{\tau}_\text{DM} = \frac{1}{n} \sum_{i=1}^n \left[\hat{\mu}(X_i, 1) - \hat{\mu}(X_i, 0)\right] $$ {#eq-direct-estimator}
 
 Questo stimatore sfrutta la regressione per ottenere stime più accurate dell'ATE rispetto al semplice difference-in-means visto precedentemente.
 
 **Quando usarlo**: Lo stimatore diretto può essere utilizzato nel contesto osservazionale, quando l'ipotesi di confondimento ($Y_i(1), Y_i(0) \perp W_i | X_i$) è soddisfatta. Ciò significa che tutte le variabili confondenti sono state misurate e incluse nelle covariate $X_i$.
 
-**Quando non usarlo**: Lo stimatore diretto ha alcuni svantaggi: - Dipende fortemente dalla corretta specificazione del modello per $\mu(x, w)$. Se il modello è mal specificato, le stime saranno distorte. - Non gode delle stesse proprietà asintotiche (come l'efficienza) degli stimatori più avanzati come l'AIPW.
+**Quando non usarlo**: Lo stimatore diretto ha alcuni svantaggi:
+
+-   Dipende fortemente dalla corretta specificazione del modello per $\mu(x, w)$. Se il modello è mal specificato, le stime saranno distorte.
+
+<!-- -->
+
+-   Non gode delle stesse proprietà asintotiche (come l'efficienza) degli stimatori più avanzati come l'AIPW.
 
 Pertanto, quando possibile, è preferibile utilizzare metodi come l'AIPW, che sono più robusti alle ipotesi di modellazione.
 
-## 4. IPW (Inverse propensity-weighted estimator)
+## 4. [IPW]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);"} (Inverse propensity-weighted estimator)
+
+#### Supponiamo..
+
+Supponiamo di voler stimare l'effetto medio di un certo intervento di apprendimento sui voti degli studenti, misurati su una scala da 0 a 100.
+
+Eseguiamo due esperimenti separati in scuole di tipo **A e B**. Supponiamo che i voti tra gli studenti trattati:
+
+-   **nella scuola A**, siano approssimativamente distribuiti come $Y_i(1)|A \sim \mathcal{N}(60, 5^2)$
+-   **nella scuola B**, siano distribuiti come $Y_i(1)|B \sim \mathcal{N}(70, 5^2)$
+
+Il problema è che l'iscrizione al trattamento non è casuale, ma volontaria:
+
+-   **Nelle scuole di tipo A, solo il 5% degli studenti si iscrive al trattamento.**
+-   **Nelle scuole di tipo B, il 40% degli studenti si iscrive al trattamento.**
+
+Pertanto, se prendessimo la media dei voti degli studenti trattati senza tenere conto dell'appartenenza scolastica, gli studenti della scuola $B$, che hanno voti medi più alti, sarebbero sovrarappresentati e quindi la nostra stima dei voti degli studenti trattati sarebbe distorta verso l'alto.
+
+Per avere una stima non distorta dell'effetto medio del trattamento, bisogna tenere conto di questa differenza di probabilità di iscrizione tra le due scuole. In questo modo, si può ribilanciare il campione e calcolare una media ponderata dei voti degli studenti trattati che non risenta della diversa composizione dei due gruppi.
+
+### L'IPW
+
+$$ \hat{\tau}_\text{IPW} = \frac{1}{n} \sum_{i=1}^n Y_i \left[ \frac{W_i}{\hat{e}(X_i)} - \frac{(1 - W_i)}{1 - \hat{e}(X_i)} \right] $$ {#eq-ipw}
 
 L'estimatore inverse propensity-weighted (IPW) è un metodo per stimare l'effetto medio del trattamento (ATE) che può essere utilizzato in contesti osservazionali, ovvero quando l'assegnazione al trattamento non è casuale ma dipende dalle covariate $X_i$.
 
@@ -235,27 +362,68 @@ L'idea chiave dell'IPW è di utilizzare i pesi inversi della propensione al trat
 
 La procedura per applicare l'IPW è la seguente:
 
-1.  Stimare la propensione al trattamento $e(X_i) = \mathbb{P}[W_i = 1 | X_i]$ utilizzando un modello di regressione (ad esempio, logistica).
+1.  Stimare la propensione al trattamento (o propensity score), $e(X_i) = \mathbb{P}[W_i = 1 | X_i]$ , utilizzando un modello di regressione (preferibilmente non parametrico, ad esempio: logistica).
 2.  Calcolare i pesi inversamente proporzionali alla propensione stimata:
-    -   Per gli individui trattati: $W_i / \hat{e}(X_i)$
-    -   Per gli individui di controllo: $(1 - W_i) / (1 - \hat{e}(X_i))$
-3.  Calcolare la media ponderata dei outcomes:
-
-$\hat{\tau}_\text{IPW} = \frac{1}{n} \sum_{i=1}^n \left[ \frac{W_i \, Y_i}{\hat{e}(X_i)} - \frac{(1 - W_i) \, Y_i}{1 - \hat{e}(X_i)} \right]$
+    -   Per gli individui trattati: $\frac{W_i}{\hat{e}(X_i)}$
+    -   Per gli individui di controllo: $\frac{(1 - W_i)}{(1 - \hat{e}(X_i))}$
+3.  Calcolare la media ponderata dei outcomes
 
 **Quando usarlo**: L'IPW può essere utilizzato nel contesto osservazionale, quando sono soddisfatte le ipotesi di confondimento ($Y_i(1), Y_i(0) \perp W_i | X_i$) e di sovrapposizione ($\eta < e(x) < 1 - \eta$ per qualche $\eta > 0$).
 
-**Vantaggi dell'IPW**: - È un metodo semplice da implementare. - È robusto: se il modello per la propensione è correttamente specificato, l'IPW fornisce stime non distorte dell'ATE.
+**Vantaggi dell'IPW**:
 
-**Svantaggi dell'IPW**: - Quando la propensione al trattamento è molto piccola, i pesi diventano molto grandi, rendendo lo stimatore instabile e con alta varianza. - L'IPW non sfrutta appieno l'informazione contenuta nelle covariate per migliorare l'efficienza della stima.
+-   È un metodo semplice da implementare.
+
+-   È robusto: se il modello per la propensione è correttamente specificato, l'IPW fornisce stime non distorte dell'ATE.
+
+**Svantaggi dell'IPW**:
+
+-   Quando la propensione al trattamento è molto piccola, i pesi diventano molto grandi, rendendo lo stimatore instabile e con alta varianza.
+
+<!-- -->
+
+-   L'IPW non sfrutta appieno l'informazione contenuta nelle covariate per migliorare l'efficienza della stima.
 
 Per superare questi svantaggi, nella prossima sezione verrà introdotto un metodo più sofisticato, l'AIPW, che combina i vantaggi dell'IPW e della regressione diretta.
 
-## 5. AIPW (Augmented inverse propensity-weighted estimator)
+```{r}
+ipw_estimator <- function (data,
+                           outcome_variable,
+                           treatment_variable,
+                           covariates) {
+  
+  y <- data[,outcome_variable]
+  w <- data[,treatment_variable]
+  fmla <- as.formula(
+    paste0("~", paste0(covariates, collapse="+"))
+  )
+  XX <- model.matrix(fmla,data)
+  logit <- cv.glmnet(x=XX, y=w, family="binomial") # fitting a logistic model on treatment variable
+  e.hat <- predict(logit, XX, s = "lambda.min", type="response")
+  
+    # Using the fact that
+  z <- y * (w/e.hat - (1-w)/(1-e.hat))
+  ate.est <- mean(z)
+  ate.se <- sd(z) / sqrt(length(z))
+  ate.tstat <- ate.est / ate.se
+  ate.pvalue <- 2*(pnorm(1 - abs(ate.est/ate.se)))
+  ate.results <- c(estimate=ate.est, std.error=ate.se, t.stat=ate.tstat, pvalue=ate.pvalue)
+  print(ate.results)
+  
+}
+```
+
+```{r}
+ipw_estimator(data_real,outcome,treatment,covariates)
+```
+
+## 5. [AIPW]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);"} (Augmented inverse propensity-weighted estimator)
 
 L'estimatore AIPW è disponibile in contesti con ipotesi di non confondimento e overlapping. La sua formula è la seguente:
 
-$$\hat{\tau}_\mathrm{AIPW} := \frac{1}{n} \sum_{i=1}^n \left(\hat{\mu}_{-i}(X_i, 1) - \hat{\mu}_{-i}(X_i, 0)\right) + \frac{W_i}{\hat{e}_{-i}(X_i)} (Y_i - \hat{\mu}_{-i}(X_i, 1)) - \frac{1-W_i}{1-\hat{e}_{-i}(X_i)} (Y_i - \hat{\mu}_{-i}(X_i, 0))$$
+$$
+\begin{equation}\begin{aligned}\hat{\tau}_\mathrm{AIPW} &:= \frac{1}{n} \sum_{i=1}^n \left(\hat{\mu}_{-i}(X_i, 1) - \hat{\mu}_{-i}(X_i, 0)\right) + \\                        &\quad \frac{W_i}{\hat{e}_{-i}(X_i)} (Y_i - \hat{\mu}_{-i}(X_i, 1)) \: - \\                        &\quad \frac{1-W_i}{1-\hat{e}_{-i}(X_i)} (Y_i - \hat{\mu}_{-i}(X_i, 0))\end{aligned}\end{equation}
+$$ {#eq-aipw}
 
 Vantaggi dell'estimatore AIPW:
 
@@ -274,3 +442,22 @@ Svantaggi:
 -   Quando i propensity score sono molto vicini a 0 o 1, l'AIPW può avere prestazioni instabili. In tal caso, altri stimatori come l'approximate residual balancing (ARB) possono essere preferibili.
 
 In sintesi, l'AIPW è uno stimatore raccomandato in contesti osservazionali con ipotesi di non confondimento e overlapping, grazie alla sua doppia robustezza e efficienza asintotica. La sua implementazione può però risultare più complessa rispetto ad altri stimatori.
+
+```{r}
+# Available in randomized settings and observational settings with unconfoundedness+overlap
+
+# Input covariates need to be numeric. 
+XX <- model.matrix(formula(paste0("~", paste0(covariates, collapse="+"))), data=data_real)
+
+# Estimate a causal forest.
+forest <- causal_forest(
+              X=XX,  
+              W=data_real[,treatment],
+              Y=data_real[,outcome],
+              #W.hat=...,  # In randomized settings, set W.hat to the (known) probability of assignment
+              num.trees = 100)
+forest.ate <- average_treatment_effect(forest,
+                                       target.sample="overlap",
+                                       method="TMLE")
+print(forest.ate)
+```
