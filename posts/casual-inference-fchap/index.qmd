@@ -17,6 +17,8 @@ library(glmnet)
 library(splines)
 library(reshape2)
 library(samplingbook)
+library(dplyr)
+library(tidyr)
 
 options(warn=-1)
 ```
@@ -35,7 +37,7 @@ Esempi concreti di applicazione dell'inferenza causale possiamo trovarli in:
 
 -   **Medicina**: La ricerca clinica utilizza l'inferenza causale per stabilire eventuali relazioni tra l'assunzione di farmaci e l'insorgenza di effetti collaterali, al fine di migliorarne la sicurezza.
 
-## I dati che utilizzeremo
+## I dati che utilizzeremo:
 
 ```{r}
 # dataset
@@ -460,4 +462,107 @@ forest.ate <- average_treatment_effect(forest,
                                        target.sample="overlap",
                                        method="TMLE")
 print(forest.ate)
+```
+
+## 6. Elementi di [diagnostica]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);"}
+
+Come abbiamo visto, in contesti osservazionali le distribuzioni delle covariate possono essere molto diverse tra individui trattati e non trattati. Tali discrepanze possono portare a stime distorte dell'ATE. Ci si aspetterebbe che ponderando verso l'alto o verso il basso le osservazioni in base ai pesi di propensione inversi, le loro medie siano simili.
+
+In effetti, dovremmo attenderci anche che le medie delle funzioni di base delle covariate siano simili dopo la ponderazione. Questa proprietà è chiamata equilibrio. Un modo per verificarlo è il seguente:
+
+Data una certa variabile $Z_i$ (ad esempio, una covariata $X_{i1}$, o un'interazione tra covariate $X_{i1}X_{i2}$, o un polinomio nelle covariate $X_{i1}^2$, ecc.), possiamo verificare la differenza media standardizzata assoluta (ASMD) di $Z_i$ tra individui trattati e non trattati nei nostri dati,
+
+$$\frac{|\bar{Z}_1 - \bar{Z}_0|}{\sqrt{s_1^2 + s_0^2}}$$ {#eq-asmd}
+
+dove $\bar{Z}_1$ e $\bar{Z}_0$ sono le medie campionarie di $Z_i$, e $s_1$ e $s_0$ sono le deviazioni standard di $Z_i$ per i due campioni di individui trattati e non trattati. Successivamente, possiamo verificare la stessa quantità per le loro controparti ponderate $Z_i W_i/\hat{e}(X_i)$ e $Z_i (1-W_i)/(1-\hat{e}(X_i))$.
+
+Se le nostre propensioni sono ben calibrate, l'ASMD per la versione ponderata dovrebbe essere vicina allo zero.
+
+```{r}
+
+balancer <- function (propensity_scores,
+                      treatment,
+                      covariates,
+                      data) {
+# Here, adding covariates and their interactions, though there are many other possibilities.
+fmla <- formula(paste("~ 0 +", paste(apply(expand.grid(covariates, covariates), 1, function(x) paste0(x, collapse="*")), collapse="+")))
+
+# Using the propensity score
+e.hat <- propensity_scores
+
+XX <- model.matrix(fmla, data)
+W <- data[,treatment]
+pp <- ncol(XX)
+
+# Unadjusted covariate means, variances and standardized abs mean differences
+means.treat <- apply(XX[W == 1,], 2, mean)
+means.ctrl <- apply(XX[W == 0,], 2, mean)
+abs.mean.diff <- abs(means.treat - means.ctrl)
+
+var.treat <- apply(XX[W == 1,], 2, var)
+var.ctrl <- apply(XX[W == 0,], 2, var)
+std <- sqrt(var.treat + var.ctrl)
+
+# Adjusted covariate means, variances and standardized abs mean differences
+means.treat.adj <- apply(XX*W/e.hat, 2, mean)
+means.ctrl.adj <- apply(XX*(1-W)/(1-e.hat), 2, mean)
+abs.mean.diff.adj <- abs(means.treat.adj - means.ctrl.adj)
+
+var.treat.adj <- apply(XX*W/e.hat, 2, var)
+var.ctrl.adj <- apply(XX*(1-W)/(1-e.hat), 2, var)
+std.adj <- sqrt(var.treat.adj + var.ctrl.adj)
+
+
+# Create a data frame with the necessary information
+df <- data.frame(
+  Covariate = colnames(XX),
+  Unadjusted_SMD = abs.mean.diff / std,
+  Adjusted_SMD = abs.mean.diff.adj / std.adj
+)
+
+# Gather the data into a long format
+df_long <- df %>%
+  pivot_longer(cols = c(Unadjusted_SMD, Adjusted_SMD), names_to = "Adjustment", values_to = "SMD")
+
+# Create the faceted plot
+ggplot(df_long, aes(x = SMD, y = factor(Covariate))) +
+  geom_point(size = 3,color="white") +
+  facet_wrap(~ Adjustment, ncol = 2) +
+  geom_vline(xintercept = seq(0, 1, by = 0.25), linetype = "dashed", color = "grey50", linewidth = 0.5) +
+  geom_hline(yintercept = seq_len(nrow(df)), linetype = "dashed", color = "grey50", linewidth = 0.5) +
+  scale_x_continuous(limits = c(-.01, 1.01), expand = c(0, 0)) +
+  scale_y_discrete() +
+  labs(x = "Standardized Mean Difference", y = NULL, title = "Covariate Balance") +
+  theme(
+    # Set black background
+    plot.background = element_rect(fill = "#242728"),
+    panel.background = element_rect(fill = "#242728"),
+    
+    # Set white text for all elements
+    text = element_text(color = "#eaeaea"),
+    axis.text = element_text(color = "#eaeaea"),
+    axis.title = element_text(color = "#eaeaea"),
+    title = element_text(face='italic',size=13),
+
+    # Set green facet wrap labels
+    strip.background = element_rect(fill = "#0085A1"),
+    strip.text = element_text(color = "#eaeaea", face = "bold",size = 12),
+  
+    # Optional: adjust grid lines for better visibility
+    panel.grid.major = element_line(color = "#242728"),
+    panel.grid.minor = element_line(color = "#242728"),
+    
+    # Optional: set legend theme to match
+    legend.background = element_rect(fill = "#242728"),
+    legend.text = element_text(color = "#eaeaea"),
+    legend.title = element_text(color = "#eaeaea"),
+  )
+
+}
+
+
+balancer(propensity_scores = forest$W.hat,
+         treatment = treatment,
+         covariates = covariates,
+         data = data_real)
 ```

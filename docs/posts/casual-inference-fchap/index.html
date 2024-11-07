@@ -179,6 +179,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
   <li><a href="#lipw" id="toc-lipw" class="nav-link" data-scroll-target="#lipw">L’IPW</a></li>
   </ul></li>
   <li><a href="#aipw-augmented-inverse-propensity-weighted-estimator" id="toc-aipw-augmented-inverse-propensity-weighted-estimator" class="nav-link" data-scroll-target="#aipw-augmented-inverse-propensity-weighted-estimator">5. <span style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);">AIPW</span> (Augmented inverse propensity-weighted estimator)</a></li>
+  <li><a href="#elementi-di-diagnostica" id="toc-elementi-di-diagnostica" class="nav-link" data-scroll-target="#elementi-di-diagnostica">6. Elementi di <span style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);">diagnostica</span></a></li>
   </ul>
 </nav>
     </div>
@@ -647,6 +648,108 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <div class="cell-output cell-output-stdout">
 <pre><code>   estimate     std.err 
 -0.34010322  0.01019581 </code></pre>
+</div>
+</div>
+</section>
+<section id="elementi-di-diagnostica" class="level2">
+<h2 class="anchored" data-anchor-id="elementi-di-diagnostica">6. Elementi di <span style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);">diagnostica</span></h2>
+<p>Come abbiamo visto, in contesti osservazionali le distribuzioni delle covariate possono essere molto diverse tra individui trattati e non trattati. Tali discrepanze possono portare a stime distorte dell’ATE. Ci si aspetterebbe che ponderando verso l’alto o verso il basso le osservazioni in base ai pesi di propensione inversi, le loro medie siano simili.</p>
+<p>In effetti, dovremmo attenderci anche che le medie delle funzioni di base delle covariate siano simili dopo la ponderazione. Questa proprietà è chiamata equilibrio. Un modo per verificarlo è il seguente:</p>
+<p>Data una certa variabile <span class="math inline">\(Z_i\)</span> (ad esempio, una covariata <span class="math inline">\(X_{i1}\)</span>, o un’interazione tra covariate <span class="math inline">\(X_{i1}X_{i2}\)</span>, o un polinomio nelle covariate <span class="math inline">\(X_{i1}^2\)</span>, ecc.), possiamo verificare la differenza media standardizzata assoluta (ASMD) di <span class="math inline">\(Z_i\)</span> tra individui trattati e non trattati nei nostri dati,</p>
+<p><span id="eq-asmd"><span class="math display">\[\frac{|\bar{Z}_1 - \bar{Z}_0|}{\sqrt{s_1^2 + s_0^2}} \tag{8}\]</span></span></p>
+<p>dove <span class="math inline">\(\bar{Z}_1\)</span> e <span class="math inline">\(\bar{Z}_0\)</span> sono le medie campionarie di <span class="math inline">\(Z_i\)</span>, e <span class="math inline">\(s_1\)</span> e <span class="math inline">\(s_0\)</span> sono le deviazioni standard di <span class="math inline">\(Z_i\)</span> per i due campioni di individui trattati e non trattati. Successivamente, possiamo verificare la stessa quantità per le loro controparti ponderate <span class="math inline">\(Z_i W_i/\hat{e}(X_i)\)</span> e <span class="math inline">\(Z_i (1-W_i)/(1-\hat{e}(X_i))\)</span>.</p>
+<p>Se le nostre propensioni sono ben calibrate, l’ASMD per la versione ponderata dovrebbe essere vicina allo zero.</p>
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-11_424b3c25d2052b246f89be709087f4fd">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>balancer <span class="ot">&lt;-</span> <span class="cf">function</span> (propensity_scores,</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                      treatment,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                      covariates,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                      data) {</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Here, adding covariates and their interactions, though there are many other possibilities.</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>fmla <span class="ot">&lt;-</span> <span class="fu">formula</span>(<span class="fu">paste</span>(<span class="st">"~ 0 +"</span>, <span class="fu">paste</span>(<span class="fu">apply</span>(<span class="fu">expand.grid</span>(covariates, covariates), <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="fu">paste0</span>(x, <span class="at">collapse=</span><span class="st">"*"</span>)), <span class="at">collapse=</span><span class="st">"+"</span>)))</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the propensity score</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>e.hat <span class="ot">&lt;-</span> propensity_scores</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>XX <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(fmla, data)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>W <span class="ot">&lt;-</span> data[,treatment]</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>pp <span class="ot">&lt;-</span> <span class="fu">ncol</span>(XX)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Unadjusted covariate means, variances and standardized abs mean differences</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>means.treat <span class="ot">&lt;-</span> <span class="fu">apply</span>(XX[W <span class="sc">==</span> <span class="dv">1</span>,], <span class="dv">2</span>, mean)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>means.ctrl <span class="ot">&lt;-</span> <span class="fu">apply</span>(XX[W <span class="sc">==</span> <span class="dv">0</span>,], <span class="dv">2</span>, mean)</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>abs.mean.diff <span class="ot">&lt;-</span> <span class="fu">abs</span>(means.treat <span class="sc">-</span> means.ctrl)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>var.treat <span class="ot">&lt;-</span> <span class="fu">apply</span>(XX[W <span class="sc">==</span> <span class="dv">1</span>,], <span class="dv">2</span>, var)</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>var.ctrl <span class="ot">&lt;-</span> <span class="fu">apply</span>(XX[W <span class="sc">==</span> <span class="dv">0</span>,], <span class="dv">2</span>, var)</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>std <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(var.treat <span class="sc">+</span> var.ctrl)</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjusted covariate means, variances and standardized abs mean differences</span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>means.treat.adj <span class="ot">&lt;-</span> <span class="fu">apply</span>(XX<span class="sc">*</span>W<span class="sc">/</span>e.hat, <span class="dv">2</span>, mean)</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>means.ctrl.adj <span class="ot">&lt;-</span> <span class="fu">apply</span>(XX<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>W)<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>e.hat), <span class="dv">2</span>, mean)</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>abs.mean.diff.adj <span class="ot">&lt;-</span> <span class="fu">abs</span>(means.treat.adj <span class="sc">-</span> means.ctrl.adj)</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>var.treat.adj <span class="ot">&lt;-</span> <span class="fu">apply</span>(XX<span class="sc">*</span>W<span class="sc">/</span>e.hat, <span class="dv">2</span>, var)</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>var.ctrl.adj <span class="ot">&lt;-</span> <span class="fu">apply</span>(XX<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>W)<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>e.hat), <span class="dv">2</span>, var)</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>std.adj <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(var.treat.adj <span class="sc">+</span> var.ctrl.adj)</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame with the necessary information</span></span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">Covariate =</span> <span class="fu">colnames</span>(XX),</span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">Unadjusted_SMD =</span> abs.mean.diff <span class="sc">/</span> std,</span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">Adjusted_SMD =</span> abs.mean.diff.adj <span class="sc">/</span> std.adj</span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Gather the data into a long format</span></span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(Unadjusted_SMD, Adjusted_SMD), <span class="at">names_to =</span> <span class="st">"Adjustment"</span>, <span class="at">values_to =</span> <span class="st">"SMD"</span>)</span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the faceted plot</span></span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_long, <span class="fu">aes</span>(<span class="at">x =</span> SMD, <span class="at">y =</span> <span class="fu">factor</span>(Covariate))) <span class="sc">+</span></span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>,<span class="at">color=</span><span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Adjustment, <span class="at">ncol =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.25</span>), <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"grey50"</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(df)), <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"grey50"</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span>.<span class="dv">01</span>, <span class="fl">1.01</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_discrete</span>() <span class="sc">+</span></span>
+<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Standardized Mean Difference"</span>, <span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">title =</span> <span class="st">"Covariate Balance"</span>) <span class="sc">+</span></span>
+<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set black background</span></span>
+<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#242728"</span>),</span>
+<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#242728"</span>),</span>
+<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set white text for all elements</span></span>
+<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"#eaeaea"</span>),</span>
+<span id="cb15-61"><a href="#cb15-61" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"#eaeaea"</span>),</span>
+<span id="cb15-62"><a href="#cb15-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"#eaeaea"</span>),</span>
+<span id="cb15-63"><a href="#cb15-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">'italic'</span>,<span class="at">size=</span><span class="dv">13</span>),</span>
+<span id="cb15-64"><a href="#cb15-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-65"><a href="#cb15-65" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set green facet wrap labels</span></span>
+<span id="cb15-66"><a href="#cb15-66" aria-hidden="true" tabindex="-1"></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#0085A1"</span>),</span>
+<span id="cb15-67"><a href="#cb15-67" aria-hidden="true" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"#eaeaea"</span>, <span class="at">face =</span> <span class="st">"bold"</span>,<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb15-68"><a href="#cb15-68" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-69"><a href="#cb15-69" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Optional: adjust grid lines for better visibility</span></span>
+<span id="cb15-70"><a href="#cb15-70" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"#242728"</span>),</span>
+<span id="cb15-71"><a href="#cb15-71" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"#242728"</span>),</span>
+<span id="cb15-72"><a href="#cb15-72" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-73"><a href="#cb15-73" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Optional: set legend theme to match</span></span>
+<span id="cb15-74"><a href="#cb15-74" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"#242728"</span>),</span>
+<span id="cb15-75"><a href="#cb15-75" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"#eaeaea"</span>),</span>
+<span id="cb15-76"><a href="#cb15-76" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"#eaeaea"</span>),</span>
+<span id="cb15-77"><a href="#cb15-77" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb15-78"><a href="#cb15-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-79"><a href="#cb15-79" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-80"><a href="#cb15-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-81"><a href="#cb15-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-82"><a href="#cb15-82" aria-hidden="true" tabindex="-1"></a><span class="fu">balancer</span>(<span class="at">propensity_scores =</span> forest<span class="sc">$</span>W.hat,</span>
+<span id="cb15-83"><a href="#cb15-83" aria-hidden="true" tabindex="-1"></a>         <span class="at">treatment =</span> treatment,</span>
+<span id="cb15-84"><a href="#cb15-84" aria-hidden="true" tabindex="-1"></a>         <span class="at">covariates =</span> covariates,</span>
+<span id="cb15-85"><a href="#cb15-85" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> data_real)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 
