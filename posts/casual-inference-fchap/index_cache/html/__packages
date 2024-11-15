@@ -1,6 +1,5 @@
 ggplot2
 latex2exp
-rstudioapi
 zoo
 lmtest
 sandwich
@@ -15,3 +14,5 @@ survey
 samplingbook
 dplyr
 tidyr
+cowplot
+sensitivitymv

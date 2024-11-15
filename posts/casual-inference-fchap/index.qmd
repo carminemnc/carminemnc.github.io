@@ -5,29 +5,21 @@ description: "Il dilemma dell'uovo e della gallina"
 date: "2024-10-28"
 categories: [casual inference, R]
 image: loop.gif
+code-fold: true
+knitr:
+  opts_knit:
+    root.dir: '../causalwiz'
 ---
 
 ```{r, include = FALSE}
-library(ggplot2)
-library(latex2exp)
-library(lmtest)
-library(sandwich)
-library(grf)
-library(glmnet)
-library(splines)
-library(reshape2)
-library(samplingbook)
-library(dplyr)
-library(tidyr)
-
-options(warn=-1)
+source("main.R")
 ```
 
-## [Perchè]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);"} l'inferenza causale?
+## [Perchè]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"} l'inferenza causale?
 
 ![](https://www.vanderschaar-lab.com/wp-content/uploads/2020/12/CausInf.jpg){width="1024"}
 
-**L'inferenza causale** è fondamentale perché ci permette di comprendere le relazioni tra cause ed effetti nei fenomeni che osserviamo. A differenza dell'analisi della semplice associazione tra variabili, *l'inferenza causale* mira a stabilire relazioni causali, ovvero a identificare l'effetto di una variabile (il [trattamento]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);"}) sulla variabile di interesse ([l'outcome]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);"}), tenendo conto di tutte le possibili *covariate*.
+**L'inferenza causale** è fondamentale perché ci permette di comprendere le relazioni tra cause ed effetti nei fenomeni che osserviamo. A differenza dell'analisi della semplice associazione tra variabili, *l'inferenza causale* mira a stabilire relazioni causali, ovvero a identificare l'effetto di una variabile (il [trattamento]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"}) sulla variabile di interesse ([l'outcome]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"}), tenendo conto di tutte le possibili *covariate*.
 
 Esempi concreti di applicazione dell'inferenza causale possiamo trovarli in:
 
@@ -87,7 +79,7 @@ $$ Y_i \equiv Y_i(W_i) = \begin{cases} Y_i(1) & \text{se } W_i = 1 \\ Y_i(0) & \
 
 ### Il nostro obiettivo
 
-L'obiettivo è stimare l'effetto medio del trattamento (in inglese ATE, [Average treatment effect]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);"} ):
+L'obiettivo è stimare l'effetto medio del trattamento (in inglese ATE, [Average treatment effect]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"} ):
 
 $$ \tau = \mathbb{E}[Y_i(1) - Y_i(0)]$$ {#eq-ate}
 
@@ -108,39 +100,16 @@ In altre parole, non ci sono **covariate** che influenzano sia l'assegnazione al
 Ciò che ci aspetteremmo in un contesto sperimentale ad esempio è che la distribuzione delle covariate per i due outcomes, $Y_i(0)$ e $Y_i(1)$ siamo simili, come nel seguente esempio:
 
 ```{r}
-ggplot(data,
-       aes(x= age +rnorm(n=sum(W=w),sd=.1),
-           y=polviews+rnorm(n=sum(W=w),sd=.1))) + 
-  geom_point(size=2,color='#0085A1',alpha=0.3) + 
+ggplot(data,aes(x = age + rnorm(n=sum(W=w),sd =.1),
+                y = polviews + rnorm(n=sum(W=w),sd = .1))) +
+  geom_point(size=2,alpha=0.3) +
   facet_wrap(
-    vars(ifelse(w,'Controllo','Trattamento'))
+    vars(ifelse(w,'Control','Treatment'))
   ) +
-  labs(title="Distribuzione dell'outcome in un contesto sperimentale",
-       x="Età",
-       y="Orientamento politico") +
-  theme(
-    # Set black background
-    plot.background = element_rect(fill = "#242728"),
-    panel.background = element_rect(fill = "#242728"),
-    
-    # Set white text for all elements
-    text = element_text(color = "#eaeaea"),
-    axis.text = element_text(color = "#eaeaea"),
-    axis.title = element_text(color = "#eaeaea"),
-    title = element_text(face='italic',size=13),
-    
-    # Set green facet wrap labels
-    strip.background = element_rect(fill = "#0085A1"),
-    strip.text = element_text(color = "#eaeaea", face = "bold",size = 12),
-    
-    # Optional: adjust grid lines for better visibility
-    panel.grid.major = element_line(color = "grey30"),
-    panel.grid.minor = element_line(color = "grey20"),
-    
-    # Optional: set legend theme to match
-    legend.background = element_rect(fill = "#242728"),
-    legend.text = element_text(color = "#eaeaea"),
-    legend.title = element_text(color = "#eaeaea"),
+  labs(
+    x = 'Age',
+    y = 'Political view',
+    title = 'Outcome distribution in randomized controlling trial'
   )
 ```
 
@@ -150,9 +119,9 @@ In un contesto reale (o osservazionale) però molto spesso l'esposizione al trat
 
 Nell'esempio presentato qui è chiaramente visibile che:
 
--   La popolazione trattata(o di trattamento) ,$Y_i(1)$ , risulta avere un età più alta e una visione politica più di [*destra/conservatrice*]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);"}
+-   La popolazione trattata(o di trattamento) ,$Y_i(1)$ , risulta avere un età più alta e una visione politica più di [*destra/conservatrice*]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"}
 
--   Mentre la popolazione non trattata (o di controllo), $Y_i(1)$ , risulta essere più giovane e con una visione politica più di [*sinistra/liberale*]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);"}
+-   Mentre la popolazione non trattata (o di controllo), $Y_i(1)$ , risulta essere più giovane e con una visione politica più di [*sinistra/liberale*]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"}
 
 ```{r}
 # in un contesto reale...
@@ -176,7 +145,9 @@ keep.idx <- as.logical(rbinom(n=nrow(data_real), prob=prob.keep, size = 1))
 
 # Dropping
 data_real <- data_real[keep.idx,]
+```
 
+```{r}
 ggplot(data_real,
        aes(x= age +rnorm(n=sum(W=w),sd=.1),
            y=polviews+rnorm(n=sum(W=w),sd=.1))) + 
@@ -186,31 +157,7 @@ ggplot(data_real,
   ) +
   labs(title="Distribuzione dell'outcome in un contesto reale",
        x="Età",
-       y="Orientamento politico") +
-  theme(
-    # Set black background
-    plot.background = element_rect(fill = "#242728"),
-    panel.background = element_rect(fill = "#242728"),
-    
-    # Set white text for all elements
-    text = element_text(color = "#eaeaea"),
-    axis.text = element_text(color = "#eaeaea"),
-    axis.title = element_text(color = "#eaeaea"),
-    title = element_text(face='italic',size=13),
-    
-    # Set green facet wrap labels
-    strip.background = element_rect(fill = "#0085A1"),
-    strip.text = element_text(color = "#eaeaea", face = "bold",size = 12),
-    
-    # Optional: adjust grid lines for better visibility
-    panel.grid.major = element_line(color = "grey30"),
-    panel.grid.minor = element_line(color = "grey20"),
-    
-    # Optional: set legend theme to match
-    legend.background = element_rect(fill = "#242728"),
-    legend.text = element_text(color = "#eaeaea"),
-    legend.title = element_text(color = "#eaeaea")
-  )
+       y="Orientamento politico")
 ```
 
 Questo ci permette di introdurre quelle che sono le ipotesi fondamentali da adottare nel momento in cui non siamo in un contesto sperimentale ma piuttosto in un contesto osservazionale, in cui per poter identificare l'effetto causale del trattamento abbiamo bisogno che le seguenti ipotesi siano valide:
@@ -257,11 +204,11 @@ In questo caso, l'ipotesi di indipendenza tra assegnazione al trattamento e pote
 
 Ciò significa che non ci sono fattori confondenti che influenzano sia l'assegnazione al trattamento che l'outcome.
 
-Sotto questa ipotesi, la differenza tra la media degli outcomes nel gruppo di trattamento e la media degli outcomes nel gruppo di controllo fornisce una stima [non distorta]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);"} dell'effetto medio del trattamento (ATE).
+Sotto questa ipotesi, la differenza tra la media degli outcomes nel gruppo di trattamento e la media degli outcomes nel gruppo di controllo fornisce una stima [non distorta]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"} dell'effetto medio del trattamento (ATE).
 
 In contesti osservazionali, invece, sono necessari metodi più avanzati come l'IPW e l'AIPW.
 
-### Stima di $\tau$ in un contesto [sperimentale]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);"}
+### Stima di $\tau$ in un contesto [sperimentale]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"}
 
 La media nel gruppo di trattamento:\
 $$
@@ -274,7 +221,7 @@ W <- data[,treatment]
 print(mean(Y[W==1]))
 ```
 
-e calcolando la media nel gruppo di [controllo]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);"}
+e calcolando la media nel gruppo di [controllo]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"}
 
 $$
 \frac{1}{n_0} \sum_{i: W_i = 0} Y_i
@@ -304,7 +251,7 @@ Questo significa che, in media, le persone nel gruppo di trattamento hanno rispo
     Y_i = Y_i(0) + W_i(Y_i(1) - Y_i(0))
     $$
 
-## 3. [Direct]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);"} estimator
+## 3. [Direct]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"} estimator
 
 Lo stimatore diretto (direct estimation) è un metodo per stimare l'effetto medio del trattamento (ATE) che può essere utilizzato in contesti osservazionali, ovvero quando l'assegnazione al trattamento non è casuale ma dipende dalle covariate osservate $X_i$.
 
@@ -327,14 +274,11 @@ Questo stimatore sfrutta la regressione per ottenere stime più accurate dell'AT
 **Quando non usarlo**: Lo stimatore diretto ha alcuni svantaggi:
 
 -   Dipende fortemente dalla corretta specificazione del modello per $\mu(x, w)$. Se il modello è mal specificato, le stime saranno distorte.
-
-<!-- -->
-
 -   Non gode delle stesse proprietà asintotiche (come l'efficienza) degli stimatori più avanzati come l'AIPW.
 
 Pertanto, quando possibile, è preferibile utilizzare metodi come l'AIPW, che sono più robusti alle ipotesi di modellazione.
 
-## 4. [IPW]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);"} (Inverse propensity-weighted estimator)
+## 4. [IPW]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"} (Inverse propensity-weighted estimator)
 
 #### Supponiamo..
 
@@ -388,38 +332,7 @@ La procedura per applicare l'IPW è la seguente:
 
 Per superare questi svantaggi, nella prossima sezione verrà introdotto un metodo più sofisticato, l'AIPW, che combina i vantaggi dell'IPW e della regressione diretta.
 
-```{r}
-ipw_estimator <- function (data,
-                           outcome_variable,
-                           treatment_variable,
-                           covariates) {
-  
-  y <- data[,outcome_variable]
-  w <- data[,treatment_variable]
-  fmla <- as.formula(
-    paste0("~", paste0(covariates, collapse="+"))
-  )
-  XX <- model.matrix(fmla,data)
-  logit <- cv.glmnet(x=XX, y=w, family="binomial") # fitting a logistic model on treatment variable
-  e.hat <- predict(logit, XX, s = "lambda.min", type="response")
-  
-    # Using the fact that
-  z <- y * (w/e.hat - (1-w)/(1-e.hat))
-  ate.est <- mean(z)
-  ate.se <- sd(z) / sqrt(length(z))
-  ate.tstat <- ate.est / ate.se
-  ate.pvalue <- 2*(pnorm(1 - abs(ate.est/ate.se)))
-  ate.results <- c(estimate=ate.est, std.error=ate.se, t.stat=ate.tstat, pvalue=ate.pvalue)
-  print(ate.results)
-  
-}
-```
-
-```{r}
-ipw_estimator(data_real,outcome,treatment,covariates)
-```
-
-## 5. [AIPW]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);"} (Augmented inverse propensity-weighted estimator)
+## 5. [AIPW]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"} (Augmented inverse propensity-weighted estimator)
 
 L'estimatore AIPW è disponibile in contesti con ipotesi di non confondimento e overlapping. La sua formula è la seguente:
 
@@ -446,25 +359,17 @@ Svantaggi:
 In sintesi, l'AIPW è uno stimatore raccomandato in contesti osservazionali con ipotesi di non confondimento e overlapping, grazie alla sua doppia robustezza e efficienza asintotica. La sua implementazione può però risultare più complessa rispetto ad altri stimatori.
 
 ```{r}
-# Available in randomized settings and observational settings with unconfoundedness+overlap
-
-# Input covariates need to be numeric. 
-XX <- model.matrix(formula(paste0("~", paste0(covariates, collapse="+"))), data=data_real)
-
-# Estimate a causal forest.
-forest <- causal_forest(
-              X=XX,  
-              W=data_real[,treatment],
-              Y=data_real[,outcome],
-              #W.hat=...,  # In randomized settings, set W.hat to the (known) probability of assignment
-              num.trees = 100)
-forest.ate <- average_treatment_effect(forest,
-                                       target.sample="overlap",
-                                       method="TMLE")
-print(forest.ate)
+results <- ipw_estimators(
+  data = data_real,
+  estimation_method = 'AIPW',
+  outcome = outcome,
+  treatment = treatment,
+  covariates = covariates,
+  model_specification = 'linear'
+)
 ```
 
-## 6. Elementi di [diagnostica]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #0184a0 50%);"}
+## 6. Elementi di [diagnostica]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"}
 
 Come abbiamo visto, in contesti osservazionali le distribuzioni delle covariate possono essere molto diverse tra individui trattati e non trattati. Tali discrepanze possono portare a stime distorte dell'ATE. Ci si aspetterebbe che ponderando verso l'alto o verso il basso le osservazioni in base ai pesi di propensione inversi, le loro medie siano simili.
 
@@ -477,92 +382,3 @@ $$\frac{|\bar{Z}_1 - \bar{Z}_0|}{\sqrt{s_1^2 + s_0^2}}$$ {#eq-asmd}
 dove $\bar{Z}_1$ e $\bar{Z}_0$ sono le medie campionarie di $Z_i$, e $s_1$ e $s_0$ sono le deviazioni standard di $Z_i$ per i due campioni di individui trattati e non trattati. Successivamente, possiamo verificare la stessa quantità per le loro controparti ponderate $Z_i W_i/\hat{e}(X_i)$ e $Z_i (1-W_i)/(1-\hat{e}(X_i))$.
 
 Se le nostre propensioni sono ben calibrate, l'ASMD per la versione ponderata dovrebbe essere vicina allo zero.
-
-```{r}
-
-balancer <- function (propensity_scores,
-                      treatment,
-                      covariates,
-                      data) {
-# Here, adding covariates and their interactions, though there are many other possibilities.
-fmla <- formula(paste("~ 0 +", paste(apply(expand.grid(covariates, covariates), 1, function(x) paste0(x, collapse="*")), collapse="+")))
-
-# Using the propensity score
-e.hat <- propensity_scores
-
-XX <- model.matrix(fmla, data)
-W <- data[,treatment]
-pp <- ncol(XX)
-
-# Unadjusted covariate means, variances and standardized abs mean differences
-means.treat <- apply(XX[W == 1,], 2, mean)
-means.ctrl <- apply(XX[W == 0,], 2, mean)
-abs.mean.diff <- abs(means.treat - means.ctrl)
-
-var.treat <- apply(XX[W == 1,], 2, var)
-var.ctrl <- apply(XX[W == 0,], 2, var)
-std <- sqrt(var.treat + var.ctrl)
-
-# Adjusted covariate means, variances and standardized abs mean differences
-means.treat.adj <- apply(XX*W/e.hat, 2, mean)
-means.ctrl.adj <- apply(XX*(1-W)/(1-e.hat), 2, mean)
-abs.mean.diff.adj <- abs(means.treat.adj - means.ctrl.adj)
-
-var.treat.adj <- apply(XX*W/e.hat, 2, var)
-var.ctrl.adj <- apply(XX*(1-W)/(1-e.hat), 2, var)
-std.adj <- sqrt(var.treat.adj + var.ctrl.adj)
-
-
-# Create a data frame with the necessary information
-df <- data.frame(
-  Covariate = colnames(XX),
-  Unadjusted_SMD = abs.mean.diff / std,
-  Adjusted_SMD = abs.mean.diff.adj / std.adj
-)
-
-# Gather the data into a long format
-df_long <- df %>%
-  pivot_longer(cols = c(Unadjusted_SMD, Adjusted_SMD), names_to = "Adjustment", values_to = "SMD")
-
-# Create the faceted plot
-ggplot(df_long, aes(x = SMD, y = factor(Covariate))) +
-  geom_point(size = 3,color="white") +
-  facet_wrap(~ Adjustment, ncol = 2) +
-  geom_vline(xintercept = seq(0, 1, by = 0.25), linetype = "dashed", color = "grey50", linewidth = 0.5) +
-  geom_hline(yintercept = seq_len(nrow(df)), linetype = "dashed", color = "grey50", linewidth = 0.5) +
-  scale_x_continuous(limits = c(-.01, 1.01), expand = c(0, 0)) +
-  scale_y_discrete() +
-  labs(x = "Standardized Mean Difference", y = NULL, title = "Covariate Balance") +
-  theme(
-    # Set black background
-    plot.background = element_rect(fill = "#242728"),
-    panel.background = element_rect(fill = "#242728"),
-    
-    # Set white text for all elements
-    text = element_text(color = "#eaeaea"),
-    axis.text = element_text(color = "#eaeaea"),
-    axis.title = element_text(color = "#eaeaea"),
-    title = element_text(face='italic',size=13),
-
-    # Set green facet wrap labels
-    strip.background = element_rect(fill = "#0085A1"),
-    strip.text = element_text(color = "#eaeaea", face = "bold",size = 12),
-  
-    # Optional: adjust grid lines for better visibility
-    panel.grid.major = element_line(color = "#242728"),
-    panel.grid.minor = element_line(color = "#242728"),
-    
-    # Optional: set legend theme to match
-    legend.background = element_rect(fill = "#242728"),
-    legend.text = element_text(color = "#eaeaea"),
-    legend.title = element_text(color = "#eaeaea"),
-  )
-
-}
-
-
-balancer(propensity_scores = forest$W.hat,
-         treatment = treatment,
-         covariates = covariates,
-         data = data_real)
-```
