@@ -40,7 +40,7 @@ numeric_cols = df.select_dtypes(include=['int64', 'float64']).columns
 preprocessor = ColumnTransformer(
     transformers=[
         ('num', StandardScaler(), numeric_cols),
-        ('cat', OneHotEncoder(sparse=False, 
+        ('cat', OneHotEncoder(sparse_output=False, 
                               handle_unknown='ignore', 
                               drop=None,
                               dtype=float), categorical_cols)
@@ -79,21 +79,21 @@ fig.set_facecolor(bg)
 km = KMeans(init='k-means++', n_init=12, max_iter=100)
 
 # Distortion: mean sum of squared distances to centers
-elb = KElbowVisualizer(km, k=clusters_range, ax=ax[0], locate_elbow=True)
+elb = KElbowVisualizer(km, k=clusters_range, ax=ax[0], locate_elbow=True,n_jobs=1)
 elb.fit(data_processed)
-ax[0].legend(loc='upper left')
+# ax[0].legend(loc='upper left')
 ax[0].set_title('Distortion score Elbow for KMeans Clustering')
 
 # Silhouette: mean ratio of intra-cluster and nearest-cluster distance
-sil = KElbowVisualizer(km, k=clusters_range, metric='silhouette', locate_elbow=True, ax=ax[1])
+sil = KElbowVisualizer(km, k=clusters_range, metric='silhouette', locate_elbow=True, ax=ax[1],n_jobs=1)
 sil.fit(data_processed)
-ax[1].legend(loc='upper left')
+# ax[1].legend(loc='upper left')
 ax[1].set_title('Silhouette score Elbow for KMeans Clustering')
 
 # Calinski Harabasz: ratio of within to between cluster dispersion
-cal = KElbowVisualizer(km, k=clusters_range, metric='calinski_harabasz', locate_elbow=True, ax=ax[2])
+cal = KElbowVisualizer(km, k=clusters_range, metric='calinski_harabasz', locate_elbow=True, ax=ax[2],n_jobs=1)
 cal.fit(data_processed)
-ax[2].legend(loc='upper left')
+# ax[2].legend(loc='upper left')
 ax[2].set_title('Calinski Harabasz score Elbow for KMeans Clustering')
 
 plt.show()

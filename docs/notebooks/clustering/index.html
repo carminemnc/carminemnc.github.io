@@ -226,7 +226,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <blockquote class="blockquote">
 <p>Cluster analysis or clustering is the task of grouping a set of objects in such a way that objects in the same group (called a cluster) are more similar (in some specific sense defined by the analyst) to each other than to those in other groups (clusters). It is a main task of exploratory data analysis, and a common technique for statistical data analysis, used in many fields, including pattern recognition, image analysis, information retrieval, bioinformatics, data compression, computer graphics and machine learning.</p>
 </blockquote>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="1">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -253,7 +253,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>preprocessor <span class="op">=</span> ColumnTransformer(</span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    transformers<span class="op">=</span>[</span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        (<span class="st">'num'</span>, StandardScaler(), numeric_cols),</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        (<span class="st">'cat'</span>, OneHotEncoder(sparse<span class="op">=</span><span class="va">False</span>, </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        (<span class="st">'cat'</span>, OneHotEncoder(sparse_output<span class="op">=</span><span class="va">False</span>, </span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                              handle_unknown<span class="op">=</span><span class="st">'ignore'</span>, </span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>                              drop<span class="op">=</span><span class="va">None</span>,</span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>                              dtype<span class="op">=</span><span class="bu">float</span>), categorical_cols)</span>
@@ -272,7 +272,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <p>In practice, since we are working with discrete values of <span class="math inline">\(k\)</span>, we can approximate the curvature using finite differences:</p>
 <p><span class="math display">\[\text{Curvature} \approx \frac{D(k+1) - 2D(k) + D(k-1)}{1^2}\]</span></p>
 <p>The value of <span class="math inline">\(k\)</span> that maximizes this expression is considered the elbow point.</p>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="2">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>clusters_range <span class="op">=</span> <span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">10</span>)</span>
@@ -285,32 +285,27 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>km <span class="op">=</span> KMeans(init<span class="op">=</span><span class="st">'k-means++'</span>, n_init<span class="op">=</span><span class="dv">12</span>, max_iter<span class="op">=</span><span class="dv">100</span>)</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Distortion: mean sum of squared distances to centers</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>elb <span class="op">=</span> KElbowVisualizer(km, k<span class="op">=</span>clusters_range, ax<span class="op">=</span>ax[<span class="dv">0</span>], locate_elbow<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>elb <span class="op">=</span> KElbowVisualizer(km, k<span class="op">=</span>clusters_range, ax<span class="op">=</span>ax[<span class="dv">0</span>], locate_elbow<span class="op">=</span><span class="va">True</span>,n_jobs<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>elb.fit(data_processed)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].legend(loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># ax[0].legend(loc='upper left')</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_title(<span class="st">'Distortion score Elbow for KMeans Clustering'</span>)</span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Silhouette: mean ratio of intra-cluster and nearest-cluster distance</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>sil <span class="op">=</span> KElbowVisualizer(km, k<span class="op">=</span>clusters_range, metric<span class="op">=</span><span class="st">'silhouette'</span>, locate_elbow<span class="op">=</span><span class="va">True</span>, ax<span class="op">=</span>ax[<span class="dv">1</span>])</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>sil <span class="op">=</span> KElbowVisualizer(km, k<span class="op">=</span>clusters_range, metric<span class="op">=</span><span class="st">'silhouette'</span>, locate_elbow<span class="op">=</span><span class="va">True</span>, ax<span class="op">=</span>ax[<span class="dv">1</span>],n_jobs<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>sil.fit(data_processed)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].legend(loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># ax[1].legend(loc='upper left')</span></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_title(<span class="st">'Silhouette score Elbow for KMeans Clustering'</span>)</span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Calinski Harabasz: ratio of within to between cluster dispersion</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>cal <span class="op">=</span> KElbowVisualizer(km, k<span class="op">=</span>clusters_range, metric<span class="op">=</span><span class="st">'calinski_harabasz'</span>, locate_elbow<span class="op">=</span><span class="va">True</span>, ax<span class="op">=</span>ax[<span class="dv">2</span>])</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>cal <span class="op">=</span> KElbowVisualizer(km, k<span class="op">=</span>clusters_range, metric<span class="op">=</span><span class="st">'calinski_harabasz'</span>, locate_elbow<span class="op">=</span><span class="va">True</span>, ax<span class="op">=</span>ax[<span class="dv">2</span>],n_jobs<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>cal.fit(data_processed)</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].legend(loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co"># ax[2].legend(loc='upper left')</span></span>
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].set_title(<span class="st">'Calinski Harabasz score Elbow for KMeans Clustering'</span>)</span>
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stderr">
-<pre><code>  File "C:\Users\vcaminic\AppData\Roaming\Python\Python312\site-packages\joblib\externals\loky\backend\context.py", line 282, in _count_physical_cores
-    raise ValueError(f"found {cpu_count_physical} physical cores &lt; 1")
-No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.</code></pre>
-</div>
 <div class="cell-output cell-output-display">
-<p><img src="index_files/figure-html/cell-3-output-2.png" width="544" height="898"></p>
+<p><img src="index_files/figure-html/cell-3-output-1.png" width="536" height="898"></p>
 </div>
 </div>
 </section>
@@ -340,23 +335,23 @@ No artists with labels found to put in legend.  Note that artists whose label st
 <li><span class="math inline">\(b(i)\)</span> is the mean distance between the <span class="math inline">\(i\)</span>-th sample and all other samples in the next nearest cluster.</li>
 </ul>
 <p>The Silhouette Coefficient ranges from -1 to 1, where a high value indicates that the sample is well-matched to its own cluster and poorly-matched to neighboring clusters. A value of 0 generally indicates overlapping clusters, while a negative value indicates that the sample may have been assigned to the wrong cluster.</p>
-<div class="cell" data-execution_count="4">
+<div class="cell" data-execution_count="3">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fitting kmeans</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>km <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, init<span class="op">=</span><span class="st">'k-means++'</span>, n_init<span class="op">=</span><span class="dv">12</span>, max_iter<span class="op">=</span><span class="dv">2000</span>,algorithm<span class="op">=</span><span class="st">"elkan"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate silhouette score</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>silhouette_avg <span class="op">=</span> <span class="bu">round</span>(silhouette_score(data_processed, km.fit_predict(data_processed)), <span class="dv">4</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># silhouette coefficient plot</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>silhouette <span class="op">=</span> SilhouetteVisualizer(km, colors<span class="op">=</span><span class="st">'yellowbrick'</span>)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>silhouette.fit(data_processed)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fitting kmeans</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>km <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, init<span class="op">=</span><span class="st">'k-means++'</span>, n_init<span class="op">=</span><span class="dv">12</span>, max_iter<span class="op">=</span><span class="dv">2000</span>,algorithm<span class="op">=</span><span class="st">"elkan"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate silhouette score</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>silhouette_avg <span class="op">=</span> <span class="bu">round</span>(silhouette_score(data_processed, km.fit_predict(data_processed)), <span class="dv">4</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># silhouette coefficient plot</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>silhouette <span class="op">=</span> SilhouetteVisualizer(km, colors<span class="op">=</span><span class="st">'yellowbrick'</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>silhouette.fit(data_processed)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="index_files/figure-html/cell-4-output-1.png" width="653" height="447"></p>
+<p><img src="index_files/figure-html/cell-4-output-1.png" width="579" height="410"></p>
 </div>
 </div>
 <section id="interpreting-it" class="level3">
@@ -364,19 +359,19 @@ No artists with labels found to put in legend.  Note that artists whose label st
 <p>When the Silhouette Coefficient <span class="math inline">\(s(i)\)</span> is negative, it means that the average distance <span class="math inline">\(a(i)\)</span> of the <span class="math inline">\(i\)</span>-th sample to other samples in its own cluster is greater than the average distance <span class="math inline">\(b(i)\)</span> to the nearest neighboring cluster. This suggests that the <span class="math inline">\(i\)</span>-th sample would be better assigned to the nearest neighboring cluster rather than its current cluster.</p>
 <p>In the Silhouette Plot, clusters with bars that extend into the negative range indicate that some samples within those clusters have been poorly assigned. The wider the negative portion of the bar, the more samples in that cluster have been misclassified.</p>
 <p>The presence of negative Silhouette Coefficient values is a sign that the clustering algorithm has not been able to find well-separated, dense clusters. It suggests that the number of clusters <span class="math inline">\(K\)</span> may not be appropriate for the data, or that the clustering algorithm is not a good fit for the dataset. In such cases, the Silhouette Plot can be used to guide the selection of a more appropriate value of <span class="math inline">\(K\)</span> or the choice of a different clustering algorithm.</p>
-<div class="cell" data-execution_count="5">
+<div class="cell" data-execution_count="4">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># intercluster distance plot</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>icd <span class="op">=</span> InterclusterDistance(km, legend_loc<span class="op">=</span><span class="st">'lower left'</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>icd.fit(data_processed)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>icd.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># intercluster distance plot</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>icd <span class="op">=</span> InterclusterDistance(km, legend_loc<span class="op">=</span><span class="st">'lower left'</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>icd.fit(data_processed)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>icd.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="index_files/figure-html/cell-5-output-1.png" width="643" height="474"></p>
+<p><img src="index_files/figure-html/cell-5-output-1.png" width="569" height="437"></p>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>&lt;Axes: title={'center': 'KMeans Intercluster Distance Map (via MDS)'}, xlabel='PC2', ylabel='PC1'&gt;</code></pre>
 </div>
 </div>

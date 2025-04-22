@@ -194,4 +194,4 @@ We can draw the following conclusions:
 
 1.  **Strong association**: A confidence value of 0.75 indicates a relatively strong association between the two variables. This means that when $D_{18}$ error occurs, there is a 75% probability that the $D_7$ will follow as error.
 
-2.  **Process improvement opportunity**: The strong association between X and Y could indicate potential issues or inefficiencies in the stakeholder notification process. It may be beneficial to review and improve the process to prevent errors.
+2.  **Process improvement opportunity**: The strong association between X and Y could indicate potential issues or inefficiencies in the process. It may be beneficial to review and improve the process to prevent errors.
