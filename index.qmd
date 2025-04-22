@@ -18,7 +18,7 @@ Welcome here,
 
 I'm a Statistician with a spec degree in actuarial science.
 
-Some of my various <a href="projects.qmd" class="cool-link">projects</a> are here, while sometimes I write some <a href="notebooks.qmd" class="cool-link">sketchy notes</a> for personal reference. More interesting <a href="posts.qmd" class="cool-link">fields</a> are treated here, trying to be as much rigorous as possible.
+Some of my various projects are <a href="projects.qmd" class="cool-link">here</a>, while sometimes I write some <a href="notebooks.qmd" class="cool-link">sketchy notes</a> for personal reference. More interesting <a href="posts.qmd" class="cool-link">fields</a>, trying to be as much rigorous as possible.
 
 <div class="social-container">
   <ul class="social-icons">
