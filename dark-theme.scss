@@ -5,7 +5,6 @@
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css);
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
 
-
 // personal palette
 $blue-munsell: #0085a1;
 $cerulean: #006b86;
@@ -30,13 +29,25 @@ $code-block-border-left:$dark-cyan;
 $mermaid-edge-color: $blue-munsell;
 $mermaid-font-family: 'Montserrat';
 $mermaid-node-bg-color: $davys-gray;
-// verbatim code
-$code-bg: $platinum;
-$code-color: $eerie-black;
 
 /*-- scss:rules --*/
 
+// Code output styling
+.cell-output,
+.cell-output pre,
+.cell-output-stdout,
+.cell-output-stderr {
+  background-color: $eerie-black;
+  padding: 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 16px;
+}
 
+.cell-output pre {
+  border-left: 4px solid red;
+  color: $platinum;
+}
 
 
 /* ID selectors */

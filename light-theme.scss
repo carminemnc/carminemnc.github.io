@@ -29,13 +29,24 @@ $mermaid-edge-color: $blue-munsell;
 $mermaid-font-family: 'Montserrat';
 $mermaid-node-bg-color: $battleship-gray;
 
-// verbatim code
-$code-bg: $eerie-black;
-$code-color: $platinum;
-
 /*-- scss:rules --*/
 
+// Code output styling
+.cell-output,
+.cell-output pre,
+.cell-output-stdout,
+.cell-output-stderr {
+  background-color: $platinum;
+  padding: 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 16px;
+}
 
+.cell-output pre {
+  border-left: 4px solid red;
+  color: $eerie-black;
+}
 
 /* ID selectors */
 
@@ -139,11 +150,6 @@ h5, h6 {
   border-top-left-radius: 15px;
   border-top-right-radius: 15px; 
 }
-
-// nav link pages
-// .nav-link {
-//   font-weight: bold;
-// }
 
 .blockquote {
   background-color: $eerie-black;
