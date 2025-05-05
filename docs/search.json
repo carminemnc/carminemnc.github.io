@@ -25,7 +25,7 @@
     "href": "index.html",
     "title": "",
     "section": "",
-    "text": "Welcome here,\nI’m a Statistician with a spec degree in actuarial science.\nSome of my various projects are here, while sometimes I write some sketchy notes for personal reference. More interesting fields are treated here, trying to be as much rigorous as possible."
+    "text": "Welcome here,\nI’m a Statistician with a spec degree in actuarial science.\nSome of my various projects are here, while sometimes I write some sketchy notes for personal reference. I explore more interesting fields with as much rigor as possible."
   },
   {
     "objectID": "posts.html",
@@ -95,7 +95,7 @@
     "href": "notebooks/apriori-defects/index.html#confidence-interpretation",
     "title": "Apriori analysis for quality assurance",
     "section": "Confidence: interpretation",
-    "text": "Confidence: interpretation\nBased on the confidence value of 0.75 for the association rule X → Y, where:\n\\(X\\) = \\(D_{18}\\)\n\\(Y\\) = \\(D_7\\)\nWe can draw the following conclusions:\n\nStrong association: A confidence value of 0.75 indicates a relatively strong association between the two variables. This means that when \\(D_{18}\\) error occurs, there is a 75% probability that the \\(D_7\\) will follow as error.\nProcess improvement opportunity: The strong association between X and Y could indicate potential issues or inefficiencies in the stakeholder notification process. It may be beneficial to review and improve the process to prevent errors."
+    "text": "Confidence: interpretation\nBased on the confidence value of 0.75 for the association rule X → Y, where:\n\\(X\\) = \\(D_{18}\\)\n\\(Y\\) = \\(D_7\\)\nWe can draw the following conclusions:\n\nStrong association: A confidence value of 0.75 indicates a relatively strong association between the two variables. This means that when \\(D_{18}\\) error occurs, there is a 75% probability that the \\(D_7\\) will follow as error.\nProcess improvement opportunity: The strong association between X and Y could indicate potential issues or inefficiencies in the process. It may be beneficial to review and improve the process to prevent errors."
   },
   {
     "objectID": "notebooks/apriori-defects/index.html#footnotes",
