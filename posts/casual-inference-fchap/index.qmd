@@ -6,18 +6,11 @@ date: "2024-10-28"
 categories: [casual inference, R]
 image: loop.gif
 code-fold: true
-knitr:
-  opts_knit:
-    root.dir: '../causalwiz'
 ---
-
-```{r, include = FALSE}
-source("main.R")
-```
 
 ## [Perchè]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"} l'inferenza causale?
 
-![](https://www.vanderschaar-lab.com/wp-content/uploads/2020/12/CausInf.jpg){width="1024"}
+![](https://timelinecovers.pro/facebook-cover/download/bright-galaxy-milky-way-stars-facebook-cover.jpg)
 
 **L'inferenza causale** è fondamentale perché ci permette di comprendere le relazioni tra cause ed effetti nei fenomeni che osserviamo. A differenza dell'analisi della semplice associazione tra variabili, *l'inferenza causale* mira a stabilire relazioni causali, ovvero a identificare l'effetto di una variabile (il [trattamento]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"}) sulla variabile di interesse ([l'outcome]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"}), tenendo conto di tutte le possibili *covariate*.
 
@@ -32,8 +25,21 @@ Esempi concreti di applicazione dell'inferenza causale possiamo trovarli in:
 ## I dati che utilizzeremo:
 
 ```{r}
-# dataset
-data <- read.csv("welfare-small.csv")
+#| code-fold: false
+#| message: false
+# causalwiz is a free package for causal inference
+# https://github.com/carminemnc/causalwiz
+library(causalwiz)
+library(ggplot2)
+library(lmtest)
+library(sandwich)
+theme_set(ctheme("dark"))
+```
+
+```{r}
+# Load data
+data(welfare_small)
+data <- welfare_small
 
 # Treatment: does the the gov't spend too much on "welfare" (1) or "assistance to the poor" (0)
 treatment <- "w"
@@ -100,11 +106,11 @@ In altre parole, non ci sono **covariate** che influenzano sia l'assegnazione al
 Ciò che ci aspetteremmo in un contesto sperimentale ad esempio è che la distribuzione delle covariate per i due outcomes, $Y_i(0)$ e $Y_i(1)$ siamo simili, come nel seguente esempio:
 
 ```{r}
-ggplot(data,aes(x = age + rnorm(n=sum(W=w),sd =.1),
-                y = polviews + rnorm(n=sum(W=w),sd = .1))) +
-  geom_point(size=2,alpha=0.3) +
+ggplot(data, aes(x = age + rnorm(nrow(data), sd = 0.1),
+                 y = polviews + rnorm(nrow(data), sd = 0.1))) +
+  geom_point(size = 2, alpha = 0.3) +
   facet_wrap(
-    vars(ifelse(w,'Control','Treatment'))
+    vars(ifelse(w, 'Control', 'Treatment'))
   ) +
   labs(
     x = 'Age',
@@ -149,20 +155,20 @@ data_real <- data_real[keep.idx,]
 
 ```{r}
 ggplot(data_real,
-       aes(x= age +rnorm(n=sum(W=w),sd=.1),
-           y=polviews+rnorm(n=sum(W=w),sd=.1))) + 
-  geom_point(size=2,color='#0085A1',alpha=0.3) + 
+       aes(x = age + rnorm(nrow(data_real), sd = 0.1),
+           y = polviews + rnorm(nrow(data_real), sd = 0.1))) + 
+  geom_point(size = 2, color = '#0085A1', alpha = 0.3) + 
   facet_wrap(
-    vars(ifelse(w,'Controllo','Trattamento'))
+    vars(ifelse(w, 'Control', 'Treatment'))
   ) +
-  labs(title="Distribuzione dell'outcome in un contesto reale",
-       x="Età",
-       y="Orientamento politico")
+  labs(title = "Outcome distribution in a real scenario",
+       x = "Age",
+       y = "Political view")
 ```
 
 Questo ci permette di introdurre quelle che sono le ipotesi fondamentali da adottare nel momento in cui non siamo in un contesto sperimentale ma piuttosto in un contesto osservazionale, in cui per poter identificare l'effetto causale del trattamento abbiamo bisogno che le seguenti ipotesi siano valide:
 
-::: grid
+::::: grid
 ::: g-col-6
 **Ipotesi di confondimento (unconfoundedness):**
 
@@ -182,7 +188,7 @@ Questo ci permette di introdurre quelle che sono le ipotesi fondamentali da adot
 
 \- Matematicamente: $\eta < e(x) < 1 - \eta$ per qualche $\eta > 0$ e per tutti i $x$, dove $e(x) = \mathbb{P}[W_i = 1 | X_i = x]$ è la propensione al trattamento. - Questa ipotesi garantisce che sia possibile confrontare unità trattate e di controllo con caratteristiche simili.
 :::
-:::
+:::::
 
 L'ipotesi di confondimento assicura che non ci siano variabili non osservate che influenzano sia l'assegnazione al trattamento che l'outcome. L'ipotesi di sovrapposizione garantisce che ci siano unità di confronto appropriate per ogni individuo trattato.
 
@@ -326,7 +332,17 @@ La procedura per applicare l'IPW è la seguente:
 
 -   Quando la propensione al trattamento è molto piccola, i pesi diventano molto grandi, rendendo lo stimatore instabile e con alta varianza.
 
-<!-- -->
+```{r}
+results <- ipw_estimators(
+  data = data_real,
+  estimation_method = 'IPW',
+  outcome = outcome,
+  treatment = treatment,
+  covariates = covariates,
+  model_specification = 'linear',
+  output = TRUE,
+)
+```
 
 -   L'IPW non sfrutta appieno l'informazione contenuta nelle covariate per migliorare l'efficienza della stima.
 
@@ -354,7 +370,7 @@ Rispetto agli altri stimatori visti precedentemente:
 Svantaggi:
 
 -   Richiede la stima di due modelli (outcome e propensity score), il che può essere impegnativo in pratica.
--   Quando i propensity score sono molto vicini a 0 o 1, l'AIPW può avere prestazioni instabili. In tal caso, altri stimatori come l'approximate residual balancing (ARB) possono essere preferibili.
+-   Quando i propensity score sono molto vicini a 0 o 1, l'AIPW può avere prestazioni instabili.
 
 In sintesi, l'AIPW è uno stimatore raccomandato in contesti osservazionali con ipotesi di non confondimento e overlapping, grazie alla sua doppia robustezza e efficienza asintotica. La sua implementazione può però risultare più complessa rispetto ad altri stimatori.
 
@@ -365,7 +381,9 @@ results <- ipw_estimators(
   outcome = outcome,
   treatment = treatment,
   covariates = covariates,
-  model_specification = 'linear'
+  model_specification = 'linear',
+  output = TRUE,
+  target.sample = "control"
 )
 ```
 
@@ -382,3 +400,26 @@ $$\frac{|\bar{Z}_1 - \bar{Z}_0|}{\sqrt{s_1^2 + s_0^2}}$$ {#eq-asmd}
 dove $\bar{Z}_1$ e $\bar{Z}_0$ sono le medie campionarie di $Z_i$, e $s_1$ e $s_0$ sono le deviazioni standard di $Z_i$ per i due campioni di individui trattati e non trattati. Successivamente, possiamo verificare la stessa quantità per le loro controparti ponderate $Z_i W_i/\hat{e}(X_i)$ e $Z_i (1-W_i)/(1-\hat{e}(X_i))$.
 
 Se le nostre propensioni sono ben calibrate, l'ASMD per la versione ponderata dovrebbe essere vicina allo zero.
+
+```{r}
+results <- ipw_estimators(
+  data = data_real,
+  estimation_method = 'AIPW',
+  outcome = outcome,
+  treatment = treatment,
+  covariates = covariates,
+  model_specification = 'linear',
+  output = TRUE,
+  target.sample = "control"
+)
+
+bal <- aipw_balancer(
+  results$model_spec_matrix,
+  results$treatment_variable,
+  results$e_hat
+)
+
+cov_bal_plot(results$model_spec_matrix,
+             bal$unadjusted_cov,
+             bal$adjusted_cov)
+```
