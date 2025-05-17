@@ -25,7 +25,7 @@
     "href": "index.html",
     "title": "",
     "section": "",
-    "text": "Welcome here,\nI’m a Statistician with a spec degree in actuarial science.\nSome of my various projects are here, while sometimes I write some sketchy notes for personal reference. I explore more interesting fields with as much rigor as possible."
+    "text": "&lt;ul class=\"social-icons\"&gt;\n  &lt;li&gt;\n     &lt;a href=\"https://github.com/carminemnc\"&gt;&lt;i class=\"fa fa-github\"&gt;&lt;/i&gt;&lt;/a&gt;\n  &lt;/li&gt;\n  &lt;li&gt;\n     &lt;a href=\"https://www.linkedin.com/in/carmine-minichini\"&gt;&lt;i class=\"fa fa-linkedin\"&gt;&lt;/i&gt;&lt;/a&gt;\n  &lt;/li&gt;\n&lt;/ul&gt;"
   },
   {
     "objectID": "posts.html",
