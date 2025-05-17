@@ -131,12 +131,6 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
     background-repeat: no-repeat;
   }
 </style>
-<!-- <div style="display: flex; justify-content: center; align-items: flex-start; height: 100vh; padding-top: 1vh;">
-  <img class="home-image" alt="Welcome" style="max-width: 50%; height: auto;">
-</div> -->
-<!-- Welcome here,
-I'm a Statistician with a spec degree in actuarial science.
-Some of my various projects are <a href="projects.qmd" class="cool-link">here</a>, while sometimes I write some <a href="notebooks.qmd" class="cool-link">sketchy notes</a> for personal reference. I explore more interesting <a href="posts.qmd" class="cool-link">fields</a> with as much rigor as possible. -->
 <div style="display: flex; flex-direction: column; align-items: center; height: 100vh; padding-top: 1vh;">
 <p><img class="home-image" alt="Welcome" style="max-width: 50%; height: auto;"></p>
 <div class="social-container" style="margin-top: -2vh;">
@@ -148,6 +142,34 @@ Some of my various projects are <a href="projects.qmd" class="cool-link">here</a
 <a href="https://www.linkedin.com/in/carmine-minichini"><i class="fa fa-linkedin"></i></a>
 </li>
 </ul>
+</div>
+<style>
+  .slide-in {
+    opacity: 0;
+    transform: translateY(100px);
+    transition: all 3s ease-out;
+  }
+  .slide-in.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, {threshold: 0.1});
+    document.querySelectorAll('.slide-in').forEach(el => {
+      observer.observe(el);
+    });
+  });
+</script>
+<div class="slide-in" style="align-self: flex-end; margin-right: 5vw; margin-top: 2vh;">
+<p><img src="imgs/about.png" alt="About" style="max-width: 100%; height: auto;"></p>
 </div>
 
 
