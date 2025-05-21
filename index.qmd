@@ -22,7 +22,12 @@ about:
     background-attachment: fixed;
     background-repeat: no-repeat;
   }
+  .always-white {
+    color: #ffffff !important;
+  }
 </style>
+
+<!-- Social icons -->
 
 <div style="display: flex; flex-direction: column; align-items: center; height: 100vh; padding-top: 1vh;">
   <img class="home-image" alt="Welcome" style="max-width: 50%; height: auto;">
@@ -38,18 +43,34 @@ about:
   </ul>
 </div>
 
-<!-- <style>
-  .slide-in {
-    opacity: 0;
-    transform: translateY(100px);
-    transition: all 3s ease-out;
-  }
+<!-- About -->
+<div class="main-panel slide-in" style="position: relative; color: white !important;">
+  <img src="imgs/about_sun_static_2.png" alt="About" style="max-width: 100%; height: auto; display: block;">
+  <br>
+  <p style="text-align: left; font-weight:bold; color: inherit !important;">I'm a Statistician with a spec degree in actuarial science. 
   
-  .slide-in.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
-</style>
+  Some of my projects are available here, while sometimes I write some sketchy notes for personal reference. I try to explore more interesting fields with as much rigor as possible</p>
+</div>
+
+
+<!-- Projects, Posts and Notebooks -->
+
+<div class="grid-container">
+
+  <a href="./projects.html" class="panel-link slide-in">
+  <img src="imgs/about_sun_static_2.png" alt="About" style="max-width: 100%; height: auto; display: block;">
+  </a>
+  
+  <a href="./posts.html" class="panel-link slide-in">
+  <img src="imgs/about_sun_static_2.png" alt="About" style="max-width: 100%; height: auto; display: block;">
+  </a>
+
+  <a href="./notebooks.html" class="panel-link slide-in">
+  <img src="imgs/about_sun_static_2.png" alt="About" style="max-width: 100%; height: auto; display: block;">
+  </a>
+
+</div>
+
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
@@ -67,8 +88,12 @@ about:
   });
 </script>
 
-<div style="align-self: flex-end; margin-right: 5vw; margin-top: 2vh;" class="slide-in">
-  <img src="imgs/animazione.png" alt="About" style="max-width: 100%; height: auto;">
-</div> -->
+<!-- <a href="./projects.html" class="cool-link">here</a> -->
+
+
+
+
+
+
 
 

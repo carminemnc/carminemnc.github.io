@@ -130,7 +130,11 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
     background-attachment: fixed;
     background-repeat: no-repeat;
   }
+  .always-white {
+    color: #ffffff !important;
+  }
 </style>
+<!-- Social icons -->
 <div style="display: flex; flex-direction: column; align-items: center; height: 100vh; padding-top: 1vh;">
 <p><img class="home-image" alt="Welcome" style="max-width: 50%; height: auto;"></p>
 <div class="social-container" style="margin-top: -2vh;">
@@ -143,17 +147,20 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 </li>
 </ul>
 </div>
-<!-- <style>
-  .slide-in {
-    opacity: 0;
-    transform: translateY(100px);
-    transition: all 3s ease-out;
-  }
-  .slide-in.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
-</style>
+<!-- About -->
+<div class="main-panel slide-in" style="position: relative; color: white !important;">
+<img src="imgs/about_sun_static_2.png" alt="About" style="max-width: 100%; height: auto; display: block;"> <br>
+<p style="text-align: left; font-weight:bold; color: inherit !important;">
+</p><p>I’m a Statistician with a spec degree in actuarial science.</p>
+Some of my projects are available here, while sometimes I write some sketchy notes for personal reference. I try to explore more interesting fields with as much rigor as possible
+<p></p>
+</div>
+<!-- Projects, Posts and Notebooks -->
+<div class="grid-container">
+<p><a href="./projects.html" class="panel-link slide-in"> <img src="imgs/about_sun_static_2.png" alt="About" style="max-width: 100%; height: auto; display: block;"> </a></p>
+<p><a href="./posts.html" class="panel-link slide-in"> <img src="imgs/about_sun_static_2.png" alt="About" style="max-width: 100%; height: auto; display: block;"> </a></p>
+<p><a href="./notebooks.html" class="panel-link slide-in"> <img src="imgs/about_sun_static_2.png" alt="About" style="max-width: 100%; height: auto; display: block;"> </a></p>
+</div>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const observer = new IntersectionObserver(entries => {
@@ -168,9 +175,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
     });
   });
 </script>
-<div style="align-self: flex-end; margin-right: 5vw; margin-top: 2vh;" class="slide-in">
-  <img src="imgs/animazione.png" alt="About" style="max-width: 100%; height: auto;">
-</div> -->
+<!-- <a href="./projects.html" class="cool-link">here</a> -->
 
 
 </div></main>  

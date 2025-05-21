@@ -9,7 +9,6 @@
 $blue-munsell: #0085a1;
 $cerulean: #006b86;
 $midnight-green: #00526c;
-$moonstone: #04e0e0;
 $dark-cyan: #008b8b;
 $davys-gray: #5a5856;
 $battleship-gray: #949799;
@@ -53,7 +52,6 @@ $mermaid-node-bg-color: $davys-gray;
   content: url("imgs/welcome_here_white.png");
 }
 
-
 /* ID selectors */
 
 #map-size {
@@ -68,6 +66,63 @@ $mermaid-node-bg-color: $davys-gray;
   font-size: 12px;
 }
 
+// Slide-in animation
+.slide-in {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 3s ease-out;
+  
+  &.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Shared panel styles
+%panel-base {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.7);
+  }
+}
+
+// Main panel styling
+.main-panel {
+  @extend %panel-base;
+  align-self: center;
+  margin-top: 3vh;
+  
+  &:hover {
+    transform: translateY(-10px) scale(1.02);
+  }
+}
+
+// Grid container for panels
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 20px auto;
+}
+
+// Panel links styling
+.panel-link {
+  @extend %panel-base;
+  display: block;
+  text-decoration: none;
+  color: $white;
+  text-align: center;
+  overflow: hidden;
+}
 
 /* ELEMENT SELECTORS */
 
@@ -122,7 +177,6 @@ h5, h6 {
 .card {
   background-color: $eerie-black;
   border-color: $davys-gray;
-
 }
 
 // btn styling
@@ -141,7 +195,6 @@ h5, h6 {
   border-color: $davys-gray;
 }
 
-
 // navbar logo
 .navbar-brand img { 
   max-height: 40px;
@@ -159,11 +212,6 @@ h5, h6 {
   border-top-left-radius: 15px;
   border-top-right-radius: 15px; 
 }
-
-// nav link pages
-// .nav-link {
-//   font-weight: bold;
-// }
 
 // blockquote styling
 .blockquote {

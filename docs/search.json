@@ -25,7 +25,7 @@
     "href": "index.html",
     "title": "",
     "section": "",
-    "text": "Some of my various projects are here, while sometimes I write some sketchy notes for personal reference. I explore more interesting fields with as much rigor as possible."
+    "text": "I’m a Statistician with a spec degree in actuarial science.\nSome of my projects are available here, while sometimes I write some sketchy notes for personal reference. I try to explore more interesting fields with as much rigor as possible"
   },
   {
     "objectID": "posts.html",
@@ -264,5 +264,26 @@
     "title": "Inferenza causale pt.1",
     "section": "6. Elementi di diagnostica",
     "text": "6. Elementi di diagnostica\nCome abbiamo visto, in contesti osservazionali le distribuzioni delle covariate possono essere molto diverse tra individui trattati e non trattati. Tali discrepanze possono portare a stime distorte dell’ATE. Ci si aspetterebbe che ponderando verso l’alto o verso il basso le osservazioni in base ai pesi di propensione inversi, le loro medie siano simili.\nIn effetti, dovremmo attenderci anche che le medie delle funzioni di base delle covariate siano simili dopo la ponderazione. Questa proprietà è chiamata equilibrio. Un modo per verificarlo è il seguente:\nData una certa variabile \\(Z_i\\) (ad esempio, una covariata \\(X_{i1}\\), o un’interazione tra covariate \\(X_{i1}X_{i2}\\), o un polinomio nelle covariate \\(X_{i1}^2\\), ecc.), possiamo verificare la differenza media standardizzata assoluta (ASMD) di \\(Z_i\\) tra individui trattati e non trattati nei nostri dati,\n\\[\\frac{|\\bar{Z}_1 - \\bar{Z}_0|}{\\sqrt{s_1^2 + s_0^2}} \\tag{8}\\]\ndove \\(\\bar{Z}_1\\) e \\(\\bar{Z}_0\\) sono le medie campionarie di \\(Z_i\\), e \\(s_1\\) e \\(s_0\\) sono le deviazioni standard di \\(Z_i\\) per i due campioni di individui trattati e non trattati. Successivamente, possiamo verificare la stessa quantità per le loro controparti ponderate \\(Z_i W_i/\\hat{e}(X_i)\\) e \\(Z_i (1-W_i)/(1-\\hat{e}(X_i))\\).\nSe le nostre propensioni sono ben calibrate, l’ASMD per la versione ponderata dovrebbe essere vicina allo zero.\n\n\nCode\nresults &lt;- ipw_estimators(\n  data = data_real,\n  estimation_method = 'AIPW',\n  outcome = outcome,\n  treatment = treatment,\n  covariates = covariates,\n  model_specification = 'linear',\n  output = TRUE,\n  target.sample = \"control\"\n)\n\n\nGenerated formula:\n w ~age+polviews+income+educ+marital+sex \n\nDifference-in-means estimation (benchmark):\n      Estimate     Std. Error        t value       Pr(&gt;|t|) \n -2.913581e-01   8.599054e-03  -3.388257e+01  5.607391e-237 \n\n AIPW estimation:\n    Estimate    Std Error      t value     Pr(&gt;|t|) \n -0.32002938   0.01084679 -29.50452793   0.00000000 \n\n\nCode\nbal &lt;- aipw_balancer(\n  results$model_spec_matrix,\n  results$treatment_variable,\n  results$e_hat\n)\n\ncov_bal_plot(results$model_spec_matrix,\n             bal$unadjusted_cov,\n             bal$adjusted_cov)"
+  },
+  {
+    "objectID": "index.html#card-2",
+    "href": "index.html#card-2",
+    "title": "",
+    "section": "",
+    "text": "Questa è la seconda card con altre informazioni."
+  },
+  {
+    "objectID": "index.html#card-3",
+    "href": "index.html#card-3",
+    "title": "",
+    "section": "",
+    "text": "Questa è la terza card con ulteriori dettagli."
+  },
+  {
+    "objectID": "index.html#card-1",
+    "href": "index.html#card-1",
+    "title": "",
+    "section": "",
+    "text": "Questa è la prima card con informazioni."
   }
 ]
