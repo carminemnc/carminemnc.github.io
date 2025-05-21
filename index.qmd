@@ -22,9 +22,6 @@ about:
     background-attachment: fixed;
     background-repeat: no-repeat;
   }
-  .always-white {
-    color: #ffffff !important;
-  }
 </style>
 
 <!-- Social icons -->
@@ -44,10 +41,10 @@ about:
 </div>
 
 <!-- About -->
-<div class="main-panel slide-in" style="position: relative; color: white !important;">
+<div class="main-panel slide-in" style="position: relative;">
   <img src="imgs/about_sun_static_2.png" alt="About" style="max-width: 100%; height: auto; display: block;">
   <br>
-  <p style="text-align: left; font-weight:bold; color: inherit !important;">I'm a Statistician with a spec degree in actuarial science. 
+  <p style="text-align: left; font-weight:bold;">I'm a Statistician with a spec degree in actuarial science. 
   
   Some of my projects are available here, while sometimes I write some sketchy notes for personal reference. I try to explore more interesting fields with as much rigor as possible</p>
 </div>
@@ -87,9 +84,6 @@ about:
     });
   });
 </script>
-
-<!-- <a href="./projects.html" class="cool-link">here</a> -->
-
 
 
 
