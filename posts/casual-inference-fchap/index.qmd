@@ -8,6 +8,16 @@ image: causal_inference.gif
 code-fold: true
 ---
 
+<style>
+  body {
+    background-image: url("../../imgs/posts_article_background.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+</style>
+
 ## [Perchè]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"} l'inferenza causale?
 
 ![](https://timelinecovers.pro/facebook-cover/download/bright-galaxy-milky-way-stars-facebook-cover.jpg)

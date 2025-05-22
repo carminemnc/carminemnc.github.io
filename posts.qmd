@@ -8,3 +8,14 @@ listing:
   max-items: 4
 page-layout: full
 ---
+
+<style>
+  body {
+    background-image: url("imgs/posts_land_background.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+</style>
+
