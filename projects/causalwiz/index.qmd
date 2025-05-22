@@ -1,0 +1,49 @@
+---
+title: "Causalwiz"
+description: 
+  Tools for Causal Inference Analysis and Visualization  
+date: 2025-05-07
+categories: [App]
+image: causal_inference.gif
+draft: false
+---
+
+[{{< fa brands github >}} source code](https://github.com/carminemnc/causalwiz){.btn}
+
+<br>
+
+<img src="https://github.com/carminemnc/causalwiz/blob/master/man/figures/logo.png?raw=true" align="right" height="139"/>
+
+`causalwiz` is an R package for causal inference analysis. It provides tools for estimating treatment effects using various methods including Inverse Probability Weighting (IPW) and Augmented Inverse Probability Weighting (AIPW).
+
+The package is accompanied by a series of <a href="projects.qmd" class="cool-link">articles</a>, *written in Italian*, covering theoretical foundations of causal inference and practical implementations of the methods implemented in `causalwiz`.
+
+## Installation
+
+You can install the package via Github repository:
+
+``` r
+# install.packages("pak")
+pak::pak("carminemnc/causalwiz")
+```
+
+## Usage
+
+``` r
+library(causalwiz)
+
+# Load example data
+data("welfare_small")
+
+# Perform causal analysis
+results <- ipw_estimators(
+  data = welfare_small,
+  estimation_method = "IPW",
+  outcome = "y",
+  treatment = "w",
+  covariates = c("age", "polviews", "income", "educ", "marital", "sex")
+)
+```
+
+
+

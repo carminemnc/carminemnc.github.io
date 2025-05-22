@@ -4,7 +4,7 @@ author: "Carmine Minichini"
 description: "Il dilemma dell'uovo e della gallina"
 date: "2024-10-28"
 categories: [casual inference, R]
-image: loop.gif
+image: causal_inference.gif
 code-fold: true
 ---
 

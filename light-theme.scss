@@ -80,7 +80,7 @@ $mermaid-node-bg-color: $battleship-gray;
 
 // Shared panel styles
 %panel-base {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.7);
   border-radius: 15px;
   padding: 15px;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
@@ -104,6 +104,7 @@ $mermaid-node-bg-color: $battleship-gray;
   }
 }
 
+// Timeline
 .timeline-section {
   position: relative;
   padding: 50px 0;
@@ -126,7 +127,7 @@ $mermaid-node-bg-color: $battleship-gray;
   width: 40%;
   margin: 100px 0;
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.7);
   border-radius: 15px;
   opacity: 0.3;
   transition: opacity 0.5s ease, transform 0.3s ease;
@@ -138,15 +139,25 @@ $mermaid-node-bg-color: $battleship-gray;
 .timeline-item:nth-child(odd)::after { right: -46px; }
 .timeline-item:nth-child(even)::after { left: -46px; }
 
-.timeline-item:hover {
-  transform: scale(1.05) rotate(1deg);
-  background: radial-gradient(circle, rgba(30,40,80,0.6) 0%, rgba(10,15,30,0.8) 100%);
-  box-shadow: 
-    0 0 30px rgba(100,150,255,0.5),
-    0 0 15px rgba(200,220,255,0.6),
-    inset 0 0 10px rgba(255,255,255,0.2);
-  border: 1px solid rgba(120,180,255,0.4);
-  backdrop-filter: blur(3px);
+.timeline-item:hover::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #008b8b, #000000, #008b8b, #000000);
+  z-index: -1;
+  border-radius: 16px;
+  background-size: 400% 400%;
+  animation: border-flow 3s ease infinite;
+  opacity: 0.7;
+}
+
+@keyframes border-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .timeline-item.slide-in {
@@ -158,12 +169,6 @@ $mermaid-node-bg-color: $battleship-gray;
 .timeline-item.slide-in.active {
   opacity: 1;
   transform: translateY(0);
-}
-
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-10px); }
-  60% { transform: translateY(-5px); }
 }
 
 @media (max-width: 768px) {

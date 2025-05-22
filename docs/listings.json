@@ -2,6 +2,7 @@
   {
     "listing": "/projects.html",
     "items": [
+      "/projects/causalwiz/index.html",
       "/projects/tripscraper/index.html",
       "/projects/book-your-space/index.html"
     ]

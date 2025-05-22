@@ -4,7 +4,7 @@
     "href": "projects.html",
     "title": "",
     "section": "",
-    "text": "Tripscraper\n\n\nAn open source application for NLP playground\n\n\n\n\n\n\nJul 10, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBook your space\n\n\nAn open source application for managing office desk booking\n\n\n\n\n\n\nNov 23, 2022\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Causalwiz\n\n\nTools for Causal Inference Analysis and Visualization\n\n\n\n\n\n\nMay 7, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTripscraper\n\n\nAn open source application for NLP playground\n\n\n\n\n\n\nJul 10, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBook your space\n\n\nAn open source application for managing office desk booking\n\n\n\n\n\n\nNov 23, 2022\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "projects/book-your-space/index.html",
@@ -285,5 +285,26 @@
     "title": "",
     "section": "",
     "text": "Questa è la prima card con informazioni."
+  },
+  {
+    "objectID": "projects/causalwiz/index.html",
+    "href": "projects/causalwiz/index.html",
+    "title": "Causalwiz",
+    "section": "",
+    "text": "source code\ncausalwiz is an R package for causal inference analysis. It provides tools for estimating treatment effects using various methods including Inverse Probability Weighting (IPW) and Augmented Inverse Probability Weighting (AIPW).\nThe package is accompanied by a series of articles, written in Italian, covering theoretical foundations of causal inference and practical implementations of the methods implemented in causalwiz."
+  },
+  {
+    "objectID": "projects/causalwiz/index.html#installation",
+    "href": "projects/causalwiz/index.html#installation",
+    "title": "Causalwiz",
+    "section": "Installation",
+    "text": "Installation\nYou can install the package via Github repository:\n# install.packages(\"pak\")\npak::pak(\"carminemnc/causalwiz\")"
+  },
+  {
+    "objectID": "projects/causalwiz/index.html#usage",
+    "href": "projects/causalwiz/index.html#usage",
+    "title": "Causalwiz",
+    "section": "Usage",
+    "text": "Usage\nlibrary(causalwiz)\n\n# Load example data\ndata(\"welfare_small\")\n\n# Perform causal analysis\nresults &lt;- ipw_estimators(\n  data = welfare_small,\n  estimation_method = \"IPW\",\n  outcome = \"y\",\n  treatment = \"w\",\n  covariates = c(\"age\", \"polviews\", \"income\", \"educ\", \"marital\", \"sex\")\n)"
   }
 ]
