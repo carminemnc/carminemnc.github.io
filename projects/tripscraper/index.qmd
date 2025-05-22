@@ -7,6 +7,16 @@ categories: [app,nlp,streamlit]
 image: tripscraper.gif
 ---
 
+<style>
+  body {
+    background-image: url("../../imgs/articles_background.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+</style>
+
 [{{< fa brands github >}} source code](https://github.com/carminemnc/tripscraper){.btn}
 
 <br>

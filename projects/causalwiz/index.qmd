@@ -8,6 +8,16 @@ image: causal_inference.gif
 draft: false
 ---
 
+<style>
+  body {
+    background-image: url("../../imgs/articles_background.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+</style>
+
 [{{< fa brands github >}} source code](https://github.com/carminemnc/causalwiz){.btn}
 
 <br>

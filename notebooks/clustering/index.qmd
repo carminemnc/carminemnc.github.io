@@ -7,6 +7,16 @@ categories: [python,clustering]
 image: cyberpunk.gif
 ---
 
+<style>
+  body {
+    background-image: url("../../imgs/articles_background.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+</style>
+
 [{{< fa brands kaggle >}} Dataset](https://www.kaggle.com/datasets/vishakhdapat/customer-segmentation-clustering){.btn}
 
 # Background

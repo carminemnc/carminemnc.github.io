@@ -219,6 +219,15 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 
 </header>
 
+<style>
+  body {
+    background-image: url("../../imgs/articles_background.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+</style>
 <p><a href="https://www.kaggle.com/datasets/vishakhdapat/customer-segmentation-clustering" class="btn"><i class="fa-brands fa-kaggle" aria-label="kaggle"></i> Dataset</a></p>
 <section id="background" class="level1">
 <h1>Background</h1>
@@ -226,7 +235,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <blockquote class="blockquote">
 <p>Cluster analysis or clustering is the task of grouping a set of objects in such a way that objects in the same group (called a cluster) are more similar (in some specific sense defined by the analyst) to each other than to those in other groups (clusters). It is a main task of exploratory data analysis, and a common technique for statistical data analysis, used in many fields, including pattern recognition, image analysis, information retrieval, bioinformatics, data compression, computer graphics and machine learning.</p>
 </blockquote>
-<div class="cell" data-execution_count="1">
+<div class="cell" data-execution_count="2">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -272,7 +281,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <p>In practice, since we are working with discrete values of <span class="math inline">\(k\)</span>, we can approximate the curvature using finite differences:</p>
 <p><span class="math display">\[\text{Curvature} \approx \frac{D(k+1) - 2D(k) + D(k-1)}{1^2}\]</span></p>
 <p>The value of <span class="math inline">\(k\)</span> that maximizes this expression is considered the elbow point.</p>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="3">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>clusters_range <span class="op">=</span> <span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">10</span>)</span>
@@ -335,7 +344,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <li><span class="math inline">\(b(i)\)</span> is the mean distance between the <span class="math inline">\(i\)</span>-th sample and all other samples in the next nearest cluster.</li>
 </ul>
 <p>The Silhouette Coefficient ranges from -1 to 1, where a high value indicates that the sample is well-matched to its own cluster and poorly-matched to neighboring clusters. A value of 0 generally indicates overlapping clusters, while a negative value indicates that the sample may have been assigned to the wrong cluster.</p>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="4">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fitting kmeans</span></span>
@@ -359,7 +368,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <p>When the Silhouette Coefficient <span class="math inline">\(s(i)\)</span> is negative, it means that the average distance <span class="math inline">\(a(i)\)</span> of the <span class="math inline">\(i\)</span>-th sample to other samples in its own cluster is greater than the average distance <span class="math inline">\(b(i)\)</span> to the nearest neighboring cluster. This suggests that the <span class="math inline">\(i\)</span>-th sample would be better assigned to the nearest neighboring cluster rather than its current cluster.</p>
 <p>In the Silhouette Plot, clusters with bars that extend into the negative range indicate that some samples within those clusters have been poorly assigned. The wider the negative portion of the bar, the more samples in that cluster have been misclassified.</p>
 <p>The presence of negative Silhouette Coefficient values is a sign that the clustering algorithm has not been able to find well-separated, dense clusters. It suggests that the number of clusters <span class="math inline">\(K\)</span> may not be appropriate for the data, or that the clustering algorithm is not a good fit for the dataset. In such cases, the Silhouette Plot can be used to guide the selection of a more appropriate value of <span class="math inline">\(K\)</span> or the choice of a different clustering algorithm.</p>
-<div class="cell" data-execution_count="4">
+<div class="cell" data-execution_count="5">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># intercluster distance plot</span></span>

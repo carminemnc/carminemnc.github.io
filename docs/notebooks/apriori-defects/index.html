@@ -227,6 +227,15 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 
 </header>
 
+<style>
+  body {
+    background-image: url("../../imgs/articles_background.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+</style>
 <p>The Apriori algorithm is a data mining technique that can help identify frequent patterns and associations among defects or issues encountered during process management activities. Instead of analyzing individual defects in isolation, the <strong>Apriori</strong> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> algorithm allows us to uncover relationships between different types of defects or issues that often occur together.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -261,11 +270,11 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-cell="annotated-cell-1" data-code-lines="2">3/length(df) means minimum 3 out of total transactions must contain an itemset for it to be considered frequent</span>
+<span data-code-lines="2" data-code-cell="annotated-cell-1" data-code-annotation="1">3/length(df) means minimum 3 out of total transactions must contain an itemset for it to be considered frequent</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-annotation="2" data-code-cell="annotated-cell-1" data-code-lines="3">conf=0.1 means the minimum confidence threshold is set to 0.1 or 10%. This filters out association rules where the consequent (right-hand side) occurs less than 10% of the times when the antecedent (left-hand side) occurs</span>
+<span data-code-lines="3" data-code-cell="annotated-cell-1" data-code-annotation="2">conf=0.1 means the minimum confidence threshold is set to 0.1 or 10%. This filters out association rules where the consequent (right-hand side) occurs less than 10% of the times when the antecedent (left-hand side) occurs</span>
 </dd>
 </dl>
 </div>
@@ -312,7 +321,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-annotation="1" data-code-cell="annotated-cell-2" data-code-lines="4">Nodes with higher confidence rules will be shaded darker, allowing you to visually identify the most confident association rules at a glance</span>
+<span data-code-lines="4" data-code-cell="annotated-cell-2" data-code-annotation="1">Nodes with higher confidence rules will be shaded darker, allowing you to visually identify the most confident association rules at a glance</span>
 </dd>
 </dl>
 </div>

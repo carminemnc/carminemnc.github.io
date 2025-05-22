@@ -10,7 +10,7 @@ code-fold: true
 
 <style>
   body {
-    background-image: url("../../imgs/posts_articles_background.png");
+    background-image: url("../../imgs/articles_background.png");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
