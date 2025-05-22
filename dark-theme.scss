@@ -31,6 +31,11 @@ $mermaid-node-bg-color: $davys-gray;
 
 /*-- scss:rules --*/
 
+code {
+  color: yellow;
+  font-weight: bold;
+}
+
 // Code output styling
 .cell-output,
 .cell-output pre,
