@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "",
+    "section": "",
+    "text": "I’m a Statistician with a specialization in actuarial science.\nThis space contains projects, notebooks with raw notes about data science, and posts where I explore mathematical and statistical topics in depth. I explore different fields with statistical rigor, aiming to bridge theory and practical applications.\n\n\n\n\n\n\n\nProjects\n\n\n\n\n\nPosts\n\n\n\n\n\nNotebooks"
+  },
+  {
     "objectID": "projects.html",
     "href": "projects.html",
     "title": "",
@@ -7,25 +14,25 @@
     "text": "Causalwiz\n\n\nTools for Causal Inference Analysis and Visualization\n\n\n\n\n\n\nMay 7, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTripscraper\n\n\nAn open source application for NLP playground\n\n\n\n\n\n\nJul 10, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBook your space\n\n\nAn open source application for managing office desk booking\n\n\n\n\n\n\nNov 23, 2022\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "projects/book-your-space/index.html",
-    "href": "projects/book-your-space/index.html",
-    "title": "Book your space",
+    "objectID": "projects/causalwiz/index.html",
+    "href": "projects/causalwiz/index.html",
+    "title": "Causalwiz",
     "section": "",
-    "text": "demo  source code\n\n\nMotivation\nThe COVID-19 pandemic breakout has led to a significant shift in the way we work, with many employees now working remotely or in a hybrid model. This has created a need for new tools and technologies to help businesses manage their office space more effectively.\nThis application for managing desk office booking is designed to address this challenge.\n\n\nHow it works\nBuild on Google apps script platform, the application is designed to work in a Google enviroment.\nIt allows:\n\nPerson quota managing over 2 weeks of booking\nDisplay names customization\nBookings download\n\nFork the script here and adapt it on your needs."
+    "text": "source code\ncausalwiz is an R package for causal inference analysis. It provides tools for estimating treatment effects using various methods including Inverse Probability Weighting (IPW) and Augmented Inverse Probability Weighting (AIPW).\nThe package is accompanied by a series of articles, written in Italian, covering theoretical foundations of causal inference and practical implementations of the methods implemented in causalwiz."
   },
   {
-    "objectID": "posts/on-bayesian-optimization/index.html",
-    "href": "posts/on-bayesian-optimization/index.html",
-    "title": "On Bayesian optimization",
-    "section": "",
-    "text": "Background"
+    "objectID": "projects/causalwiz/index.html#installation",
+    "href": "projects/causalwiz/index.html#installation",
+    "title": "Causalwiz",
+    "section": "Installation",
+    "text": "Installation\nYou can install the package via Github repository:\n# install.packages(\"pak\")\npak::pak(\"carminemnc/causalwiz\")"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "",
-    "section": "",
-    "text": "I’m a Statistician with a spec degree in actuarial science.\nSome of my projects are available here, while sometimes I write some sketchy notes for personal reference. I try to explore more interesting fields with as much rigor as possible"
+    "objectID": "projects/causalwiz/index.html#usage",
+    "href": "projects/causalwiz/index.html#usage",
+    "title": "Causalwiz",
+    "section": "Usage",
+    "text": "Usage\nlibrary(causalwiz)\n\n# Load example data\ndata(\"welfare_small\")\n\n# Perform causal analysis\nresults &lt;- ipw_estimators(\n  data = welfare_small,\n  estimation_method = \"IPW\",\n  outcome = \"y\",\n  treatment = \"w\",\n  covariates = c(\"age\", \"polviews\", \"income\", \"educ\", \"marital\", \"sex\")\n)"
   },
   {
     "objectID": "posts.html",
@@ -35,46 +42,11 @@
     "text": "Inferenza causale pt.1\n\n\n\n\n\n\n\ncasual inference\n\n\nR\n\n\n\n\nIl dilemma dell’uovo e della gallina\n\n\n\n\n\n\nOct 28, 2024\n\n\n15 min\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "projects/tripscraper/index.html",
-    "href": "projects/tripscraper/index.html",
-    "title": "Tripscraper",
-    "section": "",
-    "text": "source code"
-  },
-  {
-    "objectID": "projects/tripscraper/index.html#footnotes",
-    "href": "projects/tripscraper/index.html#footnotes",
-    "title": "Tripscraper",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nJulia Silge, David Robinson; Text Mining with R; O’Reilly↩︎"
-  },
-  {
     "objectID": "notebooks.html",
     "href": "notebooks.html",
     "title": "",
     "section": "",
     "text": "Apriori analysis for quality assurance\n\n\n\n\n\n\n\nR\n\n\nApriori analysis\n\n\n\n\nPriori Patterns for Posterior Perfection\n\n\n\n\n\n\nAug 9, 2024\n\n\n8 min\n\n\n\n\n\n\n  \n\n\n\n\nDividi et impera\n\n\n\n\n\n\n\npython\n\n\nclustering\n\n\n\n\nUnleashing the Power of Centroid Domination in the Realm of Clustering\n\n\n\n\n\n\nOct 24, 2023\n\n\n6 min\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "notebooks/hr-resources/index.html",
-    "href": "notebooks/hr-resources/index.html",
-    "title": "Clustering",
-    "section": "",
-    "text": "Background"
-  },
-  {
-    "objectID": "notebooks/hr-resources/index.html#metrics",
-    "href": "notebooks/hr-resources/index.html#metrics",
-    "title": "A predictable unbalanced problem",
-    "section": "Metrics",
-    "text": "Metrics\n\nAccuracy"
-  },
-  {
-    "objectID": "posts/on-casual-inference/index.html",
-    "href": "posts/on-casual-inference/index.html",
-    "title": "Inferenza causale pt.1",
-    "section": "",
-    "text": "La causal inference è fondamentale per comprendere e quantificare gli effetti di interventi, trattamenti o politiche su una popolazione di interesse. A differenza dell’analisi della semplice associazione tra variabili, la causal inference mira a stabilire relazioni causali, ovvero a identificare l’effetto di una variabile (il trattamento) sulla variabile di interesse (l’outcome), tenendo conto dei fattori confondenti."
   },
   {
     "objectID": "notebooks/apriori-defects/index.html",
@@ -126,67 +98,11 @@
     "text": "Silhouette score\n\\[s(i) = \\frac{b(i) - a(i)}{max(a(i), b(i))}\\]\nwhere:\n\n\\(s(i)\\) is the Silhouette Coefficient for the \\(i\\)-th sample.\n\\(a(i)\\) is the mean distance between the \\(i\\)-th sample and all other samples in the same cluster.\n\\(b(i)\\) is the mean distance between the \\(i\\)-th sample and all other samples in the next nearest cluster.\n\nThe Silhouette Coefficient ranges from -1 to 1, where a high value indicates that the sample is well-matched to its own cluster and poorly-matched to neighboring clusters. A value of 0 generally indicates overlapping clusters, while a negative value indicates that the sample may have been assigned to the wrong cluster.\n\n\nCode\n# fitting kmeans\nkm = KMeans(n_clusters=3, init='k-means++', n_init=12, max_iter=2000,algorithm=\"elkan\")\n\n# Calculate silhouette score\nsilhouette_avg = round(silhouette_score(data_processed, km.fit_predict(data_processed)), 4)\n\n# silhouette coefficient plot\nsilhouette = SilhouetteVisualizer(km, colors='yellowbrick')\nsilhouette.fit(data_processed)\n\nplt.show()\n\n\n\n\n\n\nInterpreting it\nWhen the Silhouette Coefficient \\(s(i)\\) is negative, it means that the average distance \\(a(i)\\) of the \\(i\\)-th sample to other samples in its own cluster is greater than the average distance \\(b(i)\\) to the nearest neighboring cluster. This suggests that the \\(i\\)-th sample would be better assigned to the nearest neighboring cluster rather than its current cluster.\nIn the Silhouette Plot, clusters with bars that extend into the negative range indicate that some samples within those clusters have been poorly assigned. The wider the negative portion of the bar, the more samples in that cluster have been misclassified.\nThe presence of negative Silhouette Coefficient values is a sign that the clustering algorithm has not been able to find well-separated, dense clusters. It suggests that the number of clusters \\(K\\) may not be appropriate for the data, or that the clustering algorithm is not a good fit for the dataset. In such cases, the Silhouette Plot can be used to guide the selection of a more appropriate value of \\(K\\) or the choice of a different clustering algorithm.\n\n\nCode\n# intercluster distance plot\nicd = InterclusterDistance(km, legend_loc='lower left')\nicd.fit(data_processed)\n\nicd.show()\n\n\n\n\n\n&lt;Axes: title={'center': 'KMeans Intercluster Distance Map (via MDS)'}, xlabel='PC2', ylabel='PC1'&gt;"
   },
   {
-    "objectID": "notebooks/clustering/index.html#intercluster-distance-map-the-pca",
-    "href": "notebooks/clustering/index.html#intercluster-distance-map-the-pca",
-    "title": "Dividi et impera",
-    "section": "",
-    "text": "Let’s assume we have a dataset \\(X \\in \\mathbb{R}^{n \\times d}\\) with \\(n\\) samples and \\(d\\) features, and a clustering model that has identified \\(k\\) clusters with centers \\(\\mathbf{c}_i \\in \\mathbb{R}^d, i=1,\\dots,k\\).\nThe goal of the intercluster distance map is to embed these \\(k\\) cluster centers into a 2-dimensional space \\(\\mathbf{z}_i \\in \\mathbb{R}^2, i=1,\\dots,k\\), while preserving the distances between the clusters in the original high-dimensional space.\nMathematically, this can be expressed as finding an embedding function \\(f: \\mathbb{R}^d \\rightarrow \\mathbb{R}^2\\) such that the distances between the embedded cluster centers are as close as possible to the distances between the original cluster centers:\n\\[\\min_{f} \\sum_{i&lt;j} \\left| \\|\\mathbf{c}_i - \\mathbf{c}_j\\| - \\|\\mathbf{z}_i - \\mathbf{z}_j\\| \\right|\\]\nWhere \\(\\|\\cdot\\|\\) denotes the Euclidean norm.\nThe size of each cluster’s representation on the 2D plot is determined by a scoring metric, typically the “membership” score, which is the number of instances belonging to each cluster:\n\\[s_i = |\\{x \\in X | \\text{label}(x) = i\\}|\\]\nWhere \\(\\text{label}(x)\\) is the cluster assignment of the \\(x\\)-th sample.\nThe final intercluster distance map visualizes the 2D embedded cluster centers \\(\\{\\mathbf{z}_i\\}_{i=1}^k\\), with the size of each cluster proportional to its membership score \\(s_i\\).\nThis allows the user to gain insights into the relative positions and sizes of the identified clusters, and the relationships between them in the original high-dimensional feature space."
-  },
-  {
-    "objectID": "notebooks/clustering/index.html#intercluster-distance-map-mds-embedding-technique",
-    "href": "notebooks/clustering/index.html#intercluster-distance-map-mds-embedding-technique",
-    "title": "Dividi et impera",
-    "section": "",
-    "text": "Let’s assume we have a dataset \\(X \\in \\mathbb{R}^{n \\times d}\\) with \\(n\\) samples and \\(d\\) features, and a clustering model that has identified \\(k\\) clusters with centers \\(\\mathbf{c}_i \\in \\mathbb{R}^d, i=1,\\dots,k\\).\nThe goal of the intercluster distance map is to embed these \\(k\\) cluster centers into a 2-dimensional space \\(\\mathbf{z}_i \\in \\mathbb{R}^2, i=1,\\dots,k\\), while preserving the distances between the clusters in the original high-dimensional space.\nMathematically, this can be expressed as finding an embedding function \\(f: \\mathbb{R}^d \\rightarrow \\mathbb{R}^2\\) such that the distances between the embedded cluster centers are as close as possible to the distances between the original cluster centers:\n\\[\\min_{f} \\sum_{i&lt;j} \\left| \\|\\mathbf{c}_i - \\mathbf{c}_j\\| - \\|\\mathbf{z}_i - \\mathbf{z}_j\\| \\right|\\]\nWhere \\(\\|\\cdot\\|\\) denotes the Euclidean norm.\nThe size of each cluster’s representation on the 2D plot is determined by a scoring metric, typically the “membership” score, which is the number of instances belonging to each cluster:\n\\[s_i = |\\{x \\in X | \\text{label}(x) = i\\}|\\]\nWhere \\(\\text{label}(x)\\) is the cluster assignment of the \\(x\\)-th sample.\nThe final intercluster distance map visualizes the 2D embedded cluster centers \\(\\{\\mathbf{z}_i\\}_{i=1}^k\\), with the size of each cluster proportional to its membership score \\(s_i\\).\nThis allows the user to gain insights into the relative positions and sizes of the identified clusters, and the relationships between them in the original high-dimensional feature space."
-  },
-  {
     "objectID": "notebooks/clustering/index.html#intercluster-distance-map-via-mds",
     "href": "notebooks/clustering/index.html#intercluster-distance-map-via-mds",
     "title": "Dividi et impera",
     "section": "Intercluster distance map (via MDS)",
     "text": "Intercluster distance map (via MDS)\nLet’s assume we have a dataset \\(X \\in \\mathbb{R}^{n \\times d}\\) with \\(n\\) samples and \\(d\\) features, and a clustering model that has identified \\(k\\) clusters with centers \\(\\mathbf{c}_i \\in \\mathbb{R}^d, i=1,\\dots,k\\).\nThe goal of the intercluster distance map is to embed these \\(k\\) cluster centers into a 2-dimensional space \\(\\mathbf{z}_i \\in \\mathbb{R}^2, i=1,\\dots,k\\), while preserving the distances between the clusters in the original high-dimensional space.\nMathematically, this can be expressed as finding an embedding function \\(f: \\mathbb{R}^d \\rightarrow \\mathbb{R}^2\\) such that the distances between the embedded cluster centers are as close as possible to the distances between the original cluster centers:\n\\[\\min_{f} \\sum_{i&lt;j} \\left| \\|\\mathbf{c}_i - \\mathbf{c}_j\\| - \\|\\mathbf{z}_i - \\mathbf{z}_j\\| \\right|\\]\nWhere \\(\\|\\cdot\\|\\) denotes the Euclidean norm.\nThe size of each cluster’s representation on the 2D plot is determined by a scoring metric, typically the “membership” score, which is the number of instances belonging to each cluster:\n\\[s_i = |\\{x \\in X | \\text{label}(x) = i\\}|\\]\nWhere \\(\\text{label}(x)\\) is the cluster assignment of the \\(x\\)-th sample.\nThe final intercluster distance map visualizes the 2D embedded cluster centers \\(\\{\\mathbf{z}_i\\}_{i=1}^k\\), with the size of each cluster proportional to its membership score \\(s_i\\).\nThis allows the user to gain insights into the relative positions and sizes of the identified clusters, and the relationships between them in the original high-dimensional feature space."
-  },
-  {
-    "objectID": "posts/on-casual-inference/index.html#background",
-    "href": "posts/on-casual-inference/index.html#background",
-    "title": "Inferenza causale pt.1",
-    "section": "",
-    "text": "La causal inference è fondamentale per comprendere e quantificare gli effetti di interventi, trattamenti o politiche su una popolazione di interesse. A differenza dell’analisi della semplice associazione tra variabili, la causal inference mira a stabilire relazioni causali, ovvero a identificare l’effetto di una variabile (il trattamento) sulla variabile di interesse (l’outcome), tenendo conto dei fattori confondenti."
-  },
-  {
-    "objectID": "posts/on-casual-inference/index.html#notazione",
-    "href": "posts/on-casual-inference/index.html#notazione",
-    "title": "Inferenza causale pt.1",
-    "section": "1. Notazione",
-    "text": "1. Notazione\nSia \\((\\mathbf{X}_i, W_i, Y_i)\\) per l’individuo \\(i\\), dove:\n\n\\(\\mathbf{X}_i\\) è il vettore di covariate osservate per l’individuo \\(i\\)\n\\(W_i \\in \\{0, 1\\}\\) indica l’assegnazione al trattamento (0 = controllo, 1 = trattamento)\n\\(Y_i\\) è l’outcome osservato\n\nAssumiamo che i dati siano generati in modo indipendente e i.i.d. (identicamente distribuito).\nIntroduciamo i concetti di potenziali outcomes:\n\n\\(Y_i(1)\\) è l’outcome potenziale dell’individuo \\(i\\) se fosse stato assegnato al trattamento\n\\(Y_i(0)\\) è l’outcome potenziale dell’individuo \\(i\\) se fosse stato assegnato al controllo\n\nQuindi l’outcome osservato \\(Y_i\\) corrisponde a uno dei due potenziali outcomes:\n\\[ Y_i \\equiv Y_i(W_i) = \\begin{cases} Y_i(1) & \\text{se } W_i = 1 \\\\ Y_i(0) & \\text{se } W_i = 0 \\end{cases} \\]\n\nIl nostro obiettivo\nL’obiettivo è stimare l’effetto medio del trattamento (ATE):\n\\[ \\tau = \\mathbb{E}[Y_i(1) - Y_i(0)] \\]\n\nL’ATE fornisce una misura complessiva dell’impatto di un trattamento sulla popolazione target.\nStimare l’ATE è il primo passo per studiare i meccanismi attraverso cui un trattamento influenza gli outcome.\n\nLa stima dell’ATE è cruciale per valutare l’impatto di interventi, supportare le decisioni di policy, comprendere i meccanismi causali e progettare future ricerche empiriche in modo efficace. È un passaggio fondamentale nell’analisi causale.\n\nIn un contesto sperimentale…\nIn un contesto sperimentale, l’assegnazione al trattamento è indipendente dai potenziali outcomes:\n\\[ Y_i(1), Y_i(0) \\perp W_i \\]\nIn altre parole, non ci sono variabili confondenti che influenzano sia l’assegnazione al trattamento che l’outcome.\n\n\nCode\n# Read in data\ndata &lt;- read.csv(\"welfare-small.csv\")\n\nggplot(data,\n       aes(x= age +rnorm(n=sum(W=w),sd=.1),\n           y=polviews+rnorm(n=sum(W=w),sd=.1))) + \n  geom_point(size=2,color='#0085A1',alpha=0.3) + \n  facet_wrap(\n    vars(ifelse(w,'Controllo','Trattamento'))\n  ) +\n  labs(title=\"Distribuzione dell'outcome in un contesto sperimentale\",\n       subtitle = TeX('$Y_i(1), Y_i(0) \\\\perp W_i$'),\n       x=\"Age\",\n       y=\"Polviews\") +\n  theme(\n    # Set black background\n    plot.background = element_rect(fill = \"#242728\"),\n    panel.background = element_rect(fill = \"#242728\"),\n    \n    # Set white text for all elements\n    text = element_text(color = \"#eaeaea\"),\n    axis.text = element_text(color = \"#eaeaea\"),\n    axis.title = element_text(color = \"#eaeaea\"),\n    title = element_text(face='italic',size=13),\n    \n    # Set green facet wrap labels\n    strip.background = element_rect(fill = \"#0085A1\"),\n    strip.text = element_text(color = \"#eaeaea\", face = \"bold\",size = 12),\n    \n    # Optional: adjust grid lines for better visibility\n    panel.grid.major = element_line(color = \"grey30\"),\n    panel.grid.minor = element_line(color = \"grey20\"),\n    \n    # Optional: set legend theme to match\n    legend.background = element_rect(fill = \"#242728\"),\n    legend.text = element_text(color = \"#eaeaea\"),\n    legend.title = element_text(color = \"#eaeaea\"),\n  )\n\n\n\n\n\n\n\nIn un contesto reale…\n\n\nCode\n# defining the group that will be dropped with some high probability\ngrp &lt;- ((data$w == 1) &  # if treated AND...\n        (\n            (data$age &gt; 45) |     # belongs an older group OR\n            (data$polviews &lt; 5)   # more conservative\n        )) | # OR\n        ((data$w == 0) &  # if untreated AND...\n        (\n            (data$age &lt; 45) |     # belongs a younger group OR\n            (data$polviews &gt; 4)   # more liberal\n        )) \n\n# Individuals in the group above have a smaller chance of being kept in the sample\nprob.keep &lt;- ifelse(grp, .15, .85)\nkeep.idx &lt;- as.logical(rbinom(n=nrow(data), prob=prob.keep, size = 1))\n\n# Dropping\ndata &lt;- data[keep.idx,]\n\nggplot(data,\n       aes(x= age +rnorm(n=sum(W=w),sd=.1),\n           y=polviews+rnorm(n=sum(W=w),sd=.1))) + \n  geom_point(size=2,color='#0085A1',alpha=0.3) + \n  facet_wrap(\n    vars(ifelse(w,'Controllo','Trattamento'))\n  ) +\n  labs(title=\"Distribuzione dell'outcome in un contesto reale\",\n       x=\"Age\",\n       y=\"Polviews\") +\n  theme(\n    # Set black background\n    plot.background = element_rect(fill = \"#242728\"),\n    panel.background = element_rect(fill = \"#242728\"),\n    \n    # Set white text for all elements\n    text = element_text(color = \"#eaeaea\"),\n    axis.text = element_text(color = \"#eaeaea\"),\n    axis.title = element_text(color = \"#eaeaea\"),\n    title = element_text(face='italic',size=13),\n    \n    # Set green facet wrap labels\n    strip.background = element_rect(fill = \"#0085A1\"),\n    strip.text = element_text(color = \"#eaeaea\", face = \"bold\",size = 12),\n    \n    # Optional: adjust grid lines for better visibility\n    panel.grid.major = element_line(color = \"grey30\"),\n    panel.grid.minor = element_line(color = \"grey20\"),\n    \n    # Optional: set legend theme to match\n    legend.background = element_rect(fill = \"#242728\"),\n    legend.text = element_text(color = \"#eaeaea\"),\n    legend.title = element_text(color = \"#eaeaea\")\n  )\n\n\n\n\n\nIn un contesto reale o osservazionale dobbiamo fare delle assunzioni molto forti per poter stimare l’effetto medio del trattamento.\n\nIpotesi di confondimento (unconfoundedness):\n\nQuesta ipotesi afferma che, una volta condizionato sulle covariate osservate \\(X_i\\), l’assegnazione al trattamento \\(W_i\\) è indipendente dai potenziali outcomes \\(Y_i(1)\\) e \\(Y_i(0)\\).\nIn altre parole, tutte le possibili fonti di selezione nel trattamento possono essere spiegate dalle covariate osservate.\nMatematicamente: \\(Y_i(1), Y_i(0) \\perp W_i | X_i\\)\nQuesta ipotesi permette di identificare l’effetto causale del trattamento, altrimenti non osservabile.\n\nIpotesi di sovrapposizione (overlap):\n\nQuesta ipotesi afferma che per ogni possibile combinazione di valori delle covariate \\(X_i\\), esiste una probabilità positiva di essere assegnati sia al trattamento che al controllo.\nIn altre parole, non ci devono essere regioni del supporto delle covariate in cui tutti gli individui sono sempre trattati o sempre di controllo.\nMatematicamente: \\(\\eta &lt; e(x) &lt; 1 - \\eta\\) per qualche \\(\\eta &gt; 0\\) e per tutti i \\(x\\), dove \\(e(x) = \\mathbb{P}[W_i = 1 | X_i = x]\\) è la propensione al trattamento.\nQuesta ipotesi garantisce che sia possibile confrontare unità trattate e di controllo con caratteristiche simili.\n\n\nInsieme, queste due ipotesi permettono di identificare l’effetto causale del trattamento nell’ambito di un contesto osservazionale. L’ipotesi di confondimento assicura che non ci siano variabili non osservate che influenzano sia l’assegnazione al trattamento che l’outcome. L’ipotesi di sovrapposizione garantisce che ci siano unità di confronto appropriate per ogni individuo trattato.\nQueste ipotesi sono cruciali per l’applicabilità di metodi come l’IPW e l’AIPW, discussi nelle sezioni successive."
-  },
-  {
-    "objectID": "posts/on-casual-inference/index.html#difference-in-means",
-    "href": "posts/on-casual-inference/index.html#difference-in-means",
-    "title": "Inferenza causale pt.1",
-    "section": "2. Difference in means",
-    "text": "2. Difference in means\nLo stimatore della differenza delle medie (difference-in-means) è un semplice stimatore non distorto dell’ATE. L’idea è calcolare la media dei outcomes nel gruppo di trattamento meno la media dei outcomes nel gruppo di controllo:\n\\[\n\\hat{\\tau}_\\text{DIFF} = \\frac{1}{n_1} \\sum_{i: W_i = 1} Y_i - \\frac{1}{n_0} \\sum_{i: W_i = 0} Y_i\n\\]\ndove \\(n_w = |\\{i: W_i = w\\}|\\) è il numero di individui nel gruppo \\(w\\).\nLo stimatore della differenza delle medie può essere utilizzato solamente nel contesto sperimentale, ovvero quando l’assegnazione al trattamento è casuale e indipendente dai potenziali outcomes.\nIn questo caso, l’ipotesi di indipendenza tra assegnazione al trattamento e potenziali outcomes cioè l’ipotesi che \\(Y_i(1), Y_i(0) \\perp W_i\\) è soddisfatta.\nCiò significa che non ci sono fattori confondenti che influenzano sia l’assegnazione al trattamento che l’outcome.\nSotto questa ipotesi, la differenza tra la media dei outcomes nel gruppo di trattamento e la media dei outcomes nel gruppo di controllo fornisce una stima non distorta dell’effetto medio del trattamento (ATE).\nIn contesti osservazionali, invece, sono necessari metodi più avanzati come l’IPW e l’AIPW."
-  },
-  {
-    "objectID": "posts/on-casual-inference/index.html#direct-estimator",
-    "href": "posts/on-casual-inference/index.html#direct-estimator",
-    "title": "Inferenza causale pt.1",
-    "section": "3. Direct estimator",
-    "text": "3. Direct estimator\nLo stimatore diretto (direct estimation) è un metodo per stimare l’effetto medio del trattamento (ATE) che può essere utilizzato in contesti osservazionali, ovvero quando l’assegnazione al trattamento non è casuale ma dipende dalle covariate osservate \\(X_i\\).\nQuesto stimatore sfrutta la seguente scomposizione:\n\\(\\mathbb{E}[Y_i(1) - Y_i(0)] = \\mathbb{E}[\\mathbb{E}[Y_i|X_i, W_i=1]] - \\mathbb{E}[\\mathbb{E}[Y_i|X_i, W_i=0]]\\)\nLa procedura per applicare lo stimatore diretto è la seguente:\n\nStimare \\(\\mu(x, w) = \\mathbb{E}[Y_i|X_i=x, W_i=w]\\) utilizzando metodi di regressione non parametrici.\nPredire \\(\\hat{\\mu}(X_i, 1)\\) e \\(\\hat{\\mu}(X_i, 0)\\) per ogni osservazione.\nCalcolare la media delle differenze predette:\n\n\\(\\hat{\\tau}_\\text{DM} = \\frac{1}{n} \\sum_{i=1}^n \\left[\\hat{\\mu}(X_i, 1) - \\hat{\\mu}(X_i, 0)\\right]\\)\nQuesto stimatore sfrutta la regressione per ottenere stime più accurate dell’ATE rispetto al semplice difference-in-means visto precedentemente.\nQuando usarlo: Lo stimatore diretto può essere utilizzato nel contesto osservazionale, quando l’ipotesi di confondimento (\\(Y_i(1), Y_i(0) \\perp W_i | X_i\\)) è soddisfatta. Ciò significa che tutte le variabili confondenti sono state misurate e incluse nelle covariate \\(X_i\\).\nQuando non usarlo: Lo stimatore diretto ha alcuni svantaggi: - Dipende fortemente dalla corretta specificazione del modello per \\(\\mu(x, w)\\). Se il modello è mal specificato, le stime saranno distorte. - Non gode delle stesse proprietà asintotiche (come l’efficienza) degli stimatori più avanzati come l’AIPW.\nPertanto, quando possibile, è preferibile utilizzare metodi come l’AIPW, che sono più robusti alle ipotesi di modellazione."
-  },
-  {
-    "objectID": "posts/on-casual-inference/index.html#ipw-inverse-propensity-weighted-estimator",
-    "href": "posts/on-casual-inference/index.html#ipw-inverse-propensity-weighted-estimator",
-    "title": "Inferenza causale pt.1",
-    "section": "4. IPW (Inverse propensity-weighted estimator)",
-    "text": "4. IPW (Inverse propensity-weighted estimator)\nL’estimatore inverse propensity-weighted (IPW) è un metodo per stimare l’effetto medio del trattamento (ATE) che può essere utilizzato in contesti osservazionali, ovvero quando l’assegnazione al trattamento non è casuale ma dipende dalle covariate \\(X_i\\).\nL’idea chiave dell’IPW è di utilizzare i pesi inversi della propensione al trattamento per “bilanciare” il confronto tra individui trattati e di controllo.\nLa procedura per applicare l’IPW è la seguente:\n\nStimare la propensione al trattamento \\(e(X_i) = \\mathbb{P}[W_i = 1 | X_i]\\) utilizzando un modello di regressione (ad esempio, logistica).\nCalcolare i pesi inversamente proporzionali alla propensione stimata:\n\nPer gli individui trattati: \\(W_i / \\hat{e}(X_i)\\)\nPer gli individui di controllo: \\((1 - W_i) / (1 - \\hat{e}(X_i))\\)\n\nCalcolare la media ponderata dei outcomes:\n\n\\(\\hat{\\tau}_\\text{IPW} = \\frac{1}{n} \\sum_{i=1}^n \\left[ \\frac{W_i \\, Y_i}{\\hat{e}(X_i)} - \\frac{(1 - W_i) \\, Y_i}{1 - \\hat{e}(X_i)} \\right]\\)\nQuando usarlo: L’IPW può essere utilizzato nel contesto osservazionale, quando sono soddisfatte le ipotesi di confondimento (\\(Y_i(1), Y_i(0) \\perp W_i | X_i\\)) e di sovrapposizione (\\(\\eta &lt; e(x) &lt; 1 - \\eta\\) per qualche \\(\\eta &gt; 0\\)).\nVantaggi dell’IPW: - È un metodo semplice da implementare. - È robusto: se il modello per la propensione è correttamente specificato, l’IPW fornisce stime non distorte dell’ATE.\nSvantaggi dell’IPW: - Quando la propensione al trattamento è molto piccola, i pesi diventano molto grandi, rendendo lo stimatore instabile e con alta varianza. - L’IPW non sfrutta appieno l’informazione contenuta nelle covariate per migliorare l’efficienza della stima.\nPer superare questi svantaggi, nella prossima sezione verrà introdotto un metodo più sofisticato, l’AIPW, che combina i vantaggi dell’IPW e della regressione diretta."
-  },
-  {
-    "objectID": "posts/on-casual-inference/index.html#aipw-augmented-inverse-propensity-weighted-estimator",
-    "href": "posts/on-casual-inference/index.html#aipw-augmented-inverse-propensity-weighted-estimator",
-    "title": "Inferenza causale pt.1",
-    "section": "5. AIPW (Augmented inverse propensity-weighted estimator)",
-    "text": "5. AIPW (Augmented inverse propensity-weighted estimator)\nL’estimatore AIPW è disponibile in contesti con ipotesi di non confondimento e overlapping. La sua formula è la seguente:\n\\[\\hat{\\tau}_\\mathrm{AIPW} := \\frac{1}{n} \\sum_{i=1}^n \\left(\\hat{\\mu}_{-i}(X_i, 1) - \\hat{\\mu}_{-i}(X_i, 0)\\right) + \\frac{W_i}{\\hat{e}_{-i}(X_i)} (Y_i - \\hat{\\mu}_{-i}(X_i, 1)) - \\frac{1-W_i}{1-\\hat{e}_{-i}(X_i)} (Y_i - \\hat{\\mu}_{-i}(X_i, 0))\\]\nVantaggi dell’estimatore AIPW:\n\nDoppia robustezza: l’estimatore è corretto se almeno uno tra il modello di outcome \\(\\hat{\\mu}(X_i, w)\\) o il modello di propensity score \\(\\hat{e}(X_i)\\) è corretto.\nEfficienza: sotto ipotesi deboli, l’AIPW è asintoticamente efficiente, ovvero ha la minima varianza asintotica tra una classe ampia di stimatori.\nNormalità asintotica: l’AIPW è asintoticamente normale, permettendo un facile calcolo di errori standard e p-value.\n\nRispetto agli altri stimatori visti precedentemente:\n\nÈ più efficiente del difference-in-means anche in contesti sperimentali.\nÈ più robusto del direct estimator e dell’IPW quando i modelli sono mal specificati.\n\nSvantaggi:\n\nRichiede la stima di due modelli (outcome e propensity score), il che può essere impegnativo in pratica.\nQuando i propensity score sono molto vicini a 0 o 1, l’AIPW può avere prestazioni instabili. In tal caso, altri stimatori come l’approximate residual balancing (ARB) possono essere preferibili.\n\nIn sintesi, l’AIPW è uno stimatore raccomandato in contesti osservazionali con ipotesi di non confondimento e overlapping, grazie alla sua doppia robustezza e efficienza asintotica. La sua implementazione può però risultare più complessa rispetto ad altri stimatori."
   },
   {
     "objectID": "posts/casual-inference-fchap/index.html",
@@ -196,11 +112,18 @@
     "text": "L’inferenza causale è fondamentale perché ci permette di comprendere le relazioni tra cause ed effetti nei fenomeni che osserviamo. A differenza dell’analisi della semplice associazione tra variabili, l’inferenza causale mira a stabilire relazioni causali, ovvero a identificare l’effetto di una variabile (il trattamento) sulla variabile di interesse (l’outcome), tenendo conto di tutte le possibili covariate.\nEsempi concreti di applicazione dell’inferenza causale possiamo trovarli in:\n\nEconomia: Gli economisti utilizzano l’inferenza causale per studiare l’impatto di politiche economiche, come cambiamenti nelle tasse o negli investimenti pubblici, sulla disoccupazione, i redditi e la crescita. Questo permette di valutare l’efficacia delle misure economiche.\nCriminologia: I ricercatori applicano l’inferenza causale per comprendere i fattori che influenzano la criminalità, come la relazione tra povertà, istruzione e tasso di criminalità. Ciò informa le politiche di prevenzione e contrasto della criminalità.\nMedicina: La ricerca clinica utilizza l’inferenza causale per stabilire eventuali relazioni tra l’assunzione di farmaci e l’insorgenza di effetti collaterali, al fine di migliorarne la sicurezza."
   },
   {
-    "objectID": "posts/casual-inference-fchap/index.html#background",
-    "href": "posts/casual-inference-fchap/index.html#background",
+    "objectID": "posts/casual-inference-fchap/index.html#perchè-linferenza-causale",
+    "href": "posts/casual-inference-fchap/index.html#perchè-linferenza-causale",
     "title": "Inferenza causale pt.1",
     "section": "",
-    "text": "L’inferenza causale è fondamentale perché ci permette di comprendere le relazioni tra cause ed effetti nei fenomeni che osserviamo. A differenza dell’analisi della semplice associazione tra variabili, l’ inferenza causale mira a stabilire relazioni causali, ovvero a identificare l’effetto di una variabile (il trattamento) sulla variabile di interesse (l’outcome), tenendo conto di tutte le possibili covariate.\nEsempi concreti di applicazione dell’inferenza causale possiamo trovarli in:\n\nEconomia: Gli economisti utilizzano l’inferenza causale per studiare l’impatto di politiche economiche, come cambiamenti nelle tasse o negli investimenti pubblici, sulla disoccupazione, i redditi e la crescita. Questo permette di valutare l’efficacia delle misure economiche.\nCriminologia: I ricercatori applicano l’inferenza causale per comprendere i fattori che influenzano la criminalità, come la relazione tra povertà, istruzione e tasso di criminalità. Ciò informa le politiche di prevenzione e contrasto della criminalità.\nMedicina: La ricerca clinica utilizza l’inferenza causale per stabilire eventuali relazioni tra l’assunzione di farmaci e l’insorgenza di effetti collaterali, al fine di migliorarne la sicurezza."
+    "text": "L’inferenza causale è fondamentale perché ci permette di comprendere le relazioni tra cause ed effetti nei fenomeni che osserviamo. A differenza dell’analisi della semplice associazione tra variabili, l’inferenza causale mira a stabilire relazioni causali, ovvero a identificare l’effetto di una variabile (il trattamento) sulla variabile di interesse (l’outcome), tenendo conto di tutte le possibili covariate.\nEsempi concreti di applicazione dell’inferenza causale possiamo trovarli in:\n\nEconomia: Gli economisti utilizzano l’inferenza causale per studiare l’impatto di politiche economiche, come cambiamenti nelle tasse o negli investimenti pubblici, sulla disoccupazione, i redditi e la crescita. Questo permette di valutare l’efficacia delle misure economiche.\nCriminologia: I ricercatori applicano l’inferenza causale per comprendere i fattori che influenzano la criminalità, come la relazione tra povertà, istruzione e tasso di criminalità. Ciò informa le politiche di prevenzione e contrasto della criminalità.\nMedicina: La ricerca clinica utilizza l’inferenza causale per stabilire eventuali relazioni tra l’assunzione di farmaci e l’insorgenza di effetti collaterali, al fine di migliorarne la sicurezza."
+  },
+  {
+    "objectID": "posts/casual-inference-fchap/index.html#i-dati-che-utilizzeremo",
+    "href": "posts/casual-inference-fchap/index.html#i-dati-che-utilizzeremo",
+    "title": "Inferenza causale pt.1",
+    "section": "I dati che utilizzeremo:",
+    "text": "I dati che utilizzeremo:\n\n# causalwiz is a free package for causal inference\n# https://github.com/carminemnc/causalwiz\nlibrary(causalwiz)\nlibrary(ggplot2)\nlibrary(lmtest)\nlibrary(sandwich)\ntheme_set(ctheme(\"dark\"))\n\n\n\nCode\n# Load data\ndata(welfare_small)\ndata &lt;- welfare_small\n\n# Treatment: does the the gov't spend too much on \"welfare\" (1) or \"assistance to the poor\" (0)\ntreatment &lt;- \"w\"\n\n# Outcome: 1 for 'yes', 0 for 'no'\noutcome &lt;- \"y\"\n\n# Additional covariates\ncovariates &lt;- c(\"age\", \"polviews\", \"income\", \"educ\", \"marital\", \"sex\")\n\n\nIn questo capitolo utilizzeremo una versiona abbreviata di un dataset pubblico fornito da (Smith,2016)\nIl contesto riguarda un sondaggio in cui agli individui veniva chiesto il loro parere sulla spesa del governo americano per il welfare.\nIl trattamento, \\(W\\), consiste nella formulazione del quesito in due formulazioni diverse:\n\nAd una metà dei partecipanti il quesito veniva posto sul tema “welfare”\nAll’altra metà dei partecipanti al sondaggio il quesito veniva posto sottoforma di “assistenza ai poveri”\n\nL’outcome è una variabile binaria \\(Y_i\\) che indica se la risposta è stata positiva o meno. Oltre al trattamento e all’outcome il dataset contiene informazioni demografiche come l’età, l’orientamento politico1, il reddito, l’educazione, lo stato civile e il sesso."
   },
   {
     "objectID": "posts/casual-inference-fchap/index.html#notazione",
@@ -238,18 +161,11 @@
     "text": "5. AIPW (Augmented inverse propensity-weighted estimator)\nL’estimatore AIPW è disponibile in contesti con ipotesi di non confondimento e overlapping. La sua formula è la seguente:\n\\[\n\\begin{equation}\\begin{aligned}\\hat{\\tau}_\\mathrm{AIPW} &:= \\frac{1}{n} \\sum_{i=1}^n \\left(\\hat{\\mu}_{-i}(X_i, 1) - \\hat{\\mu}_{-i}(X_i, 0)\\right) + \\\\                        &\\quad \\frac{W_i}{\\hat{e}_{-i}(X_i)} (Y_i - \\hat{\\mu}_{-i}(X_i, 1)) \\: - \\\\                        &\\quad \\frac{1-W_i}{1-\\hat{e}_{-i}(X_i)} (Y_i - \\hat{\\mu}_{-i}(X_i, 0))\\end{aligned}\\end{equation}\n\\tag{7}\\]\nVantaggi dell’estimatore AIPW:\n\nDoppia robustezza: l’estimatore è corretto se almeno uno tra il modello di outcome \\(\\hat{\\mu}(X_i, w)\\) o il modello di propensity score \\(\\hat{e}(X_i)\\) è corretto.\nEfficienza: sotto ipotesi deboli, l’AIPW è asintoticamente efficiente, ovvero ha la minima varianza asintotica tra una classe ampia di stimatori.\nNormalità asintotica: l’AIPW è asintoticamente normale, permettendo un facile calcolo di errori standard e p-value.\n\nRispetto agli altri stimatori visti precedentemente:\n\nÈ più efficiente del difference-in-means anche in contesti sperimentali.\nÈ più robusto del direct estimator e dell’IPW quando i modelli sono mal specificati.\n\nSvantaggi:\n\nRichiede la stima di due modelli (outcome e propensity score), il che può essere impegnativo in pratica.\nQuando i propensity score sono molto vicini a 0 o 1, l’AIPW può avere prestazioni instabili.\n\nIn sintesi, l’AIPW è uno stimatore raccomandato in contesti osservazionali con ipotesi di non confondimento e overlapping, grazie alla sua doppia robustezza e efficienza asintotica. La sua implementazione può però risultare più complessa rispetto ad altri stimatori.\n\n\nCode\nresults &lt;- ipw_estimators(\n  data = data_real,\n  estimation_method = 'AIPW',\n  outcome = outcome,\n  treatment = treatment,\n  covariates = covariates,\n  model_specification = 'linear',\n  output = TRUE,\n  target.sample = \"control\"\n)\n\n\nGenerated formula:\n w ~age+polviews+income+educ+marital+sex \n\nDifference-in-means estimation (benchmark):\n      Estimate     Std. Error        t value       Pr(&gt;|t|) \n -2.913581e-01   8.599054e-03  -3.388257e+01  5.607391e-237 \n\n AIPW estimation:\n    Estimate    Std Error      t value     Pr(&gt;|t|) \n -0.31920790   0.01071585 -29.78839639   0.00000000"
   },
   {
-    "objectID": "posts/casual-inference-fchap/index.html#perchè-linferenza-causale",
-    "href": "posts/casual-inference-fchap/index.html#perchè-linferenza-causale",
+    "objectID": "posts/casual-inference-fchap/index.html#elementi-di-diagnostica",
+    "href": "posts/casual-inference-fchap/index.html#elementi-di-diagnostica",
     "title": "Inferenza causale pt.1",
-    "section": "",
-    "text": "L’inferenza causale è fondamentale perché ci permette di comprendere le relazioni tra cause ed effetti nei fenomeni che osserviamo. A differenza dell’analisi della semplice associazione tra variabili, l’inferenza causale mira a stabilire relazioni causali, ovvero a identificare l’effetto di una variabile (il trattamento) sulla variabile di interesse (l’outcome), tenendo conto di tutte le possibili covariate.\nEsempi concreti di applicazione dell’inferenza causale possiamo trovarli in:\n\nEconomia: Gli economisti utilizzano l’inferenza causale per studiare l’impatto di politiche economiche, come cambiamenti nelle tasse o negli investimenti pubblici, sulla disoccupazione, i redditi e la crescita. Questo permette di valutare l’efficacia delle misure economiche.\nCriminologia: I ricercatori applicano l’inferenza causale per comprendere i fattori che influenzano la criminalità, come la relazione tra povertà, istruzione e tasso di criminalità. Ciò informa le politiche di prevenzione e contrasto della criminalità.\nMedicina: La ricerca clinica utilizza l’inferenza causale per stabilire eventuali relazioni tra l’assunzione di farmaci e l’insorgenza di effetti collaterali, al fine di migliorarne la sicurezza."
-  },
-  {
-    "objectID": "posts/casual-inference-fchap/index.html#i-dati-che-utilizzeremo",
-    "href": "posts/casual-inference-fchap/index.html#i-dati-che-utilizzeremo",
-    "title": "Inferenza causale pt.1",
-    "section": "I dati che utilizzeremo:",
-    "text": "I dati che utilizzeremo:\n\n# causalwiz is a free package for causal inference\n# https://github.com/carminemnc/causalwiz\nlibrary(causalwiz)\nlibrary(ggplot2)\nlibrary(lmtest)\nlibrary(sandwich)\ntheme_set(ctheme(\"dark\"))\n\n\n\nCode\n# Load data\ndata(welfare_small)\ndata &lt;- welfare_small\n\n# Treatment: does the the gov't spend too much on \"welfare\" (1) or \"assistance to the poor\" (0)\ntreatment &lt;- \"w\"\n\n# Outcome: 1 for 'yes', 0 for 'no'\noutcome &lt;- \"y\"\n\n# Additional covariates\ncovariates &lt;- c(\"age\", \"polviews\", \"income\", \"educ\", \"marital\", \"sex\")\n\n\nIn questo capitolo utilizzeremo una versiona abbreviata di un dataset pubblico fornito da (Smith,2016)\nIl contesto riguarda un sondaggio in cui agli individui veniva chiesto il loro parere sulla spesa del governo americano per il welfare.\nIl trattamento, \\(W\\), consiste nella formulazione del quesito in due formulazioni diverse:\n\nAd una metà dei partecipanti il quesito veniva posto sul tema “welfare”\nAll’altra metà dei partecipanti al sondaggio il quesito veniva posto sottoforma di “assistenza ai poveri”\n\nL’outcome è una variabile binaria \\(Y_i\\) che indica se la risposta è stata positiva o meno. Oltre al trattamento e all’outcome il dataset contiene informazioni demografiche come l’età, l’orientamento politico1, il reddito, l’educazione, lo stato civile e il sesso."
+    "section": "6. Elementi di diagnostica",
+    "text": "6. Elementi di diagnostica\nCome abbiamo visto, in contesti osservazionali le distribuzioni delle covariate possono essere molto diverse tra individui trattati e non trattati. Tali discrepanze possono portare a stime distorte dell’ATE. Ci si aspetterebbe che ponderando verso l’alto o verso il basso le osservazioni in base ai pesi di propensione inversi, le loro medie siano simili.\nIn effetti, dovremmo attenderci anche che le medie delle funzioni di base delle covariate siano simili dopo la ponderazione. Questa proprietà è chiamata equilibrio. Un modo per verificarlo è il seguente:\nData una certa variabile \\(Z_i\\) (ad esempio, una covariata \\(X_{i1}\\), o un’interazione tra covariate \\(X_{i1}X_{i2}\\), o un polinomio nelle covariate \\(X_{i1}^2\\), ecc.), possiamo verificare la differenza media standardizzata assoluta (ASMD) di \\(Z_i\\) tra individui trattati e non trattati nei nostri dati,\n\\[\\frac{|\\bar{Z}_1 - \\bar{Z}_0|}{\\sqrt{s_1^2 + s_0^2}} \\tag{8}\\]\ndove \\(\\bar{Z}_1\\) e \\(\\bar{Z}_0\\) sono le medie campionarie di \\(Z_i\\), e \\(s_1\\) e \\(s_0\\) sono le deviazioni standard di \\(Z_i\\) per i due campioni di individui trattati e non trattati. Successivamente, possiamo verificare la stessa quantità per le loro controparti ponderate \\(Z_i W_i/\\hat{e}(X_i)\\) e \\(Z_i (1-W_i)/(1-\\hat{e}(X_i))\\).\nSe le nostre propensioni sono ben calibrate, l’ASMD per la versione ponderata dovrebbe essere vicina allo zero.\n\n\nCode\nresults &lt;- ipw_estimators(\n  data = data_real,\n  estimation_method = 'AIPW',\n  outcome = outcome,\n  treatment = treatment,\n  covariates = covariates,\n  model_specification = 'linear',\n  output = TRUE,\n  target.sample = \"control\"\n)\n\n\nGenerated formula:\n w ~age+polviews+income+educ+marital+sex \n\nDifference-in-means estimation (benchmark):\n      Estimate     Std. Error        t value       Pr(&gt;|t|) \n -2.913581e-01   8.599054e-03  -3.388257e+01  5.607391e-237 \n\n AIPW estimation:\n    Estimate    Std Error      t value     Pr(&gt;|t|) \n -0.32002938   0.01084679 -29.50452793   0.00000000 \n\n\nCode\nbal &lt;- aipw_balancer(\n  results$model_spec_matrix,\n  results$treatment_variable,\n  results$e_hat\n)\n\ncov_bal_plot(results$model_spec_matrix,\n             bal$unadjusted_cov,\n             bal$adjusted_cov)"
   },
   {
     "objectID": "posts/casual-inference-fchap/index.html#footnotes",
@@ -259,52 +175,24 @@
     "text": "Footnotes\n\n\nLa variabile “Orientamento politico” cattura le opinioni politiche dei partecipanti su una scala ordinale con valori che vanno tipicamente da 1 (estremamente conservatore) a 7 (estremamente liberale). Valori più bassi indicano una visione politica più di destra/conservatrice, mentre valori più alti indicano una visione più di sinistra/liberale.↩︎\nPossiamo stimare l’ATE attraverso una regressione lineare del tipo:\n\\[\nY_i = Y_i(0) + W_i(Y_i(1) - Y_i(0))\n\\]↩︎"
   },
   {
-    "objectID": "posts/casual-inference-fchap/index.html#elementi-di-diagnostica",
-    "href": "posts/casual-inference-fchap/index.html#elementi-di-diagnostica",
-    "title": "Inferenza causale pt.1",
-    "section": "6. Elementi di diagnostica",
-    "text": "6. Elementi di diagnostica\nCome abbiamo visto, in contesti osservazionali le distribuzioni delle covariate possono essere molto diverse tra individui trattati e non trattati. Tali discrepanze possono portare a stime distorte dell’ATE. Ci si aspetterebbe che ponderando verso l’alto o verso il basso le osservazioni in base ai pesi di propensione inversi, le loro medie siano simili.\nIn effetti, dovremmo attenderci anche che le medie delle funzioni di base delle covariate siano simili dopo la ponderazione. Questa proprietà è chiamata equilibrio. Un modo per verificarlo è il seguente:\nData una certa variabile \\(Z_i\\) (ad esempio, una covariata \\(X_{i1}\\), o un’interazione tra covariate \\(X_{i1}X_{i2}\\), o un polinomio nelle covariate \\(X_{i1}^2\\), ecc.), possiamo verificare la differenza media standardizzata assoluta (ASMD) di \\(Z_i\\) tra individui trattati e non trattati nei nostri dati,\n\\[\\frac{|\\bar{Z}_1 - \\bar{Z}_0|}{\\sqrt{s_1^2 + s_0^2}} \\tag{8}\\]\ndove \\(\\bar{Z}_1\\) e \\(\\bar{Z}_0\\) sono le medie campionarie di \\(Z_i\\), e \\(s_1\\) e \\(s_0\\) sono le deviazioni standard di \\(Z_i\\) per i due campioni di individui trattati e non trattati. Successivamente, possiamo verificare la stessa quantità per le loro controparti ponderate \\(Z_i W_i/\\hat{e}(X_i)\\) e \\(Z_i (1-W_i)/(1-\\hat{e}(X_i))\\).\nSe le nostre propensioni sono ben calibrate, l’ASMD per la versione ponderata dovrebbe essere vicina allo zero.\n\n\nCode\nresults &lt;- ipw_estimators(\n  data = data_real,\n  estimation_method = 'AIPW',\n  outcome = outcome,\n  treatment = treatment,\n  covariates = covariates,\n  model_specification = 'linear',\n  output = TRUE,\n  target.sample = \"control\"\n)\n\n\nGenerated formula:\n w ~age+polviews+income+educ+marital+sex \n\nDifference-in-means estimation (benchmark):\n      Estimate     Std. Error        t value       Pr(&gt;|t|) \n -2.913581e-01   8.599054e-03  -3.388257e+01  5.607391e-237 \n\n AIPW estimation:\n    Estimate    Std Error      t value     Pr(&gt;|t|) \n -0.32002938   0.01084679 -29.50452793   0.00000000 \n\n\nCode\nbal &lt;- aipw_balancer(\n  results$model_spec_matrix,\n  results$treatment_variable,\n  results$e_hat\n)\n\ncov_bal_plot(results$model_spec_matrix,\n             bal$unadjusted_cov,\n             bal$adjusted_cov)"
-  },
-  {
-    "objectID": "index.html#card-2",
-    "href": "index.html#card-2",
-    "title": "",
+    "objectID": "projects/book-your-space/index.html",
+    "href": "projects/book-your-space/index.html",
+    "title": "Book your space",
     "section": "",
-    "text": "Questa è la seconda card con altre informazioni."
+    "text": "demo  source code\n\n\nMotivation\nThe COVID-19 pandemic breakout has led to a significant shift in the way we work, with many employees now working remotely or in a hybrid model. This has created a need for new tools and technologies to help businesses manage their office space more effectively.\nThis application for managing desk office booking is designed to address this challenge.\n\n\nHow it works\nBuild on Google apps script platform, the application is designed to work in a Google enviroment.\nIt allows:\n\nPerson quota managing over 2 weeks of booking\nDisplay names customization\nBookings download\n\nFork the script here and adapt it on your needs."
   },
   {
-    "objectID": "index.html#card-3",
-    "href": "index.html#card-3",
-    "title": "",
+    "objectID": "projects/tripscraper/index.html",
+    "href": "projects/tripscraper/index.html",
+    "title": "Tripscraper",
     "section": "",
-    "text": "Questa è la terza card con ulteriori dettagli."
+    "text": "source code"
   },
   {
-    "objectID": "index.html#card-1",
-    "href": "index.html#card-1",
-    "title": "",
-    "section": "",
-    "text": "Questa è la prima card con informazioni."
-  },
-  {
-    "objectID": "projects/causalwiz/index.html",
-    "href": "projects/causalwiz/index.html",
-    "title": "Causalwiz",
-    "section": "",
-    "text": "source code\ncausalwiz is an R package for causal inference analysis. It provides tools for estimating treatment effects using various methods including Inverse Probability Weighting (IPW) and Augmented Inverse Probability Weighting (AIPW).\nThe package is accompanied by a series of articles, written in Italian, covering theoretical foundations of causal inference and practical implementations of the methods implemented in causalwiz."
-  },
-  {
-    "objectID": "projects/causalwiz/index.html#installation",
-    "href": "projects/causalwiz/index.html#installation",
-    "title": "Causalwiz",
-    "section": "Installation",
-    "text": "Installation\nYou can install the package via Github repository:\n# install.packages(\"pak\")\npak::pak(\"carminemnc/causalwiz\")"
-  },
-  {
-    "objectID": "projects/causalwiz/index.html#usage",
-    "href": "projects/causalwiz/index.html#usage",
-    "title": "Causalwiz",
-    "section": "Usage",
-    "text": "Usage\nlibrary(causalwiz)\n\n# Load example data\ndata(\"welfare_small\")\n\n# Perform causal analysis\nresults &lt;- ipw_estimators(\n  data = welfare_small,\n  estimation_method = \"IPW\",\n  outcome = \"y\",\n  treatment = \"w\",\n  covariates = c(\"age\", \"polviews\", \"income\", \"educ\", \"marital\", \"sex\")\n)"
+    "objectID": "projects/tripscraper/index.html#footnotes",
+    "href": "projects/tripscraper/index.html#footnotes",
+    "title": "Tripscraper",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nJulia Silge, David Robinson; Text Mining with R; O’Reilly↩︎"
   }
 ]
