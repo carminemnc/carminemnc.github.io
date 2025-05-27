@@ -35,9 +35,9 @@ about:
 <div style="display: flex; flex-direction: column; align-items: center; height: 100vh; padding-top: 1vh;">
   <img class="home-image" alt="Welcome" style="max-width: 50%; height: auto;">
 
-I'm a Statistician with a specialization in actuarial science.
+*I'm a Statistician with a specialization in actuarial science.*
 
-This space contains <a href="projects.qmd" class="cool-link">projects</a>, <a href="notebooks.qmd" class="cool-link">notebooks</a> with raw notes about data science, and <a href="posts.qmd" class="cool-link">posts</a> where I explore mathematical and statistical topics in depth. I explore different fields with statistical rigor, aiming to bridge theory and practical applications.
+*This space contains <a href="projects.qmd" class="cool-link">projects</a>, <a href="notebooks.qmd" class="cool-link">notebooks</a> with raw notes about data science, and <a href="posts.qmd" class="cool-link">posts</a> where I explore mathematical and statistical topics in depth. I explore different fields with statistical rigor, aiming to bridge theory and practical applications.*
   
 <div class="social-container" style="margin-top: -2vh;">
   <ul class="social-icons">
