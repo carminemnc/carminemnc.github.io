@@ -16,7 +16,7 @@ about:
 
 <style>
   body {
-    background-image: url("imgs/posts_land_background.png");
+    background-image: url("imgs/land_background.png");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -30,7 +30,71 @@ about:
   .quarto-title-meta {
     display: none;
   }
+
+  .toggle-container {
+    margin: -10px 0 15px 0;
+    transform: scale(0.2);
+    height: 30px;
+  }
+
+  .toggle-checkbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  .toggle-slot {
+    position: relative;
+    height: 10em;
+    width: 20em;
+    border: 5px solid #e4e7ec;
+    border-radius: 10em;
+    background-color: white;
+    box-shadow: 0px 10px 25px #e4e7ec;
+    transition: background-color 250ms;
+    cursor: pointer;
+  }
+
+  .toggle-checkbox:checked ~ .toggle-slot {
+    background-color: #374151;
+  }
+
+  .toggle-button {
+    transform: translate(11.75em, 1.75em);
+    position: absolute;
+    height: 6.5em;
+    width: 6.5em;
+    border-radius: 50%;
+    background-color: #ffeccf;
+    box-shadow: inset 0px 0px 0px 0.75em #ffbb52;
+    transition: background-color 250ms, border-color 250ms, transform 500ms cubic-bezier(.26,2,.46,.71);
+  }
+
+  .toggle-checkbox:checked ~ .toggle-slot .toggle-button {
+    background-color: #485367;
+    box-shadow: inset 0px 0px 0px 0.75em white;
+    transform: translate(1.75em, 1.75em);
+  }
+
+  .sun-icon-wrapper {
+    position: absolute;
+    height: 6em;
+    width: 6em;
+    opacity: 1;
+    transform: translate(2em, 2em) rotate(15deg);
+    transform-origin: 50% 50%;
+    transition: opacity 150ms, transform 500ms cubic-bezier(.26,2,.46,.71);
+  }
+
+  .toggle-checkbox:checked ~ .toggle-slot .sun-icon-wrapper {
+    opacity: 0;
+    transform: translate(3em, 2em) rotate(0deg);
+  }
 </style>
+
+<script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
 
 <div style="display: flex; flex-direction: column; align-items: center; height: 100vh; padding-top: 1vh;">
   <img class="home-image" alt="Welcome" style="max-width: 50%; height: auto;">
@@ -39,7 +103,20 @@ about:
 
 *This space contains <a href="projects.qmd" class="cool-link">projects</a>, <a href="notebooks.qmd" class="cool-link">notebooks</a> with raw notes about data science, and <a href="posts.qmd" class="cool-link">posts</a> where I explore mathematical and statistical topics in depth. I explore different fields with statistical rigor, aiming to bridge theory and practical applications.*
   
-<div class="social-container" style="margin-top: -2vh;">
+<div class="toggle-container">
+<label>
+<input class="toggle-checkbox" type="checkbox" id="theme-toggle"></input>
+<div class="toggle-slot">
+  <div class="sun-icon-wrapper">
+  </div>
+  <div class="toggle-button"></div>
+  <div class="moon-icon-wrapper">
+  </div>
+</div>
+</label>
+</div>
+
+<div class="social-container" style="margin-top: 0;">
   <ul class="social-icons">
     <li>
         <a href="https://github.com/carminemnc"><i class="fa fa-github"></i></a>
@@ -50,3 +127,44 @@ about:
   </ul>
 </div>
 </div>
+
+<script>
+// Function to find and trigger the Quarto theme toggle
+const setupCustomToggle = () => {
+  const quartoToggle = document.querySelector('.quarto-color-scheme-toggle');
+  const themeToggle = document.getElementById('theme-toggle');
+  
+  if (quartoToggle && themeToggle) {
+    // Hide the original toggle
+    quartoToggle.style.display = 'none';
+    
+    // Set initial state based on current theme
+    const isDarkTheme = document.documentElement.getAttribute('data-theme') === 'dark';
+    themeToggle.checked = isDarkTheme;
+    
+    // Add change event to our custom toggle
+    themeToggle.addEventListener('change', () => {
+      quartoToggle.click();
+    });
+  }
+};
+
+// Watch for DOM changes to find the toggle button when it's added
+const observer = new MutationObserver((mutations) => {
+  if (document.querySelector('.quarto-color-scheme-toggle')) {
+    setupCustomToggle();
+    observer.disconnect();
+  }
+});
+
+// Start observing
+document.addEventListener('DOMContentLoaded', () => {
+  observer.observe(document.body, { childList: true, subtree: true });
+  
+  // Also try immediately in case the button is already there
+  setupCustomToggle();
+});
+</script>
+
+
+
