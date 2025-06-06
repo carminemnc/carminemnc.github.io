@@ -20,8 +20,6 @@ code-fold: true
 
 ## [Perchè]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"} l'inferenza causale?
 
-![](https://timelinecovers.pro/facebook-cover/download/bright-galaxy-milky-way-stars-facebook-cover.jpg)
-
 **L'inferenza causale** è fondamentale perché ci permette di comprendere le relazioni tra cause ed effetti nei fenomeni che osserviamo. A differenza dell'analisi della semplice associazione tra variabili, *l'inferenza causale* mira a stabilire relazioni causali, ovvero a identificare l'effetto di una variabile (il [trattamento]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"}) sulla variabile di interesse ([l'outcome]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"}), tenendo conto di tutte le possibili *covariate*.
 
 Esempi concreti di applicazione dell'inferenza causale possiamo trovarli in:

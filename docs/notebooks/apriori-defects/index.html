@@ -237,11 +237,19 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
   }
 </style>
 <p>The Apriori algorithm is a data mining technique that can help identify frequent patterns and associations among defects or issues encountered during process management activities. Instead of analyzing individual defects in isolation, the <strong>Apriori</strong> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> algorithm allows us to uncover relationships between different types of defects or issues that often occur together.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://data-mining.philippe-fournier-viger.com/wp-content/uploads/2013/03/tdb.png" class="img-fluid figure-img" style="width:33.0%"></p>
-</figure>
-</div>
+<p><span class="math display">\[
+\begin{aligned}
+\begin{array}{c|c}
+\hline
+\text { Case } &amp; \text { Defects } \\
+\hline
+Case \ 1 &amp; [Defect \ 1, Defect \ 2,Defect \ 3] \\
+Case \ 2 &amp; [Defect \ 1, Defect \ 2] \\
+Case \ 3 &amp; [Defect \ 1, Defect \ 4] \\
+Case \ 4 &amp; [Defect \ 1, Defect \ 4,Defect \ 5,Defect \ 6] \\
+\end{array}
+\end{aligned}
+\]</span></p>
 <p>In the context of process management quality assurance, the algorithm works as follows:</p>
 <ol type="1">
 <li><p>It analyzes the defect or issue data to identify the most frequently occurring individual defects or issues across multiple process instances or scenarios.</p></li>

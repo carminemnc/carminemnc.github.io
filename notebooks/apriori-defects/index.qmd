@@ -42,7 +42,19 @@ trans <- as(items_list,"transactions")
 
 The Apriori algorithm is a data mining technique that can help identify frequent patterns and associations among defects or issues encountered during process management activities. Instead of analyzing individual defects in isolation, the **Apriori** ^[[Apriori wikipedia page](https://en.wikipedia.org/wiki/Apriori_algorithm)] algorithm allows us to uncover relationships between different types of defects or issues that often occur together.
 
-![](https://data-mining.philippe-fournier-viger.com/wp-content/uploads/2013/03/tdb.png){fig-align="center" width="33%"}
+$$
+\begin{aligned}
+\begin{array}{c|c}
+\hline 
+\text { Case } & \text { Defects } \\
+\hline 
+Case \ 1 & [Defect \ 1, Defect \ 2,Defect \ 3] \\
+Case \ 2 & [Defect \ 1, Defect \ 2] \\
+Case \ 3 & [Defect \ 1, Defect \ 4] \\
+Case \ 4 & [Defect \ 1, Defect \ 4,Defect \ 5,Defect \ 6] \\
+\end{array}
+\end{aligned}
+$$
 
 In the context of process management quality assurance, the algorithm works as follows:
 

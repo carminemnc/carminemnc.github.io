@@ -169,7 +169,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
   <ul class="collapse">
   <li><a href="#elbow-point" id="toc-elbow-point" class="nav-link" data-scroll-target="#elbow-point">Elbow point</a></li>
   <li><a href="#distorsion" id="toc-distorsion" class="nav-link" data-scroll-target="#distorsion">Distorsion</a></li>
-  <li><a href="#silhouette-score" id="toc-silhouette-score" class="nav-link" data-scroll-target="#silhouette-score">Silhouette score</a>
+  <li><a href="#silhouette-coefficient" id="toc-silhouette-coefficient" class="nav-link" data-scroll-target="#silhouette-coefficient">Silhouette coefficient</a>
   <ul class="collapse">
   <li><a href="#interpreting-it" id="toc-interpreting-it" class="nav-link" data-scroll-target="#interpreting-it">Interpreting it</a></li>
   </ul></li>
@@ -231,10 +231,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <p><a href="https://www.kaggle.com/datasets/vishakhdapat/customer-segmentation-clustering" class="btn"><i class="fa-brands fa-kaggle" aria-label="kaggle"></i> Dataset</a></p>
 <section id="background" class="level1">
 <h1>Background</h1>
-<p><img src="https://scitechdaily.com/images/Black-Hole-Concentration-in-NGC-6397.gif" class="img-fluid"></p>
-<blockquote class="blockquote">
 <p>Cluster analysis or clustering is the task of grouping a set of objects in such a way that objects in the same group (called a cluster) are more similar (in some specific sense defined by the analyst) to each other than to those in other groups (clusters). It is a main task of exploratory data analysis, and a common technique for statistical data analysis, used in many fields, including pattern recognition, image analysis, information retrieval, bioinformatics, data compression, computer graphics and machine learning.</p>
-</blockquote>
 <div class="cell" data-execution_count="2">
 <details>
 <summary>Code</summary>
@@ -334,12 +331,12 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 </ul>
 <p>The goal of the K-Means algorithm is to find cluster assignments that minimize this distortion score, i.e., to group data points such that the average squared distance to their assigned centroids is as small as possible. A lower distortion score indicates better clustering quality.</p>
 </section>
-<section id="silhouette-score" class="level2">
-<h2 class="anchored" data-anchor-id="silhouette-score">Silhouette score</h2>
+<section id="silhouette-coefficient" class="level2">
+<h2 class="anchored" data-anchor-id="silhouette-coefficient">Silhouette coefficient</h2>
 <p><span class="math display">\[s(i) = \frac{b(i) - a(i)}{max(a(i), b(i))}\]</span></p>
 <p>where:</p>
 <ul>
-<li><span class="math inline">\(s(i)\)</span> is the Silhouette Coefficient for the <span class="math inline">\(i\)</span>-th sample.</li>
+<li><span class="math inline">\(s(i)\)</span> is the Silhouette coefficient for the <span class="math inline">\(i\)</span>-th sample.</li>
 <li><span class="math inline">\(a(i)\)</span> is the mean distance between the <span class="math inline">\(i\)</span>-th sample and all other samples in the same cluster.</li>
 <li><span class="math inline">\(b(i)\)</span> is the mean distance between the <span class="math inline">\(i\)</span>-th sample and all other samples in the next nearest cluster.</li>
 </ul>
@@ -365,9 +362,9 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 </div>
 <section id="interpreting-it" class="level3">
 <h3 class="anchored" data-anchor-id="interpreting-it">Interpreting it</h3>
-<p>When the Silhouette Coefficient <span class="math inline">\(s(i)\)</span> is negative, it means that the average distance <span class="math inline">\(a(i)\)</span> of the <span class="math inline">\(i\)</span>-th sample to other samples in its own cluster is greater than the average distance <span class="math inline">\(b(i)\)</span> to the nearest neighboring cluster. This suggests that the <span class="math inline">\(i\)</span>-th sample would be better assigned to the nearest neighboring cluster rather than its current cluster.</p>
-<p>In the Silhouette Plot, clusters with bars that extend into the negative range indicate that some samples within those clusters have been poorly assigned. The wider the negative portion of the bar, the more samples in that cluster have been misclassified.</p>
-<p>The presence of negative Silhouette Coefficient values is a sign that the clustering algorithm has not been able to find well-separated, dense clusters. It suggests that the number of clusters <span class="math inline">\(K\)</span> may not be appropriate for the data, or that the clustering algorithm is not a good fit for the dataset. In such cases, the Silhouette Plot can be used to guide the selection of a more appropriate value of <span class="math inline">\(K\)</span> or the choice of a different clustering algorithm.</p>
+<p>When the Silhouette coefficient <span class="math inline">\(s(i)\)</span> is negative, it means that the average distance <span class="math inline">\(a(i)\)</span> of the <span class="math inline">\(i\)</span>-th sample to other samples in its own cluster is greater than the average distance <span class="math inline">\(b(i)\)</span> to the nearest neighboring cluster. This suggests that the <span class="math inline">\(i\)</span>-th sample would be better assigned to the nearest neighboring cluster rather than its current cluster.</p>
+<p>In the Silhouette plot, clusters with bars that extend into the negative range indicate that some samples within those clusters have been poorly assigned. The wider the negative portion of the bar, the more samples in that cluster have been misclassified.</p>
+<p>The presence of negative Silhouette Coefficient values is a sign that the clustering algorithm has not been able to find well-separated, dense clusters. It suggests that the number of clusters <span class="math inline">\(K\)</span> may not be appropriate for the data, or that the clustering algorithm is not a good fit for the dataset. In such cases, the Silhouette plot can be used to guide the selection of a more appropriate value of <span class="math inline">\(K\)</span> or the choice of a different clustering algorithm.</p>
 <div class="cell" data-execution_count="5">
 <details>
 <summary>Code</summary>
@@ -397,7 +394,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <p><span class="math display">\[s_i = |\{x \in X | \text{label}(x) = i\}|\]</span></p>
 <p>Where <span class="math inline">\(\text{label}(x)\)</span> is the cluster assignment of the <span class="math inline">\(x\)</span>-th sample.</p>
 <p>The final intercluster distance map visualizes the 2D embedded cluster centers <span class="math inline">\(\{\mathbf{z}_i\}_{i=1}^k\)</span>, with the size of each cluster proportional to its membership score <span class="math inline">\(s_i\)</span>.</p>
-<p>This allows the user to gain insights into the relative positions and sizes of the identified clusters, and the relationships between them in the original high-dimensional feature space.</p>
+<p>This allows us to gain insights into the relative positions and sizes of the identified clusters, and the relationships between them in the original high-dimensional feature space.</p>
 
 
 </section>
