@@ -16,6 +16,7 @@
   {
     "listing": "/notebooks.html",
     "items": [
+      "/notebooks/eda/index.html",
       "/notebooks/apriori-defects/index.html",
       "/notebooks/clustering/index.html"
     ]
