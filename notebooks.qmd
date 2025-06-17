@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "Notebooks"
 listing:
   contents: notebooks
   sort: "date desc"
@@ -10,6 +10,9 @@ page-layout: full
 ---
 
 <style>
+  .quarto-title, .quarto-title-block {
+    display: none !important;
+  }
   body {
     background-image: url("imgs/notebooks_land_background.png");
     background-size: cover;

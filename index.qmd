@@ -1,20 +1,15 @@
 ---
-title: ""
-# image: imgs/welcome_here_white.png
+title: "Home"
 
 about:
   template: jolla
-  # links:
-  #   - icon: linkedin
-  #     text: LinkedIn
-  #     href: https://www.linkedin.com/in/carmine-minichini
-  #   - icon: github
-  #     text: Github
-  #     href: https://github.com/carminemnc
 
 ---
 
 <style>
+  .quarto-title, .quarto-title-block {
+    display: none !important;
+  }
   body {
     background-image: url("imgs/land_background.png");
     background-size: cover;

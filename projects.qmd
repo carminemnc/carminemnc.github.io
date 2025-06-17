@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "Projects"
 listing:
   contents: projects
   feed: true
@@ -16,6 +16,9 @@ page-layout: full
 ---
 
 <style>
+  .quarto-title, .quarto-title-block {
+    display: none !important;
+  }
   body {
     background-image: url("imgs/projects_land_background.png");
     background-size: cover;

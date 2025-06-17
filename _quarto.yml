@@ -3,6 +3,7 @@ project:
   output-dir: docs
 
 website:
+  favicon: imgs/carminemnc_w_500x500.png
   google-analytics: 
     tracking-id: "G-BEX0MX4L1P"
     anonymize-ip: true
@@ -19,14 +20,6 @@ website:
         text: Notebooks
       - href: resume/carmine_minichini_resume_eng_version.pdf
         text: Resume
-  # page-footer: 
-  #   background: light
-  #   left: "{{< fa copyright >}} 2023, Carmine Minichini"
-  #   right:
-  #     - icon: github
-  #       href: https://github.com/carminemnc
-  #     - icon: linkedin
-  #       href: https://linkedin.com/in/carmine-minichini
 format:
   html:
     toc: true
