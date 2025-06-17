@@ -4,7 +4,7 @@ description:
   An open source application for managing office desk booking  
 date: 2022-11-23
 categories: [App]
-image: https://github.com/carminemnc/imgs/blob/main/book-your-space.gif?raw=true
+image: book_your_space.gif
 draft: false
 ---
 
