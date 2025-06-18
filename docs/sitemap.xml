@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://carminemnc.github.io/projects/book-your-space/index.html</loc>
-    <lastmod>2025-06-18T07:27:55.256Z</lastmod>
+    <lastmod>2025-06-18T07:46:15.425Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/projects.html</loc>
-    <lastmod>2025-06-18T07:28:43.377Z</lastmod>
+    <lastmod>2025-06-18T07:46:30.083Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/projects/causalwiz/index.html</loc>
@@ -34,10 +34,14 @@
   </url>
   <url>
     <loc>https://carminemnc.github.io/posts.html</loc>
-    <lastmod>2025-06-18T07:27:40.802Z</lastmod>
+    <lastmod>2025-06-18T07:46:46.969Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/projects/tripscraper/index.html</loc>
     <lastmod>2025-06-18T07:27:46.984Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carminemnc.github.io/index.html</loc>
+    <lastmod>2025-06-18T07:46:19.913Z</lastmod>
   </url>
 </urlset>
