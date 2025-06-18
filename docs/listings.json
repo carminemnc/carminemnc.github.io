@@ -8,17 +8,17 @@
     ]
   },
   {
-    "listing": "/posts.html",
-    "items": [
-      "/posts/casual-inference-fchap/index.html"
-    ]
-  },
-  {
     "listing": "/notebooks.html",
     "items": [
       "/notebooks/eda/index.html",
       "/notebooks/apriori-defects/index.html",
       "/notebooks/clustering/index.html"
+    ]
+  },
+  {
+    "listing": "/posts.html",
+    "items": [
+      "/posts/casual-inference-fchap/index.html"
     ]
   }
 ]

@@ -16,9 +16,9 @@ draft: false
     background-attachment: fixed;
     background-repeat: no-repeat;
   }
-</style>
+</style>clear
 
-[{{< fa brands google >}} demo](https://script.google.com/macros/s/AKfycbw7IDvU8-UN427sO_u5RLYf8kSGlOolFlrlPA_dk1Ha4H2MgACJn8H8j79t_YfKS1sJ/exec){.btn} [{{< fa brands github >}} source code](https://github.com/carminemnc/book-your-space){.btn}
+[{{< fa brands google >}} demo](https://script.google.com/macros/s/AKfycbxo4Gaw5VOmAXQMPJCFNDWQjvRFxgKw1ceasoLUTVebP-49RkH1QfzrlsDaThI9lRLl/exec){.btn} [{{< fa brands github >}} source code](https://github.com/carminemnc/book-your-space){.btn}
 
 <br>
 
@@ -39,6 +39,3 @@ It allows:
 - Bookings download
 
 Fork the script [here](https://script.google.com/home/projects/12VbFZv2Shpnam4G04BiCxsW5403jJBHFXC18PMEfaZhNiIujAW89ecri/edit) and adapt it on your needs.
-
-
-
