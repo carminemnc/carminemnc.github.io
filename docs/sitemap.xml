@@ -2,46 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://carminemnc.github.io/index.html</loc>
-    <lastmod>2025-06-17T16:38:38.694Z</lastmod>
+    <lastmod>2025-06-18T06:59:34.270Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/projects.html</loc>
-    <lastmod>2025-06-17T16:40:01.372Z</lastmod>
+    <lastmod>2025-06-18T06:59:28.777Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/projects/causalwiz/index.html</loc>
-    <lastmod>2025-06-17T16:33:50.950Z</lastmod>
+    <lastmod>2025-06-18T06:59:22.187Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/posts.html</loc>
-    <lastmod>2025-06-17T16:39:46.001Z</lastmod>
+    <lastmod>2025-06-18T06:59:19.765Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/notebooks.html</loc>
-    <lastmod>2025-06-17T16:39:50.259Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carminemnc.github.io/notebooks/apriori-defects/index.html</loc>
-    <lastmod>2025-06-17T16:34:32.872Z</lastmod>
+    <lastmod>2025-06-18T06:59:13.121Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/notebooks/clustering/index.html</loc>
-    <lastmod>2025-06-17T16:34:43.802Z</lastmod>
+    <lastmod>2025-06-18T06:59:06.070Z</lastmod>
   </url>
   <url>
-    <loc>https://carminemnc.github.io/posts/casual-inference-fchap/index.html</loc>
-    <lastmod>2025-06-17T16:33:36.749Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carminemnc.github.io/projects/book-your-space/index.html</loc>
-    <lastmod>2025-06-17T16:33:07.169Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carminemnc.github.io/projects/tripscraper/index.html</loc>
-    <lastmod>2025-06-17T16:34:03.697Z</lastmod>
+    <loc>https://carminemnc.github.io/notebooks/apriori-defects/index.html</loc>
+    <lastmod>2025-06-18T06:58:59.307Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/notebooks/eda/index.html</loc>
-    <lastmod>2025-06-17T16:34:23.447Z</lastmod>
+    <lastmod>2025-06-18T06:59:11.672Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carminemnc.github.io/posts/casual-inference-fchap/index.html</loc>
+    <lastmod>2025-06-18T06:59:18.615Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carminemnc.github.io/projects/book-your-space/index.html</loc>
+    <lastmod>2025-06-18T06:59:20.893Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carminemnc.github.io/projects/tripscraper/index.html</loc>
+    <lastmod>2025-06-18T06:59:27.598Z</lastmod>
   </url>
 </urlset>
