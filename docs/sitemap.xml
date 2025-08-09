@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://carminemnc.github.io/projects/book-your-space/index.html</loc>
-    <lastmod>2025-06-18T07:46:15.425Z</lastmod>
+    <loc>https://carminemnc.github.io/index.html</loc>
+    <lastmod>2025-08-09T09:14:30.523Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/projects.html</loc>
-    <lastmod>2025-06-18T07:46:30.083Z</lastmod>
+    <lastmod>2025-08-09T09:17:12.139Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/projects/causalwiz/index.html</loc>
-    <lastmod>2025-06-18T07:27:42.347Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carminemnc.github.io/posts/casual-inference-fchap/index.html</loc>
-    <lastmod>2025-06-18T07:27:39.642Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carminemnc.github.io/notebooks/eda/index.html</loc>
-    <lastmod>2025-06-18T07:27:32.493Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carminemnc.github.io/notebooks/apriori-defects/index.html</loc>
-    <lastmod>2025-06-18T07:27:20.209Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carminemnc.github.io/notebooks/clustering/index.html</loc>
-    <lastmod>2025-06-18T07:27:27.024Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carminemnc.github.io/notebooks.html</loc>
-    <lastmod>2025-06-18T07:27:34.061Z</lastmod>
+    <lastmod>2025-08-09T09:14:18.956Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/posts.html</loc>
-    <lastmod>2025-06-18T07:46:46.969Z</lastmod>
+    <lastmod>2025-08-09T09:14:16.653Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carminemnc.github.io/notebooks.html</loc>
+    <lastmod>2025-08-09T09:17:16.928Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carminemnc.github.io/notebooks/clustering/index.html</loc>
+    <lastmod>2025-08-09T09:14:03.303Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carminemnc.github.io/notebooks/apriori-defects/index.html</loc>
+    <lastmod>2025-08-09T09:13:56.811Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carminemnc.github.io/notebooks/eda/index.html</loc>
+    <lastmod>2025-08-09T09:14:08.692Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carminemnc.github.io/posts/casual-inference-fchap/index.html</loc>
+    <lastmod>2025-08-09T09:14:15.692Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carminemnc.github.io/projects/book-your-space/index.html</loc>
+    <lastmod>2025-08-09T09:14:17.731Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/projects/tripscraper/index.html</loc>
-    <lastmod>2025-06-18T07:27:46.984Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carminemnc.github.io/index.html</loc>
-    <lastmod>2025-06-18T07:46:19.913Z</lastmod>
+    <lastmod>2025-08-09T09:14:23.339Z</lastmod>
   </url>
 </urlset>
