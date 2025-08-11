@@ -18,7 +18,7 @@ website:
         text: Projects
       - href: notebooks.qmd
         text: Notebooks
-      - href: resume/carmine_minichini_resume_eng_version.pdf
+      - href: resume/carmine_minichini_resume.pdf
         text: Resume
 format:
   html:
