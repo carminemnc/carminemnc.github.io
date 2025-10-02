@@ -8,16 +8,6 @@ image: book_your_space.gif
 draft: false
 ---
 
-<style>
-  body {
-    background-image: url("../../imgs/articles_background.png");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-  }
-</style>clear
-
 [{{< fa brands google >}} demo](https://script.google.com/macros/s/AKfycbxo4Gaw5VOmAXQMPJCFNDWQjvRFxgKw1ceasoLUTVebP-49RkH1QfzrlsDaThI9lRLl/exec){.btn} [{{< fa brands github >}} source code](https://github.com/carminemnc/book-your-space){.btn}
 
 <br>

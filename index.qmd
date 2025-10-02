@@ -10,17 +10,6 @@ about:
   .quarto-title, .quarto-title-block {
     display: none !important;
   }
-  body {
-    background-image: url("imgs/land_background.png");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    overflow-y: hidden;
-  }
   
   .quarto-title-meta {
     display: none;
@@ -87,6 +76,7 @@ about:
     opacity: 0;
     transform: translate(3em, 2em) rotate(0deg);
   }
+
 </style>
 
 <script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
@@ -111,6 +101,7 @@ about:
 </label>
 </div>
 
+
 <div class="social-container" style="margin-top: 0;">
   <ul class="social-icons">
     <li>
@@ -122,6 +113,7 @@ about:
   </ul>
 </div>
 </div>
+
 
 <script>
 // Function to find and trigger the Quarto theme toggle
@@ -159,7 +151,5 @@ document.addEventListener('DOMContentLoaded', () => {
   // Also try immediately in case the button is already there
   setupCustomToggle();
 });
+
 </script>
-
-
-

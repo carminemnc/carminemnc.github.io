@@ -228,7 +228,7 @@
     "href": "projects/book-your-space/index.html",
     "title": "Book your space",
     "section": "",
-    "text": "clear\n demo  source code\n\n\nMotivation\nThe COVID-19 pandemic breakout has led to a significant shift in the way we work, with many employees now working remotely or in a hybrid model. This has created a need for new tools and technologies to help businesses manage their office space more effectively.\nThis application for managing desk office booking is designed to address this challenge.\n\n\nHow it works\nBuild on Google apps script platform, the application is designed to work in a Google enviroment.\nIt allows:\n\nPerson quota managing over 2 weeks of booking\nDisplay names customization\nBookings download\n\nFork the script here and adapt it on your needs."
+    "text": "demo  source code\n\n\nMotivation\nThe COVID-19 pandemic breakout has led to a significant shift in the way we work, with many employees now working remotely or in a hybrid model. This has created a need for new tools and technologies to help businesses manage their office space more effectively.\nThis application for managing desk office booking is designed to address this challenge.\n\n\nHow it works\nBuild on Google apps script platform, the application is designed to work in a Google enviroment.\nIt allows:\n\nPerson quota managing over 2 weeks of booking\nDisplay names customization\nBookings download\n\nFork the script here and adapt it on your needs."
   },
   {
     "objectID": "projects/tripscraper/index.html",

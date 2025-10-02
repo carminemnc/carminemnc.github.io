@@ -7,16 +7,6 @@ categories: [python,eda]
 image: eda.gif
 ---
 
-<style>
-  body {
-    background-image: url("../../imgs/articles_background.png");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-  }
-</style>
-
 [{{< fa brands kaggle >}} Dataset](https://www.kaggle.com/datasets/lorenzozoppelletto/financial-risk-for-loan-approval/){.btn}
 
 ```{python}

@@ -1,9 +1,8 @@
 /*-- scss:defaults --*/
 
 // Import fonts (define mainfont in _quarto.yml)
-// @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&family=Nunito:wght@300;800&family=Roboto+Mono:wght@400;700&display=swap');
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css);
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
 
 // personal palette
 $blue-munsell: #0085a1;
@@ -20,7 +19,7 @@ $white: #ffffff;
 // base colors
 $navbar-bg: $blue-munsell;
 $navbar-fg: $black; 
-$navbar-hl: $white; 
+$navbar-hl: $black; 
 $body-bg: $platinum;
 $body-color: $black;
 $link-color: $dark-cyan;
@@ -148,10 +147,51 @@ h5, h6 {
   width: auto;
 }
 
-// navbar rounding borders
+// glassmorphism navbar with curved borders
 .navbar {
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px; 
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05)) !important;
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(2px);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  margin: 10px;
+}
+
+// navbar link base styling
+.navbar-nav .nav-link {
+  position: relative;
+  z-index: 1;
+}
+
+// pencil-like highlighter effect
+.navbar-nav .nav-link::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -2px;
+  width: 0;
+  height: 70%;
+  background: linear-gradient(90deg, 
+    rgba(0, 139, 139, 0.4) 0%, 
+    rgba(0, 139, 139, 0.6) 50%, 
+    rgba(0, 139, 139, 0.3) 100%);
+  transition: width 0.4s ease-out;
+  transform: translateY(-50%) skewX(-5deg);
+  border-radius: 2px;
+  z-index: -1;
+}
+
+// show highlighter on hover/active
+.navbar-nav .nav-link:hover::before,
+.navbar-nav .nav-link.active::before {
+  width: 100%;
+}
+
+// fade out other highlights when hovering navbar
+.navbar-nav:hover .nav-link:not(:hover)::before {
+  width: 0 !important;
+  transition: width 0.6s ease-in;
 }
 
 // nav footer rounding borders
@@ -253,27 +293,40 @@ $accent        : $eerie-black;
 .cool-link {
   position: relative;
   text-decoration: none;
-  color: #0085a1;
-  font-weight: bold;
-  transition: color 0.3s ease;
+  color: inherit;
+  z-index: 1;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.cool-link:hover {
+  color: inherit !important;
+  transform: scale(1.1) translateY(-2px);
 }
 
 .cool-link::before {
   content: "";
   position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: black;
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-}
-
-.cool-link:hover {
-  color: black;
+  top: 50%;
+  left: -3px;
+  width: calc(100% + 6px);
+  height: 110%;
+  background: linear-gradient(90deg, 
+    rgba(0, 139, 139, 0.4) 0%, 
+    rgba(0, 139, 139, 0.6) 50%, 
+    rgba(0, 139, 139, 0.3) 100%);
+  transform: translateY(-50%) skewX(-2deg) rotate(-0.5deg);
+  border-radius: 4px 2px 3px 1px;
+  box-shadow: 0 1px 3px rgba(0, 139, 139, 0.6);
+  z-index: -1;
+  transition: all 0.3s ease;
 }
 
 .cool-link:hover::before {
-  transform: scaleX(1);
+  background: linear-gradient(90deg, 
+    rgba(0, 139, 139, 0.4) 0%, 
+    rgba(0, 139, 139, 0.6) 50%, 
+    rgba(0, 139, 139, 0.3) 100%);
+  box-shadow: 0 4px 12px rgba(0, 139, 139, 0.6);
+  transform: translateY(-50%) skewX(-2deg) rotate(-0.5deg) scale(1.05);
 }

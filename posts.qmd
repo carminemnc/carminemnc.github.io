@@ -13,12 +13,5 @@ page-layout: full
   .quarto-title, .quarto-title-block {
     display: none !important;
   }
-  body {
-    background-image: url("imgs/posts_land_background.png");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-  }
 </style>
 
