@@ -4,8 +4,6 @@ description:
   An open source application for managing office desk booking  
 date: 2022-11-23
 categories: [App]
-image: book_your_space.gif
-draft: false
 ---
 
 [{{< fa brands google >}} demo](https://script.google.com/macros/s/AKfycbxo4Gaw5VOmAXQMPJCFNDWQjvRFxgKw1ceasoLUTVebP-49RkH1QfzrlsDaThI9lRLl/exec){.btn} [{{< fa brands github >}} source code](https://github.com/carminemnc/book-your-space){.btn}
@@ -14,13 +12,13 @@ draft: false
 
 # Motivation 
 
-The *COVID-19 pandemic breakout* has led to a significant shift in the way we work, with many employees now working remotely or in a hybrid model. This has created a need for new tools and technologies to help businesses manage their office space more effectively.
+The [*COVID-19 pandemic breakout*]{.double-underline} has led to a significant shift in the way we work, with many employees now working remotely or in a hybrid model. This has created a need for new tools and technologies to help businesses manage their office space more effectively.
 
 This application for managing desk office booking is designed to address this challenge.
 
 # How it works
 
-Build on [Google apps script](https://www.google.com/script/start/) platform, the application is designed to work in a Google enviroment.
+Build on <a href="https://www.google.com/script/start/" class="cool-link">Google apps script</a> platform, the application is designed to work in a Google enviroment.
 
 It allows: 
 
@@ -28,4 +26,4 @@ It allows:
 - Display names customization
 - Bookings download
 
-Fork the script [here](https://script.google.com/home/projects/12VbFZv2Shpnam4G04BiCxsW5403jJBHFXC18PMEfaZhNiIujAW89ecri/edit) and adapt it on your needs.
+Fork the script <a href="https://script.google.com/home/projects/12VbFZv2Shpnam4G04BiCxsW5403jJBHFXC18PMEfaZhNiIujAW89ecri/edit" class="cool-link">here</a> and adapt it on your needs.

@@ -4,8 +4,6 @@ description:
   Tools for Causal Inference Analysis and Visualization  
 date: 2025-05-07
 categories: [App]
-image: causal_inference.gif
-draft: false
 ---
 
 [{{< fa brands github >}} source code](https://github.com/carminemnc/causalwiz){.btn}

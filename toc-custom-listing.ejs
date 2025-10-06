@@ -1,0 +1,31 @@
+<div class="glass-toc">
+<% items.forEach(item => { %>
+<div class="glass-entry">
+<a href="<%- item.outputHref %>">
+<h3 class="entry-title"><%- item.title %></h3>
+<p class="entry-desc"><%- item.description %></p>
+</a>
+</div>
+<% }) %>
+</div>
+
+<style>
+.glass-toc { max-width: 700px; margin: 0.5rem auto; padding: 0.5rem 2rem; }
+.glass-entry { margin: 1.2rem 0; padding: 0.5rem 0 1rem; position: relative; transition: all 0.4s ease; cursor: pointer; }
+.glass-entry::before { content: "×"; position: absolute; left: -18px; top: 0.4rem; font: 2.5rem serif; color: var(--bs-body-color); transform: rotate(-12deg) scale(0.9); opacity: 0.6; transition: all 0.3s ease; }
+.glass-entry:hover { transform: translateX(15px) scale(1.02); filter: drop-shadow(0 8px 20px rgba(0,0,0,0.15)); }
+.glass-entry:hover::before { transform: rotate(-18deg) scale(1.2); opacity: 0.9; color: #008b8b; text-shadow: 0 1px 3px rgba(0,139,139,0.3); }
+.glass-entry:hover::after { content: ""; position: absolute; top: -2px; left: -5px; width: calc(50% + 10px); height: calc(80% + 1px); background: linear-gradient(135deg, rgba(255,215,0,0.3), rgba(255,165,0,0.4), transparent); transform: skew(-2deg,-1deg) rotate(-1deg); border-radius: 15px 2px 18px 5px / 8px 12px 4px 10px; z-index: -1; animation: highlighter 0.6s ease-out forwards; }
+.glass-entry a { text-decoration: none; color: inherit; display: block; margin-left: 10px; }
+.entry-title { margin: 0; font: 500 1.1rem/1; position: relative;padding-bottom: 10px; }
+.entry-date { font-size: 0.6rem; font-weight: 300; margin-left: 0.5rem; }
+.anchorjs-link { display: none !important; }
+.entry-title::before, .entry-title::after { content: ""; position: absolute; left: 0; width: 70%; background: var(--bs-body-color); transition: all 0.3s ease; }
+.entry-title::before { bottom: 0; height: 2px; transform: rotate(-0.3deg); opacity: 0.3; }
+.entry-title::after { bottom: -3px; height: 1.5px; transform: rotate(0.5deg); opacity: 0.2; }
+.glass-entry:hover .entry-title::before, .glass-entry:hover .entry-title::after { background: #008b8b; }
+.glass-entry:hover .entry-title::before { opacity: 0.6; transform: rotate(-1deg) scaleY(1.5); }
+.glass-entry:hover .entry-title::after { opacity: 0.4; transform: rotate(1.5deg) scaleY(1.3); }
+.entry-desc { margin: 0.3rem 0 0; font-size: 0.8rem }
+@keyframes highlighter { 0% { width: 0; opacity: 0; } 30% { opacity: 0.8; } 100% { opacity: 0.9; } }
+</style>

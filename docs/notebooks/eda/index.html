@@ -171,7 +171,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
   <ul class="collapse">
   <li><a href="#loan-approval-landscape" id="toc-loan-approval-landscape" class="nav-link" data-scroll-target="#loan-approval-landscape">Loan approval landscape</a></li>
   <li><a href="#income-first-line-of-defense" id="toc-income-first-line-of-defense" class="nav-link" data-scroll-target="#income-first-line-of-defense">Income: first line of defense</a></li>
-  <li><a href="#who-gets-loans" id="toc-who-gets-loans" class="nav-link" data-scroll-target="#who-gets-loans">Who gets loans?</a></li>
+  <li><a href="#who-gets-loans" id="toc-who-gets-loans" class="nav-link" data-scroll-target="#who-gets-loans"><span class="double-underline">Who gets loans?</span></a></li>
   <li><a href="#wealth-indicators" id="toc-wealth-indicators" class="nav-link" data-scroll-target="#wealth-indicators">Wealth indicators</a></li>
   <li><a href="#credit-history-trust-factor" id="toc-credit-history-trust-factor" class="nav-link" data-scroll-target="#credit-history-trust-factor">Credit history: trust factor</a></li>
   <li><a href="#the-approval-formula" id="toc-the-approval-formula" class="nav-link" data-scroll-target="#the-approval-formula">The approval formula</a></li>
@@ -223,7 +223,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <p><a href="https://www.kaggle.com/datasets/lorenzozoppelletto/financial-risk-for-loan-approval/" class="btn"><i class="fa-brands fa-kaggle" aria-label="kaggle"></i> Dataset</a></p>
 <section id="motivation-and-analysis-design" class="level1">
 <h1>Motivation and analysis design</h1>
-<p>This analysis serves as an exercise in data visualization and exploratory data analysis (EDA) techniques. We aim to dissect a loan approval dataset to uncover patterns, relationships, and factors influencing loan decisions. While the insights gained may be valuable, the primary focus is on demonstrating various visualization methods and analytical approaches.</p>
+<p>This analysis serves as an exercise in data visualization and exploratory data analysis (<span class="double-underline">EDA</span>) techniques. We aim to dissect a loan approval dataset to uncover patterns, relationships, and factors influencing loan decisions. While the insights gained may be valuable, the primary focus is on demonstrating various visualization methods and analytical approaches.</p>
 <div style="text-align: center;">
 <div class="cell">
 <div class="cell-output-display">
@@ -347,8 +347,8 @@ graph TD
 </div>
 </section>
 <section id="who-gets-loans" class="level2">
-<h2 class="anchored" data-anchor-id="who-gets-loans">Who gets loans?</h2>
-<p>The analysis of demographic variables reveals a clear hierarchy of factors influencing loan approval. Education emerges as the most decisive factor, with a significant gap between approval rates for higher degrees (PhD 48-63%) and lower ones (High School 16-22%). This pattern is further reinforced by age: approval rates consistently increase with age across all education levels, suggesting that life experience and financial stability are highly valued. Professional stability also plays a key role, with self-employed and employed individuals enjoying significantly higher approval rates than the unemployed. Surprisingly, marital status has a marginal impact, suggesting a more equitable approach based on individual merit rather than social factors.</p>
+<h2 class="anchored" data-anchor-id="who-gets-loans"><span class="double-underline">Who gets loans?</span></h2>
+<p>The analysis of demographic variables reveals a clear hierarchy of factors influencing loan approval. <span class="circled">Education</span> emerges as the most decisive factor, with a significant gap between approval rates for higher degrees (PhD 48-63%) and lower ones (High School 16-22%). This pattern is further reinforced by age: approval rates consistently increase with age across all education levels, suggesting that life experience and financial stability are highly valued. Professional stability also plays a key role, with self-employed and employed individuals enjoying significantly higher approval rates than the unemployed. Surprisingly, marital status has a marginal impact, suggesting a more equitable approach based on individual merit rather than social factors.</p>
 <div class="cell" data-execution_count="7">
 <details>
 <summary>Code</summary>
@@ -479,8 +479,8 @@ graph TD
 <h2 class="anchored" data-anchor-id="the-approval-formula">The approval formula</h2>
 <p>As highlighted in our previous analyses, we can now precisely quantify the impact of each variable on the risk score through their correlations.</p>
 <ul>
-<li><p>On one side, we find factors that increase risk: bankruptcy history emerges as the most critical element, with a positive correlation of 0.4, followed by total debt-to-income ratio and debt-to-income ratio (0.35). Interest rates and previous defaults also contribute to increasing risk, albeit with a more moderate impact (0.2).</p></li>
-<li><p>On the other side, some factors act as protective elements, reducing risk: income, both monthly and annual, shows the strongest negative correlation (-0.4), followed by net worth and total assets (-0.3). Credit score and length of credit history confirm their protective role with moderate negative correlations (-0.25). It’s particularly interesting to note how the requested loan amount has a relatively modest impact on the risk score (0.15), suggesting that banks focus more on repayment capability than on the loan size itself.</p></li>
+<li><p><span class="highlight">On one side</span>, we find factors that increase risk: bankruptcy history emerges as the most critical element, with a positive correlation of 0.4, followed by total debt-to-income ratio and debt-to-income ratio (0.35). Interest rates and previous defaults also contribute to increasing risk, albeit with a more moderate impact (0.2).</p></li>
+<li><p><span class="highlight">On the other side</span>, some factors act as protective elements, reducing risk: income, both monthly and annual, shows the strongest negative correlation (-0.4), followed by net worth and total assets (-0.3). Credit score and length of credit history confirm their protective role with moderate negative correlations (-0.25). It’s particularly interesting to note how the requested loan amount has a relatively modest impact on the risk score (0.15), suggesting that banks focus more on repayment capability than on the loan size itself.</p></li>
 </ul>
 <div class="cell" data-execution_count="10">
 <details>

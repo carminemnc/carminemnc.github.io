@@ -2,21 +2,16 @@
 title: "Projects"
 listing:
   contents: projects
-  feed: true
   sort: "date desc"
-  type: grid
-  grid-item-border: true
-  grid-item-align: left
-  max-description-length: 175
-  date-format: medium
-  #categories: true
-  sort-ui: false
-  filter-ui: false
+  type: custom
+  template: toc-custom-listing.ejs
+  fields: [date, title, description, reading-time, path]
+  max-items: 20
 page-layout: full
 ---
 
 <style>
-  .quarto-title, .quarto-title-block {
-    display: none !important;
-  }
+.quarto-title, .quarto-title-block {
+  display: none !important;
+}
 </style>

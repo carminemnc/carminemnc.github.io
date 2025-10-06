@@ -4,13 +4,12 @@ author: "Carmine Minichini"
 description: "Il dilemma dell'uovo e della gallina"
 date: "2024-10-28"
 categories: [casual inference, R]
-image: causal_inference.gif
 code-fold: true
 ---
 
-## [Perchè]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"} l'inferenza causale?
+## [Perchè]{.highlight} l'inferenza causale?
 
-**L'inferenza causale** è fondamentale perché ci permette di comprendere le relazioni tra cause ed effetti nei fenomeni che osserviamo. A differenza dell'analisi della semplice associazione tra variabili, *l'inferenza causale* mira a stabilire relazioni causali, ovvero a identificare l'effetto di una variabile (il [trattamento]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"}) sulla variabile di interesse ([l'outcome]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"}), tenendo conto di tutte le possibili *covariate*.
+**L'inferenza causale** è fondamentale perché ci permette di comprendere le relazioni tra cause ed effetti nei fenomeni che osserviamo. A differenza dell'analisi della semplice associazione tra variabili, *l'inferenza causale* mira a stabilire relazioni causali, ovvero a identificare l'effetto di una variabile (il [trattamento]{.double-underline}) sulla variabile di interesse ([l'outcome]{.double-underline}), tenendo conto di tutte le possibili *covariate*.
 
 Esempi concreti di applicazione dell'inferenza causale possiamo trovarli in:
 
@@ -83,7 +82,7 @@ $$ Y_i \equiv Y_i(W_i) = \begin{cases} Y_i(1) & \text{se } W_i = 1 \\ Y_i(0) & \
 
 ### Il nostro obiettivo
 
-L'obiettivo è stimare l'effetto medio del trattamento (in inglese ATE, [Average treatment effect]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"} ):
+L'obiettivo è stimare l'effetto medio del trattamento (in inglese ATE, [Average treatment effect]{.highlight}):
 
 $$ \tau = \mathbb{E}[Y_i(1) - Y_i(0)]$$ {#eq-ate}
 
@@ -123,9 +122,9 @@ In un contesto reale (o osservazionale) però molto spesso l'esposizione al trat
 
 Nell'esempio presentato qui è chiaramente visibile che:
 
--   La popolazione trattata(o di trattamento) ,$Y_i(1)$ , risulta avere un età più alta e una visione politica più di [*destra/conservatrice*]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"}
+-   La popolazione trattata(o di trattamento) ,$Y_i(1)$ , risulta avere un età più alta e una visione politica più di [*destra/conservatrice*]{.highlight}
 
--   Mentre la popolazione non trattata (o di controllo), $Y_i(1)$ , risulta essere più giovane e con una visione politica più di [*sinistra/liberale*]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"}
+-   Mentre la popolazione non trattata (o di controllo), $Y_i(1)$ , risulta essere più giovane e con una visione politica più di [*sinistra/liberale*]{.highlight}
 
 ```{r}
 # in un contesto reale...
@@ -192,7 +191,7 @@ L'ipotesi di confondimento assicura che non ci siano variabili non osservate che
 
 Queste ipotesi sono cruciali per l'applicabilità di metodi come l'IPW e l'AIPW, discussi nelle sezioni successive.
 
-## 2. Difference in means
+## 2. [Difference in means]{.double-underline}
 
 Lo stimatore della differenza delle medie (difference-in-means) è un semplice stimatore non distorto dell'ATE. L'idea è calcolare la media dei outcomes nel gruppo di trattamento meno la media dei outcomes nel gruppo di controllo:
 
@@ -208,11 +207,11 @@ In questo caso, l'ipotesi di indipendenza tra assegnazione al trattamento e pote
 
 Ciò significa che non ci sono fattori confondenti che influenzano sia l'assegnazione al trattamento che l'outcome.
 
-Sotto questa ipotesi, la differenza tra la media degli outcomes nel gruppo di trattamento e la media degli outcomes nel gruppo di controllo fornisce una stima [non distorta]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"} dell'effetto medio del trattamento (ATE).
+Sotto questa ipotesi, la differenza tra la media degli outcomes nel gruppo di trattamento e la media degli outcomes nel gruppo di controllo fornisce una stima [non distorta]{.highlight} dell'effetto medio del trattamento (ATE).
 
 In contesti osservazionali, invece, sono necessari metodi più avanzati come l'IPW e l'AIPW.
 
-### Stima di $\tau$ in un contesto [sperimentale]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"}
+### Stima di $\tau$ in un contesto [sperimentale]{.double-underline}
 
 La media nel gruppo di trattamento:\
 $$
@@ -225,7 +224,7 @@ W <- data[,treatment]
 print(mean(Y[W==1]))
 ```
 
-e calcolando la media nel gruppo di [controllo]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"}
+e calcolando la media nel gruppo di [controllo]{.double-underline}
 
 $$
 \frac{1}{n_0} \sum_{i: W_i = 0} Y_i
@@ -255,7 +254,7 @@ Questo significa che, in media, le persone nel gruppo di trattamento hanno rispo
     Y_i = Y_i(0) + W_i(Y_i(1) - Y_i(0))
     $$
 
-## 3. [Direct]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"} estimator
+## 3. Direct estimator
 
 Lo stimatore diretto (direct estimation) è un metodo per stimare l'effetto medio del trattamento (ATE) che può essere utilizzato in contesti osservazionali, ovvero quando l'assegnazione al trattamento non è casuale ma dipende dalle covariate osservate $X_i$.
 
@@ -282,7 +281,7 @@ Questo stimatore sfrutta la regressione per ottenere stime più accurate dell'AT
 
 Pertanto, quando possibile, è preferibile utilizzare metodi come l'AIPW, che sono più robusti alle ipotesi di modellazione.
 
-## 4. [IPW]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"} (Inverse propensity-weighted estimator)
+## 4. IPW (Inverse propensity-weighted estimator)
 
 #### Supponiamo..
 
@@ -346,7 +345,7 @@ results <- ipw_estimators(
 
 Per superare questi svantaggi, nella prossima sezione verrà introdotto un metodo più sofisticato, l'AIPW, che combina i vantaggi dell'IPW e della regressione diretta.
 
-## 5. [AIPW]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"} (Augmented inverse propensity-weighted estimator)
+## 5. AIPW (Augmented inverse propensity-weighted estimator)
 
 L'estimatore AIPW è disponibile in contesti con ipotesi di non confondimento e overlapping. La sua formula è la seguente:
 
@@ -385,7 +384,7 @@ results <- ipw_estimators(
 )
 ```
 
-## 6. Elementi di [diagnostica]{style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"}
+## 6. [Elementi di diagnostica]{.circled}
 
 Come abbiamo visto, in contesti osservazionali le distribuzioni delle covariate possono essere molto diverse tra individui trattati e non trattati. Tali discrepanze possono portare a stime distorte dell'ATE. Ci si aspetterebbe che ponderando verso l'alto o verso il basso le osservazioni in base ai pesi di propensione inversi, le loro medie siano simili.
 

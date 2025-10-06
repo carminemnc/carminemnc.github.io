@@ -164,23 +164,23 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#perchè-linferenza-causale" id="toc-perchè-linferenza-causale" class="nav-link active" data-scroll-target="#perchè-linferenza-causale"><span style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);">Perchè</span> l’inferenza causale?</a></li>
+  <li><a href="#perchè-linferenza-causale" id="toc-perchè-linferenza-causale" class="nav-link active" data-scroll-target="#perchè-linferenza-causale"><span class="highlight">Perchè</span> l’inferenza causale?</a></li>
   <li><a href="#i-dati-che-utilizzeremo" id="toc-i-dati-che-utilizzeremo" class="nav-link" data-scroll-target="#i-dati-che-utilizzeremo">I dati che utilizzeremo:</a></li>
   <li><a href="#notazione" id="toc-notazione" class="nav-link" data-scroll-target="#notazione">1. Notazione</a>
   <ul class="collapse">
   <li><a href="#il-nostro-obiettivo" id="toc-il-nostro-obiettivo" class="nav-link" data-scroll-target="#il-nostro-obiettivo">Il nostro obiettivo</a></li>
   </ul></li>
-  <li><a href="#difference-in-means" id="toc-difference-in-means" class="nav-link" data-scroll-target="#difference-in-means">2. Difference in means</a>
+  <li><a href="#difference-in-means" id="toc-difference-in-means" class="nav-link" data-scroll-target="#difference-in-means">2. <span class="double-underline">Difference in means</span></a>
   <ul class="collapse">
-  <li><a href="#stima-di-tau-in-un-contesto-sperimentale" id="toc-stima-di-tau-in-un-contesto-sperimentale" class="nav-link" data-scroll-target="#stima-di-tau-in-un-contesto-sperimentale">Stima di <span class="math inline">\(\tau\)</span> in un contesto <span style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);">sperimentale</span></a></li>
+  <li><a href="#stima-di-tau-in-un-contesto-sperimentale" id="toc-stima-di-tau-in-un-contesto-sperimentale" class="nav-link" data-scroll-target="#stima-di-tau-in-un-contesto-sperimentale">Stima di <span class="math inline">\(\tau\)</span> in un contesto <span class="double-underline">sperimentale</span></a></li>
   </ul></li>
-  <li><a href="#direct-estimator" id="toc-direct-estimator" class="nav-link" data-scroll-target="#direct-estimator">3. <span style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);">Direct</span> estimator</a></li>
-  <li><a href="#ipw-inverse-propensity-weighted-estimator" id="toc-ipw-inverse-propensity-weighted-estimator" class="nav-link" data-scroll-target="#ipw-inverse-propensity-weighted-estimator">4. <span style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);">IPW</span> (Inverse propensity-weighted estimator)</a>
+  <li><a href="#direct-estimator" id="toc-direct-estimator" class="nav-link" data-scroll-target="#direct-estimator">3. Direct estimator</a></li>
+  <li><a href="#ipw-inverse-propensity-weighted-estimator" id="toc-ipw-inverse-propensity-weighted-estimator" class="nav-link" data-scroll-target="#ipw-inverse-propensity-weighted-estimator">4. IPW (Inverse propensity-weighted estimator)</a>
   <ul class="collapse">
   <li><a href="#lipw" id="toc-lipw" class="nav-link" data-scroll-target="#lipw">L’IPW</a></li>
   </ul></li>
-  <li><a href="#aipw-augmented-inverse-propensity-weighted-estimator" id="toc-aipw-augmented-inverse-propensity-weighted-estimator" class="nav-link" data-scroll-target="#aipw-augmented-inverse-propensity-weighted-estimator">5. <span style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);">AIPW</span> (Augmented inverse propensity-weighted estimator)</a></li>
-  <li><a href="#elementi-di-diagnostica" id="toc-elementi-di-diagnostica" class="nav-link" data-scroll-target="#elementi-di-diagnostica">6. Elementi di <span style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);">diagnostica</span></a></li>
+  <li><a href="#aipw-augmented-inverse-propensity-weighted-estimator" id="toc-aipw-augmented-inverse-propensity-weighted-estimator" class="nav-link" data-scroll-target="#aipw-augmented-inverse-propensity-weighted-estimator">5. AIPW (Augmented inverse propensity-weighted estimator)</a></li>
+  <li><a href="#elementi-di-diagnostica" id="toc-elementi-di-diagnostica" class="nav-link" data-scroll-target="#elementi-di-diagnostica">6. <span class="circled">Elementi di diagnostica</span></a></li>
   </ul>
 </nav>
     </div>
@@ -226,8 +226,8 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 </header>
 
 <section id="perchè-linferenza-causale" class="level2">
-<h2 class="anchored" data-anchor-id="perchè-linferenza-causale"><span style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);">Perchè</span> l’inferenza causale?</h2>
-<p><strong>L’inferenza causale</strong> è fondamentale perché ci permette di comprendere le relazioni tra cause ed effetti nei fenomeni che osserviamo. A differenza dell’analisi della semplice associazione tra variabili, <em>l’inferenza causale</em> mira a stabilire relazioni causali, ovvero a identificare l’effetto di una variabile (il <span style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);">trattamento</span>) sulla variabile di interesse (<span style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);">l’outcome</span>), tenendo conto di tutte le possibili <em>covariate</em>.</p>
+<h2 class="anchored" data-anchor-id="perchè-linferenza-causale"><span class="highlight">Perchè</span> l’inferenza causale?</h2>
+<p><strong>L’inferenza causale</strong> è fondamentale perché ci permette di comprendere le relazioni tra cause ed effetti nei fenomeni che osserviamo. A differenza dell’analisi della semplice associazione tra variabili, <em>l’inferenza causale</em> mira a stabilire relazioni causali, ovvero a identificare l’effetto di una variabile (il <span class="double-underline">trattamento</span>) sulla variabile di interesse (<span class="double-underline">l’outcome</span>), tenendo conto di tutte le possibili <em>covariate</em>.</p>
 <p>Esempi concreti di applicazione dell’inferenza causale possiamo trovarli in:</p>
 <ul>
 <li><p><strong>Economia</strong>: Gli economisti utilizzano l’inferenza causale per studiare l’impatto di politiche economiche, come cambiamenti nelle tasse o negli investimenti pubblici, sulla disoccupazione, i redditi e la crescita. Questo permette di valutare l’efficacia delle misure economiche.</p></li>
@@ -290,7 +290,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <p><span id="eq-outcomes"><span class="math display">\[ Y_i \equiv Y_i(W_i) = \begin{cases} Y_i(1) &amp; \text{se } W_i = 1 \\ Y_i(0) &amp; \text{se } W_i = 0 \end{cases}  \tag{1}\]</span></span></p>
 <section id="il-nostro-obiettivo" class="level3">
 <h3 class="anchored" data-anchor-id="il-nostro-obiettivo">Il nostro obiettivo</h3>
-<p>L’obiettivo è stimare l’effetto medio del trattamento (in inglese ATE, <span style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);">Average treatment effect</span> ):</p>
+<p>L’obiettivo è stimare l’effetto medio del trattamento (in inglese ATE, <span class="highlight">Average treatment effect</span>):</p>
 <p><span id="eq-ate"><span class="math display">\[ \tau = \mathbb{E}[Y_i(1) - Y_i(0)] \tag{2}\]</span></span></p>
 <ul>
 <li><p>L’ATE fornisce una misura complessiva dell’impatto di un trattamento sulla popolazione target.</p></li>
@@ -328,8 +328,8 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <p>In un contesto reale (o osservazionale) però molto spesso l’esposizione al trattamento è direttamente dipendente dalle covariate.</p>
 <p>Nell’esempio presentato qui è chiaramente visibile che:</p>
 <ul>
-<li><p>La popolazione trattata(o di trattamento) ,<span class="math inline">\(Y_i(1)\)</span> , risulta avere un età più alta e una visione politica più di <span style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"><em>destra/conservatrice</em></span></p></li>
-<li><p>Mentre la popolazione non trattata (o di controllo), <span class="math inline">\(Y_i(1)\)</span> , risulta essere più giovane e con una visione politica più di <span style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);"><em>sinistra/liberale</em></span></p></li>
+<li><p>La popolazione trattata(o di trattamento) ,<span class="math inline">\(Y_i(1)\)</span> , risulta avere un età più alta e una visione politica più di <span class="highlight"><em>destra/conservatrice</em></span></p></li>
+<li><p>Mentre la popolazione non trattata (o di controllo), <span class="math inline">\(Y_i(1)\)</span> , risulta essere più giovane e con una visione politica più di <span class="highlight"><em>sinistra/liberale</em></span></p></li>
 </ul>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-4_38c691b9cbcc5c4e829e971ade7092cc">
 <details>
@@ -396,7 +396,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 </section>
 </section>
 <section id="difference-in-means" class="level2">
-<h2 class="anchored" data-anchor-id="difference-in-means">2. Difference in means</h2>
+<h2 class="anchored" data-anchor-id="difference-in-means">2. <span class="double-underline">Difference in means</span></h2>
 <p>Lo stimatore della differenza delle medie (difference-in-means) è un semplice stimatore non distorto dell’ATE. L’idea è calcolare la media dei outcomes nel gruppo di trattamento meno la media dei outcomes nel gruppo di controllo:</p>
 <p><span id="eq-diff-in-means"><span class="math display">\[
 \hat{\tau}_\text{DIFF} = \frac{1}{n_1} \sum_{i: W_i = 1} Y_i - \frac{1}{n_0} \sum_{i: W_i = 0} Y_i
@@ -405,10 +405,10 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <p>Lo stimatore della differenza delle medie può essere utilizzato solamente nel contesto sperimentale, ovvero quando l’assegnazione al trattamento è casuale e indipendente dai potenziali outcomes.</p>
 <p>In questo caso, l’ipotesi di indipendenza tra assegnazione al trattamento e potenziali outcomes cioè l’ipotesi che <span class="math inline">\(Y_i(1), Y_i(0) \perp W_i\)</span> è soddisfatta.</p>
 <p>Ciò significa che non ci sono fattori confondenti che influenzano sia l’assegnazione al trattamento che l’outcome.</p>
-<p>Sotto questa ipotesi, la differenza tra la media degli outcomes nel gruppo di trattamento e la media degli outcomes nel gruppo di controllo fornisce una stima <span style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);">non distorta</span> dell’effetto medio del trattamento (ATE).</p>
+<p>Sotto questa ipotesi, la differenza tra la media degli outcomes nel gruppo di trattamento e la media degli outcomes nel gruppo di controllo fornisce una stima <span class="highlight">non distorta</span> dell’effetto medio del trattamento (ATE).</p>
 <p>In contesti osservazionali, invece, sono necessari metodi più avanzati come l’IPW e l’AIPW.</p>
 <section id="stima-di-tau-in-un-contesto-sperimentale" class="level3">
-<h3 class="anchored" data-anchor-id="stima-di-tau-in-un-contesto-sperimentale">Stima di <span class="math inline">\(\tau\)</span> in un contesto <span style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);">sperimentale</span></h3>
+<h3 class="anchored" data-anchor-id="stima-di-tau-in-un-contesto-sperimentale">Stima di <span class="math inline">\(\tau\)</span> in un contesto <span class="double-underline">sperimentale</span></h3>
 <p>La media nel gruppo di trattamento:<br>
 <span class="math display">\[
 \frac{1}{n_1} \sum_{i: W_i = 1} Y_i
@@ -424,7 +424,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <pre><code>[1] 0.09211436</code></pre>
 </div>
 </div>
-<p>e calcolando la media nel gruppo di <span style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);">controllo</span></p>
+<p>e calcolando la media nel gruppo di <span class="double-underline">controllo</span></p>
 <p><span class="math display">\[
 \frac{1}{n_0} \sum_{i: W_i = 0} Y_i
 \]</span></p>
@@ -457,7 +457,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 </section>
 </section>
 <section id="direct-estimator" class="level2">
-<h2 class="anchored" data-anchor-id="direct-estimator">3. <span style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);">Direct</span> estimator</h2>
+<h2 class="anchored" data-anchor-id="direct-estimator">3. Direct estimator</h2>
 <p>Lo stimatore diretto (direct estimation) è un metodo per stimare l’effetto medio del trattamento (ATE) che può essere utilizzato in contesti osservazionali, ovvero quando l’assegnazione al trattamento non è casuale ma dipende dalle covariate osservate <span class="math inline">\(X_i\)</span>.</p>
 <p>Questo stimatore sfrutta la seguente scomposizione:</p>
 <p><span class="math display">\[ \mathbb{E}[Y_i(1) - Y_i(0)] = \mathbb{E}[\mathbb{E}[Y_i|X_i, W_i=1]] - \mathbb{E}[\mathbb{E}[Y_i|X_i, W_i=0]] \]</span></p>
@@ -478,7 +478,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <p>Pertanto, quando possibile, è preferibile utilizzare metodi come l’AIPW, che sono più robusti alle ipotesi di modellazione.</p>
 </section>
 <section id="ipw-inverse-propensity-weighted-estimator" class="level2">
-<h2 class="anchored" data-anchor-id="ipw-inverse-propensity-weighted-estimator">4. <span style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);">IPW</span> (Inverse propensity-weighted estimator)</h2>
+<h2 class="anchored" data-anchor-id="ipw-inverse-propensity-weighted-estimator">4. IPW (Inverse propensity-weighted estimator)</h2>
 <section id="supponiamo.." class="level4">
 <h4 class="anchored" data-anchor-id="supponiamo..">Supponiamo..</h4>
 <p>Supponiamo di voler stimare l’effetto medio di un certo intervento di apprendimento sui voti degli studenti, misurati su una scala da 0 a 100.</p>
@@ -553,7 +553,7 @@ Difference-in-means estimation (benchmark):
 </section>
 </section>
 <section id="aipw-augmented-inverse-propensity-weighted-estimator" class="level2">
-<h2 class="anchored" data-anchor-id="aipw-augmented-inverse-propensity-weighted-estimator">5. <span style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);">AIPW</span> (Augmented inverse propensity-weighted estimator)</h2>
+<h2 class="anchored" data-anchor-id="aipw-augmented-inverse-propensity-weighted-estimator">5. AIPW (Augmented inverse propensity-weighted estimator)</h2>
 <p>L’estimatore AIPW è disponibile in contesti con ipotesi di non confondimento e overlapping. La sua formula è la seguente:</p>
 <p><span id="eq-aipw"><span class="math display">\[
 \begin{equation}\begin{aligned}\hat{\tau}_\mathrm{AIPW} &amp;:= \frac{1}{n} \sum_{i=1}^n \left(\hat{\mu}_{-i}(X_i, 1) - \hat{\mu}_{-i}(X_i, 0)\right) + \\                        &amp;\quad \frac{W_i}{\hat{e}_{-i}(X_i)} (Y_i - \hat{\mu}_{-i}(X_i, 1)) \: - \\                        &amp;\quad \frac{1-W_i}{1-\hat{e}_{-i}(X_i)} (Y_i - \hat{\mu}_{-i}(X_i, 0))\end{aligned}\end{equation}
@@ -604,7 +604,7 @@ Difference-in-means estimation (benchmark):
 </div>
 </section>
 <section id="elementi-di-diagnostica" class="level2">
-<h2 class="anchored" data-anchor-id="elementi-di-diagnostica">6. Elementi di <span style="background: linear-gradient(180deg,rgba(255,255,255,0) 50%, rgba(1,132,160,0.5) 50%);">diagnostica</span></h2>
+<h2 class="anchored" data-anchor-id="elementi-di-diagnostica">6. <span class="circled">Elementi di diagnostica</span></h2>
 <p>Come abbiamo visto, in contesti osservazionali le distribuzioni delle covariate possono essere molto diverse tra individui trattati e non trattati. Tali discrepanze possono portare a stime distorte dell’ATE. Ci si aspetterebbe che ponderando verso l’alto o verso il basso le osservazioni in base ai pesi di propensione inversi, le loro medie siano simili.</p>
 <p>In effetti, dovremmo attenderci anche che le medie delle funzioni di base delle covariate siano simili dopo la ponderazione. Questa proprietà è chiamata equilibrio. Un modo per verificarlo è il seguente:</p>
 <p>Data una certa variabile <span class="math inline">\(Z_i\)</span> (ad esempio, una covariata <span class="math inline">\(X_{i1}\)</span>, o un’interazione tra covariate <span class="math inline">\(X_{i1}X_{i2}\)</span>, o un polinomio nelle covariate <span class="math inline">\(X_{i1}^2\)</span>, ecc.), possiamo verificare la differenza media standardizzata assoluta (ASMD) di <span class="math inline">\(Z_i\)</span> tra individui trattati e non trattati nei nostri dati,</p>

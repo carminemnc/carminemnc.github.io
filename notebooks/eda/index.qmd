@@ -4,7 +4,6 @@ author: "Carmine Minichini"
 description: "A data-driven journey through the factors that make or break loan applications"
 date: "2025-06-01"
 categories: [python,eda]
-image: eda.gif
 ---
 
 [{{< fa brands kaggle >}} Dataset](https://www.kaggle.com/datasets/lorenzozoppelletto/financial-risk-for-loan-approval/){.btn}
@@ -70,7 +69,7 @@ df['asset_coverage_ratio'] = df['total_assets'] / df['loan_amount']
 
 # Motivation and analysis design
 
-This analysis serves as an exercise in data visualization and exploratory data analysis (EDA) techniques. We aim to dissect a loan approval dataset to uncover patterns, relationships, and factors influencing loan decisions. 
+This analysis serves as an exercise in data visualization and exploratory data analysis ([EDA]{.double-underline}) techniques. We aim to dissect a loan approval dataset to uncover patterns, relationships, and factors influencing loan decisions. 
 While the insights gained may be valuable, the primary focus is on demonstrating various visualization methods and analytical approaches.
 
 
@@ -180,9 +179,9 @@ plt.show()
 ```
 
 
-## Who gets loans?
+## [Who gets loans?]{.double-underline}
 
-The analysis of demographic variables reveals a clear hierarchy of factors influencing loan approval. Education emerges as the most decisive factor, with a significant gap between approval rates for higher degrees (PhD 48-63%) and lower ones (High School 16-22%). This pattern is further reinforced by age: approval rates consistently increase with age across all education levels, suggesting that life experience and financial stability are highly valued. Professional stability also plays a key role, with self-employed and employed individuals enjoying significantly higher approval rates than the unemployed. Surprisingly, marital status has a marginal impact, suggesting a more equitable approach based on individual merit rather than social factors.
+The analysis of demographic variables reveals a clear hierarchy of factors influencing loan approval. [Education]{.circled} emerges as the most decisive factor, with a significant gap between approval rates for higher degrees (PhD 48-63%) and lower ones (High School 16-22%). This pattern is further reinforced by age: approval rates consistently increase with age across all education levels, suggesting that life experience and financial stability are highly valued. Professional stability also plays a key role, with self-employed and employed individuals enjoying significantly higher approval rates than the unemployed. Surprisingly, marital status has a marginal impact, suggesting a more equitable approach based on individual merit rather than social factors.
 
 ```{python}
 approval_matrix = pd.pivot_table(df, values='loan_approved',index='education_level',columns='age_bins',aggfunc='mean')
@@ -293,9 +292,9 @@ plt.show()
 
 As highlighted in our previous analyses, we can now precisely quantify the impact of each variable on the risk score through their correlations.
  
-- On one side, we find factors that increase risk: bankruptcy history emerges as the most critical element, with a positive correlation of 0.4, followed by total debt-to-income ratio and debt-to-income ratio (0.35). Interest rates and previous defaults also contribute to increasing risk, albeit with a more moderate impact (0.2).
+- [On one side]{.highlight}, we find factors that increase risk: bankruptcy history emerges as the most critical element, with a positive correlation of 0.4, followed by total debt-to-income ratio and debt-to-income ratio (0.35). Interest rates and previous defaults also contribute to increasing risk, albeit with a more moderate impact (0.2).
 
-- On the other side, some factors act as protective elements, reducing risk: income, both monthly and annual, shows the strongest negative correlation (-0.4), followed by net worth and total assets (-0.3). Credit score and length of credit history confirm their protective role with moderate negative correlations (-0.25). It's particularly interesting to note how the requested loan amount has a relatively modest impact on the risk score (0.15), suggesting that banks focus more on repayment capability than on the loan size itself.
+- [On the other side]{.highlight}, some factors act as protective elements, reducing risk: income, both monthly and annual, shows the strongest negative correlation (-0.4), followed by net worth and total assets (-0.3). Credit score and length of credit history confirm their protective role with moderate negative correlations (-0.25). It's particularly interesting to note how the requested loan amount has a relatively modest impact on the risk score (0.15), suggesting that banks focus more on repayment capability than on the loan size itself.
 
 ```{python}
 # Select numeric columns only

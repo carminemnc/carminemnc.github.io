@@ -4,7 +4,6 @@ author: "Carmine Minichini"
 description: "Priori Patterns for Posterior Perfection"
 date: "2024-08-09"
 categories: [R, Apriori analysis]
-image: basket.gif
 format:
   html:
     code-fold: false
@@ -54,8 +53,8 @@ In the context of process management quality assurance, the algorithm works as f
 
 3.  The algorithm calculates two key metrics for each defect or issue combination:
 
-    -   **Support**: The proportion of process instances or scenarios in which a particular combination of defects or issues was observed.
-    -   **Confidence**: The likelihood that if one defect or issue is present, the other defect(s) or issue(s) in the combination will also be found.
+    -   [**Support**]{.highlight}: The proportion of process instances or scenarios in which a particular combination of defects or issues was observed.
+    -   [**Confidence**]{.highlight}: The likelihood that if one defect or issue is present, the other defect(s) or issue(s) in the combination will also be found.
 
 By analyzing these metrics, the Apriori algorithm can reveal meaningful associations between different types of defects or issues in the process management context. For example, it may uncover that a particular defect X and issue Y often occur together with high confidence, suggesting a potential root cause or shared underlying problem in the process.
 
@@ -63,11 +62,11 @@ These insights can be valuable for the quality assurance team in several ways:
 
 1.  **Prioritizing process improvement efforts**: Defect and issue associations can help prioritize process areas or scenarios that are more likely to encounter multiple defects or issues simultaneously, enabling targeted improvement initiatives.
 
-2.  **Root cause analysis**: Identifying strong associations between defects and issues can provide clues about potential root causes or shared underlying problems in the processes, leading to more effective defect prevention and remediation strategies.
+2.  [**Root cause analysis**]{.double-underline}: Identifying strong associations between defects and issues can provide clues about potential root causes or shared underlying problems in the processes, leading to more effective defect prevention and remediation strategies.
 
 3.  **Process optimization**: By understanding defect and issue co-occurrence patterns, the team can optimize processes to address multiple defects or issues more efficiently, reducing redundant efforts.
 
-4.  **Defect and issue prediction**: The identified associations can potentially be used to predict the likelihood of encountering certain defects or issues based on the presence of others, enabling proactive mitigation measures.
+4.  [**Defect and issue prediction**]{.double-underline}: The identified associations can potentially be used to predict the likelihood of encountering certain defects or issues based on the presence of others, enabling proactive mitigation measures.
 
 ```{r,warning=FALSE}
 rules <- apriori(trans,

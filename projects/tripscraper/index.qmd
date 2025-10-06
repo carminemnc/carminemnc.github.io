@@ -4,7 +4,6 @@ description:
   An open source application for NLP playground
 date: 2023-07-10
 categories: [app,nlp,streamlit]
-image: tripscraper.gif
 ---
 
 [{{< fa brands github >}} source code](https://github.com/carminemnc/tripscraper){.btn}

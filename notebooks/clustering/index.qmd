@@ -4,7 +4,6 @@ author: "Carmine Minichini"
 description: "Unleashing the Power of Centroid Domination in the Realm of Clustering"
 date: "2023-10-24"
 categories: [python,clustering]
-image: cyberpunk.gif
 ---
 
 [{{< fa brands kaggle >}} Dataset](https://www.kaggle.com/datasets/vishakhdapat/customer-segmentation-clustering){.btn}

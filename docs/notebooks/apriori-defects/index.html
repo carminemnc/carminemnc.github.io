@@ -248,17 +248,17 @@ Case \ 4 &amp; [Defect \ 1, Defect \ 4,Defect \ 5,Defect \ 6] \\
 <li><p>It then looks for combinations of defects or issues that frequently co-occur, starting with pairs, then triplets, and so on.</p></li>
 <li><p>The algorithm calculates two key metrics for each defect or issue combination:</p>
 <ul>
-<li><strong>Support</strong>: The proportion of process instances or scenarios in which a particular combination of defects or issues was observed.</li>
-<li><strong>Confidence</strong>: The likelihood that if one defect or issue is present, the other defect(s) or issue(s) in the combination will also be found.</li>
+<li><span class="highlight"><strong>Support</strong></span>: The proportion of process instances or scenarios in which a particular combination of defects or issues was observed.</li>
+<li><span class="highlight"><strong>Confidence</strong></span>: The likelihood that if one defect or issue is present, the other defect(s) or issue(s) in the combination will also be found.</li>
 </ul></li>
 </ol>
 <p>By analyzing these metrics, the Apriori algorithm can reveal meaningful associations between different types of defects or issues in the process management context. For example, it may uncover that a particular defect X and issue Y often occur together with high confidence, suggesting a potential root cause or shared underlying problem in the process.</p>
 <p>These insights can be valuable for the quality assurance team in several ways:</p>
 <ol type="1">
 <li><p><strong>Prioritizing process improvement efforts</strong>: Defect and issue associations can help prioritize process areas or scenarios that are more likely to encounter multiple defects or issues simultaneously, enabling targeted improvement initiatives.</p></li>
-<li><p><strong>Root cause analysis</strong>: Identifying strong associations between defects and issues can provide clues about potential root causes or shared underlying problems in the processes, leading to more effective defect prevention and remediation strategies.</p></li>
+<li><p><span class="double-underline"><strong>Root cause analysis</strong></span>: Identifying strong associations between defects and issues can provide clues about potential root causes or shared underlying problems in the processes, leading to more effective defect prevention and remediation strategies.</p></li>
 <li><p><strong>Process optimization</strong>: By understanding defect and issue co-occurrence patterns, the team can optimize processes to address multiple defects or issues more efficiently, reducing redundant efforts.</p></li>
-<li><p><strong>Defect and issue prediction</strong>: The identified associations can potentially be used to predict the likelihood of encountering certain defects or issues based on the presence of others, enabling proactive mitigation measures.</p></li>
+<li><p><span class="double-underline"><strong>Defect and issue prediction</strong></span>: The identified associations can potentially be used to predict the likelihood of encountering certain defects or issues based on the presence of others, enabling proactive mitigation measures.</p></li>
 </ol>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-2_f8647100dc75740a6bfe97fbd262d022">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a>rules <span class="ot">&lt;-</span> <span class="fu">apriori</span>(trans,</span>
@@ -270,11 +270,11 @@ Case \ 4 &amp; [Defect \ 1, Defect \ 4,Defect \ 5,Defect \ 6] \\
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-lines="2" data-code-annotation="1">3/length(df) means minimum 3 out of total transactions must contain an itemset for it to be considered frequent</span>
+<span data-code-lines="2" data-code-cell="annotated-cell-1" data-code-annotation="1">3/length(df) means minimum 3 out of total transactions must contain an itemset for it to be considered frequent</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-lines="3" data-code-annotation="2">conf=0.1 means the minimum confidence threshold is set to 0.1 or 10%. This filters out association rules where the consequent (right-hand side) occurs less than 10% of the times when the antecedent (left-hand side) occurs</span>
+<span data-code-lines="3" data-code-cell="annotated-cell-1" data-code-annotation="2">conf=0.1 means the minimum confidence threshold is set to 0.1 or 10%. This filters out association rules where the consequent (right-hand side) occurs less than 10% of the times when the antecedent (left-hand side) occurs</span>
 </dd>
 </dl>
 </div>
@@ -321,7 +321,7 @@ Case \ 4 &amp; [Defect \ 1, Defect \ 4,Defect \ 5,Defect \ 6] \\
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="4" data-code-annotation="1">Nodes with higher confidence rules will be shaded darker, allowing you to visually identify the most confident association rules at a glance</span>
+<span data-code-lines="4" data-code-cell="annotated-cell-2" data-code-annotation="1">Nodes with higher confidence rules will be shaded darker, allowing you to visually identify the most confident association rules at a glance</span>
 </dd>
 </dl>
 </div>

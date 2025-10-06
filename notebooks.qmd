@@ -3,14 +3,15 @@ title: "Notebooks"
 listing:
   contents: notebooks
   sort: "date desc"
-  type: default
-  fields: [image, date, title,categories,reading-time,description]
-  max-items: 4
+  type: custom
+  template: toc-custom-listing.ejs
+  fields: [date, title, description, reading-time, path]
+  max-items: 20
 page-layout: full
 ---
 
 <style>
-  .quarto-title, .quarto-title-block {
-    display: none !important;
-  }
+.quarto-title, .quarto-title-block {
+  display: none !important;
+}
 </style>
