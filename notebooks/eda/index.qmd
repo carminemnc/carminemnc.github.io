@@ -4,6 +4,9 @@ author: "Carmine Minichini"
 description: "A data-driven journey through the factors that make or break loan applications"
 date: "2025-06-01"
 categories: [python,eda]
+format:
+  html:
+    fig-loading: lazy
 ---
 
 [{{< fa brands kaggle >}} Dataset](https://www.kaggle.com/datasets/lorenzozoppelletto/financial-risk-for-loan-approval/){.btn}

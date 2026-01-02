@@ -7,9 +7,9 @@ categories: [casual inference, R]
 code-fold: true
 ---
 
-## [Perchè]{.highlight} l'inferenza causale?
+## [Perchè]{.double-underline} l'inferenza causale?
 
-**L'inferenza causale** è fondamentale perché ci permette di comprendere le relazioni tra cause ed effetti nei fenomeni che osserviamo. A differenza dell'analisi della semplice associazione tra variabili, *l'inferenza causale* mira a stabilire relazioni causali, ovvero a identificare l'effetto di una variabile (il [trattamento]{.double-underline}) sulla variabile di interesse ([l'outcome]{.double-underline}), tenendo conto di tutte le possibili *covariate*.
+**L'inferenza causale** è fondamentale perché ci permette di comprendere le relazioni tra cause ed effetti nei fenomeni che osserviamo. A differenza dell'analisi della semplice associazione tra variabili, *l'inferenza causale* mira a stabilire relazioni causali, ovvero a identificare l'effetto di una variabile (il [trattamento]{.highlight}) sulla variabile di interesse ([l'outcome]{.highlight}), tenendo conto di tutte le possibili *covariate*.
 
 Esempi concreti di applicazione dell'inferenza causale possiamo trovarli in:
 
@@ -384,7 +384,7 @@ results <- ipw_estimators(
 )
 ```
 
-## 6. [Elementi di diagnostica]{.circled}
+## 6. [Elementi di diagnostica]{.double-underline}
 
 Come abbiamo visto, in contesti osservazionali le distribuzioni delle covariate possono essere molto diverse tra individui trattati e non trattati. Tali discrepanze possono portare a stime distorte dell'ATE. Ci si aspetterebbe che ponderando verso l'alto o verso il basso le osservazioni in base ai pesi di propensione inversi, le loro medie siano simili.
 

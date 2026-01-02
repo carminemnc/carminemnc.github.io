@@ -45,7 +45,7 @@ A graph is composed of three main components:
 - **to**: the node an edge is going towards
 - **weight**: A numeric value associated with each edge
 
-::: {.callout-note collapse="true" title="A further interpretation"}
+::: {.insight}
 Note that this is a visualization of a **Markov chain**, a common model in text processing. In a Markov chain, each choice of word depends only on the previous word. So in this case the chain starting from **"hotel"** would suggest **"staff"** then **"friendly/helpful"** as next words, by following each word to the most common words that follow it.   ^[[Julia Silge, David Robinson; Text Mining with R; O'Reilly](https://www.tidytextmining.com/ngrams)]
 :::
 
@@ -154,7 +154,7 @@ $$
 
 Let’s compare a couple of common words such as *service* and *food*.
 
-::: {.callout-note title="Please, note"}
+::: {.insight}
 The frequency of a word on tokens list length is calculated over a list of tokens without stopwords.
 :::
 
@@ -207,18 +207,17 @@ def words_overtime_chart(words_list):
                 )
         + xlab('Review date')
         + ylab('Frequency (%)')
-
         )
     
     print(pl)
 ```
-
 
 1. We're gonna use `plotnine` package, since make more easy and fancy styling facet plots
 
 ```{python}
 #| label: fig-words-ot-foodandservice
 #| fig-cap: "Food and service over time trend"
+#| echo: false
 words_overtime_chart(['food','service'])
 ```
 

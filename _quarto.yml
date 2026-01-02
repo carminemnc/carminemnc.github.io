@@ -3,14 +3,14 @@ project:
   output-dir: docs
 
 website:
-  favicon: imgs/carminemnc_w_500x500.png
+  favicon: imgs/carminemnc_w_500x500.webp
   google-analytics: 
     tracking-id: "G-BEX0MX4L1P"
     anonymize-ip: true
   site-url: https://carminemnc.github.io/
   search: true
   navbar: 
-    logo: imgs/carminemnc_x_500x500.png
+    logo: imgs/carminemnc_x_500x500.webp
     right:
       - href: posts.qmd
         text: Posts
@@ -22,6 +22,7 @@ website:
         text: Resume
 format:
   html:
+    include-in-header: font-preload.html
     toc: true
     code-fold: true
     code-overflow: wrap

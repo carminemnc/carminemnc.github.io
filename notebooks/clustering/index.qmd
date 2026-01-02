@@ -69,11 +69,11 @@ The value of $k$ that maximizes this expression is considered the elbow point.
 clusters_range = range(2,10)
 bg = "#EAEAEA"
 
-fig, ax = plt.subplots(nrows=3, ncols=1, figsize=(6, 10))
+fig, ax = plt.subplots(nrows=3, ncols=1, figsize=(7, 10))
 fig.tight_layout(pad=3)
 fig.set_facecolor(bg)
 
-km = KMeans(init='k-means++', n_init=12, max_iter=100)
+km = KMeans(init='k-means++', n_init=12, max_iter=100, algorithm='elkan')
 
 # Distortion: mean sum of squared distances to centers
 elb = KElbowVisualizer(km, k=clusters_range, ax=ax[0], locate_elbow=True,n_jobs=1)
@@ -158,6 +158,7 @@ icd = InterclusterDistance(km, legend_loc='lower left')
 icd.fit(data_processed)
 
 icd.show()
+plt.show()
 ```
 
 ## Intercluster distance map (via MDS)

@@ -67,7 +67,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../imgs/carminemnc_w_500x500.png" rel="icon" type="image/png">
+<link href="../../imgs/carminemnc_w_500x500.webp" rel="icon">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -108,6 +108,9 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;display=swap" rel="stylesheet">
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -122,7 +125,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../imgs/carminemnc_x_500x500.png" alt="" class="navbar-logo">
+    <img src="../../imgs/carminemnc_x_500x500.webp" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -164,7 +167,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#perchè-linferenza-causale" id="toc-perchè-linferenza-causale" class="nav-link active" data-scroll-target="#perchè-linferenza-causale"><span class="highlight">Perchè</span> l’inferenza causale?</a></li>
+  <li><a href="#perchè-linferenza-causale" id="toc-perchè-linferenza-causale" class="nav-link active" data-scroll-target="#perchè-linferenza-causale"><span class="double-underline">Perchè</span> l’inferenza causale?</a></li>
   <li><a href="#i-dati-che-utilizzeremo" id="toc-i-dati-che-utilizzeremo" class="nav-link" data-scroll-target="#i-dati-che-utilizzeremo">I dati che utilizzeremo:</a></li>
   <li><a href="#notazione" id="toc-notazione" class="nav-link" data-scroll-target="#notazione">1. Notazione</a>
   <ul class="collapse">
@@ -180,7 +183,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
   <li><a href="#lipw" id="toc-lipw" class="nav-link" data-scroll-target="#lipw">L’IPW</a></li>
   </ul></li>
   <li><a href="#aipw-augmented-inverse-propensity-weighted-estimator" id="toc-aipw-augmented-inverse-propensity-weighted-estimator" class="nav-link" data-scroll-target="#aipw-augmented-inverse-propensity-weighted-estimator">5. AIPW (Augmented inverse propensity-weighted estimator)</a></li>
-  <li><a href="#elementi-di-diagnostica" id="toc-elementi-di-diagnostica" class="nav-link" data-scroll-target="#elementi-di-diagnostica">6. <span class="circled">Elementi di diagnostica</span></a></li>
+  <li><a href="#elementi-di-diagnostica" id="toc-elementi-di-diagnostica" class="nav-link" data-scroll-target="#elementi-di-diagnostica">6. <span class="double-underline">Elementi di diagnostica</span></a></li>
   </ul>
 </nav>
     </div>
@@ -226,8 +229,8 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 </header>
 
 <section id="perchè-linferenza-causale" class="level2">
-<h2 class="anchored" data-anchor-id="perchè-linferenza-causale"><span class="highlight">Perchè</span> l’inferenza causale?</h2>
-<p><strong>L’inferenza causale</strong> è fondamentale perché ci permette di comprendere le relazioni tra cause ed effetti nei fenomeni che osserviamo. A differenza dell’analisi della semplice associazione tra variabili, <em>l’inferenza causale</em> mira a stabilire relazioni causali, ovvero a identificare l’effetto di una variabile (il <span class="double-underline">trattamento</span>) sulla variabile di interesse (<span class="double-underline">l’outcome</span>), tenendo conto di tutte le possibili <em>covariate</em>.</p>
+<h2 class="anchored" data-anchor-id="perchè-linferenza-causale"><span class="double-underline">Perchè</span> l’inferenza causale?</h2>
+<p><strong>L’inferenza causale</strong> è fondamentale perché ci permette di comprendere le relazioni tra cause ed effetti nei fenomeni che osserviamo. A differenza dell’analisi della semplice associazione tra variabili, <em>l’inferenza causale</em> mira a stabilire relazioni causali, ovvero a identificare l’effetto di una variabile (il <span class="highlight">trattamento</span>) sulla variabile di interesse (<span class="highlight">l’outcome</span>), tenendo conto di tutte le possibili <em>covariate</em>.</p>
 <p>Esempi concreti di applicazione dell’inferenza causale possiamo trovarli in:</p>
 <ul>
 <li><p><strong>Economia</strong>: Gli economisti utilizzano l’inferenza causale per studiare l’impatto di politiche economiche, come cambiamenti nelle tasse o negli investimenti pubblici, sulla disoccupazione, i redditi e la crescita. Questo permette di valutare l’efficacia delle misure economiche.</p></li>
@@ -604,7 +607,7 @@ Difference-in-means estimation (benchmark):
 </div>
 </section>
 <section id="elementi-di-diagnostica" class="level2">
-<h2 class="anchored" data-anchor-id="elementi-di-diagnostica">6. <span class="circled">Elementi di diagnostica</span></h2>
+<h2 class="anchored" data-anchor-id="elementi-di-diagnostica">6. <span class="double-underline">Elementi di diagnostica</span></h2>
 <p>Come abbiamo visto, in contesti osservazionali le distribuzioni delle covariate possono essere molto diverse tra individui trattati e non trattati. Tali discrepanze possono portare a stime distorte dell’ATE. Ci si aspetterebbe che ponderando verso l’alto o verso il basso le osservazioni in base ai pesi di propensione inversi, le loro medie siano simili.</p>
 <p>In effetti, dovremmo attenderci anche che le medie delle funzioni di base delle covariate siano simili dopo la ponderazione. Questa proprietà è chiamata equilibrio. Un modo per verificarlo è il seguente:</p>
 <p>Data una certa variabile <span class="math inline">\(Z_i\)</span> (ad esempio, una covariata <span class="math inline">\(X_{i1}\)</span>, o un’interazione tra covariate <span class="math inline">\(X_{i1}X_{i2}\)</span>, o un polinomio nelle covariate <span class="math inline">\(X_{i1}^2\)</span>, ecc.), possiamo verificare la differenza media standardizzata assoluta (ASMD) di <span class="math inline">\(Z_i\)</span> tra individui trattati e non trattati nei nostri dati,</p>

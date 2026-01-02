@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../imgs/carminemnc_w_500x500.png" rel="icon" type="image/png">
+<link href="../../imgs/carminemnc_w_500x500.webp" rel="icon">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -109,6 +109,9 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;display=swap" rel="stylesheet">
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -123,7 +126,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../imgs/carminemnc_x_500x500.png" alt="" class="navbar-logo">
+    <img src="../../imgs/carminemnc_x_500x500.webp" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -240,21 +243,8 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <li><strong>to</strong>: the node an edge is going towards</li>
 <li><strong>weight</strong>: A numeric value associated with each edge</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled" title="A further interpretation">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-A further interpretation
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
+<div class="insight">
 <p>Note that this is a visualization of a <strong>Markov chain</strong>, a common model in text processing. In a Markov chain, each choice of word depends only on the previous word. So in this case the chain starting from <strong>“hotel”</strong> would suggest <strong>“staff”</strong> then <strong>“friendly/helpful”</strong> as next words, by following each word to the most common words that follow it. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-</div>
-</div>
 </div>
 <div class="cell" data-execution_count="2">
 <details>
@@ -325,11 +315,11 @@ A further interpretation
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="14" data-code-annotation="1" data-code-cell="annotated-cell-1">Defining a <code>tupler</code> function for handling csv file.</span>
+<span data-code-cell="annotated-cell-1" data-code-annotation="1" data-code-lines="14">Defining a <code>tupler</code> function for handling csv file.</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-lines="55" data-code-annotation="2" data-code-cell="annotated-cell-1">Defining a <code>nudge</code> function for handling labels position.</span>
+<span data-code-cell="annotated-cell-1" data-code-annotation="2" data-code-lines="55">Defining a <code>nudge</code> function for handling labels position.</span>
 </dd>
 </dl>
 </div>
@@ -345,7 +335,7 @@ A further interpretation
 <div class="cell-output cell-output-display">
 <div id="fig-bigrams-network-graph" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="index_files/figure-html/fig-bigrams-network-graph-output-1.png" width="540" height="389" class="figure-img"></p>
+<p><img src="index_files/figure-html/fig-bigrams-network-graph-output-1.png" width="672" height="480" class="figure-img"></p>
 <figcaption class="figure-caption">Figure&nbsp;1: Bigrams network graph</figcaption>
 </figure>
 </div>
@@ -369,18 +359,8 @@ A further interpretation
 frequency = \frac{x}{n}
 \]</span></p>
 <p>Let’s compare a couple of common words such as <em>service</em> and <em>food</em>.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Please, note">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Please, note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="insight">
 <p>The frequency of a word on tokens list length is calculated over a list of tokens without stopwords.</p>
-</div>
 </div>
 <div class="cell" data-execution_count="4">
 <details>
@@ -432,25 +412,20 @@ Please, note
 <span id="annotated-cell-3-45"><a href="#annotated-cell-3-45" aria-hidden="true" tabindex="-1"></a>                )</span>
 <span id="annotated-cell-3-46"><a href="#annotated-cell-3-46" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> xlab(<span class="st">'Review date'</span>)</span>
 <span id="annotated-cell-3-47"><a href="#annotated-cell-3-47" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> ylab(<span class="st">'Frequency (%)'</span>)</span>
-<span id="annotated-cell-3-48"><a href="#annotated-cell-3-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-3-49"><a href="#annotated-cell-3-49" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="annotated-cell-3-50"><a href="#annotated-cell-3-50" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="annotated-cell-3-51"><a href="#annotated-cell-3-51" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(pl)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="annotated-cell-3-48"><a href="#annotated-cell-3-48" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="annotated-cell-3-49"><a href="#annotated-cell-3-49" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="annotated-cell-3-50"><a href="#annotated-cell-3-50" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(pl)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-lines="17" data-code-annotation="1" data-code-cell="annotated-cell-3">We’re gonna use <code>plotnine</code> package, since make more easy and fancy styling facet plots</span>
+<span data-code-cell="annotated-cell-3" data-code-annotation="1" data-code-lines="17">We’re gonna use <code>plotnine</code> package, since make more easy and fancy styling facet plots</span>
 </dd>
 </dl>
 </div>
 </div>
 <div class="cell" data-execution_count="5">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>words_overtime_chart([<span class="st">'food'</span>,<span class="st">'service'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display">
 <div id="fig-words-ot-foodandservice" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
