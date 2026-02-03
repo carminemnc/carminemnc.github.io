@@ -166,5 +166,12 @@
     "title": "Tripscraper",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nJulia Silge, David Robinson; Text Mining with R; O’Reilly↩︎"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
+    "section": "",
+    "text": "I’m a Statistician with a specialization in actuarial science.\nThis space contains projects, notebooks with raw notes about data science, and posts where I explore mathematical and statistical topics in depth. I explore different fields with statistical rigor, aiming to bridge theory and practical applications."
   }
 ]
