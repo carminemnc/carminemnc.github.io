@@ -6,7 +6,7 @@ date: 2022-11-23
 categories: [App]
 ---
 
-[{{< fa brands google >}} demo](https://script.google.com/macros/s/AKfycbxo4Gaw5VOmAXQMPJCFNDWQjvRFxgKw1ceasoLUTVebP-49RkH1QfzrlsDaThI9lRLl/exec){.btn} [{{< fa brands github >}} source code](https://github.com/carminemnc/book-your-space){.btn}
+[{{< fa brands google >}} Demo](https://script.google.com/macros/s/AKfycbxo4Gaw5VOmAXQMPJCFNDWQjvRFxgKw1ceasoLUTVebP-49RkH1QfzrlsDaThI9lRLl/exec){.btn} [{{< fa brands github >}} Source code](https://github.com/carminemnc/book-your-space){.btn}
 
 <br>
 

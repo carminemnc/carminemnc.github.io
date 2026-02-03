@@ -1,0 +1,12 @@
+---
+title: "Inferenza causale - capitolo zero"
+author: "Carmine Minichini"
+description: "Introduzione al mondo causale"
+date: "2026-02-02"
+categories: [casual inference, R]
+code-fold: true
+---
+
+[{{< fa brands r-project >}} Package doc](https://carminemnc.github.io/causalwiz){.btn}
+
+![](../../imgs/wip.gif)

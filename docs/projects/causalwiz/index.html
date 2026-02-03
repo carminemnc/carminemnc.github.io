@@ -167,7 +167,6 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
    
   <ul>
   <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation">Installation</a></li>
-  <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a></li>
   </ul>
 </nav>
     </div>
@@ -178,7 +177,8 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <div class="quarto-title">
 <h1 class="title">Causalwiz</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">App</div>
+    <div class="quarto-category">r-project</div>
+    <div class="quarto-category">causal inference</div>
   </div>
   </div>
 
@@ -205,32 +205,16 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 
 </header>
 
-<p><a href="https://github.com/carminemnc/causalwiz" class="btn"><i class="fa-brands fa-github" aria-label="github"></i> source code</a></p>
+<p><a href="https://carminemnc.github.io/causalwiz" class="btn"><i class="fa-brands fa-r-project" aria-label="r-project"></i> Package doc</a> <a href="https://github.com/carminemnc/causalwiz" class="btn"><i class="fa-brands fa-github" aria-label="github"></i> Source code</a></p>
 <p><br></p>
 <p><img src="https://github.com/carminemnc/causalwiz/blob/master/man/figures/logo.png?raw=true" align="right" height="139"></p>
-<p><code>causalwiz</code> is an R package for causal inference analysis. It provides tools for estimating treatment effects using various methods including Inverse Probability Weighting (IPW) and Augmented Inverse Probability Weighting (AIPW).</p>
-<p>The package is accompanied by a series of <a href="../../posts.html" class="cool-link">articles</a>, <em>written in Italian</em>, covering theoretical foundations of causal inference and practical implementations of the methods implemented in <code>causalwiz</code>.</p>
+<p><code>causalwiz</code> is an R package for causal inference analysis. It provides functions for estimating treatment effects using various statistical methods, features built-in plotting functions an utilities designed for causal inference workflows in R.</p>
+<p>The package is accompanied by a series of <a href="../../posts.html" class="cool-link">Italian-language articles</a>, covering theoretical foundations of causal inference and the practical implementation of methods in <code>causalwiz</code>. <a href="https://carminemnc.github.io/causalwiz" class="cool-link">Web-based package documentation</a> is also available.</p>
 <section id="installation" class="level2">
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
 <p>You can install the package via Github repository:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("pak")</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>pak<span class="sc">::</span><span class="fu">pak</span>(<span class="st">"carminemnc/causalwiz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="usage" class="level2">
-<h2 class="anchored" data-anchor-id="usage">Usage</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(causalwiz)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load example data</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"welfare_small"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform causal analysis</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">ipw_estimators</span>(</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> welfare_small,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">estimation_method =</span> <span class="st">"IPW"</span>,</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">outcome =</span> <span class="st">"y"</span>,</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">treatment =</span> <span class="st">"w"</span>,</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">covariates =</span> <span class="fu">c</span>(<span class="st">"age"</span>, <span class="st">"polviews"</span>, <span class="st">"income"</span>, <span class="st">"educ"</span>, <span class="st">"marital"</span>, <span class="st">"sex"</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

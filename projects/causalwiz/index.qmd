@@ -3,18 +3,19 @@ title: "Causalwiz"
 description: 
   Tools for Causal Inference Analysis and Visualization  
 date: 2025-05-07
-categories: [App]
+categories: [r-project,causal inference]
 ---
 
-[{{< fa brands github >}} source code](https://github.com/carminemnc/causalwiz){.btn}
+[{{< fa brands r-project >}} Package doc](https://carminemnc.github.io/causalwiz){.btn} [{{< fa brands github >}} Source code](https://github.com/carminemnc/causalwiz){.btn}
 
 <br>
 
 <img src="https://github.com/carminemnc/causalwiz/blob/master/man/figures/logo.png?raw=true" align="right" height="139"/>
 
-`causalwiz` is an R package for causal inference analysis. It provides tools for estimating treatment effects using various methods including Inverse Probability Weighting (IPW) and Augmented Inverse Probability Weighting (AIPW).
+`causalwiz` is an R package for causal inference analysis. It provides functions for estimating treatment effects using various statistical methods, features built-in plotting functions an utilities designed for causal inference workflows in R.
 
-The package is accompanied by a series of <a href="../../posts.html" class="cool-link">articles</a>, *written in Italian*, covering theoretical foundations of causal inference and practical implementations of the methods implemented in `causalwiz`.
+The package is accompanied by a series of <a href="../../posts.html" class="cool-link">Italian-language articles</a>, covering 
+theoretical foundations of causal inference and the practical implementation of methods in `causalwiz`. <a href="https://carminemnc.github.io/causalwiz" class="cool-link">Web-based package documentation</a> is also available.
 
 ## Installation
 
@@ -24,24 +25,3 @@ You can install the package via Github repository:
 # install.packages("pak")
 pak::pak("carminemnc/causalwiz")
 ```
-
-## Usage
-
-``` r
-library(causalwiz)
-
-# Load example data
-data("welfare_small")
-
-# Perform causal analysis
-results <- ipw_estimators(
-  data = welfare_small,
-  estimation_method = "IPW",
-  outcome = "y",
-  treatment = "w",
-  covariates = c("age", "polviews", "income", "educ", "marital", "sex")
-)
-```
-
-
-

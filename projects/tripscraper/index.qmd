@@ -3,10 +3,10 @@ title: "Tripscraper"
 description: 
   An open source application for NLP playground
 date: 2023-07-10
-categories: [app,nlp,streamlit]
+categories: [python-project,nlp,streamlit]
 ---
 
-[{{< fa brands github >}} source code](https://github.com/carminemnc/tripscraper){.btn}
+[{{< fa brands github >}} Source code](https://github.com/carminemnc/tripscraper){.btn}
 
 <br>
 
