@@ -10,13 +10,13 @@ categories: [App]
 
 <br>
 
-# Motivation 
+## Motivation 
 
 The [*COVID-19 pandemic breakout*]{.double-underline} has led to a significant shift in the way we work, with many employees now working remotely or in a hybrid model. This has created a need for new tools and technologies to help businesses manage their office space more effectively.
 
 This application for managing desk office booking is designed to address this challenge.
 
-# How it works
+## How it works
 
 Build on <a href="https://www.google.com/script/start/" class="cool-link">Google apps script</a> platform, the application is designed to work in a Google enviroment.
 

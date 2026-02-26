@@ -28,15 +28,15 @@ format:
     code-overflow: wrap
     code-block-border-left: true
     code-annotations: hover
-    code-summary: "Show me the code"
     theme:
       light: light-theme.scss
       dark: dark-theme.scss
     mainfont: Noto Serif
     highlight-style: ayu-dark
     title-block-banner: false
-    html-math-method: mathjax
+    html-math-method: katex
     toc-title: Table of contents
+    tbl-cap-location: bottom
     
 
 

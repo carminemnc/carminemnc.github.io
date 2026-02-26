@@ -12,6 +12,7 @@ format:
 [{{< fa brands kaggle >}} Dataset](https://www.kaggle.com/datasets/lorenzozoppelletto/financial-risk-for-loan-approval/){.btn}
 
 ```{python}
+#| label: eda-libraries
 #| echo: false
 # libraries
 import pandas as pd
@@ -29,8 +30,9 @@ plt.style.use(LIGHT_THEME)
 ```
 
 ```{python}
+#| label: eda-setup
 #| echo: false
-#| output: false
+#| include: false
 # settings
 font_family = leo.setup_google_font()
 plt.rcParams['font.family'] = font_family
@@ -45,6 +47,7 @@ plt.show()
 ```
 
 ```{python}
+#| label: eda-engineering
 #| echo: false
 df = pd.read_csv('loan.csv')
 # renaming columns for a better understanding
@@ -70,13 +73,17 @@ df['liability_percentage'] = df['total_liabilities'] / (df['total_assets'] + df[
 df['asset_coverage_ratio'] = df['total_assets'] / df['loan_amount']
 ```
 
-# Motivation and analysis design
+## Motivation and analysis design
 
-This analysis serves as an exercise in data visualization and exploratory data analysis ([EDA]{.double-underline}) techniques. We aim to dissect a loan approval dataset to uncover patterns, relationships, and factors influencing loan decisions. 
-While the insights gained may be valuable, the primary focus is on demonstrating various visualization methods and analytical approaches.
+This analysis is intended to serve as an exercise in data visualisation and exploratory data analysis ([EDA]{.double-underline}) techniques. The dataset comprises 20.000 synthetic records of personal and financial information. These records include various features such as demographic information, credit history, employment status, income levels, existing debt, and other relevant financial metrics. This provides a comprehensive basis for sophisticated, data-driven analysis and decision-making.
+The objective of this exercise is to analyse the dataset in order to identify patterns, relationships, and the factors influencing loan decisions. 
+
+While the insights gained may be useful, it should be noted that the data is synthetic, and the primary focus is on demonstrating various visualisation methods and developing those used in the <a href="https://github.com/carminemnc/datasage" class="cool-link">datasage</a> python package.
+
 
 
 <div style="text-align: center;">
+
 ```{mermaid}
 %%{init: {'theme': 'default', 'themeVariables': { 'fontFamily': 'Arial, sans-serif', 'fontSize': '20px', 'primaryColor': '#0085a1', 'primaryTextColor': 'black' }}}%%
 graph TD
@@ -97,6 +104,7 @@ graph TD
 ## Loan approval landscape
 
 ```{python}
+#| label: eda-loan-landscape
 fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 4))
 
 # binary ratio plot
@@ -131,6 +139,7 @@ plt.show()
 ## Income: first line of defense
 
 ```{python}
+#| label: eda-loan-income
 fig, (ax1, ax2, ax3) = leo.create_layout( [(0,0,1,1), (0,1,1,1), (1,0,1,2)], figsize=(10,6))
 
 # let's see the annual income of who get the loan approved
@@ -187,6 +196,7 @@ plt.show()
 The analysis of demographic variables reveals a clear hierarchy of factors influencing loan approval. [Education]{.circled} emerges as the most decisive factor, with a significant gap between approval rates for higher degrees (PhD 48-63%) and lower ones (High School 16-22%). This pattern is further reinforced by age: approval rates consistently increase with age across all education levels, suggesting that life experience and financial stability are highly valued. Professional stability also plays a key role, with self-employed and employed individuals enjoying significantly higher approval rates than the unemployed. Surprisingly, marital status has a marginal impact, suggesting a more equitable approach based on individual merit rather than social factors.
 
 ```{python}
+#| label: eda-whoget-loans
 approval_matrix = pd.pivot_table(df, values='loan_approved',index='education_level',columns='age_bins',aggfunc='mean')
 
 plt.figure(figsize=(10, 5))
@@ -218,6 +228,7 @@ plt.show()
 ## Wealth indicators
 
 ```{python}
+#| label: eda-loan-wealth
 fig, (ax1, ax2, ax3) = leo.create_layout( [(0,0,1,1), (0,1,1,1), (1,0,1,2)], figsize=(10, 7))
 
 # risk score and loan approval status by net worth level
@@ -269,6 +280,7 @@ Bankruptcy history plays a decisive role: the majority of applicants have no ban
 The ridge plot of credit history length reveals a particularly interesting pattern in risk distribution. Low-risk profiles show a distinctive peak around 30 years of credit history, suggesting that lengthy credit experience is associated with lower risk. In contrast, high-risk profiles display a pronounced peak around 15 years, with the distribution tapering off towards longer credit histories. This divergence in peaks between high and low-risk profiles suggests that credit history longevity can be a significant indicator of applicant reliability
 
 ```{python}
+#| label: eda-credithistory
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4))
 
 sns.scatterplot(data=df, x='risk_score', y='credit_score',hue='loan_approved', ax=ax1, alpha=0.5)
@@ -300,6 +312,7 @@ As highlighted in our previous analyses, we can now precisely quantify the impac
 - [On the other side]{.highlight}, some factors act as protective elements, reducing risk: income, both monthly and annual, shows the strongest negative correlation (-0.4), followed by net worth and total assets (-0.3). Credit score and length of credit history confirm their protective role with moderate negative correlations (-0.25). It's particularly interesting to note how the requested loan amount has a relatively modest impact on the risk score (0.15), suggesting that banks focus more on repayment capability than on the loan size itself.
 
 ```{python}
+#| label: eda-approvalformula
 # Select numeric columns only
 numeric_cols = cldf.select_dtypes(include=['int64', 'float64']).columns.tolist()
 numeric_cols.remove('risk_score')

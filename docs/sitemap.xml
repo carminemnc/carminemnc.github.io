@@ -1,47 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://carminemnc.github.io/projects/causalwiz/index.html</loc>
-    <lastmod>2026-02-03T11:08:02.072Z</lastmod>
-  </url>
-  <url>
     <loc>https://carminemnc.github.io/projects.html</loc>
-    <lastmod>2026-02-03T11:07:56.230Z</lastmod>
+    <lastmod>2026-02-26T18:18:40.248Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/projects/book-your-space/index.html</loc>
-    <lastmod>2026-02-03T11:07:51.944Z</lastmod>
+    <lastmod>2026-02-26T18:18:37.782Z</lastmod>
   </url>
   <url>
-    <loc>https://carminemnc.github.io/posts/inferenza-causale-capitolo-zero/index.html</loc>
-    <lastmod>2026-02-03T11:07:50.400Z</lastmod>
+    <loc>https://carminemnc.github.io/posts/on-dag-basics/index.html</loc>
+    <lastmod>2026-02-26T18:18:35.610Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/notebooks/eda/index.html</loc>
-    <lastmod>2026-02-03T11:07:48.795Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carminemnc.github.io/notebooks/apriori-defects/index.html</loc>
-    <lastmod>2026-02-03T11:07:39.403Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carminemnc.github.io/notebooks/clustering/index.html</loc>
-    <lastmod>2026-02-03T11:07:44.629Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carminemnc.github.io/notebooks.html</loc>
-    <lastmod>2026-02-03T11:07:49.671Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carminemnc.github.io/posts.html</loc>
-    <lastmod>2026-02-03T11:07:51.146Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carminemnc.github.io/projects/tripscraper/index.html</loc>
-    <lastmod>2026-02-03T11:07:55.421Z</lastmod>
+    <lastmod>2026-02-26T18:18:32.941Z</lastmod>
   </url>
   <url>
     <loc>https://carminemnc.github.io/index.html</loc>
-    <lastmod>2026-02-03T11:08:06.566Z</lastmod>
+    <lastmod>2026-02-26T18:17:14.836Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carminemnc.github.io/notebooks/apriori-defects/index.html</loc>
+    <lastmod>2026-02-26T18:17:26.363Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carminemnc.github.io/notebooks.html</loc>
+    <lastmod>2026-02-26T18:18:34.606Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carminemnc.github.io/posts.html</loc>
+    <lastmod>2026-02-26T18:18:36.787Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carminemnc.github.io/projects/causalwiz/index.html</loc>
+    <lastmod>2026-02-26T18:18:39.118Z</lastmod>
   </url>
 </urlset>

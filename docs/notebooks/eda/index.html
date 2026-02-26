@@ -170,15 +170,13 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#motivation-and-analysis-design" id="toc-motivation-and-analysis-design" class="nav-link active" data-scroll-target="#motivation-and-analysis-design">Motivation and analysis design</a>
-  <ul class="collapse">
+  <li><a href="#motivation-and-analysis-design" id="toc-motivation-and-analysis-design" class="nav-link active" data-scroll-target="#motivation-and-analysis-design">Motivation and analysis design</a></li>
   <li><a href="#loan-approval-landscape" id="toc-loan-approval-landscape" class="nav-link" data-scroll-target="#loan-approval-landscape">Loan approval landscape</a></li>
   <li><a href="#income-first-line-of-defense" id="toc-income-first-line-of-defense" class="nav-link" data-scroll-target="#income-first-line-of-defense">Income: first line of defense</a></li>
   <li><a href="#who-gets-loans" id="toc-who-gets-loans" class="nav-link" data-scroll-target="#who-gets-loans"><span class="double-underline">Who gets loans?</span></a></li>
   <li><a href="#wealth-indicators" id="toc-wealth-indicators" class="nav-link" data-scroll-target="#wealth-indicators">Wealth indicators</a></li>
   <li><a href="#credit-history-trust-factor" id="toc-credit-history-trust-factor" class="nav-link" data-scroll-target="#credit-history-trust-factor">Credit history: trust factor</a></li>
   <li><a href="#the-approval-formula" id="toc-the-approval-formula" class="nav-link" data-scroll-target="#the-approval-formula">The approval formula</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -224,9 +222,10 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 </header>
 
 <p><a href="https://www.kaggle.com/datasets/lorenzozoppelletto/financial-risk-for-loan-approval/" class="btn"><i class="fa-brands fa-kaggle" aria-label="kaggle"></i> Dataset</a></p>
-<section id="motivation-and-analysis-design" class="level1">
-<h1>Motivation and analysis design</h1>
-<p>This analysis serves as an exercise in data visualization and exploratory data analysis (<span class="double-underline">EDA</span>) techniques. We aim to dissect a loan approval dataset to uncover patterns, relationships, and factors influencing loan decisions. While the insights gained may be valuable, the primary focus is on demonstrating various visualization methods and analytical approaches.</p>
+<section id="motivation-and-analysis-design" class="level2">
+<h2 class="anchored" data-anchor-id="motivation-and-analysis-design">Motivation and analysis design</h2>
+<p>This analysis is intended to serve as an exercise in data visualisation and exploratory data analysis (<span class="double-underline">EDA</span>) techniques. The dataset comprises 20.000 synthetic records of personal and financial information. These records include various features such as demographic information, credit history, employment status, income levels, existing debt, and other relevant financial metrics. This provides a comprehensive basis for sophisticated, data-driven analysis and decision-making. The objective of this exercise is to analyse the dataset in order to identify patterns, relationships, and the factors influencing loan decisions.</p>
+<p>While the insights gained may be useful, it should be noted that the data is synthetic, and the primary focus is on demonstrating various visualisation methods and developing those used in the <a href="https://github.com/carminemnc/datasage" class="cool-link">datasage</a> python package.</p>
 <div style="text-align: center;">
 <div class="cell">
 <div class="cell-output-display">
@@ -250,9 +249,10 @@ graph TD
 </div>
 </div>
 </div>
+</section>
 <section id="loan-approval-landscape" class="level2">
 <h2 class="anchored" data-anchor-id="loan-approval-landscape">Loan approval landscape</h2>
-<div class="cell" data-execution_count="5">
+<div class="cell" data-execution_count="4">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
@@ -286,13 +286,13 @@ graph TD
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="index_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
+<p><img src="index_files/figure-html/eda-loan-landscape-output-1.png" id="eda-loan-landscape" class="img-fluid"></p>
 </div>
 </div>
 </section>
 <section id="income-first-line-of-defense" class="level2">
 <h2 class="anchored" data-anchor-id="income-first-line-of-defense">Income: first line of defense</h2>
-<div class="cell" data-execution_count="6">
+<div class="cell" data-execution_count="5">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2, ax3) <span class="op">=</span> leo.create_layout( [(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>), (<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>), (<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>)], figsize<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">6</span>))</span>
@@ -345,14 +345,14 @@ graph TD
 <span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="index_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
+<p><img src="index_files/figure-html/eda-loan-income-output-1.png" id="eda-loan-income" class="img-fluid"></p>
 </div>
 </div>
 </section>
 <section id="who-gets-loans" class="level2">
 <h2 class="anchored" data-anchor-id="who-gets-loans"><span class="double-underline">Who gets loans?</span></h2>
 <p>The analysis of demographic variables reveals a clear hierarchy of factors influencing loan approval. <span class="circled">Education</span> emerges as the most decisive factor, with a significant gap between approval rates for higher degrees (PhD 48-63%) and lower ones (High School 16-22%). This pattern is further reinforced by age: approval rates consistently increase with age across all education levels, suggesting that life experience and financial stability are highly valued. Professional stability also plays a key role, with self-employed and employed individuals enjoying significantly higher approval rates than the unemployed. Surprisingly, marital status has a marginal impact, suggesting a more equitable approach based on individual merit rather than social factors.</p>
-<div class="cell" data-execution_count="7">
+<div id="eda-whoget-loans" class="cell" data-execution_count="6">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>approval_matrix <span class="op">=</span> pd.pivot_table(df, values<span class="op">=</span><span class="st">'loan_approved'</span>,index<span class="op">=</span><span class="st">'education_level'</span>,columns<span class="op">=</span><span class="st">'age_bins'</span>,aggfunc<span class="op">=</span><span class="st">'mean'</span>)</span>
@@ -382,16 +382,16 @@ graph TD
 <span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="index_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
+<p><img src="index_files/figure-html/eda-whoget-loans-output-1.png" id="eda-whoget-loans-1" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="index_files/figure-html/cell-7-output-2.png" class="img-fluid"></p>
+<p><img src="index_files/figure-html/eda-whoget-loans-output-2.png" id="eda-whoget-loans-2" class="img-fluid"></p>
 </div>
 </div>
 </section>
 <section id="wealth-indicators" class="level2">
 <h2 class="anchored" data-anchor-id="wealth-indicators">Wealth indicators</h2>
-<div class="cell" data-execution_count="8">
+<div class="cell" data-execution_count="7">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2, ax3) <span class="op">=</span> leo.create_layout( [(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>), (<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>), (<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>)], figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">7</span>))</span>
@@ -439,14 +439,14 @@ graph TD
 <span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="index_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
+<p><img src="index_files/figure-html/eda-loan-wealth-output-1.png" id="eda-loan-wealth" class="img-fluid"></p>
 </div>
 </div>
 </section>
 <section id="credit-history-trust-factor" class="level2">
 <h2 class="anchored" data-anchor-id="credit-history-trust-factor">Credit history: trust factor</h2>
 <p>Bankruptcy history plays a decisive role: the majority of applicants have no bankruptcy history and show risk scores concentrated in the 50-70 range, while those with bankruptcy records display a more scattered and generally riskier distribution. The ridge plot of credit history length reveals a particularly interesting pattern in risk distribution. Low-risk profiles show a distinctive peak around 30 years of credit history, suggesting that lengthy credit experience is associated with lower risk. In contrast, high-risk profiles display a pronounced peak around 15 years, with the distribution tapering off towards longer credit histories. This divergence in peaks between high and low-risk profiles suggests that credit history longevity can be a significant indicator of applicant reliability</p>
-<div class="cell" data-execution_count="9">
+<div id="eda-credithistory" class="cell" data-execution_count="8">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
@@ -471,10 +471,10 @@ graph TD
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="index_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+<p><img src="index_files/figure-html/eda-credithistory-output-1.png" id="eda-credithistory-1" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="index_files/figure-html/cell-9-output-2.png" class="img-fluid"></p>
+<p><img src="index_files/figure-html/eda-credithistory-output-2.png" id="eda-credithistory-2" class="img-fluid"></p>
 </div>
 </div>
 </section>
@@ -485,7 +485,7 @@ graph TD
 <li><p><span class="highlight">On one side</span>, we find factors that increase risk: bankruptcy history emerges as the most critical element, with a positive correlation of 0.4, followed by total debt-to-income ratio and debt-to-income ratio (0.35). Interest rates and previous defaults also contribute to increasing risk, albeit with a more moderate impact (0.2).</p></li>
 <li><p><span class="highlight">On the other side</span>, some factors act as protective elements, reducing risk: income, both monthly and annual, shows the strongest negative correlation (-0.4), followed by net worth and total assets (-0.3). Credit score and length of credit history confirm their protective role with moderate negative correlations (-0.25). It’s particularly interesting to note how the requested loan amount has a relatively modest impact on the risk score (0.15), suggesting that banks focus more on repayment capability than on the loan size itself.</p></li>
 </ul>
-<div class="cell" data-execution_count="10">
+<div class="cell" data-execution_count="9">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select numeric columns only</span></span>
@@ -508,12 +508,11 @@ graph TD
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="index_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
+<p><img src="index_files/figure-html/eda-approvalformula-output-1.png" id="eda-approvalformula" class="img-fluid"></p>
 </div>
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

@@ -106,8 +106,22 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;display=swap" rel="stylesheet">
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 </head>
 
@@ -191,15 +205,15 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <div class="quarto-listing quarto-listing-container-custom" id="listing-listing">
 <div class="glass-toc">
 <div class="glass-entry">
-<a href="posts/inferenza-causale-capitolo-zero/index.html">
+<a href="posts/on-dag-basics/index.html">
 <h3 class="entry-title anchored">
-Inferenza causale - capitolo zero<span class="entry-date">Feb 2, 2026</span>
+On DAG basics<span class="entry-date">Feb 26, 2026</span>
 </h3>
-<!-- <h3 class="entry-title">Inferenza causale - capitolo zero</h3> -->
+<!-- <h3 class="entry-title">On DAG basics</h3> -->
 <p class="entry-desc">
-Introduzione al mondo causale
+Experimental design through causal thinking
 </p>
-</a><p><a href="posts/inferenza-causale-capitolo-zero/index.html"></a></p>
+</a><p><a href="posts/on-dag-basics/index.html"></a></p>
 </div>
 </div>
 <style>

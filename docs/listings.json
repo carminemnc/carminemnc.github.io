@@ -3,7 +3,6 @@
     "listing": "/projects.html",
     "items": [
       "/projects/causalwiz/index.html",
-      "/projects/tripscraper/index.html",
       "/projects/book-your-space/index.html"
     ]
   },
@@ -11,14 +10,13 @@
     "listing": "/notebooks.html",
     "items": [
       "/notebooks/eda/index.html",
-      "/notebooks/apriori-defects/index.html",
-      "/notebooks/clustering/index.html"
+      "/notebooks/apriori-defects/index.html"
     ]
   },
   {
     "listing": "/posts.html",
     "items": [
-      "/posts/inferenza-causale-capitolo-zero/index.html"
+      "/posts/on-dag-basics/index.html"
     ]
   }
 ]

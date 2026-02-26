@@ -124,8 +124,22 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <script src="../../site_libs/vis-9.1.0/vis-network.min.js"></script>
 <script src="../../site_libs/visNetwork-binding-2.1.2/visNetwork.js"></script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 </head>
 
@@ -179,14 +193,18 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#lift" id="toc-lift" class="nav-link active" data-scroll-target="#lift">Lift</a>
+  <li><a href="#the-apriori-algorithm" id="toc-the-apriori-algorithm" class="nav-link active" data-scroll-target="#the-apriori-algorithm">The Apriori algorithm</a>
   <ul class="collapse">
-  <li><a href="#lift-interpretation" id="toc-lift-interpretation" class="nav-link" data-scroll-target="#lift-interpretation">Lift: interpretation</a></li>
+  <li><a href="#application-in-quality-assurance" id="toc-application-in-quality-assurance" class="nav-link" data-scroll-target="#application-in-quality-assurance">Application in quality assurance</a></li>
   </ul></li>
-  <li><a href="#confidence" id="toc-confidence" class="nav-link" data-scroll-target="#confidence">Confidence</a>
+  <li><a href="#about-the-data" id="toc-about-the-data" class="nav-link" data-scroll-target="#about-the-data">About the data</a></li>
+  <li><a href="#the-three-core-metrics" id="toc-the-three-core-metrics" class="nav-link" data-scroll-target="#the-three-core-metrics">The three core metrics</a>
   <ul class="collapse">
-  <li><a href="#confidence-interpretation" id="toc-confidence-interpretation" class="nav-link" data-scroll-target="#confidence-interpretation">Confidence: interpretation</a></li>
+  <li><a href="#support" id="toc-support" class="nav-link" data-scroll-target="#support">Support</a></li>
+  <li><a href="#confidence" id="toc-confidence" class="nav-link" data-scroll-target="#confidence">Confidence</a></li>
+  <li><a href="#lift" id="toc-lift" class="nav-link" data-scroll-target="#lift">Lift</a></li>
   </ul></li>
+  <li><a href="#an-example-in-r" id="toc-an-example-in-r" class="nav-link" data-scroll-target="#an-example-in-r">An example in R</a></li>
   </ul>
 </nav>
     </div>
@@ -231,8 +249,11 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 
 </header>
 
-<p>The Apriori algorithm is a data mining technique that can help identify frequent patterns and associations among defects or issues encountered during process management activities. Instead of analyzing individual defects in isolation, the <strong>Apriori</strong> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> algorithm allows us to uncover relationships between different types of defects or issues that often occur together.</p>
-<p><span class="math display">\[
+<section id="the-apriori-algorithm" class="level2">
+<h2 class="anchored" data-anchor-id="the-apriori-algorithm">The Apriori algorithm</h2>
+<p>The <strong>Apriori</strong> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> algorithm is a foundational data mining technique designed to discover frequent patterns and associations within datasets. Originally developed for market basket analysis — identifying which products customers commonly purchase together — it has since proven valuable across diverse domains including healthcare and web usage analysis.</p>
+<p>The algorithm operates on a simple principle: it systematically examines data to identify which items frequently appear together, building from individual items to larger combinations based on their occurrence patterns.</p>
+<p><span class="math display">
 \begin{aligned}
 \begin{array}{c|c}
 \hline
@@ -244,26 +265,80 @@ Case \ 3 &amp; [Defect \ 1, Defect \ 4] \\
 Case \ 4 &amp; [Defect \ 1, Defect \ 4,Defect \ 5,Defect \ 6] \\
 \end{array}
 \end{aligned}
-\]</span></p>
-<p>In the context of process management quality assurance, the algorithm works as follows:</p>
-<ol type="1">
-<li><p>It analyzes the defect or issue data to identify the most frequently occurring individual defects or issues across multiple process instances or scenarios.</p></li>
-<li><p>It then looks for combinations of defects or issues that frequently co-occur, starting with pairs, then triplets, and so on.</p></li>
-<li><p>The algorithm calculates two key metrics for each defect or issue combination:</p>
+</span></p>
+<section id="application-in-quality-assurance" class="level3">
+<h3 class="anchored" data-anchor-id="application-in-quality-assurance">Application in quality assurance</h3>
+<p>In quality assurance, the Apriori algorithm transforms how we analyze defect patterns. Rather than treating each defect as an isolated incident, it reveals the interconnected nature of quality issues across process instances. For instance, discovering that <span class="double-underline">interface errors</span> and <span class="double-underline">data validation failures</span> frequently co-occur suggests these aren’t isolated problems but symptoms of a deeper integration issue.</p>
+<p>The practical applications span multiple quality management areas:</p>
 <ul>
-<li><span class="highlight"><strong>Support</strong></span>: The proportion of process instances or scenarios in which a particular combination of defects or issues was observed.</li>
-<li><span class="highlight"><strong>Confidence</strong></span>: The likelihood that if one defect or issue is present, the other defect(s) or issue(s) in the combination will also be found.</li>
-</ul></li>
-</ol>
-<p>By analyzing these metrics, the Apriori algorithm can reveal meaningful associations between different types of defects or issues in the process management context. For example, it may uncover that a particular defect X and issue Y often occur together with high confidence, suggesting a potential root cause or shared underlying problem in the process.</p>
-<p>These insights can be valuable for the quality assurance team in several ways:</p>
+<li><p><strong>Strategic Process Improvement:</strong> Instead of addressing defects randomly, teams can prioritize areas where multiple quality issues cluster together, maximizing the impact of improvement efforts.</p></li>
+<li><p><strong>Enhanced Root Cause Analysis:</strong> When certain defects consistently appear together, it signals shared underlying causes. This pattern recognition accelerates problem-solving by directing investigation toward common sources rather than treating symptoms separately.</p></li>
+<li><p><strong>Operational Efficiency:</strong> Understanding defect relationships allows teams to design remediation strategies that address multiple issues simultaneously, reducing redundant work and accelerating resolution times.</p></li>
+<li><p><strong>Predictive Quality Management:</strong> Once patterns are established, the presence of one defect type can serve as an early warning system for related issues, enabling proactive intervention before problems cascade.</p></li>
+</ul>
+</section>
+</section>
+<section id="about-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="about-the-data">About the data</h2>
+<p>This dataset represents an anonymized subset of real-world quality assurance data, providing an authentic foundation for demonstrating the Apriori algorithm’s practical applications. While the specific defect identifiers have been obscured, the underlying patterns and relationships remain intact, offering genuine insights into how defect associations manifest in actual production environments.</p>
+</section>
+<section id="the-three-core-metrics" class="level2">
+<h2 class="anchored" data-anchor-id="the-three-core-metrics">The three core metrics</h2>
+<p>The Apriori algorithm identifies meaningful relationships through three key metrics that work together to reveal patterns:</p>
+<ul>
+<li><p><span class="highlight">Support</span> measures how frequently a item combination appears across all items. It answers: “How common is this pattern?” High support indicates widespread occurrence. For example, within quality management areas, this could help prioritise the most prevalent issues.</p></li>
+<li><p><span class="highlight">Confidence</span> quantifies the reliability of a relationship by measuring how often item Y occurs when item X is present. It answers: “If I see item X, how likely am I to also find item Y?”</p></li>
+<li><p><span class="highlight">Lift</span> determines whether items occur together more often than random chance would suggest.</p></li>
+</ul>
+<p>These metrics work in combination to filter noise from meaningful patterns. For instance, a rule with high support ensures the pattern is frequent enough to matter, high confidence makes it reliable for prediction, and high lift confirms the relationship isn’t just coincidental.</p>
+<section id="support" class="level3">
+<h3 class="anchored" data-anchor-id="support">Support</h3>
+<p>Mathematically defined as the proportion of transactions containing a specific itemset, support answers the fundamental question: “How often does this pattern appear?”</p>
+<p><span class="math display">\text{support}({X}) = \frac{\text{Number of transactions containing } X}{\text{Total number of transactions}}</span></p>
+<p>In quality assurance contexts, high support values indicate widespread defect patterns that warrant immediate attention due to their prevalence. For instance, if a defect combination has 20% support, it means this pattern occurs in one out of every five cases, suggesting a systematic issue requiring priority investigation. Support serves as the foundation for identifying frequent patterns before analyzing their relationships through confidence and lift metrics.</p>
+</section>
+<section id="confidence" class="level3">
+<h3 class="anchored" data-anchor-id="confidence">Confidence</h3>
+<p>The confidence of a rule <code>{X} -&gt; {Y}</code> is defined as</p>
+<p><span class="math display">\text{confidence}({X} \rightarrow {Y}) = P({Y} | {X})</span></p>
+<p>where <span class="math inline">P({Y} | {X})</span> is the conditional probability of observing <span class="math inline">Y</span> given that <span class="math inline">X</span> has occurred. Mathematically, this is expressed as: <span class="math display">P({Y} | {X}) = \frac{P(X \cap Y)}{P(X)}</span></p>
+<p>where <span class="math inline">P(X \cap Y)</span> represents the joint probability of both events occurring together, and <span class="math inline">P(X)</span> is the marginal probability of event <span class="math inline">X</span>. The confidence metric measures how reliable or trustworthy the association rule <code>{X} -&gt; {Y}</code> is. It represents the proportion of transactions containing <span class="math inline">X</span> that also contain <span class="math inline">Y</span>. In other words, it answers the question: “When <span class="math inline">X</span> occurs, how often does <span class="math inline">Y</span> also occur?”</p>
+<p>A confidence value closer to 1 (or 100%) indicates a stronger association between <span class="math inline">X</span> and <span class="math inline">Y</span>, meaning that if <span class="math inline">X</span> is present in a transaction, we can be more confident that <span class="math inline">Y</span> will also be present. Conversely, a confidence value closer to 0 suggests a weaker association, implying that the presence of <span class="math inline">X</span> does not reliably indicate the presence of <span class="math inline">Y</span>.</p>
+<section id="confidence-interpretation" class="level4">
+<h4 class="anchored" data-anchor-id="confidence-interpretation">Confidence: interpretation</h4>
+<p>Let’s examine rule #3 where:</p>
+<p><span class="math inline">X</span> = <span class="math inline">D_{18}</span></p>
+<p><span class="math inline">Y</span> = <span class="math inline">D_7</span></p>
+<p>With <span class="math inline">\text{confidence}({X} \rightarrow {Y}) = 0.75</span>, we can draw the following conclusions:</p>
 <ol type="1">
-<li><p><strong>Prioritizing process improvement efforts</strong>: Defect and issue associations can help prioritize process areas or scenarios that are more likely to encounter multiple defects or issues simultaneously, enabling targeted improvement initiatives.</p></li>
-<li><p><span class="double-underline"><strong>Root cause analysis</strong></span>: Identifying strong associations between defects and issues can provide clues about potential root causes or shared underlying problems in the processes, leading to more effective defect prevention and remediation strategies.</p></li>
-<li><p><strong>Process optimization</strong>: By understanding defect and issue co-occurrence patterns, the team can optimize processes to address multiple defects or issues more efficiently, reducing redundant efforts.</p></li>
-<li><p><span class="double-underline"><strong>Defect and issue prediction</strong></span>: The identified associations can potentially be used to predict the likelihood of encountering certain defects or issues based on the presence of others, enabling proactive mitigation measures.</p></li>
+<li><p><strong>Predictive Reliability</strong>: The 75% confidence indicates that when defect <span class="math inline">D_{18}</span> occurs, there’s a three-in-four chance that defect <span class="math inline">D_7</span> will also be present. This makes <span class="math inline">D_{18}</span> a reliable predictor for <span class="math inline">D_7</span>.</p></li>
+<li><p><strong>Shared Root Cause:</strong> Such a strong association suggests these defects likely stem from a common underlying issue rather than independent failures. This points to systemic problems in related process components.</p></li>
 </ol>
-<div class="cell" data-hash="index_cache/html/unnamed-chunk-2_f8647100dc75740a6bfe97fbd262d022">
+</section>
+</section>
+<section id="lift" class="level3">
+<h3 class="anchored" data-anchor-id="lift">Lift</h3>
+<p>The lift of a rule <code>{X} -&gt; {Y}</code> is defined as</p>
+<p><span class="math display">\text{lift}({X} \rightarrow {Y}) = \frac{P({Y} | {X})}{P({Y})}</span></p>
+<p>where <span class="math inline">P({Y} | {X})</span> is the conditional probability of observing <span class="math inline">Y</span> given that <span class="math inline">X</span> has occurred, and <span class="math inline">P({Y})</span> is the marginal probability of observing <span class="math inline">Y</span>. A lift value greater than 1 indicates that the co-occurrence of <span class="math inline">X</span> and <span class="math inline">Y</span> is higher than expected if they were statistically independent, while a lift value less than 1 indicates that the co-occurrence is lower than expected.</p>
+<section id="lift-interpretation" class="level4">
+<h4 class="anchored" data-anchor-id="lift-interpretation">Lift: interpretation</h4>
+<p>Continuing with rule #3 where:</p>
+<p><span class="math inline">X</span> = <span class="math inline">D_{18}</span></p>
+<p><span class="math inline">Y</span> = <span class="math inline">D_7</span></p>
+<p>The probability of defect <span class="math inline">D_7</span> occurring, without considering any other factors, is <strong>5%</strong>. In other words, in <strong>5%</strong> of all cases, defect <span class="math inline">D_7</span> is present.</p>
+<p>However, when you look at cases where defect <span class="math inline">D_{18}</span> is present, you find that the probability of defect <span class="math inline">D_7</span> occurring is ~41.9%.</p>
+<p>Using the lift formula, we can calculate the lift of the rule <span class="math inline">D_{18}</span> → <span class="math inline">D_7</span> as follows:</p>
+<p><span class="math display">\text{lift}({X} \rightarrow {Y}) = \frac{P({Y} | {X})}{P({Y})} = \frac{0.419}{0.05} = 8.39</span></p>
+<p>The lift value of <strong>8.39</strong> indicates that when defect <span class="math inline">D_{18}</span> is present, the probability of defect <span class="math inline">D_7</span> occurring is 8.39 times higher than the probability of defect <span class="math inline">D_7</span> occurring without considering the presence of <span class="math inline">D_{18}</span>.</p>
+<p>This suggests that the occurrence of <span class="math inline">D_{18}</span> and <span class="math inline">D_7</span> together is not independent or random, but rather there is a strong positive association between the two defects. This information can be used to further investigate the relationship between <span class="math inline">D_{18}</span> and <span class="math inline">D_7</span> and potentially uncover underlying factors or dependencies that contribute to their co-occurrence.</p>
+</section>
+</section>
+</section>
+<section id="an-example-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="an-example-in-r">An example in R</h2>
+<p>The following implementation demonstrates how to apply Apriori analysis to defect data using R. The interactive table below shows the discovered association rules, with color-coded metrics to highlight the strongest patterns. The network visualization reveals the relationships between defects.</p>
+<div class="cell" data-hash="index_cache/html/apriori-rules_490ce7537fddcf8824809f39a1cf1758">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a>rules <span class="ot">&lt;-</span> <span class="fu">apriori</span>(trans,</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">parameter =</span> <span class="fu">list</span>(<span class="at">supp=</span><span class="dv">3</span><span class="sc">/</span><span class="fu">length</span>(items_list),</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2">2</button><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">conf=</span><span class="fl">0.1</span>,</span>
@@ -273,7 +348,7 @@ Case \ 4 &amp; [Defect \ 1, Defect \ 4,Defect \ 5,Defect \ 6] \\
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-annotation="1" data-code-lines="2">3/length(df) means minimum 3 out of total transactions must contain an itemset for it to be considered frequent</span>
+<span data-code-cell="annotated-cell-1" data-code-annotation="1" data-code-lines="2">3/length(items_list) means minimum 3 out of total transactions must contain an itemset for it to be considered frequent</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
 <dd>
@@ -282,40 +357,14 @@ Case \ 4 &amp; [Defect \ 1, Defect \ 4,Defect \ 5,Defect \ 6] \\
 </dl>
 </div>
 </div>
-<section id="lift" class="level1">
-<h1>Lift</h1>
-<p>The lift of a rule <code>{X} -&gt; {Y}</code> is defined as</p>
-<p><span class="math display">\[\text{lift}({X} \rightarrow {Y}) = \frac{P({Y} | {X})}{P({Y})}\]</span></p>
-<p>where <span class="math inline">\(P({Y} | {X})\)</span> is the conditional probability of observing <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span>, and <span class="math inline">\(P({Y})\)</span> is the probability of observing <span class="math inline">\(Y\)</span>. A lift value greater than 1 indicates that the co-occurrence of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is higher than expected if they were statistically independent, while a lift value less than 1 indicates that the co-occurrence is lower than expected.</p>
-<div class="cell" data-hash="index_cache/html/unnamed-chunk-3_86f7e44a0b2853676d5c312a1c33dba5">
+<div class="cell" data-hash="index_cache/html/apriori-rules-df_731bd05b99b77dcc0764ee17bf40f3b8">
 <div class="cell-output-display">
 
-<div class="reactable html-widget html-fill-item" id="htmlwidget-0f25395827395d865c30" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-0f25395827395d865c30">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Rule":[1,2,3,4,5,6,7,8,9,10,11,12],"rules":["{} => {D_1}","{} => {D_0}","{D_18} => {D_7}","{D_41} => {D_23}","{D_16} => {D_11}","{D_11} => {D_16}","{D_2} => {D_1}","{D_11} => {D_7}","{D_10} => {D_7}","{D_10} => {D_1}","{D_23} => {D_0}","{D_0} => {D_23}"],"Lift":[1,1,8.39,5.27,6,6,1.24,1.44,1.28,1.41,1.51,1.51],"Support":[0.1,0.17,0,0,0.01,0.01,0,0.01,0.01,0.01,0.02,0.02],"Confidence":[0.1,0.17,0.75,0.38,0.31,0.13,0.12,0.13,0.11,0.14,0.26,0.11]},"columns":[{"id":"Rule","name":"Rule","type":"numeric","width":50,"align":"center"},{"id":"rules","name":"X ⇒ Y","type":"character","filterable":true},{"id":"Lift","name":"Lift","type":"numeric","width":60,"align":"center","style":[{"background":"#FFFFFF"},{"background":"#FFFFFF"},{"background":"#0085A1"},{"background":"#6BB8C8"},{"background":"#52ACBF"},{"background":"#52ACBF"},{"background":"#F6FBFB"},{"background":"#EFF7F9"},{"background":"#F5FAFB"},{"background":"#F0F8F9"},{"background":"#EDF6F8"},{"background":"#EDF6F8"}]},{"id":"Support","name":"Support","type":"numeric","width":80,"align":"center"},{"id":"Confidence","name":"Confidence","type":"numeric","width":100,"align":"center","style":[{"background":"#FFFFFF"},{"background":"#FFF4E6"},{"background":"#FF9F1A"},{"background":"#FFD59C"},{"background":"#FFDFB5"},{"background":"#FFFAF4"},{"background":"#FFFCF7"},{"background":"#FFFAF4"},{"background":"#FFFDFB"},{"background":"#FFF9F0"},{"background":"#FFE7C6"},{"background":"#FFFDFB"}]}],"defaultPageSize":6,"showPageSizeOptions":true,"pageSizeOptions":[6,5],"dataKey":"6d1aea19a034e3fbdc337ab9557168dc"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-eb24b316067dcbc1204a" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-eb24b316067dcbc1204a">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Rule":[1,2,3,4,5,6,7,8,9,10,11,12],"rules":["{} => {D_1}","{} => {D_0}","{D_18} => {D_7}","{D_41} => {D_23}","{D_16} => {D_11}","{D_11} => {D_16}","{D_2} => {D_1}","{D_11} => {D_7}","{D_10} => {D_7}","{D_10} => {D_1}","{D_23} => {D_0}","{D_0} => {D_23}"],"Lift":[1,1,8.39,5.27,6,6,1.24,1.44,1.28,1.41,1.51,1.51],"Support":[0.1,0.17,0,0,0.01,0.01,0,0.01,0.01,0.01,0.02,0.02],"Confidence":[0.1,0.17,0.75,0.38,0.31,0.13,0.12,0.13,0.11,0.14,0.26,0.11]},"columns":[{"id":"Rule","name":"Rule","type":"numeric","width":50,"align":"center"},{"id":"rules","name":"X ⇒ Y","type":"character","filterable":true},{"id":"Lift","name":"Lift","type":"numeric","width":60,"align":"center","style":[{"background":"#FFFFFF"},{"background":"#FFFFFF"},{"background":"#0085A1"},{"background":"#6BB8C8"},{"background":"#52ACBF"},{"background":"#52ACBF"},{"background":"#F6FBFB"},{"background":"#EFF7F9"},{"background":"#F5FAFB"},{"background":"#F0F8F9"},{"background":"#EDF6F8"},{"background":"#EDF6F8"}]},{"id":"Support","name":"Support","type":"numeric","width":80,"align":"center"},{"id":"Confidence","name":"Confidence","type":"numeric","width":100,"align":"center","style":[{"background":"#FFFFFF"},{"background":"#FFF4E6"},{"background":"#FF9F1A"},{"background":"#FFD59C"},{"background":"#FFDFB5"},{"background":"#FFFAF4"},{"background":"#FFFCF7"},{"background":"#FFFAF4"},{"background":"#FFFDFB"},{"background":"#FFF9F0"},{"background":"#FFE7C6"},{"background":"#FFFDFB"}]}],"defaultPageSize":6,"showPageSizeOptions":true,"pageSizeOptions":[6,5],"dataKey":"6d1aea19a034e3fbdc337ab9557168dc"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-<section id="lift-interpretation" class="level2">
-<h2 class="anchored" data-anchor-id="lift-interpretation">Lift: interpretation</h2>
-<p>Let’s define the following:</p>
-<p><span class="math inline">\(X\)</span> = <span class="math inline">\(D_{18}\)</span></p>
-<p><span class="math inline">\(Y\)</span> = <span class="math inline">\(D_7\)</span></p>
-<p>The probability of the defect <span class="math inline">\(D_7\)</span> occurring, without considering any other factors, is <strong>5%</strong>. In other words, in <strong>5%</strong> of all cases, the defect <span class="math inline">\(D_7\)</span> is present.</p>
-<p>However, when you look at cases where the defect <span class="math inline">\(D_{18}\)</span> is present, you find that the probability of the defect <span class="math inline">\(D_7\)</span> occurring is ~41.9%.</p>
-<p>Using the lift formula, we can calculate the lift of the rule “<span class="math inline">\(D_{18}\)</span> → <span class="math inline">\(D_7\)</span>” as follows:</p>
-<p><span class="math display">\[\text{lift}({X} \rightarrow {Y}) = \frac{P({Y} | {X})}{P({Y})} = \frac{0.419}{0.05} = 8.39\]</span></p>
-<p>The lift value of <strong>8.39</strong> indicates that when the defect <span class="math inline">\(D_{18}\)</span> is present, the probability of the defect <span class="math inline">\(D_7\)</span> occurring is 8.39 times higher than the probability of the defect <span class="math inline">\(D_7\)</span> occurring without considering the presence of <span class="math inline">\(D_{18}\)</span>.</p>
-<p>In other words, if the defect <span class="math inline">\(D_{18}\)</span> is present, it is a strong indicator or warning sign that the defect <span class="math inline">\(D_7\)</span> is likely to occur as well. This positive correlation between the two defects could be valuable for identifying root causes, implementing preventive measures, or prioritizing process improvements in the system or process where these defects are observed.</p>
-<p>The lift value greater than 1 suggests that the occurrence of <span class="math inline">\(D_{18}\)</span> and <span class="math inline">\(D_7\)</span> together is not independent or random, but rather there is a strong positive association between the two defects. This information can be used to further investigate the relationship between <span class="math inline">\(D_{18}\)</span> and <span class="math inline">\(D_7\)</span> and potentially uncover underlying factors or dependencies that contribute to their co-occurrence.</p>
-</section>
-</section>
-<section id="confidence" class="level1">
-<h1>Confidence</h1>
-<p>The confidence of a rule <code>{X} -&gt; {Y}</code> is defined as</p>
-<p><span class="math display">\[\text{confidence}({X} \rightarrow {Y}) = P({Y} | {X})\]</span></p>
-<p>where <span class="math inline">\(P({Y} | {X})\)</span> is the conditional probability of observing <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span>.</p>
-<p>The confidence metric measures how reliable or trustworthy the association rule <code>{X} -&gt; {Y}</code> is. It represents the proportion of transactions containing <span class="math inline">\(X\)</span> that also contain <span class="math inline">\(Y\)</span>. In other words, it answers the question: “When <span class="math inline">\(X\)</span> occurs, how often does <span class="math inline">\(Y\)</span> also occur?”</p>
-<p>A confidence value closer to 1 (or 100%) indicates a stronger association between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, meaning that if <span class="math inline">\(X\)</span> is present in a transaction, we can be more confident that <span class="math inline">\(Y\)</span> will also be present. Conversely, a confidence value closer to 0 suggests a weaker association, implying that the presence of <span class="math inline">\(X\)</span> does not reliably indicate the presence of <span class="math inline">\(Y\)</span>.</p>
-<div class="cell" data-hash="index_cache/html/unnamed-chunk-4_e10953b8dad19252a1a1162bdd437f5e">
+<div class="cell" data-hash="index_cache/html/apriori-networkplot_559c7a685a48bb8f353d0aa651d0a4c4">
 <div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rules,</span>
 <span id="annotated-cell-2-2"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">method =</span> <span class="st">"graph"</span>,</span>
 <span id="annotated-cell-2-3"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">engine =</span> <span class="st">"htmlwidget"</span>,</span>
@@ -329,23 +378,12 @@ Case \ 4 &amp; [Defect \ 1, Defect \ 4,Defect \ 5,Defect \ 6] \\
 </dl>
 </div>
 <div class="cell-output-display">
-<div class="visNetwork html-widget html-fill-item" id="htmlwidget-53b9ab8703049ef998b6" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-53b9ab8703049ef998b6">{"x":{"nodes":{"id":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22],"label":["D_0","D_1","D_10","D_11","D_16","D_18","D_2","D_23","D_41","D_7","rule 1","rule 2","rule 3","rule 4","rule 5","rule 6","rule 7","rule 8","rule 9","rule 10","rule 11","rule 12"],"group":[1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2],"value":[1,1,1,1,1,1,1,1,1,1,59,100,1,1,2,2,1,2,2,3,9,9],"color":["#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#EEDCDC","#EECDCD","#EE1B1B","#EEA2A2","#EEB0B0","#EED5D5","#EED7D7","#EED5D5","#EED9D9","#EED2D2","#EEBCBC","#EEDBDB"],"title":["D_0","D_1","D_10","D_11","D_16","D_18","D_2","D_23","D_41","D_7","<B>[1]<\/B><BR><B>{}<\/B><BR>&nbsp;&nbsp; => <B>{D_1}<\/B><BR><BR>support = 0.101<BR>confidence = 0.101<BR>coverage = 1<BR>lift = 1<BR>count = 61<BR>order = 1<BR>id = 1","<B>[2]<\/B><BR><B>{}<\/B><BR>&nbsp;&nbsp; => <B>{D_0}<\/B><BR><BR>support = 0.169<BR>confidence = 0.169<BR>coverage = 1<BR>lift = 1<BR>count = 102<BR>order = 1<BR>id = 2","<B>[3]<\/B><BR><B>{D_18}<\/B><BR>&nbsp;&nbsp; => <B>{D_7}<\/B><BR><BR>support = 0.00497<BR>confidence = 0.75<BR>coverage = 0.00662<BR>lift = 8.39<BR>count = 3<BR>order = 2<BR>id = 3","<B>[4]<\/B><BR><B>{D_41}<\/B><BR>&nbsp;&nbsp; => <B>{D_23}<\/B><BR><BR>support = 0.00497<BR>confidence = 0.375<BR>coverage = 0.0132<BR>lift = 5.27<BR>count = 3<BR>order = 2<BR>id = 4","<B>[5]<\/B><BR><B>{D_16}<\/B><BR>&nbsp;&nbsp; => <B>{D_11}<\/B><BR><BR>support = 0.00662<BR>confidence = 0.308<BR>coverage = 0.0215<BR>lift = 6<BR>count = 4<BR>order = 2<BR>id = 5","<B>[6]<\/B><BR><B>{D_11}<\/B><BR>&nbsp;&nbsp; => <B>{D_16}<\/B><BR><BR>support = 0.00662<BR>confidence = 0.129<BR>coverage = 0.0513<BR>lift = 6<BR>count = 4<BR>order = 2<BR>id = 6","<B>[7]<\/B><BR><B>{D_2}<\/B><BR>&nbsp;&nbsp; => <B>{D_1}<\/B><BR><BR>support = 0.00497<BR>confidence = 0.125<BR>coverage = 0.0397<BR>lift = 1.24<BR>count = 3<BR>order = 2<BR>id = 7","<B>[8]<\/B><BR><B>{D_11}<\/B><BR>&nbsp;&nbsp; => <B>{D_7}<\/B><BR><BR>support = 0.00662<BR>confidence = 0.129<BR>coverage = 0.0513<BR>lift = 1.44<BR>count = 4<BR>order = 2<BR>id = 8","<B>[9]<\/B><BR><B>{D_10}<\/B><BR>&nbsp;&nbsp; => <B>{D_7}<\/B><BR><BR>support = 0.00662<BR>confidence = 0.114<BR>coverage = 0.0579<BR>lift = 1.28<BR>count = 4<BR>order = 2<BR>id = 9","<B>[10]<\/B><BR><B>{D_10}<\/B><BR>&nbsp;&nbsp; => <B>{D_1}<\/B><BR><BR>support = 0.00828<BR>confidence = 0.143<BR>coverage = 0.0579<BR>lift = 1.41<BR>count = 5<BR>order = 2<BR>id = 10","<B>[11]<\/B><BR><B>{D_23}<\/B><BR>&nbsp;&nbsp; => <B>{D_0}<\/B><BR><BR>support = 0.0182<BR>confidence = 0.256<BR>coverage = 0.0712<BR>lift = 1.51<BR>count = 11<BR>order = 2<BR>id = 11","<B>[12]<\/B><BR><B>{D_0}<\/B><BR>&nbsp;&nbsp; => <B>{D_23}<\/B><BR><BR>support = 0.0182<BR>confidence = 0.108<BR>coverage = 0.169<BR>lift = 1.51<BR>count = 11<BR>order = 2<BR>id = 12"],"shape":["box","box","box","box","box","box","box","box","box","box","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle"],"x":[0.1851236604442397,-0.7469530710330816,-0.3120673547868132,0.4025416760103988,0.8212206775370745,-0.7017433317056243,-1,0.6245729511157234,1,-0.1834879451960091,-0.67766151767102,-0.07455205626154993,-0.4298026961653604,0.8521521129900049,0.7021214677000442,0.5424235329869542,-0.9415974190511893,0.09943787058280118,-0.2445662970711278,-0.4694836088236084,0.317169149394678,0.4912163297947776],"y":[0.8322729493600756,0.4076676912730159,-0.06784385128670556,-0.8749241166165111,-0.6016225196651201,-0.9439256689205529,-0.2129066083578864,0.5438068941431873,0.04602145703074267,-0.8018210950213116,0.7411751917840803,1,-1,0.307863160916513,-0.9037896833292833,-0.54750225846943,0.1098293605384653,-0.991018172616703,-0.4226854620072713,0.2412116749838034,0.5164979915235492,0.8577943446451022]},"edges":{"from":[6,9,5,4,7,4,3,3,8,1,11,12,13,14,15,16,17,18,19,20,21,22],"to":[13,14,15,16,17,18,19,20,21,22,2,1,10,8,4,5,2,10,10,2,1,8],"arrows":["to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":false},"physics":{"stabilization":false},"interaction":{"hover":true,"zoomSpeed":1}},"groups":["1","2"],"width":null,"height":null,"idselection":{"enabled":true,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","igraphlayout":{"type":"square"},"tooltipStay":300,"tooltipStyle":"position: fixed;visibility:hidden;padding: 5px;white-space: nowrap;font-family: verdana;font-size:14px;font-color:#000000;background-color: #f5f4ed;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px solid #808074;box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);","highlight":{"enabled":true,"hoverNearest":true,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":false,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"}},"evals":[],"jsHooks":[]}</script>
+<div class="visNetwork html-widget html-fill-item" id="htmlwidget-fb1551063a70feebf0dc" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-fb1551063a70feebf0dc">{"x":{"nodes":{"id":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22],"label":["D_0","D_1","D_10","D_11","D_16","D_18","D_2","D_23","D_41","D_7","rule 1","rule 2","rule 3","rule 4","rule 5","rule 6","rule 7","rule 8","rule 9","rule 10","rule 11","rule 12"],"group":[1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2],"value":[1,1,1,1,1,1,1,1,1,1,59,100,1,1,2,2,1,2,2,3,9,9],"color":["#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#EEDCDC","#EECDCD","#EE1B1B","#EEA2A2","#EEB0B0","#EED5D5","#EED7D7","#EED5D5","#EED9D9","#EED2D2","#EEBCBC","#EEDBDB"],"title":["D_0","D_1","D_10","D_11","D_16","D_18","D_2","D_23","D_41","D_7","<B>[1]<\/B><BR><B>{}<\/B><BR>&nbsp;&nbsp; => <B>{D_1}<\/B><BR><BR>support = 0.101<BR>confidence = 0.101<BR>coverage = 1<BR>lift = 1<BR>count = 61<BR>order = 1<BR>id = 1","<B>[2]<\/B><BR><B>{}<\/B><BR>&nbsp;&nbsp; => <B>{D_0}<\/B><BR><BR>support = 0.169<BR>confidence = 0.169<BR>coverage = 1<BR>lift = 1<BR>count = 102<BR>order = 1<BR>id = 2","<B>[3]<\/B><BR><B>{D_18}<\/B><BR>&nbsp;&nbsp; => <B>{D_7}<\/B><BR><BR>support = 0.00497<BR>confidence = 0.75<BR>coverage = 0.00662<BR>lift = 8.39<BR>count = 3<BR>order = 2<BR>id = 3","<B>[4]<\/B><BR><B>{D_41}<\/B><BR>&nbsp;&nbsp; => <B>{D_23}<\/B><BR><BR>support = 0.00497<BR>confidence = 0.375<BR>coverage = 0.0132<BR>lift = 5.27<BR>count = 3<BR>order = 2<BR>id = 4","<B>[5]<\/B><BR><B>{D_16}<\/B><BR>&nbsp;&nbsp; => <B>{D_11}<\/B><BR><BR>support = 0.00662<BR>confidence = 0.308<BR>coverage = 0.0215<BR>lift = 6<BR>count = 4<BR>order = 2<BR>id = 5","<B>[6]<\/B><BR><B>{D_11}<\/B><BR>&nbsp;&nbsp; => <B>{D_16}<\/B><BR><BR>support = 0.00662<BR>confidence = 0.129<BR>coverage = 0.0513<BR>lift = 6<BR>count = 4<BR>order = 2<BR>id = 6","<B>[7]<\/B><BR><B>{D_2}<\/B><BR>&nbsp;&nbsp; => <B>{D_1}<\/B><BR><BR>support = 0.00497<BR>confidence = 0.125<BR>coverage = 0.0397<BR>lift = 1.24<BR>count = 3<BR>order = 2<BR>id = 7","<B>[8]<\/B><BR><B>{D_11}<\/B><BR>&nbsp;&nbsp; => <B>{D_7}<\/B><BR><BR>support = 0.00662<BR>confidence = 0.129<BR>coverage = 0.0513<BR>lift = 1.44<BR>count = 4<BR>order = 2<BR>id = 8","<B>[9]<\/B><BR><B>{D_10}<\/B><BR>&nbsp;&nbsp; => <B>{D_7}<\/B><BR><BR>support = 0.00662<BR>confidence = 0.114<BR>coverage = 0.0579<BR>lift = 1.28<BR>count = 4<BR>order = 2<BR>id = 9","<B>[10]<\/B><BR><B>{D_10}<\/B><BR>&nbsp;&nbsp; => <B>{D_1}<\/B><BR><BR>support = 0.00828<BR>confidence = 0.143<BR>coverage = 0.0579<BR>lift = 1.41<BR>count = 5<BR>order = 2<BR>id = 10","<B>[11]<\/B><BR><B>{D_23}<\/B><BR>&nbsp;&nbsp; => <B>{D_0}<\/B><BR><BR>support = 0.0182<BR>confidence = 0.256<BR>coverage = 0.0712<BR>lift = 1.51<BR>count = 11<BR>order = 2<BR>id = 11","<B>[12]<\/B><BR><B>{D_0}<\/B><BR>&nbsp;&nbsp; => <B>{D_23}<\/B><BR><BR>support = 0.0182<BR>confidence = 0.108<BR>coverage = 0.169<BR>lift = 1.51<BR>count = 11<BR>order = 2<BR>id = 12"],"shape":["box","box","box","box","box","box","box","box","box","box","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle"],"x":[0.9310893241671321,0.232610525663943,-0.09124766510019766,-0.9079325058084449,-0.7715708179397436,-0.3429365597055549,-0.1260470674239758,0.7434602281770728,0.3284780728502998,-0.661549053047215,0.5167885577758773,0.9765902408798455,-0.5765146601189018,0.5538496481612964,-1,-0.6772796383516655,0.08473300209052659,-0.9021411085085387,-0.3285240779710809,0.07484971166838394,0.6931425055396268,1],"y":[0.03723911875413433,0.5386294209863638,-0.1286861455420879,0.09390049059198446,0.6033678353513585,-1,1,-0.4857464521796682,-0.9513169804582825,-0.5095341005640961,0.7124906909415152,0.3449042460669771,-0.8164072597792029,-0.763514964174376,0.3918374165371261,0.3378600092149127,0.8171406982731999,-0.2548811219835382,-0.3834493931161613,0.2067254362310873,-0.1801998606567343,-0.2749158937909721]},"edges":{"from":[6,9,5,4,7,4,3,3,8,1,11,12,13,14,15,16,17,18,19,20,21,22],"to":[13,14,15,16,17,18,19,20,21,22,2,1,10,8,4,5,2,10,10,2,1,8],"arrows":["to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":false},"physics":{"stabilization":false},"interaction":{"hover":true,"zoomSpeed":1}},"groups":["1","2"],"width":null,"height":null,"idselection":{"enabled":true,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","igraphlayout":{"type":"square"},"tooltipStay":300,"tooltipStyle":"position: fixed;visibility:hidden;padding: 5px;white-space: nowrap;font-family: verdana;font-size:14px;font-color:#000000;background-color: #f5f4ed;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px solid #808074;box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);","highlight":{"enabled":true,"hoverNearest":true,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":false,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-<section id="confidence-interpretation" class="level2">
-<h2 class="anchored" data-anchor-id="confidence-interpretation">Confidence: interpretation</h2>
-<p>Based on the confidence value of 0.75 for the association rule X → Y, where:</p>
-<p><span class="math inline">\(X\)</span> = <span class="math inline">\(D_{18}\)</span></p>
-<p><span class="math inline">\(Y\)</span> = <span class="math inline">\(D_7\)</span></p>
-<p>We can draw the following conclusions:</p>
-<ol type="1">
-<li><p><strong>Strong association</strong>: A confidence value of 0.75 indicates a relatively strong association between the two variables. This means that when <span class="math inline">\(D_{18}\)</span> error occurs, there is a 75% probability that the <span class="math inline">\(D_7\)</span> will follow as error.</p></li>
-<li><p><strong>Process improvement opportunity</strong>: The strong association between X and Y could indicate potential issues or inefficiencies in the process. It may be beneficial to review and improve the process to prevent errors.</p></li>
-</ol>
 
 
-</section>
 </section>
 
 

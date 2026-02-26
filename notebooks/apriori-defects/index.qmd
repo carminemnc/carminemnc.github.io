@@ -9,7 +9,9 @@ format:
     code-fold: false
 ---
 
-```{r setup,include=FALSE}
+```{r setup}
+#| label: apriori-libraries
+#| include: false
 library(tidyverse)
 library(arules)
 library(arulesViz)
@@ -18,7 +20,9 @@ library(reactable)
 library(sparkline)
 ```
 
-```{r, include=FALSE}
+```{r}
+#| label: apriori-data
+#| include: false
 # read data
 df <- read.csv('fake_data.csv',sep=',')
 # items as a list
@@ -29,7 +33,11 @@ names(items_list) <- paste("T", c(1:592), sep = "")
 trans <- as(items_list,"transactions")
 ```
 
-The Apriori algorithm is a data mining technique that can help identify frequent patterns and associations among defects or issues encountered during process management activities. Instead of analyzing individual defects in isolation, the **Apriori** ^[[Apriori wikipedia page](https://en.wikipedia.org/wiki/Apriori_algorithm)] algorithm allows us to uncover relationships between different types of defects or issues that often occur together.
+## The Apriori algorithm
+
+The **Apriori** ^[[Apriori wikipedia page](https://en.wikipedia.org/wiki/Apriori_algorithm)] algorithm is a foundational data mining technique designed to discover frequent patterns and associations within datasets. Originally developed for market basket analysis — identifying which products customers commonly purchase together — it has since proven valuable across diverse domains including healthcare and web usage analysis.
+
+The algorithm operates on a simple principle: it systematically examines data to identify which items frequently appear together, building from individual items to larger combinations based on their occurrence patterns.
 
 $$
 \begin{aligned}
@@ -45,30 +53,105 @@ Case \ 4 & [Defect \ 1, Defect \ 4,Defect \ 5,Defect \ 6] \\
 \end{aligned}
 $$
 
-In the context of process management quality assurance, the algorithm works as follows:
+### Application in quality assurance
 
-1.  It analyzes the defect or issue data to identify the most frequently occurring individual defects or issues across multiple process instances or scenarios.
+In quality assurance, the Apriori algorithm transforms how we analyze defect patterns. Rather than treating each defect as an isolated incident, it reveals the interconnected nature of quality issues across process instances. For instance, discovering that [interface errors]{.double-underline} and [data validation failures]{.double-underline} frequently co-occur suggests these aren't isolated problems but symptoms of a deeper integration issue.
 
-2.  It then looks for combinations of defects or issues that frequently co-occur, starting with pairs, then triplets, and so on.
+The practical applications span multiple quality management areas:
 
-3.  The algorithm calculates two key metrics for each defect or issue combination:
+- **Strategic Process Improvement:** Instead of addressing defects randomly, teams can prioritize areas where multiple quality issues cluster together, maximizing the impact of improvement efforts.
 
-    -   [**Support**]{.highlight}: The proportion of process instances or scenarios in which a particular combination of defects or issues was observed.
-    -   [**Confidence**]{.highlight}: The likelihood that if one defect or issue is present, the other defect(s) or issue(s) in the combination will also be found.
+- **Enhanced Root Cause Analysis:** When certain defects consistently appear together, it signals shared underlying causes. This pattern recognition accelerates problem-solving by directing investigation toward common sources rather than treating symptoms separately.
 
-By analyzing these metrics, the Apriori algorithm can reveal meaningful associations between different types of defects or issues in the process management context. For example, it may uncover that a particular defect X and issue Y often occur together with high confidence, suggesting a potential root cause or shared underlying problem in the process.
+- **Operational Efficiency:** Understanding defect relationships allows teams to design remediation strategies that address multiple issues simultaneously, reducing redundant work and accelerating resolution times.
 
-These insights can be valuable for the quality assurance team in several ways:
+- **Predictive Quality Management:** Once patterns are established, the presence of one defect type can serve as an early warning system for related issues, enabling proactive intervention before problems cascade.
 
-1.  **Prioritizing process improvement efforts**: Defect and issue associations can help prioritize process areas or scenarios that are more likely to encounter multiple defects or issues simultaneously, enabling targeted improvement initiatives.
+## About the data
 
-2.  [**Root cause analysis**]{.double-underline}: Identifying strong associations between defects and issues can provide clues about potential root causes or shared underlying problems in the processes, leading to more effective defect prevention and remediation strategies.
+This dataset represents an anonymized subset of real-world quality assurance data, providing an authentic foundation for demonstrating the Apriori algorithm's practical applications. While the specific defect identifiers have been obscured, the underlying patterns and relationships remain intact, offering genuine insights into how defect associations manifest in actual production environments.
 
-3.  **Process optimization**: By understanding defect and issue co-occurrence patterns, the team can optimize processes to address multiple defects or issues more efficiently, reducing redundant efforts.
+## The three core metrics
 
-4.  [**Defect and issue prediction**]{.double-underline}: The identified associations can potentially be used to predict the likelihood of encountering certain defects or issues based on the presence of others, enabling proactive mitigation measures.
+The Apriori algorithm identifies meaningful relationships through three key metrics that work together to reveal patterns:
 
-```{r,warning=FALSE}
+- [Support]{.highlight} measures how frequently a item combination appears across all items. It answers: "How common is this pattern?" High support indicates widespread occurrence. For example, within quality management areas, this could help prioritise the most prevalent issues.
+
+- [Confidence]{.highlight} quantifies the reliability of a relationship by measuring how often item Y occurs when item X is present. It answers: "If I see item X, how likely am I to also find item Y?"
+
+- [Lift]{.highlight} determines whether items occur together more often than random chance would suggest.
+
+These metrics work in combination to filter noise from meaningful patterns. For instance, a rule with high support ensures the pattern is frequent enough to matter, high confidence makes it reliable for prediction, and high lift confirms the relationship isn't just coincidental.
+
+### Support
+Mathematically defined as the proportion of transactions containing a specific itemset, support answers the fundamental question: "How often does this pattern appear?"
+
+$$\text{support}({X}) = \frac{\text{Number of transactions containing } X}{\text{Total number of transactions}}$$
+
+In quality assurance contexts, high support values indicate widespread defect patterns that warrant immediate attention due to their prevalence. For instance, if a defect combination has 20% support, it means this pattern occurs in one out of every five cases, suggesting a systematic issue requiring priority investigation. Support serves as the foundation for identifying frequent patterns before analyzing their relationships through confidence and lift metrics.
+
+### Confidence
+
+The confidence of a rule `{X} -> {Y}` is defined as
+
+$$\text{confidence}({X} \rightarrow {Y}) = P({Y} | {X})$$
+
+where $P({Y} | {X})$ is the conditional probability of observing $Y$ given that $X$ has occurred. Mathematically, this is expressed as:
+$$P({Y} | {X}) = \frac{P(X \cap Y)}{P(X)}$$
+
+where $P(X \cap Y)$ represents the joint probability of both events occurring together, and $P(X)$ is the marginal probability of event $X$.
+The confidence metric measures how reliable or trustworthy the association rule `{X} -> {Y}` is. It represents the proportion of transactions containing $X$ that also contain $Y$. In other words, it answers the question: "When $X$ occurs, how often does $Y$ also occur?"
+
+A confidence value closer to 1 (or 100%) indicates a stronger association between $X$ and $Y$, meaning that if $X$ is present in a transaction, we can be more confident that $Y$ will also be present. Conversely, a confidence value closer to 0 suggests a weaker association, implying that the presence of $X$ does not reliably indicate the presence of $Y$.
+
+#### Confidence: interpretation
+
+Let's examine rule #3 where:
+
+$X$ = $D_{18}$
+
+$Y$ = $D_7$
+
+With $\text{confidence}({X} \rightarrow {Y}) = 0.75$, we can draw the following conclusions:
+
+1.  **Predictive Reliability**: The 75% confidence indicates that when defect $D_{18}$ occurs, there's a three-in-four chance that defect $D_7$ will also be present. This makes $D_{18}$ a reliable predictor for $D_7$.
+
+2.  **Shared Root Cause:** Such a strong association suggests these defects likely stem from a common underlying issue rather than independent failures. This points to systemic problems in related process components.
+
+### Lift
+
+The lift of a rule `{X} -> {Y}` is defined as
+
+$$\text{lift}({X} \rightarrow {Y}) = \frac{P({Y} | {X})}{P({Y})}$$
+
+where $P({Y} | {X})$ is the conditional probability of observing $Y$ given that $X$ has occurred, and $P({Y})$ is the marginal probability of observing $Y$. A lift value greater than 1 indicates that the co-occurrence of $X$ and $Y$ is higher than expected if they were statistically independent, while a lift value less than 1 indicates that the co-occurrence is lower than expected.
+
+#### Lift: interpretation
+
+Continuing with rule #3 where:
+
+$X$ = $D_{18}$
+
+$Y$ = $D_7$
+
+The probability of defect $D_7$ occurring, without considering any other factors, is **5%**. In other words, in **5%** of all cases, defect $D_7$ is present.
+
+However, when you look at cases where defect $D_{18}$ is present, you find that the probability of defect $D_7$ occurring is ~41.9%.
+
+Using the lift formula, we can calculate the lift of the rule $D_{18}$ → $D_7$ as follows:
+
+$$\text{lift}({X} \rightarrow {Y}) = \frac{P({Y} | {X})}{P({Y})} = \frac{0.419}{0.05} = 8.39$$
+
+The lift value of **8.39** indicates that when defect $D_{18}$ is present, the probability of defect $D_7$ occurring is 8.39 times higher than the probability of defect $D_7$ occurring without considering the presence of $D_{18}$.
+
+This suggests that the occurrence of $D_{18}$ and $D_7$ together is not independent or random, but rather there is a strong positive association between the two defects. This information can be used to further investigate the relationship between $D_{18}$ and $D_7$ and potentially uncover underlying factors or dependencies that contribute to their co-occurrence.
+
+## An example in R
+
+The following implementation demonstrates how to apply Apriori analysis to defect data using R. The interactive table below shows the discovered association rules, with color-coded metrics to highlight the strongest patterns. The network visualization reveals the relationships between defects.
+
+```{r}
+#| label: apriori-rules
 rules <- apriori(trans,
                  parameter = list(supp=3/length(items_list), #<1>
                                   conf=0.1, #<2>
@@ -76,18 +159,12 @@ rules <- apriori(trans,
                  control = list(verbose=FALSE))
 ```
 
-1. 3/length(df) means minimum 3 out of total transactions must contain an itemset for it to be considered frequent
+1. 3/length(items_list) means minimum 3 out of total transactions must contain an itemset for it to be considered frequent
 2. conf=0.1 means the minimum confidence threshold is set to 0.1 or 10%. This filters out association rules where the consequent (right-hand side) occurs less than 10% of the times when the antecedent (left-hand side) occurs
 
-# Lift
-
-The lift of a rule `{X} -> {Y}` is defined as
-
-$$\text{lift}({X} \rightarrow {Y}) = \frac{P({Y} | {X})}{P({Y})}$$
-
-where $P({Y} | {X})$ is the conditional probability of observing $Y$ given $X$, and $P({Y})$ is the probability of observing $Y$. A lift value greater than 1 indicates that the co-occurrence of $X$ and $Y$ is higher than expected if they were statistically independent, while a lift value less than 1 indicates that the co-occurrence is lower than expected.
-
-```{r,echo=FALSE}
+```{r}
+#| label: apriori-rules-df
+#| echo: false
 rules_df <- as(rules, 'data.frame') %>%
   select(rules, lift,support,confidence) %>%
   mutate(rule_number = row_number()) %>%
@@ -149,41 +226,8 @@ reactable(
 )
 ```
 
-## Lift: interpretation
-
-Let's define the following:
-
-$X$ = $D_{18}$
-
-$Y$ = $D_7$
-
-The probability of the defect $D_7$ occurring, without considering any other factors, is **5%**. In other words, in **5%** of all cases, the defect $D_7$ is present.
-
-However, when you look at cases where the defect $D_{18}$ is present, you find that the probability of the defect $D_7$ occurring is ~41.9%.
-
-Using the lift formula, we can calculate the lift of the rule "$D_{18}$ → $D_7$" as follows:
-
-$$\text{lift}({X} \rightarrow {Y}) = \frac{P({Y} | {X})}{P({Y})} = \frac{0.419}{0.05} = 8.39$$
-
-The lift value of **8.39** indicates that when the defect $D_{18}$ is present, the probability of the defect $D_7$ occurring is 8.39 times higher than the probability of the defect $D_7$ occurring without considering the presence of $D_{18}$.
-
-In other words, if the defect $D_{18}$ is present, it is a strong indicator or warning sign that the defect $D_7$ is likely to occur as well. This positive correlation between the two defects could be valuable for identifying root causes, implementing preventive measures, or prioritizing process improvements in the system or process where these defects are observed.
-
-The lift value greater than 1 suggests that the occurrence of $D_{18}$ and $D_7$ together is not independent or random, but rather there is a strong positive association between the two defects. This information can be used to further investigate the relationship between $D_{18}$ and $D_7$ and potentially uncover underlying factors or dependencies that contribute to their co-occurrence.
-
-# Confidence
-
-The confidence of a rule `{X} -> {Y}` is defined as
-
-$$\text{confidence}({X} \rightarrow {Y}) = P({Y} | {X})$$
-
-where $P({Y} | {X})$ is the conditional probability of observing $Y$ given $X$.
-
-The confidence metric measures how reliable or trustworthy the association rule `{X} -> {Y}` is. It represents the proportion of transactions containing $X$ that also contain $Y$. In other words, it answers the question: "When $X$ occurs, how often does $Y$ also occur?"
-
-A confidence value closer to 1 (or 100%) indicates a stronger association between $X$ and $Y$, meaning that if $X$ is present in a transaction, we can be more confident that $Y$ will also be present. Conversely, a confidence value closer to 0 suggests a weaker association, implying that the presence of $X$ does not reliably indicate the presence of $Y$.
-
 ```{r}
+#| label: apriori-networkplot
 plot(rules,
      method = "graph",
      engine = "htmlwidget",
@@ -192,16 +236,3 @@ plot(rules,
 
 1. Nodes with higher confidence rules will be shaded darker, allowing you to visually identify the most confident association rules at a glance
 
-## Confidence: interpretation
-
-Based on the confidence value of 0.75 for the association rule X → Y, where:
-
-$X$ = $D_{18}$
-
-$Y$ = $D_7$
-
-We can draw the following conclusions:
-
-1.  **Strong association**: A confidence value of 0.75 indicates a relatively strong association between the two variables. This means that when $D_{18}$ error occurs, there is a 75% probability that the $D_7$ will follow as error.
-
-2.  **Process improvement opportunity**: The strong association between X and Y could indicate potential issues or inefficiencies in the process. It may be beneficial to review and improve the process to prevent errors.

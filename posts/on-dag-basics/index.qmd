@@ -1,0 +1,10 @@
+---
+title: "On DAG basics"
+author: "Carmine Minichini"
+description: "Experimental design through causal thinking"
+date: "2026-02-26"
+categories: [casual inference, R]
+code-fold: true
+---
+
+![](../../imgs/wip.gif)

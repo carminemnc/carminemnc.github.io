@@ -1,38 +1,31 @@
 [
   {
-    "objectID": "projects/causalwiz/index.html",
-    "href": "projects/causalwiz/index.html",
-    "title": "Causalwiz",
-    "section": "",
-    "text": "Package doc  Source code\ncausalwiz is an R package for causal inference analysis. It provides functions for estimating treatment effects using various statistical methods, features built-in plotting functions an utilities designed for causal inference workflows in R.\nThe package is accompanied by a series of Italian-language articles, covering theoretical foundations of causal inference and the practical implementation of methods in causalwiz. Web-based package documentation is also available."
-  },
-  {
-    "objectID": "projects/causalwiz/index.html#installation",
-    "href": "projects/causalwiz/index.html#installation",
-    "title": "Causalwiz",
-    "section": "Installation",
-    "text": "Installation\nYou can install the package via Github repository:\n# install.packages(\"pak\")\npak::pak(\"carminemnc/causalwiz\")"
-  },
-  {
     "objectID": "projects.html",
     "href": "projects.html",
     "title": "Projects",
     "section": "",
-    "text": "CausalwizMay 7, 2025\n\n\n\nTools for Causal Inference Analysis and Visualization\n\n\n\n\n\n\nTripscraperJul 10, 2023\n\n\n\nAn open source application for NLP playground\n\n\n\n\n\n\nBook your spaceNov 23, 2022\n\n\n\nAn open source application for managing office desk booking\n\n\n\n\n\n\nNo matching items"
+    "text": "CausalwizMay 7, 2025\n\n\n\nTools for Causal Inference Analysis and Visualization\n\n\n\n\n\n\nBook your spaceNov 23, 2022\n\n\n\nAn open source application for managing office desk booking\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "projects/book-your-space/index.html",
     "href": "projects/book-your-space/index.html",
     "title": "Book your space",
     "section": "",
-    "text": "Demo  Source code\n\n\nMotivation\nThe COVID-19 pandemic breakout has led to a significant shift in the way we work, with many employees now working remotely or in a hybrid model. This has created a need for new tools and technologies to help businesses manage their office space more effectively.\nThis application for managing desk office booking is designed to address this challenge.\n\n\nHow it works\nBuild on Google apps script platform, the application is designed to work in a Google enviroment.\nIt allows:\n\nPerson quota managing over 2 weeks of booking\nDisplay names customization\nBookings download\n\nFork the script here and adapt it on your needs."
+    "text": "Demo  Source code"
   },
   {
-    "objectID": "posts/inferenza-causale-capitolo-zero/index.html",
-    "href": "posts/inferenza-causale-capitolo-zero/index.html",
-    "title": "Inferenza causale - capitolo zero",
-    "section": "",
-    "text": "Package doc"
+    "objectID": "projects/book-your-space/index.html#motivation",
+    "href": "projects/book-your-space/index.html#motivation",
+    "title": "Book your space",
+    "section": "Motivation",
+    "text": "Motivation\nThe COVID-19 pandemic breakout has led to a significant shift in the way we work, with many employees now working remotely or in a hybrid model. This has created a need for new tools and technologies to help businesses manage their office space more effectively.\nThis application for managing desk office booking is designed to address this challenge."
+  },
+  {
+    "objectID": "projects/book-your-space/index.html#how-it-works",
+    "href": "projects/book-your-space/index.html#how-it-works",
+    "title": "Book your space",
+    "section": "How it works",
+    "text": "How it works\nBuild on Google apps script platform, the application is designed to work in a Google enviroment.\nIt allows:\n\nPerson quota managing over 2 weeks of booking\nDisplay names customization\nBookings download\n\nFork the script here and adapt it on your needs."
   },
   {
     "objectID": "notebooks/eda/index.html",
@@ -40,6 +33,13 @@
     "title": "How to get your loan",
     "section": "",
     "text": "Dataset"
+  },
+  {
+    "objectID": "notebooks/eda/index.html#motivation-and-analysis-design",
+    "href": "notebooks/eda/index.html#motivation-and-analysis-design",
+    "title": "How to get your loan",
+    "section": "Motivation and analysis design",
+    "text": "Motivation and analysis design\nThis analysis is intended to serve as an exercise in data visualisation and exploratory data analysis (EDA) techniques. The dataset comprises 20.000 synthetic records of personal and financial information. These records include various features such as demographic information, credit history, employment status, income levels, existing debt, and other relevant financial metrics. This provides a comprehensive basis for sophisticated, data-driven analysis and decision-making. The objective of this exercise is to analyse the dataset in order to identify patterns, relationships, and the factors influencing loan decisions.\nWhile the insights gained may be useful, it should be noted that the data is synthetic, and the primary focus is on demonstrating various visualisation methods and developing those used in the datasage python package.\n\n\n\n\n\n%%{init: {'theme': 'default', 'themeVariables': { 'fontFamily': 'Arial, sans-serif', 'fontSize': '20px', 'primaryColor': '#0085a1', 'primaryTextColor': 'black' }}}%%\ngraph TD\n    A((Loan&lt;br&gt;Approval)) --- B((Income&lt;br&gt;&nbsp;))\n    A --- C((Who&lt;br&gt;gets&lt;br&gt;loans?))\n    A --- E((Credit&lt;br&gt;History))\n    A --- F((Wealth))\n    \n    classDef main fill:#0085a1\n    classDef factor fill:#0085a1\n    \n    class A main\n    class B,C,D,E,F factor"
   },
   {
     "objectID": "notebooks/eda/index.html#loan-approval-landscape",
@@ -84,25 +84,46 @@
     "text": "The approval formula\nAs highlighted in our previous analyses, we can now precisely quantify the impact of each variable on the risk score through their correlations.\n\nOn one side, we find factors that increase risk: bankruptcy history emerges as the most critical element, with a positive correlation of 0.4, followed by total debt-to-income ratio and debt-to-income ratio (0.35). Interest rates and previous defaults also contribute to increasing risk, albeit with a more moderate impact (0.2).\nOn the other side, some factors act as protective elements, reducing risk: income, both monthly and annual, shows the strongest negative correlation (-0.4), followed by net worth and total assets (-0.3). Credit score and length of credit history confirm their protective role with moderate negative correlations (-0.25). It’s particularly interesting to note how the requested loan amount has a relatively modest impact on the risk score (0.15), suggesting that banks focus more on repayment capability than on the loan size itself.\n\n\n\nCode\n# Select numeric columns only\nnumeric_cols = cldf.select_dtypes(include=['int64', 'float64']).columns.tolist()\nnumeric_cols.remove('risk_score')\n\n# Calculate correlations with risk_score\ncorrelations = cldf[numeric_cols + ['risk_score']].corr()['risk_score'].drop(['risk_score','loan_approved']).sort_values(key=abs, ascending=False)\n\n# renaming index\ncorrelations.index = [col.replace('_', ' ').capitalize() for col in correlations.index]\n\nplt.figure(figsize=(10, 4))\nbars = correlations.head(15).plot(kind='barh', color=np.where(correlations &gt; 0, '#0085a1', '#242728'),alpha=1)\nplt.axvline(x=0, color='#242728', linestyle='--', alpha=0.1)\nplt.xlabel('Correlation')\nplt.title('Correlation with risk score')\nmplcyberpunk.add_glow_effects()\nplt.tight_layout()\nplt.show()"
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
+    "section": "",
+    "text": "I’m a Statistician with a specialization in actuarial science.\nThis space contains projects, notebooks with raw notes about data science, and posts where I explore mathematical and statistical topics in depth. I explore different fields with statistical rigor, aiming to bridge theory and practical applications."
+  },
+  {
     "objectID": "notebooks/apriori-defects/index.html",
     "href": "notebooks/apriori-defects/index.html",
     "title": "Apriori analysis for quality assurance",
     "section": "",
-    "text": "The Apriori algorithm is a data mining technique that can help identify frequent patterns and associations among defects or issues encountered during process management activities. Instead of analyzing individual defects in isolation, the Apriori 1 algorithm allows us to uncover relationships between different types of defects or issues that often occur together.\n\\[\n\\begin{aligned}\n\\begin{array}{c|c}\n\\hline\n\\text { Case } & \\text { Defects } \\\\\n\\hline\nCase \\ 1 & [Defect \\ 1, Defect \\ 2,Defect \\ 3] \\\\\nCase \\ 2 & [Defect \\ 1, Defect \\ 2] \\\\\nCase \\ 3 & [Defect \\ 1, Defect \\ 4] \\\\\nCase \\ 4 & [Defect \\ 1, Defect \\ 4,Defect \\ 5,Defect \\ 6] \\\\\n\\end{array}\n\\end{aligned}\n\\]\nIn the context of process management quality assurance, the algorithm works as follows:\nBy analyzing these metrics, the Apriori algorithm can reveal meaningful associations between different types of defects or issues in the process management context. For example, it may uncover that a particular defect X and issue Y often occur together with high confidence, suggesting a potential root cause or shared underlying problem in the process.\nThese insights can be valuable for the quality assurance team in several ways:\nrules &lt;- apriori(trans,\n1                 parameter = list(supp=3/length(items_list),\n2                                  conf=0.1,\n                                  target= \"rules\"),\n                 control = list(verbose=FALSE))\n\n\n1\n\n3/length(df) means minimum 3 out of total transactions must contain an itemset for it to be considered frequent\n\n2\n\nconf=0.1 means the minimum confidence threshold is set to 0.1 or 10%. This filters out association rules where the consequent (right-hand side) occurs less than 10% of the times when the antecedent (left-hand side) occurs"
+    "text": "The Apriori 1 algorithm is a foundational data mining technique designed to discover frequent patterns and associations within datasets. Originally developed for market basket analysis — identifying which products customers commonly purchase together — it has since proven valuable across diverse domains including healthcare and web usage analysis.\nThe algorithm operates on a simple principle: it systematically examines data to identify which items frequently appear together, building from individual items to larger combinations based on their occurrence patterns.\n\n\\begin{aligned}\n\\begin{array}{c|c}\n\\hline\n\\text { Case } & \\text { Defects } \\\\\n\\hline\nCase \\ 1 & [Defect \\ 1, Defect \\ 2,Defect \\ 3] \\\\\nCase \\ 2 & [Defect \\ 1, Defect \\ 2] \\\\\nCase \\ 3 & [Defect \\ 1, Defect \\ 4] \\\\\nCase \\ 4 & [Defect \\ 1, Defect \\ 4,Defect \\ 5,Defect \\ 6] \\\\\n\\end{array}\n\\end{aligned}\n\n\n\nIn quality assurance, the Apriori algorithm transforms how we analyze defect patterns. Rather than treating each defect as an isolated incident, it reveals the interconnected nature of quality issues across process instances. For instance, discovering that interface errors and data validation failures frequently co-occur suggests these aren’t isolated problems but symptoms of a deeper integration issue.\nThe practical applications span multiple quality management areas:\n\nStrategic Process Improvement: Instead of addressing defects randomly, teams can prioritize areas where multiple quality issues cluster together, maximizing the impact of improvement efforts.\nEnhanced Root Cause Analysis: When certain defects consistently appear together, it signals shared underlying causes. This pattern recognition accelerates problem-solving by directing investigation toward common sources rather than treating symptoms separately.\nOperational Efficiency: Understanding defect relationships allows teams to design remediation strategies that address multiple issues simultaneously, reducing redundant work and accelerating resolution times.\nPredictive Quality Management: Once patterns are established, the presence of one defect type can serve as an early warning system for related issues, enabling proactive intervention before problems cascade."
   },
   {
-    "objectID": "notebooks/apriori-defects/index.html#lift-interpretation",
-    "href": "notebooks/apriori-defects/index.html#lift-interpretation",
+    "objectID": "notebooks/apriori-defects/index.html#the-apriori-algorithm",
+    "href": "notebooks/apriori-defects/index.html#the-apriori-algorithm",
     "title": "Apriori analysis for quality assurance",
-    "section": "Lift: interpretation",
-    "text": "Lift: interpretation\nLet’s define the following:\n\\(X\\) = \\(D_{18}\\)\n\\(Y\\) = \\(D_7\\)\nThe probability of the defect \\(D_7\\) occurring, without considering any other factors, is 5%. In other words, in 5% of all cases, the defect \\(D_7\\) is present.\nHowever, when you look at cases where the defect \\(D_{18}\\) is present, you find that the probability of the defect \\(D_7\\) occurring is ~41.9%.\nUsing the lift formula, we can calculate the lift of the rule “\\(D_{18}\\) → \\(D_7\\)” as follows:\n\\[\\text{lift}({X} \\rightarrow {Y}) = \\frac{P({Y} | {X})}{P({Y})} = \\frac{0.419}{0.05} = 8.39\\]\nThe lift value of 8.39 indicates that when the defect \\(D_{18}\\) is present, the probability of the defect \\(D_7\\) occurring is 8.39 times higher than the probability of the defect \\(D_7\\) occurring without considering the presence of \\(D_{18}\\).\nIn other words, if the defect \\(D_{18}\\) is present, it is a strong indicator or warning sign that the defect \\(D_7\\) is likely to occur as well. This positive correlation between the two defects could be valuable for identifying root causes, implementing preventive measures, or prioritizing process improvements in the system or process where these defects are observed.\nThe lift value greater than 1 suggests that the occurrence of \\(D_{18}\\) and \\(D_7\\) together is not independent or random, but rather there is a strong positive association between the two defects. This information can be used to further investigate the relationship between \\(D_{18}\\) and \\(D_7\\) and potentially uncover underlying factors or dependencies that contribute to their co-occurrence."
+    "section": "",
+    "text": "The Apriori 1 algorithm is a foundational data mining technique designed to discover frequent patterns and associations within datasets. Originally developed for market basket analysis — identifying which products customers commonly purchase together — it has since proven valuable across diverse domains including healthcare and web usage analysis.\nThe algorithm operates on a simple principle: it systematically examines data to identify which items frequently appear together, building from individual items to larger combinations based on their occurrence patterns.\n\n\\begin{aligned}\n\\begin{array}{c|c}\n\\hline\n\\text { Case } & \\text { Defects } \\\\\n\\hline\nCase \\ 1 & [Defect \\ 1, Defect \\ 2,Defect \\ 3] \\\\\nCase \\ 2 & [Defect \\ 1, Defect \\ 2] \\\\\nCase \\ 3 & [Defect \\ 1, Defect \\ 4] \\\\\nCase \\ 4 & [Defect \\ 1, Defect \\ 4,Defect \\ 5,Defect \\ 6] \\\\\n\\end{array}\n\\end{aligned}\n\n\n\nIn quality assurance, the Apriori algorithm transforms how we analyze defect patterns. Rather than treating each defect as an isolated incident, it reveals the interconnected nature of quality issues across process instances. For instance, discovering that interface errors and data validation failures frequently co-occur suggests these aren’t isolated problems but symptoms of a deeper integration issue.\nThe practical applications span multiple quality management areas:\n\nStrategic Process Improvement: Instead of addressing defects randomly, teams can prioritize areas where multiple quality issues cluster together, maximizing the impact of improvement efforts.\nEnhanced Root Cause Analysis: When certain defects consistently appear together, it signals shared underlying causes. This pattern recognition accelerates problem-solving by directing investigation toward common sources rather than treating symptoms separately.\nOperational Efficiency: Understanding defect relationships allows teams to design remediation strategies that address multiple issues simultaneously, reducing redundant work and accelerating resolution times.\nPredictive Quality Management: Once patterns are established, the presence of one defect type can serve as an early warning system for related issues, enabling proactive intervention before problems cascade."
   },
   {
-    "objectID": "notebooks/apriori-defects/index.html#confidence-interpretation",
-    "href": "notebooks/apriori-defects/index.html#confidence-interpretation",
+    "objectID": "notebooks/apriori-defects/index.html#about-the-data",
+    "href": "notebooks/apriori-defects/index.html#about-the-data",
     "title": "Apriori analysis for quality assurance",
-    "section": "Confidence: interpretation",
-    "text": "Confidence: interpretation\nBased on the confidence value of 0.75 for the association rule X → Y, where:\n\\(X\\) = \\(D_{18}\\)\n\\(Y\\) = \\(D_7\\)\nWe can draw the following conclusions:\n\nStrong association: A confidence value of 0.75 indicates a relatively strong association between the two variables. This means that when \\(D_{18}\\) error occurs, there is a 75% probability that the \\(D_7\\) will follow as error.\nProcess improvement opportunity: The strong association between X and Y could indicate potential issues or inefficiencies in the process. It may be beneficial to review and improve the process to prevent errors."
+    "section": "About the data",
+    "text": "About the data\nThis dataset represents an anonymized subset of real-world quality assurance data, providing an authentic foundation for demonstrating the Apriori algorithm’s practical applications. While the specific defect identifiers have been obscured, the underlying patterns and relationships remain intact, offering genuine insights into how defect associations manifest in actual production environments."
+  },
+  {
+    "objectID": "notebooks/apriori-defects/index.html#the-three-core-metrics",
+    "href": "notebooks/apriori-defects/index.html#the-three-core-metrics",
+    "title": "Apriori analysis for quality assurance",
+    "section": "The three core metrics",
+    "text": "The three core metrics\nThe Apriori algorithm identifies meaningful relationships through three key metrics that work together to reveal patterns:\n\nSupport measures how frequently a item combination appears across all items. It answers: “How common is this pattern?” High support indicates widespread occurrence. For example, within quality management areas, this could help prioritise the most prevalent issues.\nConfidence quantifies the reliability of a relationship by measuring how often item Y occurs when item X is present. It answers: “If I see item X, how likely am I to also find item Y?”\nLift determines whether items occur together more often than random chance would suggest.\n\nThese metrics work in combination to filter noise from meaningful patterns. For instance, a rule with high support ensures the pattern is frequent enough to matter, high confidence makes it reliable for prediction, and high lift confirms the relationship isn’t just coincidental.\n\nSupport\nMathematically defined as the proportion of transactions containing a specific itemset, support answers the fundamental question: “How often does this pattern appear?”\n\\text{support}({X}) = \\frac{\\text{Number of transactions containing } X}{\\text{Total number of transactions}}\nIn quality assurance contexts, high support values indicate widespread defect patterns that warrant immediate attention due to their prevalence. For instance, if a defect combination has 20% support, it means this pattern occurs in one out of every five cases, suggesting a systematic issue requiring priority investigation. Support serves as the foundation for identifying frequent patterns before analyzing their relationships through confidence and lift metrics.\n\n\nConfidence\nThe confidence of a rule {X} -&gt; {Y} is defined as\n\\text{confidence}({X} \\rightarrow {Y}) = P({Y} | {X})\nwhere P({Y} | {X}) is the conditional probability of observing Y given that X has occurred. Mathematically, this is expressed as: P({Y} | {X}) = \\frac{P(X \\cap Y)}{P(X)}\nwhere P(X \\cap Y) represents the joint probability of both events occurring together, and P(X) is the marginal probability of event X. The confidence metric measures how reliable or trustworthy the association rule {X} -&gt; {Y} is. It represents the proportion of transactions containing X that also contain Y. In other words, it answers the question: “When X occurs, how often does Y also occur?”\nA confidence value closer to 1 (or 100%) indicates a stronger association between X and Y, meaning that if X is present in a transaction, we can be more confident that Y will also be present. Conversely, a confidence value closer to 0 suggests a weaker association, implying that the presence of X does not reliably indicate the presence of Y.\n\nConfidence: interpretation\nLet’s examine rule #3 where:\nX = D_{18}\nY = D_7\nWith \\text{confidence}({X} \\rightarrow {Y}) = 0.75, we can draw the following conclusions:\n\nPredictive Reliability: The 75% confidence indicates that when defect D_{18} occurs, there’s a three-in-four chance that defect D_7 will also be present. This makes D_{18} a reliable predictor for D_7.\nShared Root Cause: Such a strong association suggests these defects likely stem from a common underlying issue rather than independent failures. This points to systemic problems in related process components.\n\n\n\n\nLift\nThe lift of a rule {X} -&gt; {Y} is defined as\n\\text{lift}({X} \\rightarrow {Y}) = \\frac{P({Y} | {X})}{P({Y})}\nwhere P({Y} | {X}) is the conditional probability of observing Y given that X has occurred, and P({Y}) is the marginal probability of observing Y. A lift value greater than 1 indicates that the co-occurrence of X and Y is higher than expected if they were statistically independent, while a lift value less than 1 indicates that the co-occurrence is lower than expected.\n\nLift: interpretation\nContinuing with rule #3 where:\nX = D_{18}\nY = D_7\nThe probability of defect D_7 occurring, without considering any other factors, is 5%. In other words, in 5% of all cases, defect D_7 is present.\nHowever, when you look at cases where defect D_{18} is present, you find that the probability of defect D_7 occurring is ~41.9%.\nUsing the lift formula, we can calculate the lift of the rule D_{18} → D_7 as follows:\n\\text{lift}({X} \\rightarrow {Y}) = \\frac{P({Y} | {X})}{P({Y})} = \\frac{0.419}{0.05} = 8.39\nThe lift value of 8.39 indicates that when defect D_{18} is present, the probability of defect D_7 occurring is 8.39 times higher than the probability of defect D_7 occurring without considering the presence of D_{18}.\nThis suggests that the occurrence of D_{18} and D_7 together is not independent or random, but rather there is a strong positive association between the two defects. This information can be used to further investigate the relationship between D_{18} and D_7 and potentially uncover underlying factors or dependencies that contribute to their co-occurrence."
+  },
+  {
+    "objectID": "notebooks/apriori-defects/index.html#an-example-in-r",
+    "href": "notebooks/apriori-defects/index.html#an-example-in-r",
+    "title": "Apriori analysis for quality assurance",
+    "section": "An example in R",
+    "text": "An example in R\nThe following implementation demonstrates how to apply Apriori analysis to defect data using R. The interactive table below shows the discovered association rules, with color-coded metrics to highlight the strongest patterns. The network visualization reveals the relationships between defects.\n\nrules &lt;- apriori(trans,\n1                 parameter = list(supp=3/length(items_list),\n2                                  conf=0.1,\n                                  target= \"rules\"),\n                 control = list(verbose=FALSE))\n\n\n1\n\n3/length(items_list) means minimum 3 out of total transactions must contain an itemset for it to be considered frequent\n\n2\n\nconf=0.1 means the minimum confidence threshold is set to 0.1 or 10%. This filters out association rules where the consequent (right-hand side) occurs less than 10% of the times when the antecedent (left-hand side) occurs\n\n\n\n\n\n\n\n\n\n\n\n\nplot(rules,\n     method = \"graph\",\n     engine = \"htmlwidget\",\n1     shading = \"confidence\")\n\n\n1\n\nNodes with higher confidence rules will be shaded darker, allowing you to visually identify the most confident association rules at a glance"
   },
   {
     "objectID": "notebooks/apriori-defects/index.html#footnotes",
@@ -112,66 +133,31 @@
     "text": "Footnotes\n\n\nApriori wikipedia page↩︎"
   },
   {
-    "objectID": "notebooks/clustering/index.html",
-    "href": "notebooks/clustering/index.html",
-    "title": "Dividi et impera",
-    "section": "",
-    "text": "Dataset"
-  },
-  {
-    "objectID": "notebooks/clustering/index.html#distorsion",
-    "href": "notebooks/clustering/index.html#distorsion",
-    "title": "Dividi et impera",
-    "section": "Distorsion",
-    "text": "Distorsion\nThe distortion score is a metric used to evaluate the quality of a clustering model, specifically the K-Means algorithm. It measures the average squared distance between each data point and its assigned cluster centroid.\nThe formula is:\n\\[\\text{Distortion} = \\frac{1}{n} \\sum_{i=1}^{n} \\|x_i - c_j\\|^2\\]\nWhere:\n\n\\(n\\) is the total number of data points\n\\(x_i\\) is the \\(i\\)-th data point\n\\(c_j\\) is the centroid of the cluster that \\(x_i\\) belongs to\nThe sum is taken over all \\(n\\) data points\nThe \\(\\|x_i - c_j\\|^2\\) term represents the squared Euclidean distance between the data point \\(x_i\\) and its assigned cluster centroid \\(c_j\\)\nThe final result is the average of these squared distances across all data points\n\nThe goal of the K-Means algorithm is to find cluster assignments that minimize this distortion score, i.e., to group data points such that the average squared distance to their assigned centroids is as small as possible. A lower distortion score indicates better clustering quality."
-  },
-  {
-    "objectID": "notebooks/clustering/index.html#silhouette-coefficient",
-    "href": "notebooks/clustering/index.html#silhouette-coefficient",
-    "title": "Dividi et impera",
-    "section": "Silhouette coefficient",
-    "text": "Silhouette coefficient\n\\[s(i) = \\frac{b(i) - a(i)}{max(a(i), b(i))}\\]\nwhere:\n\n\\(s(i)\\) is the Silhouette coefficient for the \\(i\\)-th sample.\n\\(a(i)\\) is the mean distance between the \\(i\\)-th sample and all other samples in the same cluster.\n\\(b(i)\\) is the mean distance between the \\(i\\)-th sample and all other samples in the next nearest cluster.\n\nThe Silhouette Coefficient ranges from -1 to 1, where a high value indicates that the sample is well-matched to its own cluster and poorly-matched to neighboring clusters. A value of 0 generally indicates overlapping clusters, while a negative value indicates that the sample may have been assigned to the wrong cluster.\n\n\nCode\n# fitting kmeans\nkm = KMeans(n_clusters=3, init='k-means++', n_init=12, max_iter=2000,algorithm=\"elkan\")\n\n# Calculate silhouette score\nsilhouette_avg = round(silhouette_score(data_processed, km.fit_predict(data_processed)), 4)\n\n# silhouette coefficient plot\nsilhouette = SilhouetteVisualizer(km, colors='yellowbrick')\nsilhouette.fit(data_processed)\n\nplt.show()\n\n\n\n\n\n\nInterpreting it\nWhen the Silhouette coefficient \\(s(i)\\) is negative, it means that the average distance \\(a(i)\\) of the \\(i\\)-th sample to other samples in its own cluster is greater than the average distance \\(b(i)\\) to the nearest neighboring cluster. This suggests that the \\(i\\)-th sample would be better assigned to the nearest neighboring cluster rather than its current cluster.\nIn the Silhouette plot, clusters with bars that extend into the negative range indicate that some samples within those clusters have been poorly assigned. The wider the negative portion of the bar, the more samples in that cluster have been misclassified.\nThe presence of negative Silhouette Coefficient values is a sign that the clustering algorithm has not been able to find well-separated, dense clusters. It suggests that the number of clusters \\(K\\) may not be appropriate for the data, or that the clustering algorithm is not a good fit for the dataset. In such cases, the Silhouette plot can be used to guide the selection of a more appropriate value of \\(K\\) or the choice of a different clustering algorithm.\n\n\nCode\n# intercluster distance plot\nicd = InterclusterDistance(km, legend_loc='lower left')\nicd.fit(data_processed)\n\nicd.show()\nplt.show()"
-  },
-  {
-    "objectID": "notebooks/clustering/index.html#intercluster-distance-map-via-mds",
-    "href": "notebooks/clustering/index.html#intercluster-distance-map-via-mds",
-    "title": "Dividi et impera",
-    "section": "Intercluster distance map (via MDS)",
-    "text": "Intercluster distance map (via MDS)\nLet’s assume we have a dataset \\(X \\in \\mathbb{R}^{n \\times d}\\) with \\(n\\) samples and \\(d\\) features, and a clustering model that has identified \\(k\\) clusters with centers \\(\\mathbf{c}_i \\in \\mathbb{R}^d, i=1,\\dots,k\\).\nThe goal of the intercluster distance map is to embed these \\(k\\) cluster centers into a 2-dimensional space \\(\\mathbf{z}_i \\in \\mathbb{R}^2, i=1,\\dots,k\\), while preserving the distances between the clusters in the original high-dimensional space.\nMathematically, this can be expressed as finding an embedding function \\(f: \\mathbb{R}^d \\rightarrow \\mathbb{R}^2\\) such that the distances between the embedded cluster centers are as close as possible to the distances between the original cluster centers:\n\\[\\min_{f} \\sum_{i&lt;j} \\left| \\|\\mathbf{c}_i - \\mathbf{c}_j\\| - \\|\\mathbf{z}_i - \\mathbf{z}_j\\| \\right|\\]\nWhere \\(\\|\\cdot\\|\\) denotes the Euclidean norm.\nThe size of each cluster’s representation on the 2D plot is determined by a scoring metric, typically the “membership” score, which is the number of instances belonging to each cluster:\n\\[s_i = |\\{x \\in X | \\text{label}(x) = i\\}|\\]\nWhere \\(\\text{label}(x)\\) is the cluster assignment of the \\(x\\)-th sample.\nThe final intercluster distance map visualizes the 2D embedded cluster centers \\(\\{\\mathbf{z}_i\\}_{i=1}^k\\), with the size of each cluster proportional to its membership score \\(s_i\\).\nThis allows us to gain insights into the relative positions and sizes of the identified clusters, and the relationships between them in the original high-dimensional feature space."
-  },
-  {
     "objectID": "notebooks.html",
     "href": "notebooks.html",
     "title": "Notebooks",
     "section": "",
-    "text": "How to get your loanJun 1, 2025\n\n\n\nA data-driven journey through the factors that make or break loan applications\n\n\n\n\n\n\nApriori analysis for quality assuranceAug 9, 2024\n\n\n\nPriori Patterns for Posterior Perfection\n\n\n\n\n\n\nDividi et imperaOct 24, 2023\n\n\n\nUnleashing the Power of Centroid Domination in the Realm of Clustering\n\n\n\n\n\n\nNo matching items"
+    "text": "How to get your loanJun 1, 2025\n\n\n\nA data-driven journey through the factors that make or break loan applications\n\n\n\n\n\n\nApriori analysis for quality assuranceAug 9, 2024\n\n\n\nPriori Patterns for Posterior Perfection\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts.html",
     "href": "posts.html",
     "title": "Posts",
     "section": "",
-    "text": "Inferenza causale - capitolo zeroFeb 2, 2026\n\n\n\nIntroduzione al mondo causale\n\n\n\n\n\n\nNo matching items"
+    "text": "On DAG basicsFeb 26, 2026\n\n\n\nExperimental design through causal thinking\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "projects/tripscraper/index.html",
-    "href": "projects/tripscraper/index.html",
-    "title": "Tripscraper",
+    "objectID": "projects/causalwiz/index.html",
+    "href": "projects/causalwiz/index.html",
+    "title": "Causalwiz",
     "section": "",
-    "text": "Source code"
+    "text": "Package doc  Source code\ncausalwiz is an R package for causal inference analysis. It provides functions for estimating treatment effects using various statistical methods, features built-in plotting functions an utilities designed for causal inference workflows in R."
   },
   {
-    "objectID": "projects/tripscraper/index.html#footnotes",
-    "href": "projects/tripscraper/index.html#footnotes",
-    "title": "Tripscraper",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nJulia Silge, David Robinson; Text Mining with R; O’Reilly↩︎"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Home",
-    "section": "",
-    "text": "I’m a Statistician with a specialization in actuarial science.\nThis space contains projects, notebooks with raw notes about data science, and posts where I explore mathematical and statistical topics in depth. I explore different fields with statistical rigor, aiming to bridge theory and practical applications."
+    "objectID": "projects/causalwiz/index.html#installation",
+    "href": "projects/causalwiz/index.html#installation",
+    "title": "Causalwiz",
+    "section": "Installation",
+    "text": "Installation\nYou can install the package via Github repository:\n# install.packages(\"pak\")\npak::pak(\"carminemnc/causalwiz\")"
   }
 ]

@@ -1,9 +1,5 @@
 /*-- scss:defaults --*/
 
-// Import fonts (define mainfont in _quarto.yml)
-//@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css);
-//@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
-
 // personal palette
 $blue-munsell: #0085a1;
 $cerulean: #006b86;
@@ -22,21 +18,93 @@ $navbar-bg: $blue-munsell;
 $navbar-fg: $white; 
 $navbar-hl: $white; 
 $body-bg: $eerie-black;
-$body-color: $platinum;
+$body-color: $white;
 $link-color: $dark-cyan; //
 $code-block-border-left:$dark-cyan;
 $mermaid-edge-color: $blue-munsell;
-$mermaid-font-family: 'Montserrat';
+$mermaid-font-family: 'Noto Serif';
 $mermaid-node-bg-color: $davys-gray;
 
 /*-- scss:rules --*/
 
+/* ID selectors */
+
+#map-size {
+  width: 100%;
+  height: 350px;
+}
+
+/* Element selectors */
+
+body {
+  line-height: 1.5; // min 1.5 suggested for assistive tech
+  font-size: 15px;
+}
+
+// #
+h1 {
+  font-size: 32px;
+  font-weight: bold;
+  color:$white;
+}
+
+// ##
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color:$white;
+}
+
+// ###
+h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color:$white;
+}
+
+// ####
+h4 {
+  font-size: 18px;
+  font-weight: bold;
+  color:$white;
+}
+
+// ##### and ######
+h5, h6 {
+  font-size: 16x;
+  font-weight: bold;
+  color:$white;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  border-bottom: none !important;
+}
+
+// inline code
 code {
   color: $amber;
   font-weight: bold;
 }
 
-// Code output styling
+/* Class selectors */
+
+.home-image {
+  content: url("imgs/welcome_here_white.webp");
+}
+
+.figure-caption {
+  color: $white;
+  font-style: italic;
+  text-align: center;
+  font-size: 12px;
+}
+
+// justifying text
+.justify {
+  text-align: justify !important
+}
+
+// code output styling
 .cell-output,
 .cell-output pre,
 .cell-output-stdout,
@@ -54,72 +122,25 @@ code {
   box-shadow: 0 0 10px rgba(0, 139, 139, 0.3);
 }
 
-.home-image {
-  content: url("imgs/welcome_here_white.webp");
+// btn styling
+.btn {
+  color: $white;
+  background-color: $eerie-black;
+  border-color: $davys-gray;
+  border-radius: 20px;
+  font-size: 15px;
 }
 
-/* ID selectors */
-
-#map-size {
-  width: 100%;
-  height: 350px;
+// btn hover styling
+.btn:hover {
+  color: $black;
+  background-color: $blue-munsell;
+  border-color: $davys-gray;
 }
 
-.figure-caption {
-  color: $platinum;
-  font-style: italic;
-  text-align: center;
-  font-size: 12px;
-}
-
-/* ELEMENT SELECTORS */
-
-body {
-  line-height: 1.5; // min 1.5 suggested for assistive tech
-  font-size: 16px;
-}
-
-/* # */
-h1 {
-  font-size: 27px;
-  font-weight: bold;
-  color:$platinum;
-}
-
-/* ## */
-h2 {
-  font-size: 26px;
-  font-weight: bold;
-  color:$platinum;
-}
-
-/* ### */
-h3 {
-  font-size: 25px;
-  font-weight: bold;
-  color:$platinum;
-}
-
-/* #### */
-h4 {
-  font-size: 18px;
-  font-weight: bold;
-  color:$platinum;
-}
-
-/* Projects articles header */
-h5, h6 {
-  font-size: 18px;
-  font-weight: bold;
-  color:$platinum;
-}
-
-// justifying text
-.justify {
-  text-align: justify !important
-}
-
-/* CLASS SELECTORS */
+// =============================================================================
+// TEXT EFFECTS
+// =============================================================================
 
 .highlight { position: relative; }
 .highlight::before {
@@ -156,27 +177,28 @@ h5, h6 {
   border-radius: 50%;
 }
 
-// listing card styling
-.card {
-  background-color: $eerie-black;
-  border-color: $davys-gray;
-}
-
-// btn styling
-.btn {
-  color: $platinum;
-  background-color: $eerie-black;
-  border-color: $davys-gray;
-  border-radius: 20px;
+.blockquote {
   font-size: 15px;
+  padding: 10px 20px;
+  margin: 20px 0;
+  border-left: 3px solid $dark-cyan;
+  background: transparent;
 }
 
-// button hover styling
-.btn:hover {
-  color: $black;
-  background-color: $blue-munsell;
-  border-color: $davys-gray;
+.callout-tip {
+  font-size: 15px !important;
+  padding: 10px 20px !important;
+  margin: 20px 0 !important;
+  border-left: 3px solid $dark-cyan !important;
+  background: transparent !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
 }
+
+// =============================================================================
+// NAVBAR
+// =============================================================================
 
 // navbar logo
 .navbar-brand img { 
@@ -237,74 +259,9 @@ h5, h6 {
   border-top-right-radius: 15px; 
 }
 
-// blockquote styling
-.blockquote {
-  background: linear-gradient(135deg, $eerie-black, rgba(36, 39, 40, 0.95));
-  font-style: italic;
-  font-weight: 400;
-  color: $platinum;
-  border-radius: 3px 15px 3px 15px;
-  border-left: 4px solid $dark-cyan;
-  font-size: 15px;
-  padding: 20px;
-  margin: 15px auto;
-  max-width: 70%;
-  transform: rotate(-1deg);
-  box-shadow: 
-    0 6px 12px rgba(0, 0, 0, 0.2), 
-    0 2px 6px rgba(0, 0, 0, 0.15), 
-    0 1px 3px rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid rgba(0, 139, 139, 0.3);
-}
-
-//callout-note styling
-
-.callout-note {
-  font-style: italic;
-  font-size: 15px;
-}
-
-.insight {
-  background: transparent;
-  font-size: 15px;
-  padding: 20px 25px;
-  margin: 25px auto;
-  max-width: 60%;
-  position: relative;
-  border-left: 3px solid $dark-cyan;
-  border-radius: 2px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.insight::before {
-  content: "💡";
-  position: absolute;
-  left: -15px;
-  top: -10px;
-  font-size: 22px;
-  background: $platinum;
-  padding: 5px;
-  border-radius: 50%;
-  border: 2px solid $dark-cyan;
-}
-
-.insight::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 18px,
-    rgba(0, 139, 139, 0.2) 18px,
-    rgba(0, 139, 139, 0.2) 20px
-  );
-}
-
-// social media icons animation
+// =============================================================================
+// Social icons
+// =============================================================================
 
 .social-link i {
   position: relative;
@@ -333,6 +290,10 @@ h5, h6 {
   transform: rotate(-2deg) scale(1.3);
   box-shadow: 0 0 15px rgba(0, 139, 139, 0.4);
 }
+
+// =============================================================================
+// Cool link
+// =============================================================================
 
 .cool-link {
   position: relative;

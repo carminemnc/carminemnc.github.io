@@ -5,6 +5,7 @@
 execute: 
   freeze: auto
   cache: true
+  warning: false
 
 # Enable banner style title blocks
 title-block-banner: false
