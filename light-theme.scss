@@ -14,9 +14,8 @@ $white: #ffffff;
 $amber: #FFBF00;
 
 // base colors
-$navbar-bg: $blue-munsell;
 $navbar-fg: $black; 
-$navbar-hl: $black; 
+$navbar-hl: $black;
 $body-bg: $platinum;
 $body-color: $black;
 $link-color: $dark-cyan;
@@ -76,6 +75,7 @@ h5, h6 {
   color:$black;
 }
 
+// remove borders
 h1, h2, h3, h4, h5, h6 {
   border-bottom: none !important;
 }
@@ -84,6 +84,56 @@ h1, h2, h3, h4, h5, h6 {
 code {
   color: $cerulean;
   font-weight: bold;
+}
+
+// LaTeX-style markdown tables
+table {
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+  width: auto !important;
+  margin: 20px auto !important;
+  font-size: 15px !important;
+  border-top: 1.5px solid currentColor !important;
+  border-bottom: 1.5px solid currentColor !important;
+}
+
+caption {
+  font-size: 13px !important;
+  font-style: italic !important;
+  font-weight: bold !important;
+}
+
+table thead {
+  border-bottom: 1px solid currentColor !important;
+  border-top: 1px solid currentColor !important;
+}
+
+table thead th {
+  padding: 3px 4px !important;
+  font-weight: bold !important;
+  text-align: center !important;
+  border: none !important;
+  white-space: nowrap !important;
+}
+
+table tbody td {
+  padding: 2px 4px !important;
+  text-align: center !important;
+  border: none !important;
+}
+
+table tbody td:first-child {
+  text-align: left !important;
+  white-space: nowrap !important;
+}
+
+table tbody tr {
+  border: none !important;
+}
+
+table tbody tr:has(td:first-child strong) {
+  border-top: 1px solid currentColor !important;
+  background-color: transparentize($cerulean, 0.7) !important;
 }
 
 /* Class selectors */
@@ -118,7 +168,7 @@ code {
 
 .cell-output pre {
   border-left: 4px solid $dark-cyan;
-  color: $eerie-black;
+  color: $black;
   box-shadow: 0 0 10px rgba(0, 139, 139, 0.3);
 }
 
@@ -139,7 +189,7 @@ code {
 }
 
 // =============================================================================
-// TEXT EFFECTS
+// Text effects
 // =============================================================================
 
 .highlight { position: relative; }
@@ -197,7 +247,7 @@ code {
 }
 
 // =============================================================================
-// NAVBAR
+// Navbar
 // =============================================================================
 
 // navbar logo
@@ -334,4 +384,47 @@ code {
     rgba(0, 139, 139, 0.3) 100%);
   box-shadow: 0 4px 12px rgba(0, 139, 139, 0.6);
   transform: translateY(-50%) skewX(-2deg) rotate(-0.5deg) scale(1.05);
+}
+
+// =============================================================================
+// Panel tabset
+// =============================================================================
+
+.panel-tabset {
+  margin: 20px 0;
+}
+
+.panel-tabset .nav-tabs {
+  border-bottom: none !important;
+  margin-bottom: 15px;
+}
+
+.panel-tabset .nav-tabs .nav-link {
+  border: none !important;
+  border-radius: 8px 8px 0 0;
+  background: transparentize($battleship-gray, 0.7);
+  color: $body-color;
+  font-weight: 600;
+  padding: 10px 20px;
+  margin-right: 5px;
+  transition: all 0.3s ease;
+}
+
+.panel-tabset .nav-tabs .nav-link:hover {
+  background: transparentize($dark-cyan, 0.9);
+  border: none !important;
+  color: $dark-cyan;
+}
+
+.panel-tabset .nav-tabs .nav-link.active {
+  background: $dark-cyan;
+  border: none !important;
+  color: $white;
+  box-shadow: 0 2px 8px rgba(0, 139, 139, 0.3);
+}
+
+.panel-tabset .tab-content {
+  background: transparent;
+  border: none;
+  padding: 15px 0;
 }

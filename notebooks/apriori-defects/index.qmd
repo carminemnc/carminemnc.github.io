@@ -39,19 +39,14 @@ The **Apriori** ^[[Apriori wikipedia page](https://en.wikipedia.org/wiki/Apriori
 
 The algorithm operates on a simple principle: it systematically examines data to identify which items frequently appear together, building from individual items to larger combinations based on their occurrence patterns.
 
-$$
-\begin{aligned}
-\begin{array}{c|c}
-\hline 
-\text { Case } & \text { Defects } \\
-\hline 
-Case \ 1 & [Defect \ 1, Defect \ 2,Defect \ 3] \\
-Case \ 2 & [Defect \ 1, Defect \ 2] \\
-Case \ 3 & [Defect \ 1, Defect \ 4] \\
-Case \ 4 & [Defect \ 1, Defect \ 4,Defect \ 5,Defect \ 6] \\
-\end{array}
-\end{aligned}
-$$
+| Case   | Defects                                    |
+|--------|--------------------------------------------|
+| Case 1 | [Defect 1, Defect 2, Defect 3]           |
+| Case 2 | [Defect 1, Defect 2]                     |
+| Case 3 | [Defect 1, Defect 4]                     |
+| Case 4 | [Defect 1, Defect 4, Defect 5, Defect 6] |
+
+: Example defect data structure {#tbl-defect-data}
 
 ### Application in quality assurance
 
@@ -108,9 +103,8 @@ A confidence value closer to 1 (or 100%) indicates a stronger association betwee
 
 Let's examine rule #3 where:
 
-$X$ = $D_{18}$
-
-$Y$ = $D_7$
+- $X$ = $D_{18}$
+- $Y$ = $D_7$
 
 With $\text{confidence}({X} \rightarrow {Y}) = 0.75$, we can draw the following conclusions:
 
@@ -130,13 +124,12 @@ where $P({Y} | {X})$ is the conditional probability of observing $Y$ given that 
 
 Continuing with rule #3 where:
 
-$X$ = $D_{18}$
+- $X$ = $D_{18}$
+- $Y$ = $D_7$
 
-$Y$ = $D_7$
+The probability of defect $D_7$ occurring, without considering any other factors, is $5\%$. In other words, in $5\%$ of all cases, defect $D_7$ is present.
 
-The probability of defect $D_7$ occurring, without considering any other factors, is **5%**. In other words, in **5%** of all cases, defect $D_7$ is present.
-
-However, when you look at cases where defect $D_{18}$ is present, you find that the probability of defect $D_7$ occurring is ~41.9%.
+However, when you look at cases where defect $D_{18}$ is present, you find that the probability of defect $D_7$ occurring is $\sim 41.9 \%$
 
 Using the lift formula, we can calculate the lift of the rule $D_{18}$ → $D_7$ as follows:
 

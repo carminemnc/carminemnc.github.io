@@ -111,6 +111,7 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Computer+Modern+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
 
 <script src="../../site_libs/core-js-2.5.3/shim.min.js"></script>
 <script src="../../site_libs/react-18.2.0/react.min.js"></script>
@@ -253,19 +254,35 @@ gtag('config', 'G-BEX0MX4L1P', { 'anonymize_ip': true});
 <h2 class="anchored" data-anchor-id="the-apriori-algorithm">The Apriori algorithm</h2>
 <p>The <strong>Apriori</strong> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> algorithm is a foundational data mining technique designed to discover frequent patterns and associations within datasets. Originally developed for market basket analysis — identifying which products customers commonly purchase together — it has since proven valuable across diverse domains including healthcare and web usage analysis.</p>
 <p>The algorithm operates on a simple principle: it systematically examines data to identify which items frequently appear together, building from individual items to larger combinations based on their occurrence patterns.</p>
-<p><span class="math display">
-\begin{aligned}
-\begin{array}{c|c}
-\hline
-\text { Case } &amp; \text { Defects } \\
-\hline
-Case \ 1 &amp; [Defect \ 1, Defect \ 2,Defect \ 3] \\
-Case \ 2 &amp; [Defect \ 1, Defect \ 2] \\
-Case \ 3 &amp; [Defect \ 1, Defect \ 4] \\
-Case \ 4 &amp; [Defect \ 1, Defect \ 4,Defect \ 5,Defect \ 6] \\
-\end{array}
-\end{aligned}
-</span></p>
+<div id="tbl-defect-data" class="anchored">
+<table class="table">
+<caption>Table&nbsp;1: Example defect data structure</caption>
+<thead>
+<tr class="header">
+<th>Case</th>
+<th>Defects</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Case 1</td>
+<td>[Defect 1, Defect 2, Defect 3]</td>
+</tr>
+<tr class="even">
+<td>Case 2</td>
+<td>[Defect 1, Defect 2]</td>
+</tr>
+<tr class="odd">
+<td>Case 3</td>
+<td>[Defect 1, Defect 4]</td>
+</tr>
+<tr class="even">
+<td>Case 4</td>
+<td>[Defect 1, Defect 4, Defect 5, Defect 6]</td>
+</tr>
+</tbody>
+</table>
+</div>
 <section id="application-in-quality-assurance" class="level3">
 <h3 class="anchored" data-anchor-id="application-in-quality-assurance">Application in quality assurance</h3>
 <p>In quality assurance, the Apriori algorithm transforms how we analyze defect patterns. Rather than treating each defect as an isolated incident, it reveals the interconnected nature of quality issues across process instances. For instance, discovering that <span class="double-underline">interface errors</span> and <span class="double-underline">data validation failures</span> frequently co-occur suggests these aren’t isolated problems but symptoms of a deeper integration issue.</p>
@@ -307,8 +324,10 @@ Case \ 4 &amp; [Defect \ 1, Defect \ 4,Defect \ 5,Defect \ 6] \\
 <section id="confidence-interpretation" class="level4">
 <h4 class="anchored" data-anchor-id="confidence-interpretation">Confidence: interpretation</h4>
 <p>Let’s examine rule #3 where:</p>
-<p><span class="math inline">X</span> = <span class="math inline">D_{18}</span></p>
-<p><span class="math inline">Y</span> = <span class="math inline">D_7</span></p>
+<ul>
+<li><span class="math inline">X</span> = <span class="math inline">D_{18}</span></li>
+<li><span class="math inline">Y</span> = <span class="math inline">D_7</span></li>
+</ul>
 <p>With <span class="math inline">\text{confidence}({X} \rightarrow {Y}) = 0.75</span>, we can draw the following conclusions:</p>
 <ol type="1">
 <li><p><strong>Predictive Reliability</strong>: The 75% confidence indicates that when defect <span class="math inline">D_{18}</span> occurs, there’s a three-in-four chance that defect <span class="math inline">D_7</span> will also be present. This makes <span class="math inline">D_{18}</span> a reliable predictor for <span class="math inline">D_7</span>.</p></li>
@@ -324,10 +343,12 @@ Case \ 4 &amp; [Defect \ 1, Defect \ 4,Defect \ 5,Defect \ 6] \\
 <section id="lift-interpretation" class="level4">
 <h4 class="anchored" data-anchor-id="lift-interpretation">Lift: interpretation</h4>
 <p>Continuing with rule #3 where:</p>
-<p><span class="math inline">X</span> = <span class="math inline">D_{18}</span></p>
-<p><span class="math inline">Y</span> = <span class="math inline">D_7</span></p>
-<p>The probability of defect <span class="math inline">D_7</span> occurring, without considering any other factors, is <strong>5%</strong>. In other words, in <strong>5%</strong> of all cases, defect <span class="math inline">D_7</span> is present.</p>
-<p>However, when you look at cases where defect <span class="math inline">D_{18}</span> is present, you find that the probability of defect <span class="math inline">D_7</span> occurring is ~41.9%.</p>
+<ul>
+<li><span class="math inline">X</span> = <span class="math inline">D_{18}</span></li>
+<li><span class="math inline">Y</span> = <span class="math inline">D_7</span></li>
+</ul>
+<p>The probability of defect <span class="math inline">D_7</span> occurring, without considering any other factors, is <span class="math inline">5\%</span>. In other words, in <span class="math inline">5\%</span> of all cases, defect <span class="math inline">D_7</span> is present.</p>
+<p>However, when you look at cases where defect <span class="math inline">D_{18}</span> is present, you find that the probability of defect <span class="math inline">D_7</span> occurring is <span class="math inline">\sim 41.9 \%</span></p>
 <p>Using the lift formula, we can calculate the lift of the rule <span class="math inline">D_{18}</span> → <span class="math inline">D_7</span> as follows:</p>
 <p><span class="math display">\text{lift}({X} \rightarrow {Y}) = \frac{P({Y} | {X})}{P({Y})} = \frac{0.419}{0.05} = 8.39</span></p>
 <p>The lift value of <strong>8.39</strong> indicates that when defect <span class="math inline">D_{18}</span> is present, the probability of defect <span class="math inline">D_7</span> occurring is 8.39 times higher than the probability of defect <span class="math inline">D_7</span> occurring without considering the presence of <span class="math inline">D_{18}</span>.</p>
@@ -348,11 +369,11 @@ Case \ 4 &amp; [Defect \ 1, Defect \ 4,Defect \ 5,Defect \ 6] \\
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-annotation="1" data-code-lines="2">3/length(items_list) means minimum 3 out of total transactions must contain an itemset for it to be considered frequent</span>
+<span data-code-lines="2" data-code-cell="annotated-cell-1" data-code-annotation="1">3/length(items_list) means minimum 3 out of total transactions must contain an itemset for it to be considered frequent</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-annotation="2" data-code-lines="3">conf=0.1 means the minimum confidence threshold is set to 0.1 or 10%. This filters out association rules where the consequent (right-hand side) occurs less than 10% of the times when the antecedent (left-hand side) occurs</span>
+<span data-code-lines="3" data-code-cell="annotated-cell-1" data-code-annotation="2">conf=0.1 means the minimum confidence threshold is set to 0.1 or 10%. This filters out association rules where the consequent (right-hand side) occurs less than 10% of the times when the antecedent (left-hand side) occurs</span>
 </dd>
 </dl>
 </div>
@@ -360,8 +381,8 @@ Case \ 4 &amp; [Defect \ 1, Defect \ 4,Defect \ 5,Defect \ 6] \\
 <div class="cell" data-hash="index_cache/html/apriori-rules-df_731bd05b99b77dcc0764ee17bf40f3b8">
 <div class="cell-output-display">
 
-<div class="reactable html-widget html-fill-item" id="htmlwidget-eb24b316067dcbc1204a" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-eb24b316067dcbc1204a">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Rule":[1,2,3,4,5,6,7,8,9,10,11,12],"rules":["{} => {D_1}","{} => {D_0}","{D_18} => {D_7}","{D_41} => {D_23}","{D_16} => {D_11}","{D_11} => {D_16}","{D_2} => {D_1}","{D_11} => {D_7}","{D_10} => {D_7}","{D_10} => {D_1}","{D_23} => {D_0}","{D_0} => {D_23}"],"Lift":[1,1,8.39,5.27,6,6,1.24,1.44,1.28,1.41,1.51,1.51],"Support":[0.1,0.17,0,0,0.01,0.01,0,0.01,0.01,0.01,0.02,0.02],"Confidence":[0.1,0.17,0.75,0.38,0.31,0.13,0.12,0.13,0.11,0.14,0.26,0.11]},"columns":[{"id":"Rule","name":"Rule","type":"numeric","width":50,"align":"center"},{"id":"rules","name":"X ⇒ Y","type":"character","filterable":true},{"id":"Lift","name":"Lift","type":"numeric","width":60,"align":"center","style":[{"background":"#FFFFFF"},{"background":"#FFFFFF"},{"background":"#0085A1"},{"background":"#6BB8C8"},{"background":"#52ACBF"},{"background":"#52ACBF"},{"background":"#F6FBFB"},{"background":"#EFF7F9"},{"background":"#F5FAFB"},{"background":"#F0F8F9"},{"background":"#EDF6F8"},{"background":"#EDF6F8"}]},{"id":"Support","name":"Support","type":"numeric","width":80,"align":"center"},{"id":"Confidence","name":"Confidence","type":"numeric","width":100,"align":"center","style":[{"background":"#FFFFFF"},{"background":"#FFF4E6"},{"background":"#FF9F1A"},{"background":"#FFD59C"},{"background":"#FFDFB5"},{"background":"#FFFAF4"},{"background":"#FFFCF7"},{"background":"#FFFAF4"},{"background":"#FFFDFB"},{"background":"#FFF9F0"},{"background":"#FFE7C6"},{"background":"#FFFDFB"}]}],"defaultPageSize":6,"showPageSizeOptions":true,"pageSizeOptions":[6,5],"dataKey":"6d1aea19a034e3fbdc337ab9557168dc"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-d8f4d64f2ca46f3aec58" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-d8f4d64f2ca46f3aec58">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Rule":[1,2,3,4,5,6,7,8,9,10,11,12],"rules":["{} => {D_1}","{} => {D_0}","{D_18} => {D_7}","{D_41} => {D_23}","{D_16} => {D_11}","{D_11} => {D_16}","{D_2} => {D_1}","{D_11} => {D_7}","{D_10} => {D_7}","{D_10} => {D_1}","{D_23} => {D_0}","{D_0} => {D_23}"],"Lift":[1,1,8.39,5.27,6,6,1.24,1.44,1.28,1.41,1.51,1.51],"Support":[0.1,0.17,0,0,0.01,0.01,0,0.01,0.01,0.01,0.02,0.02],"Confidence":[0.1,0.17,0.75,0.38,0.31,0.13,0.12,0.13,0.11,0.14,0.26,0.11]},"columns":[{"id":"Rule","name":"Rule","type":"numeric","width":50,"align":"center"},{"id":"rules","name":"X ⇒ Y","type":"character","filterable":true},{"id":"Lift","name":"Lift","type":"numeric","width":60,"align":"center","style":[{"background":"#FFFFFF"},{"background":"#FFFFFF"},{"background":"#0085A1"},{"background":"#6BB8C8"},{"background":"#52ACBF"},{"background":"#52ACBF"},{"background":"#F6FBFB"},{"background":"#EFF7F9"},{"background":"#F5FAFB"},{"background":"#F0F8F9"},{"background":"#EDF6F8"},{"background":"#EDF6F8"}]},{"id":"Support","name":"Support","type":"numeric","width":80,"align":"center"},{"id":"Confidence","name":"Confidence","type":"numeric","width":100,"align":"center","style":[{"background":"#FFFFFF"},{"background":"#FFF4E6"},{"background":"#FF9F1A"},{"background":"#FFD59C"},{"background":"#FFDFB5"},{"background":"#FFFAF4"},{"background":"#FFFCF7"},{"background":"#FFFAF4"},{"background":"#FFFDFB"},{"background":"#FFF9F0"},{"background":"#FFE7C6"},{"background":"#FFFDFB"}]}],"defaultPageSize":6,"showPageSizeOptions":true,"pageSizeOptions":[6,5],"dataKey":"6d1aea19a034e3fbdc337ab9557168dc"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div class="cell" data-hash="index_cache/html/apriori-networkplot_559c7a685a48bb8f353d0aa651d0a4c4">
@@ -373,13 +394,13 @@ Case \ 4 &amp; [Defect \ 1, Defect \ 4,Defect \ 5,Defect \ 6] \\
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-annotation="1" data-code-lines="4">Nodes with higher confidence rules will be shaded darker, allowing you to visually identify the most confident association rules at a glance</span>
+<span data-code-lines="4" data-code-cell="annotated-cell-2" data-code-annotation="1">Nodes with higher confidence rules will be shaded darker, allowing you to visually identify the most confident association rules at a glance</span>
 </dd>
 </dl>
 </div>
 <div class="cell-output-display">
-<div class="visNetwork html-widget html-fill-item" id="htmlwidget-fb1551063a70feebf0dc" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-fb1551063a70feebf0dc">{"x":{"nodes":{"id":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22],"label":["D_0","D_1","D_10","D_11","D_16","D_18","D_2","D_23","D_41","D_7","rule 1","rule 2","rule 3","rule 4","rule 5","rule 6","rule 7","rule 8","rule 9","rule 10","rule 11","rule 12"],"group":[1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2],"value":[1,1,1,1,1,1,1,1,1,1,59,100,1,1,2,2,1,2,2,3,9,9],"color":["#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#EEDCDC","#EECDCD","#EE1B1B","#EEA2A2","#EEB0B0","#EED5D5","#EED7D7","#EED5D5","#EED9D9","#EED2D2","#EEBCBC","#EEDBDB"],"title":["D_0","D_1","D_10","D_11","D_16","D_18","D_2","D_23","D_41","D_7","<B>[1]<\/B><BR><B>{}<\/B><BR>&nbsp;&nbsp; => <B>{D_1}<\/B><BR><BR>support = 0.101<BR>confidence = 0.101<BR>coverage = 1<BR>lift = 1<BR>count = 61<BR>order = 1<BR>id = 1","<B>[2]<\/B><BR><B>{}<\/B><BR>&nbsp;&nbsp; => <B>{D_0}<\/B><BR><BR>support = 0.169<BR>confidence = 0.169<BR>coverage = 1<BR>lift = 1<BR>count = 102<BR>order = 1<BR>id = 2","<B>[3]<\/B><BR><B>{D_18}<\/B><BR>&nbsp;&nbsp; => <B>{D_7}<\/B><BR><BR>support = 0.00497<BR>confidence = 0.75<BR>coverage = 0.00662<BR>lift = 8.39<BR>count = 3<BR>order = 2<BR>id = 3","<B>[4]<\/B><BR><B>{D_41}<\/B><BR>&nbsp;&nbsp; => <B>{D_23}<\/B><BR><BR>support = 0.00497<BR>confidence = 0.375<BR>coverage = 0.0132<BR>lift = 5.27<BR>count = 3<BR>order = 2<BR>id = 4","<B>[5]<\/B><BR><B>{D_16}<\/B><BR>&nbsp;&nbsp; => <B>{D_11}<\/B><BR><BR>support = 0.00662<BR>confidence = 0.308<BR>coverage = 0.0215<BR>lift = 6<BR>count = 4<BR>order = 2<BR>id = 5","<B>[6]<\/B><BR><B>{D_11}<\/B><BR>&nbsp;&nbsp; => <B>{D_16}<\/B><BR><BR>support = 0.00662<BR>confidence = 0.129<BR>coverage = 0.0513<BR>lift = 6<BR>count = 4<BR>order = 2<BR>id = 6","<B>[7]<\/B><BR><B>{D_2}<\/B><BR>&nbsp;&nbsp; => <B>{D_1}<\/B><BR><BR>support = 0.00497<BR>confidence = 0.125<BR>coverage = 0.0397<BR>lift = 1.24<BR>count = 3<BR>order = 2<BR>id = 7","<B>[8]<\/B><BR><B>{D_11}<\/B><BR>&nbsp;&nbsp; => <B>{D_7}<\/B><BR><BR>support = 0.00662<BR>confidence = 0.129<BR>coverage = 0.0513<BR>lift = 1.44<BR>count = 4<BR>order = 2<BR>id = 8","<B>[9]<\/B><BR><B>{D_10}<\/B><BR>&nbsp;&nbsp; => <B>{D_7}<\/B><BR><BR>support = 0.00662<BR>confidence = 0.114<BR>coverage = 0.0579<BR>lift = 1.28<BR>count = 4<BR>order = 2<BR>id = 9","<B>[10]<\/B><BR><B>{D_10}<\/B><BR>&nbsp;&nbsp; => <B>{D_1}<\/B><BR><BR>support = 0.00828<BR>confidence = 0.143<BR>coverage = 0.0579<BR>lift = 1.41<BR>count = 5<BR>order = 2<BR>id = 10","<B>[11]<\/B><BR><B>{D_23}<\/B><BR>&nbsp;&nbsp; => <B>{D_0}<\/B><BR><BR>support = 0.0182<BR>confidence = 0.256<BR>coverage = 0.0712<BR>lift = 1.51<BR>count = 11<BR>order = 2<BR>id = 11","<B>[12]<\/B><BR><B>{D_0}<\/B><BR>&nbsp;&nbsp; => <B>{D_23}<\/B><BR><BR>support = 0.0182<BR>confidence = 0.108<BR>coverage = 0.169<BR>lift = 1.51<BR>count = 11<BR>order = 2<BR>id = 12"],"shape":["box","box","box","box","box","box","box","box","box","box","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle"],"x":[0.9310893241671321,0.232610525663943,-0.09124766510019766,-0.9079325058084449,-0.7715708179397436,-0.3429365597055549,-0.1260470674239758,0.7434602281770728,0.3284780728502998,-0.661549053047215,0.5167885577758773,0.9765902408798455,-0.5765146601189018,0.5538496481612964,-1,-0.6772796383516655,0.08473300209052659,-0.9021411085085387,-0.3285240779710809,0.07484971166838394,0.6931425055396268,1],"y":[0.03723911875413433,0.5386294209863638,-0.1286861455420879,0.09390049059198446,0.6033678353513585,-1,1,-0.4857464521796682,-0.9513169804582825,-0.5095341005640961,0.7124906909415152,0.3449042460669771,-0.8164072597792029,-0.763514964174376,0.3918374165371261,0.3378600092149127,0.8171406982731999,-0.2548811219835382,-0.3834493931161613,0.2067254362310873,-0.1801998606567343,-0.2749158937909721]},"edges":{"from":[6,9,5,4,7,4,3,3,8,1,11,12,13,14,15,16,17,18,19,20,21,22],"to":[13,14,15,16,17,18,19,20,21,22,2,1,10,8,4,5,2,10,10,2,1,8],"arrows":["to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":false},"physics":{"stabilization":false},"interaction":{"hover":true,"zoomSpeed":1}},"groups":["1","2"],"width":null,"height":null,"idselection":{"enabled":true,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","igraphlayout":{"type":"square"},"tooltipStay":300,"tooltipStyle":"position: fixed;visibility:hidden;padding: 5px;white-space: nowrap;font-family: verdana;font-size:14px;font-color:#000000;background-color: #f5f4ed;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px solid #808074;box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);","highlight":{"enabled":true,"hoverNearest":true,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":false,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"}},"evals":[],"jsHooks":[]}</script>
+<div class="visNetwork html-widget html-fill-item" id="htmlwidget-4795db8a214f16edad9a" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-4795db8a214f16edad9a">{"x":{"nodes":{"id":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22],"label":["D_0","D_1","D_10","D_11","D_16","D_18","D_2","D_23","D_41","D_7","rule 1","rule 2","rule 3","rule 4","rule 5","rule 6","rule 7","rule 8","rule 9","rule 10","rule 11","rule 12"],"group":[1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2],"value":[1,1,1,1,1,1,1,1,1,1,59,100,1,1,2,2,1,2,2,3,9,9],"color":["#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#CBD2FC","#EEDCDC","#EECDCD","#EE1B1B","#EEA2A2","#EEB0B0","#EED5D5","#EED7D7","#EED5D5","#EED9D9","#EED2D2","#EEBCBC","#EEDBDB"],"title":["D_0","D_1","D_10","D_11","D_16","D_18","D_2","D_23","D_41","D_7","<B>[1]<\/B><BR><B>{}<\/B><BR>&nbsp;&nbsp; => <B>{D_1}<\/B><BR><BR>support = 0.101<BR>confidence = 0.101<BR>coverage = 1<BR>lift = 1<BR>count = 61<BR>order = 1<BR>id = 1","<B>[2]<\/B><BR><B>{}<\/B><BR>&nbsp;&nbsp; => <B>{D_0}<\/B><BR><BR>support = 0.169<BR>confidence = 0.169<BR>coverage = 1<BR>lift = 1<BR>count = 102<BR>order = 1<BR>id = 2","<B>[3]<\/B><BR><B>{D_18}<\/B><BR>&nbsp;&nbsp; => <B>{D_7}<\/B><BR><BR>support = 0.00497<BR>confidence = 0.75<BR>coverage = 0.00662<BR>lift = 8.39<BR>count = 3<BR>order = 2<BR>id = 3","<B>[4]<\/B><BR><B>{D_41}<\/B><BR>&nbsp;&nbsp; => <B>{D_23}<\/B><BR><BR>support = 0.00497<BR>confidence = 0.375<BR>coverage = 0.0132<BR>lift = 5.27<BR>count = 3<BR>order = 2<BR>id = 4","<B>[5]<\/B><BR><B>{D_16}<\/B><BR>&nbsp;&nbsp; => <B>{D_11}<\/B><BR><BR>support = 0.00662<BR>confidence = 0.308<BR>coverage = 0.0215<BR>lift = 6<BR>count = 4<BR>order = 2<BR>id = 5","<B>[6]<\/B><BR><B>{D_11}<\/B><BR>&nbsp;&nbsp; => <B>{D_16}<\/B><BR><BR>support = 0.00662<BR>confidence = 0.129<BR>coverage = 0.0513<BR>lift = 6<BR>count = 4<BR>order = 2<BR>id = 6","<B>[7]<\/B><BR><B>{D_2}<\/B><BR>&nbsp;&nbsp; => <B>{D_1}<\/B><BR><BR>support = 0.00497<BR>confidence = 0.125<BR>coverage = 0.0397<BR>lift = 1.24<BR>count = 3<BR>order = 2<BR>id = 7","<B>[8]<\/B><BR><B>{D_11}<\/B><BR>&nbsp;&nbsp; => <B>{D_7}<\/B><BR><BR>support = 0.00662<BR>confidence = 0.129<BR>coverage = 0.0513<BR>lift = 1.44<BR>count = 4<BR>order = 2<BR>id = 8","<B>[9]<\/B><BR><B>{D_10}<\/B><BR>&nbsp;&nbsp; => <B>{D_7}<\/B><BR><BR>support = 0.00662<BR>confidence = 0.114<BR>coverage = 0.0579<BR>lift = 1.28<BR>count = 4<BR>order = 2<BR>id = 9","<B>[10]<\/B><BR><B>{D_10}<\/B><BR>&nbsp;&nbsp; => <B>{D_1}<\/B><BR><BR>support = 0.00828<BR>confidence = 0.143<BR>coverage = 0.0579<BR>lift = 1.41<BR>count = 5<BR>order = 2<BR>id = 10","<B>[11]<\/B><BR><B>{D_23}<\/B><BR>&nbsp;&nbsp; => <B>{D_0}<\/B><BR><BR>support = 0.0182<BR>confidence = 0.256<BR>coverage = 0.0712<BR>lift = 1.51<BR>count = 11<BR>order = 2<BR>id = 11","<B>[12]<\/B><BR><B>{D_0}<\/B><BR>&nbsp;&nbsp; => <B>{D_23}<\/B><BR><BR>support = 0.0182<BR>confidence = 0.108<BR>coverage = 0.169<BR>lift = 1.51<BR>count = 11<BR>order = 2<BR>id = 12"],"shape":["box","box","box","box","box","box","box","box","box","box","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle","circle"],"x":[-0.271151052197793,-0.7684977047705496,-0.3765797725739242,0.7369919043744571,0.9401495325653504,-0.0357283325818829,-0.8773002103569855,0.1520167789909079,0.7091906330671622,0.2434793029226985,-1,-0.487901016994847,0.2136448950946834,0.4568494394269005,1,0.6816618479985601,-0.8110219253501312,0.5518903730898974,-0.07246321139414558,-0.6051023522199788,-0.1365419945746876,0.007699072370629834],"y":[-0.8254109586504945,0.1015937025248892,0.5299153009853983,0.2305190890711937,-0.1933083812833946,1,-0.462047644177526,-0.6720564110132281,-0.797655589857982,0.5723654698562468,0.2531680102066294,-1,0.8686110087585164,-0.7173031986793713,0.08684817881616813,-0.07417751905554959,-0.2049636629588071,0.4790052820665307,0.4778508384853888,0.367143702463711,-0.5557140758505882,-0.9339025647083421]},"edges":{"from":[6,9,5,4,7,4,3,3,8,1,11,12,13,14,15,16,17,18,19,20,21,22],"to":[13,14,15,16,17,18,19,20,21,22,2,1,10,8,4,5,2,10,10,2,1,8],"arrows":["to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","physics":false},"manipulation":{"enabled":false},"edges":{"smooth":false},"physics":{"stabilization":false},"interaction":{"hover":true,"zoomSpeed":1}},"groups":["1","2"],"width":null,"height":null,"idselection":{"enabled":true,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select by id"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","igraphlayout":{"type":"square"},"tooltipStay":300,"tooltipStyle":"position: fixed;visibility:hidden;padding: 5px;white-space: nowrap;font-family: verdana;font-size:14px;font-color:#000000;background-color: #f5f4ed;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px solid #808074;box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);","highlight":{"enabled":true,"hoverNearest":true,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":false,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 
